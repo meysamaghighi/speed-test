@@ -5,13 +5,17 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Speed Test - Reaction Time, Typing Speed & Memory Tests",
   description:
-    "Free online tests: measure your reaction time, typing speed, and number memory. Compare with averages and share your scores.",
+    "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory. Compare with averages and share your scores.",
 };
 
 const navLinks = [
-  { href: "/reaction", label: "Reaction Time" },
-  { href: "/typing", label: "Typing Speed" },
-  { href: "/memory", label: "Number Memory" },
+  { href: "/reaction", label: "Reaction" },
+  { href: "/typing", label: "Typing" },
+  { href: "/memory", label: "Memory" },
+  { href: "/aim", label: "Aim" },
+  { href: "/click-speed", label: "CPS" },
+  { href: "/chimp", label: "Chimp" },
+  { href: "/visual-memory", label: "Visual" },
 ];
 
 export default function RootLayout({

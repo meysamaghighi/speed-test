@@ -22,6 +22,34 @@ const tests = [
     color: "from-purple-500 to-violet-600",
     avg: "Average: 7 digits",
   },
+  {
+    href: "/aim",
+    title: "Aim Trainer",
+    desc: "Click 30 targets as fast as you can. Train your mouse accuracy.",
+    color: "from-red-500 to-rose-600",
+    avg: "Average: 600ms/target",
+  },
+  {
+    href: "/click-speed",
+    title: "Click Speed (CPS)",
+    desc: "How many clicks can you do in 5 seconds?",
+    color: "from-amber-500 to-yellow-600",
+    avg: "Average: 6.5 CPS",
+  },
+  {
+    href: "/chimp",
+    title: "Chimp Test",
+    desc: "Can you beat a chimpanzee? Click numbers in order from memory.",
+    color: "from-orange-500 to-amber-600",
+    avg: "Chimps score: 9",
+  },
+  {
+    href: "/visual-memory",
+    title: "Visual Memory",
+    desc: "Memorize a pattern of tiles and click them back. 3 lives.",
+    color: "from-pink-500 to-rose-600",
+    avg: "Average: Level 7",
+  },
 ];
 
 export default function Home() {
@@ -32,8 +60,8 @@ export default function Home() {
           Test Your Speed
         </h1>
         <p className="text-xl text-gray-400 max-w-lg mx-auto">
-          Free online tests to measure reaction time, typing speed, and memory.
-          No sign-up required.
+          Free online tests for reaction time, typing speed, memory, aim, and
+          more. No sign-up required.
         </p>
       </div>
 
@@ -67,7 +95,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick reaction time, typing speed, or number memory.
+              Pick from 7 brain and reflex tests.
             </p>
           </div>
           <div>
