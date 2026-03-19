@@ -30,12 +30,17 @@ export default function RootLayout({
           name="google-adsense-account"
           content="ca-pub-2621005924235240"
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LN22YK2CZT"></script>
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LN22YK2CZT');` }} />
       </head>
       <body className="bg-gray-950 text-white min-h-screen font-sans antialiased">
         <nav className="border-b border-gray-800 sticky top-0 z-50 bg-gray-950/90 backdrop-blur">
           <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
             <Link href="/" className="font-black text-lg text-white">
-              SpeedTest
+              BenchMyBrain
             </Link>
             <div className="flex gap-4 text-sm font-medium text-gray-400">
               {navLinks.map((link) => (
@@ -59,7 +64,7 @@ export default function RootLayout({
             <p className="mt-2">
               <Link href="https://cashcalcs.com" className="hover:text-gray-300">CashCalcs</Link>
               {" | "}
-              <Link href="/" className="hover:text-gray-300">SpeedTest</Link>
+              <Link href="/" className="hover:text-gray-300">BenchMyBrain</Link>
             </p>
           </div>
         </footer>

@@ -1,0 +1,18 @@
+import type { MetadataRoute } from "next";
+
+const BASE = "https://benchmybrain.com";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
+  return [
+    { url: BASE, lastModified: now, priority: 1.0 },
+    { url: `${BASE}/reaction`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/typing`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/memory`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/aim`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/click-speed`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/chimp`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/visual-memory`, lastModified: now, priority: 0.9 },
+  ];
+}
