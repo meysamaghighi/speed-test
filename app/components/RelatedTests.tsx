@@ -1,0 +1,61 @@
+import Link from "next/link";
+
+const allTests = [
+  { href: "/reaction", label: "Reaction Time", color: "from-green-500 to-emerald-600" },
+  { href: "/typing", label: "Typing Speed", color: "from-blue-500 to-indigo-600" },
+  { href: "/memory", label: "Number Memory", color: "from-purple-500 to-violet-600" },
+  { href: "/aim", label: "Aim Trainer", color: "from-red-500 to-rose-600" },
+  { href: "/click-speed", label: "Click Speed", color: "from-amber-500 to-yellow-600" },
+  { href: "/chimp", label: "Chimp Test", color: "from-orange-500 to-amber-600" },
+  { href: "/visual-memory", label: "Visual Memory", color: "from-pink-500 to-rose-600" },
+  { href: "/sequence", label: "Sequence Memory", color: "from-teal-500 to-cyan-600" },
+  { href: "/verbal", label: "Verbal Memory", color: "from-indigo-500 to-blue-600" },
+  { href: "/stroop", label: "Stroop Test", color: "from-fuchsia-500 to-pink-600" },
+  { href: "/color-blind", label: "Color Blind", color: "from-lime-500 to-green-600" },
+  { href: "/math", label: "Math Speed", color: "from-amber-500 to-red-500" },
+  { href: "/peripheral", label: "Peripheral Vision", color: "from-cyan-500 to-blue-600" },
+  { href: "/reading", label: "Reading Speed", color: "from-violet-500 to-purple-600" },
+];
+
+const relatedMap: Record<string, string[]> = {
+  "/reaction": ["/aim", "/click-speed", "/peripheral"],
+  "/typing": ["/reaction", "/reading", "/math"],
+  "/memory": ["/sequence", "/visual-memory", "/verbal"],
+  "/aim": ["/reaction", "/click-speed", "/peripheral"],
+  "/click-speed": ["/reaction", "/aim", "/typing"],
+  "/chimp": ["/visual-memory", "/memory", "/sequence"],
+  "/visual-memory": ["/chimp", "/sequence", "/memory"],
+  "/sequence": ["/visual-memory", "/memory", "/chimp"],
+  "/verbal": ["/memory", "/reading", "/stroop"],
+  "/stroop": ["/reaction", "/verbal", "/color-blind"],
+  "/color-blind": ["/stroop", "/peripheral", "/visual-memory"],
+  "/math": ["/typing", "/memory", "/reaction"],
+  "/peripheral": ["/aim", "/reaction", "/visual-memory"],
+  "/reading": ["/typing", "/verbal", "/memory"],
+};
+
+export default function RelatedTests({ current }: { current: string }) {
+  const related = relatedMap[current] ?? [];
+  const items = related
+    .map((href) => allTests.find((t) => t.href === href))
+    .filter(Boolean) as typeof allTests;
+
+  if (items.length === 0) return null;
+
+  return (
+    <section className="mt-12">
+      <h2 className="text-lg font-bold text-white mb-4">Related Tests</h2>
+      <div className="flex flex-wrap gap-3">
+        {items.map((test) => (
+          <Link
+            key={test.href}
+            href={test.href}
+            className={`px-4 py-2 bg-gradient-to-r ${test.color} text-white text-sm font-medium rounded-lg transition-opacity hover:opacity-90`}
+          >
+            {test.label}
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}

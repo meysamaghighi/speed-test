@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TypingTest from "../components/TypingTest";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Typing Speed Test - How Fast Can You Type? | BenchMyBrain",
@@ -14,6 +15,12 @@ export const metadata: Metadata = {
     "typing practice",
     "typing speed",
   ],
+  openGraph: {
+    title: "Typing Speed Test - How Fast Can You Type? | BenchMyBrain",
+    description:
+      "Free typing speed test. Measure your WPM (words per minute) and accuracy. Average typing speed is 40 WPM.",
+    type: "website",
+  },
 };
 
 export default function TypingPage() {
@@ -68,6 +75,8 @@ export default function TypingPage() {
         </div>
       </section>
 
+      <RelatedTests current="/typing" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -79,6 +88,42 @@ export default function TypingPage() {
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is a good typing speed?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "40 WPM is average for casual typists. 60-80 WPM is professional level. Over 80 WPM puts you in the top 1%. World records exceed 200 WPM.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How can I type faster?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Learn touch typing (don't look at the keyboard), practice daily for 15 minutes, focus on accuracy first then speed, use proper finger placement on home row keys.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does typing speed matter for programming?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Somewhat. Most programmers type 50-80 WPM. But thinking about code matters more than raw typing speed. Fast typing helps more with communication (emails, Slack) than coding itself.",
+                },
+              },
+            ],
           }),
         }}
       />

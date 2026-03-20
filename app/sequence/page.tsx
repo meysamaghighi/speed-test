@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import SequenceMemory from "../components/SequenceMemory";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Sequence Memory Test - How Long a Pattern Can You Remember?",
   description: "Free sequence memory test (Simon says). Watch tiles light up in order, then repeat the pattern. Each level adds one more step.",
   keywords: ["sequence memory test", "simon says game", "pattern memory", "memory sequence game", "brain training"],
+  openGraph: {
+    title: "Sequence Memory Test - How Long a Pattern Can You Remember? | BenchMyBrain",
+    description: "Free sequence memory test (Simon says). Watch tiles light up in order, then repeat the pattern. Each level adds one more step.",
+    type: "website",
+  },
 };
 
 export default function SequencePage() {
@@ -31,7 +37,9 @@ export default function SequencePage() {
           </div>
         </div>
       </section>
+      <RelatedTests current="/sequence" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Sequence Memory Test", description: "Free sequence memory test. Repeat the pattern of tiles.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "What is sequence memory?", acceptedAnswer: { "@type": "Answer", text: "Sequence memory is the ability to remember items in a specific order. It's used in daily life for things like phone numbers, directions, and musical melodies." } }, { "@type": "Question", name: "What is a good sequence memory score?", acceptedAnswer: { "@type": "Answer", text: "Reaching level 7 is average. Level 10+ is good. Level 15+ is exceptional. The test gets exponentially harder as the sequence grows longer." } }, { "@type": "Question", name: "How is this different from visual memory?", acceptedAnswer: { "@type": "Answer", text: "Visual memory tests spatial recall (where tiles are), while sequence memory tests temporal recall (the order tiles light up). Both use short-term memory but engage different brain areas." } }] }) }} />
     </main>
   );
 }

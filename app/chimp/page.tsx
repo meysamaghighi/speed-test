@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import ChimpTest from "../components/ChimpTest";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Chimp Test - Are You Smarter Than a Chimpanzee?",
   description:
     "The famous chimp test from Kyoto University. Numbers flash on screen — click them in order after they disappear. Chimps score 80% at 9 numbers. Can you?",
   keywords: ["chimp test", "chimpanzee memory test", "number memory game", "are you smarter than a chimp", "Ayumu chimp test", "sequence memory"],
+  openGraph: {
+    title: "Chimp Test - Are You Smarter Than a Chimpanzee? | BenchMyBrain",
+    description:
+      "The famous chimp test from Kyoto University. Numbers flash on screen — click them in order after they disappear. Chimps score 80% at 9 numbers. Can you?",
+    type: "website",
+  },
 };
 
 export default function ChimpPage() {
@@ -36,7 +43,46 @@ export default function ChimpPage() {
           </div>
         </div>
       </section>
+
+      <RelatedTests current="/chimp" />
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Chimp Test", description: "The famous chimp memory test. Click numbers in order after they disappear.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Can chimps really beat humans at memory?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. In the 2007 Kyoto University study, chimpanzee Ayumu could remember 9 numbers after seeing them for just 210 milliseconds, outperforming every human tested.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Why are chimps better at this task?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Researchers believe chimps have superior photographic (eidetic) short-term memory. Humans may have traded this ability during evolution to develop language processing in the same brain regions.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What is a good score on the chimp test?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Most humans can reliably handle 5-7 numbers. Reaching 8-9 is impressive. Consistently scoring 9+ puts you at chimpanzee level — something very few humans can achieve.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </main>
   );
 }

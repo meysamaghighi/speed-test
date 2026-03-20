@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import ColorTest from "../components/ColorTest";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Stroop Color Test - Can Your Brain Ignore the Word?",
   description: "Free Stroop effect test. A color name appears in a different ink color. Pick the ink color, not the word. Tests cognitive flexibility and attention.",
   keywords: ["stroop test", "stroop effect", "color test", "brain test", "cognitive test", "attention test", "color word test"],
+  openGraph: {
+    title: "Stroop Color Test - Test Your Brain's Processing Speed | BenchMyBrain",
+    description: "Free Stroop effect test. A color name appears in a different ink color. Pick the ink color, not the word. Tests cognitive flexibility and attention.",
+    type: "website",
+  },
 };
 
 export default function StroopPage() {
@@ -31,7 +37,9 @@ export default function StroopPage() {
           </div>
         </div>
       </section>
+      <RelatedTests current="/stroop" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Stroop Color Test", description: "Free Stroop effect test. Pick the ink color, not the word.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "What is the Stroop effect?", acceptedAnswer: { "@type": "Answer", text: "The Stroop effect is the delay in reaction time when the color of a word doesn't match the word itself (e.g., the word 'RED' written in blue). Your brain automatically reads the word, conflicting with naming the color." } }, { "@type": "Question", name: "Why is the Stroop test important?", acceptedAnswer: { "@type": "Answer", text: "It measures executive function — your brain's ability to inhibit automatic responses. It's used clinically to detect cognitive decline, ADHD, and brain injuries." } }, { "@type": "Question", name: "What is a good Stroop test score?", acceptedAnswer: { "@type": "Answer", text: "High accuracy (90%+) with fast response times indicates strong executive function. Most people are 50-100ms slower on incongruent trials (mismatched word and color) compared to congruent ones." } }] }) }} />
     </main>
   );
 }

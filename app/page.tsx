@@ -1,4 +1,30 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "BenchMyBrain - 14 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  description:
+    "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
+  keywords: [
+    "brain test",
+    "reaction time test",
+    "typing speed test",
+    "memory test",
+    "aim trainer",
+    "click speed test",
+    "chimp test",
+    "cognitive test",
+    "reflex test",
+    "brain games",
+    "speed test online",
+  ],
+  openGraph: {
+    title: "BenchMyBrain - 14 Free Brain & Speed Tests",
+    description:
+      "Free online brain tests: reaction time, typing speed, memory, aim, color blind, math, and more. No sign-up required.",
+    type: "website",
+  },
+};
 
 const tests = [
   {

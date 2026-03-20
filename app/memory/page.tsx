@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import NumberMemory from "../components/NumberMemory";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Number Memory Test - How Many Digits Can You Remember? | BenchMyBrain",
@@ -13,6 +14,12 @@ export const metadata: Metadata = {
     "how good is my memory",
     "brain test",
   ],
+  openGraph: {
+    title: "Number Memory Test - How Many Digits Can You Remember? | BenchMyBrain",
+    description:
+      "Test your number memory. A number flashes on screen, then you type it back. How many digits can you remember? Average is 7.",
+    type: "website",
+  },
 };
 
 export default function MemoryPage() {
@@ -53,6 +60,8 @@ export default function MemoryPage() {
         </div>
       </section>
 
+      <RelatedTests current="/memory" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -64,6 +73,42 @@ export default function MemoryPage() {
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How many numbers can the average person remember?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The average short-term memory span is 7 digits (plus or minus 2), known as Miller's Law. Most people can reliably remember 5-9 digits after a brief exposure.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How can I improve my number memory?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Use chunking (group digits like phone numbers: 555-123-4567), create associations or stories with numbers, practice regularly, and try the memory palace technique.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What is working memory?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Working memory is the ability to hold and manipulate information briefly. It's closely related to IQ and is used constantly — from mental math to following conversations.",
+                },
+              },
+            ],
           }),
         }}
       />

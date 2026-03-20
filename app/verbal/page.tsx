@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import VerbalMemory from "../components/VerbalMemory";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Verbal Memory Test - How Many Words Can You Remember?",
   description: "Free verbal memory test. Words appear one at a time. Click SEEN if you saw it before, or NEW if it is new. 3 lives. How high can you score?",
   keywords: ["verbal memory test", "word memory test", "memory game", "brain test", "seen or new game", "word recognition test"],
+  openGraph: {
+    title: "Verbal Memory Test - How Many Words Can You Remember? | BenchMyBrain",
+    description: "Free verbal memory test. Words appear one at a time. Click SEEN if you saw it before, or NEW if it is new. 3 lives. How high can you score?",
+    type: "website",
+  },
 };
 
 export default function VerbalPage() {
@@ -31,7 +37,9 @@ export default function VerbalPage() {
           </div>
         </div>
       </section>
+      <RelatedTests current="/verbal" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Verbal Memory Test", description: "Free verbal memory test. How many words can you remember?", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "What is verbal memory?", acceptedAnswer: { "@type": "Answer", text: "Verbal memory is the ability to remember words and language-based information. It's essential for learning, conversation, reading comprehension, and vocabulary building." } }, { "@type": "Question", name: "What is a good verbal memory score?", acceptedAnswer: { "@type": "Answer", text: "Remembering 30 words is average. 50+ is good. 80+ is exceptional. The test becomes harder as more words are introduced and you need to track which ones you've seen." } }, { "@type": "Question", name: "How can I improve verbal memory?", acceptedAnswer: { "@type": "Answer", text: "Read regularly, play word games, use mnemonic devices (create stories or associations), get enough sleep, and practice active recall instead of passive rereading." } }] }) }} />
     </main>
   );
 }

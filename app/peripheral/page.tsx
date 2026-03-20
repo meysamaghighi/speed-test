@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PeripheralVision from "../components/PeripheralVision";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Peripheral Vision Test - How Wide Is Your Field of View? | BenchMyBrain",
@@ -13,6 +14,11 @@ export const metadata: Metadata = {
     "peripheral awareness",
     "eye test",
   ],
+  openGraph: {
+    title: "Peripheral Vision Test - How Wide Is Your Visual Field? | BenchMyBrain",
+    description: "Test your peripheral vision online. Stare at the center and detect targets appearing at the edges of your vision. Free, no sign-up required.",
+    type: "website",
+  },
 };
 
 export default function PeripheralPage() {
@@ -54,6 +60,8 @@ export default function PeripheralPage() {
         </div>
       </section>
 
+      <RelatedTests current="/peripheral" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -65,6 +73,41 @@ export default function PeripheralPage() {
             applicationCategory: "HealthApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is peripheral vision?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Peripheral vision is what you see outside the center of your gaze — your side vision. The normal human visual field spans about 180 degrees horizontally.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Why is peripheral vision important?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "It's essential for driving safety, sports performance (seeing teammates/opponents), walking without bumping into things, and detecting threats or motion in your environment.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can you improve peripheral vision?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, through exercises: focus on a central point and practice noticing objects in your side vision, play sports that require spatial awareness, and do regular eye exercises.",
+                },
+              },
+            ],
           }),
         }}
       />

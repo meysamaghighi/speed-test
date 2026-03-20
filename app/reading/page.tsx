@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ReadingSpeed from "../components/ReadingSpeed";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
   title: "Reading Speed Test - How Fast Do You Read? | BenchMyBrain",
@@ -14,6 +15,11 @@ export const metadata: Metadata = {
     "reading comprehension test",
     "speed reading test",
   ],
+  openGraph: {
+    title: "Reading Speed Test - How Fast Do You Read? | BenchMyBrain",
+    description: "Measure your reading speed in words per minute (WPM) with comprehension quiz. The average adult reads 200-250 WPM. How fast are you?",
+    type: "website",
+  },
 };
 
 export default function ReadingPage() {
@@ -55,6 +61,8 @@ export default function ReadingPage() {
         </div>
       </section>
 
+      <RelatedTests current="/reading" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -66,6 +74,41 @@ export default function ReadingPage() {
             applicationCategory: "EducationalApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is a good reading speed?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The average adult reads 230 WPM. 300+ WPM is above average. Speed readers can reach 500-1000 WPM, but comprehension typically drops above 500 WPM.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How can I read faster?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Reduce subvocalization (saying words in your head), use a pointer to guide your eyes, practice with progressively faster material, expand your peripheral reading span, and avoid re-reading sentences.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does speed reading actually work?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Research shows that speed reading techniques can increase reading speed, but usually at the cost of comprehension. For most people, 400-500 WPM with good comprehension is a realistic goal.",
+                },
+              },
+            ],
           }),
         }}
       />
