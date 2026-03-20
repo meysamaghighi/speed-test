@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "BenchMyBrain - Free Reaction Time, Typing Speed & Brain Tests",
   description:
     "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory. Compare with averages and share your scores.",
+  openGraph: {
+    title: "BenchMyBrain - Free Brain & Speed Tests",
+    description: "10 free online tests: reaction time, typing speed, memory, aim, and more. No sign-up required.",
+    type: "website",
+    siteName: "BenchMyBrain",
+  },
 };
 
 const navLinks = [

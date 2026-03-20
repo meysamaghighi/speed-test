@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import NumberMemory from "../components/NumberMemory";
 
 export const metadata: Metadata = {
-  title: "Number Memory Test - How Many Digits Can You Remember? | SpeedTest",
+  title: "Number Memory Test - How Many Digits Can You Remember? | BenchMyBrain",
   description:
     "Test your number memory. A number flashes on screen, then you type it back. How many digits can you remember? Average is 7.",
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import TypingTest from "../components/TypingTest";
 
 export const metadata: Metadata = {
-  title: "Typing Speed Test - How Fast Can You Type? | SpeedTest",
+  title: "Typing Speed Test - How Fast Can You Type? | BenchMyBrain",
   description:
     "Free typing speed test. Measure your WPM (words per minute) and accuracy. Average typing speed is 40 WPM.",
   keywords: [

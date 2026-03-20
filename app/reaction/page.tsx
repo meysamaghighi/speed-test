@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ReactionTest from "../components/ReactionTest";
 
 export const metadata: Metadata = {
-  title: "Reaction Time Test - How Fast Are Your Reflexes? | SpeedTest",
+  title: "Reaction Time Test - How Fast Are Your Reflexes? | BenchMyBrain",
   description:
     "Test your reaction time with this free online tool. Click when the screen turns green and see your speed in milliseconds. Average is 250ms.",
   keywords: [
