@@ -3,7 +3,8 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Speed Test - Reaction Time, Typing Speed & Memory Tests",
+  metadataBase: new URL("https://benchmybrain.com"),
+  title: "BenchMyBrain - Free Reaction Time, Typing Speed & Brain Tests",
   description:
     "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory. Compare with averages and share your scores.",
 };
@@ -16,6 +17,9 @@ const navLinks = [
   { href: "/click-speed", label: "CPS" },
   { href: "/chimp", label: "Chimp" },
   { href: "/visual-memory", label: "Visual" },
+  { href: "/sequence", label: "Sequence" },
+  { href: "/verbal", label: "Verbal" },
+  { href: "/stroop", label: "Stroop" },
 ];
 
 export default function RootLayout({

@@ -14,5 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/click-speed`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/chimp`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/visual-memory`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/sequence`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/verbal`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/stroop`, lastModified: now, priority: 0.9 },
   ];
 }

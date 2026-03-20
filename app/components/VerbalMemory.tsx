@@ -1,0 +1,179 @@
+"use client";
+
+import { useState, useCallback } from "react";
+
+const wordList = [
+  "apple","bridge","castle","dragon","engine","forest","garden","harbor","island","jungle",
+  "knight","lemon","mirror","needle","orange","palace","quartz","ribbon","silver","temple",
+  "umbrella","valley","wallet","yellow","zigzag","anchor","bottle","camera","desert","eagle",
+  "finger","guitar","hammer","insect","jacket","kitten","ladder","marble","napkin","oyster",
+  "pencil","quiver","rocket","saddle","ticket","unlock","velvet","whistle","yogurt","zipper",
+  "bamboo","canyon","dolphin","emerald","falcon","glacier","horizon","ivory","jasmine","kernel",
+  "lantern","mustard","nucleus","octopus","phantom","quantum","rainbow","saffron","tornado","uniform",
+  "volcano","warrior","crystal","diamond","feather","goblin","harvest","illusion","journey","kingdom",
+  "leopard","mushroom","neutron","obsidian","paradox","riddle","serpent","thunder","venture","wizard",
+];
+
+export default function VerbalMemory() {
+  const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
+  const [seenWords, setSeenWords] = useState<Set<string>>(new Set());
+  const [currentWord, setCurrentWord] = useState("");
+  const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(3);
+  const [isNewWord, setIsNewWord] = useState(true);
+  const [highScore, setHighScore] = useState(0);
+  const [usedIndices, setUsedIndices] = useState<Set<number>>(new Set());
+
+  const getNextWord = useCallback((seen: Set<string>, used: Set<number>) => {
+    // 50% chance to show a seen word (if any exist)
+    if (seen.size > 0 && Math.random() < 0.5) {
+      const arr = Array.from(seen);
+      const word = arr[Math.floor(Math.random() * arr.length)];
+      return { word, isNew: false, newUsed: used };
+    }
+    // Show a new word
+    const available = wordList.filter((_, i) => !used.has(i));
+    if (available.length === 0) {
+      // All words used, recycle
+      const word = wordList[Math.floor(Math.random() * wordList.length)];
+      return { word, isNew: !seen.has(word), newUsed: used };
+    }
+    const idx = wordList.indexOf(available[Math.floor(Math.random() * available.length)]);
+    const newUsed = new Set(used);
+    newUsed.add(idx);
+    return { word: wordList[idx], isNew: true, newUsed };
+  }, []);
+
+  const startGame = () => {
+    const seen = new Set<string>();
+    const used = new Set<number>();
+    const { word, isNew, newUsed } = getNextWord(seen, used);
+    setSeenWords(seen);
+    setUsedIndices(newUsed);
+    setCurrentWord(word);
+    setIsNewWord(isNew);
+    setScore(0);
+    setLives(3);
+    setPhase("playing");
+  };
+
+  const handleAnswer = (answeredSeen: boolean) => {
+    const correct = answeredSeen ? !isNewWord : isNewWord;
+
+    let newSeen = new Set(seenWords);
+    newSeen.add(currentWord);
+    setSeenWords(newSeen);
+
+    if (correct) {
+      const newScore = score + 1;
+      setScore(newScore);
+      const { word, isNew, newUsed } = getNextWord(newSeen, usedIndices);
+      setUsedIndices(newUsed);
+      setCurrentWord(word);
+      setIsNewWord(isNew);
+    } else {
+      const newLives = lives - 1;
+      setLives(newLives);
+      if (newLives <= 0) {
+        if (score > highScore) setHighScore(score);
+        setPhase("done");
+        return;
+      }
+      const { word, isNew, newUsed } = getNextWord(newSeen, usedIndices);
+      setUsedIndices(newUsed);
+      setCurrentWord(word);
+      setIsNewWord(isNew);
+    }
+  };
+
+  const getRating = (s: number) => {
+    if (s >= 80) return { label: "Incredible", color: "text-emerald-400" };
+    if (s >= 50) return { label: "Excellent", color: "text-green-400" };
+    if (s >= 30) return { label: "Good", color: "text-blue-400" };
+    if (s >= 15) return { label: "Average", color: "text-yellow-400" };
+    return { label: "Keep Practicing", color: "text-orange-400" };
+  };
+
+  if (phase === "ready") {
+    return (
+      <div className="text-center">
+        <button
+          onClick={startGame}
+          className="px-8 py-4 bg-indigo-600 text-white font-bold text-xl rounded-2xl hover:bg-indigo-700 transition-colors"
+        >
+          Start Verbal Memory
+        </button>
+        <p className="text-gray-500 text-sm mt-3">
+          Words appear one at a time. If you have seen the word before, click
+          SEEN. If it is new, click NEW. You have 3 lives.
+        </p>
+        {highScore > 0 && (
+          <p className="text-indigo-400 font-bold mt-2">Best: {highScore} points</p>
+        )}
+      </div>
+    );
+  }
+
+  if (phase === "done") {
+    const rating = getRating(score);
+    return (
+      <div className="text-center space-y-6">
+        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+          <p className="text-gray-400 text-sm mb-2">Verbal Memory Score</p>
+          <p className="text-6xl font-black text-indigo-400">{score}</p>
+          <p className="text-gray-400 mt-1">words correct</p>
+          <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
+        </div>
+        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
+          <p className="font-bold text-white mb-2">How You Compare</p>
+          <div className="flex justify-between">
+            <span>Top: 80+</span>
+            <span>Great: 50+</span>
+            <span>Average: 30</span>
+            <span>Low: &lt;15</span>
+          </div>
+        </div>
+        <div className="flex gap-3 justify-center">
+          <button onClick={startGame} className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors">Try Again</button>
+          <button
+            onClick={() => {
+              const t = `Verbal Memory: ${score} words correct (${rating.label})! Test your word memory!`;
+              if (navigator.share) navigator.share({ text: t }).catch(() => {});
+              else navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
+            }}
+            className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors"
+          >Share Score</button>
+        </div>
+      </div>
+    );
+  }
+
+  // Playing
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-between text-sm text-gray-400">
+        <span>Score: <span className="text-white font-bold">{score}</span></span>
+        <span>{"♥".repeat(lives)}{"♡".repeat(3 - lives)}</span>
+      </div>
+
+      <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 text-center">
+        <p className="text-4xl md:text-5xl font-black text-white">{currentWord}</p>
+      </div>
+
+      <div className="flex gap-4 justify-center">
+        <button
+          onClick={() => handleAnswer(false)}
+          className="flex-1 max-w-xs py-4 bg-blue-600 text-white font-bold text-lg rounded-xl hover:bg-blue-700 transition-colors"
+        >
+          NEW
+        </button>
+        <button
+          onClick={() => handleAnswer(true)}
+          className="flex-1 max-w-xs py-4 bg-orange-600 text-white font-bold text-lg rounded-xl hover:bg-orange-700 transition-colors"
+        >
+          SEEN
+        </button>
+      </div>
+    </div>
+  );
+}

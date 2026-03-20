@@ -50,6 +50,27 @@ const tests = [
     color: "from-pink-500 to-rose-600",
     avg: "Average: Level 7",
   },
+  {
+    href: "/sequence",
+    title: "Sequence Memory",
+    desc: "Watch tiles light up in order, then repeat the pattern. Like Simon.",
+    color: "from-teal-500 to-cyan-600",
+    avg: "Average: Level 7",
+  },
+  {
+    href: "/verbal",
+    title: "Verbal Memory",
+    desc: "Words appear one at a time. Have you seen it before? SEEN or NEW.",
+    color: "from-indigo-500 to-blue-600",
+    avg: "Average: 30 words",
+  },
+  {
+    href: "/stroop",
+    title: "Stroop Color Test",
+    desc: "Color names in wrong ink colors. Pick the ink color, not the word.",
+    color: "from-fuchsia-500 to-pink-600",
+    avg: "Tests attention",
+  },
 ];
 
 export default function Home() {
@@ -95,7 +116,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick from 7 brain and reflex tests.
+              Pick from 10 brain and reflex tests.
             </p>
           </div>
           <div>
