@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import MobileNav from "./components/MobileNav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ gtag('config', 'G-LN22YK2CZT');` }} />
             <Link href="/" className="font-black text-lg text-white">
               BenchMyBrain
             </Link>
-            <div className="flex gap-4 text-sm font-medium text-gray-400">
+            <div className="hidden md:flex gap-4 text-sm font-medium text-gray-400">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -57,6 +58,7 @@ gtag('config', 'G-LN22YK2CZT');` }} />
                 </Link>
               ))}
             </div>
+            <MobileNav links={navLinks} />
           </div>
         </nav>
 
