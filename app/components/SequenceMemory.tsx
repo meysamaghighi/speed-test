@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function SequenceMemory() {
+  const pb = usePersonalBest("pb-sequence", "higher");
   const [phase, setPhase] = useState<"ready" | "showing" | "input" | "correct" | "wrong">("ready");
   const [sequence, setSequence] = useState<number[]>([]);
   const [inputIndex, setInputIndex] = useState(0);
@@ -119,6 +121,7 @@ export default function SequenceMemory() {
 
   if (phase === "wrong") {
     const score = level - 1;
+    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
@@ -126,6 +129,8 @@ export default function SequenceMemory() {
           <p className="text-gray-400 text-sm mb-2">Sequence Memory</p>
           <p className="text-6xl font-black text-teal-400">Level {score}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
         </div>
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
           <p className="font-bold text-white mb-2">How You Compare</p>

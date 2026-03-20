@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function ClickSpeed() {
+  const pb = usePersonalBest("pb-cps", "higher");
   const [phase, setPhase] = useState<"ready" | "clicking" | "done">("ready");
   const [clicks, setClicks] = useState(0);
   const [timeLeft, setTimeLeft] = useState(5);
@@ -62,6 +64,7 @@ export default function ClickSpeed() {
   };
 
   if (phase === "done") {
+    pb.checkAndSet(cps);
     const rating = getRating(cps);
     return (
       <div className="text-center space-y-6">
@@ -72,6 +75,8 @@ export default function ClickSpeed() {
             {rating.label}
           </p>
           <p className="text-gray-500 text-sm mt-1">{clicks} clicks in 5 seconds</p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-1">Personal Best: {pb.best} CPS</p>}
         </div>
 
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">

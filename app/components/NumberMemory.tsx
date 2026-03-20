@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function NumberMemory() {
+  const pb = usePersonalBest("pb-number-memory", "higher");
   const [phase, setPhase] = useState<"ready" | "show" | "input" | "correct" | "wrong">("ready");
   const [level, setLevel] = useState(1);
   const [number, setNumber] = useState("");
@@ -169,6 +171,7 @@ export default function NumberMemory() {
 
   // Wrong
   const finalScore = level - 1;
+  pb.checkAndSet(finalScore);
   const rating = getRating(finalScore);
   return (
     <div className="text-center space-y-6">
@@ -181,6 +184,8 @@ export default function NumberMemory() {
         <p className={`text-lg font-bold mt-2 ${rating.color}`}>
           {rating.label}
         </p>
+        {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+        {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
       </div>
 
       <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">

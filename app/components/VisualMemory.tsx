@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function VisualMemory() {
+  const pb = usePersonalBest("pb-visual-memory", "higher");
   const [phase, setPhase] = useState<"ready" | "show" | "input" | "correct" | "wrong">("ready");
   const [level, setLevel] = useState(1);
   const [gridSize, setGridSize] = useState(3);
@@ -138,6 +140,7 @@ export default function VisualMemory() {
 
   if (phase === "wrong" && lives <= 0) {
     const score = level - 1;
+    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
@@ -148,6 +151,8 @@ export default function VisualMemory() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
         </div>
 
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">

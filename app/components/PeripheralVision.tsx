@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function PeripheralVision() {
+  const pb = usePersonalBest("pb-peripheral", "lower");
   const [phase, setPhase] = useState<"ready" | "fixate" | "target" | "result">("ready");
   const [round, setRound] = useState(0);
   const [times, setTimes] = useState<number[]>([]);
@@ -125,6 +127,7 @@ export default function PeripheralVision() {
   }
 
   if (phase === "result") {
+    if (avgTime > 0) pb.checkAndSet(avgTime);
     const rating = getRating();
     return (
       <div className="text-center space-y-6">
@@ -132,6 +135,8 @@ export default function PeripheralVision() {
           <p className="text-gray-400 text-sm mb-2">Average Detection Time</p>
           <p className="text-5xl font-black text-white">{avgTime}<span className="text-2xl text-gray-400">ms</span></p>
           <p className={`text-xl font-bold mt-2 ${rating.color}`}>{rating.label}</p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}ms</p>}
           <div className="grid grid-cols-3 gap-4 mt-6">
             <div>
               <p className="text-2xl font-bold text-white">{times.length}</p>

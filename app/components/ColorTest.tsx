@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 const colors = [
   { name: "Red", hex: "#ef4444" },
@@ -14,6 +15,7 @@ const colors = [
 ];
 
 export default function ColorTest() {
+  const pb = usePersonalBest("pb-stroop", "higher");
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
   const [displayName, setDisplayName] = useState("");
   const [displayColor, setDisplayColor] = useState("");
@@ -122,6 +124,7 @@ export default function ColorTest() {
   }
 
   if (phase === "done") {
+    pb.checkAndSet(score);
     const rating = getRating(score, average);
     return (
       <div className="text-center space-y-6">
@@ -131,6 +134,8 @@ export default function ColorTest() {
             {score}/{totalRounds}
           </p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">

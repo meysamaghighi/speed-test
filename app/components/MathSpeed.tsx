@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 interface Problem {
   question: string;
@@ -71,6 +72,7 @@ function generateProblem(level: number): Problem {
 }
 
 export default function MathSpeed() {
+  const pb = usePersonalBest("pb-math", "higher");
   const [phase, setPhase] = useState<"ready" | "playing" | "result">("ready");
   const [level, setLevel] = useState(1);
   const [score, setScore] = useState(0);
@@ -168,6 +170,7 @@ export default function MathSpeed() {
   }
 
   if (phase === "result") {
+    pb.checkAndSet(score);
     const rating = getRating();
     const accuracy = totalAnswered > 0 ? Math.round((correct / totalAnswered) * 100) : 0;
     return (
@@ -176,6 +179,8 @@ export default function MathSpeed() {
           <p className="text-gray-400 text-sm mb-2">Score</p>
           <p className="text-5xl font-black text-white">{score}</p>
           <p className={`text-xl font-bold mt-2 ${rating.color}`}>{rating.label}</p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
           <div className="grid grid-cols-3 gap-4 mt-6">
             <div>
               <p className="text-2xl font-bold text-white">{correct}</p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 const passages = [
   {
@@ -30,6 +31,7 @@ const passages = [
 ];
 
 export default function ReadingSpeed() {
+  const pb = usePersonalBest("pb-reading", "higher");
   const [phase, setPhase] = useState<"ready" | "reading" | "quiz" | "result">("ready");
   const [passageIdx, setPassageIdx] = useState(0);
   const [startTime, setStartTime] = useState(0);
@@ -154,6 +156,7 @@ export default function ReadingSpeed() {
   }
 
   // Result
+  pb.checkAndSet(wpm);
   const rating = getRating();
   const comprehension = Math.round((quizCorrect / passage.questions.length) * 100);
   return (
@@ -162,6 +165,8 @@ export default function ReadingSpeed() {
         <p className="text-gray-400 text-sm mb-2">Reading Speed</p>
         <p className="text-5xl font-black text-white">{wpm}<span className="text-2xl text-gray-400"> WPM</span></p>
         <p className={`text-xl font-bold mt-2 ${rating.color}`}>{rating.label}</p>
+        {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+        {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} WPM</p>}
         <div className="grid grid-cols-3 gap-4 mt-6">
           <div>
             <p className="text-2xl font-bold text-white">{Math.round(readingTime / 1000)}s</p>

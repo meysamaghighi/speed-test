@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 interface Cell {
   id: number;
@@ -12,6 +13,7 @@ interface Cell {
 }
 
 export default function ChimpTest() {
+  const pb = usePersonalBest("pb-chimp", "higher");
   const [phase, setPhase] = useState<"ready" | "memorize" | "play" | "correct" | "wrong">("ready");
   const [level, setLevel] = useState(4);
   const [cells, setCells] = useState<Cell[]>([]);
@@ -150,6 +152,7 @@ export default function ChimpTest() {
 
   if (phase === "wrong") {
     const score = level - 1;
+    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
@@ -160,6 +163,8 @@ export default function ChimpTest() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
         </div>
 
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">

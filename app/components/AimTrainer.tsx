@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 interface Target {
   x: number;
@@ -9,6 +10,7 @@ interface Target {
 }
 
 export default function AimTrainer() {
+  const pb = usePersonalBest("pb-aim", "lower");
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
   const [target, setTarget] = useState<Target | null>(null);
   const [hits, setHits] = useState(0);
@@ -63,6 +65,7 @@ export default function AimTrainer() {
   };
 
   if (phase === "done") {
+    pb.checkAndSet(average);
     const rating = getRating(average);
     return (
       <div className="text-center space-y-6">
@@ -72,6 +75,8 @@ export default function AimTrainer() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}ms</p>}
           <p className="text-gray-500 text-sm mt-1">
             {totalTargets} targets hit
           </p>

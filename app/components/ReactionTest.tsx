@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 type Phase = "waiting" | "ready" | "go" | "result" | "too-early";
 
 export default function ReactionTest() {
+  const pb = usePersonalBest("pb-reaction", "lower");
   const [phase, setPhase] = useState<Phase>("waiting");
   const [times, setTimes] = useState<number[]>([]);
   const [currentTime, setCurrentTime] = useState(0);
@@ -64,6 +66,7 @@ export default function ReactionTest() {
 
   // Final results screen
   if (times.length === totalRounds && phase === "result") {
+    pb.checkAndSet(average);
     const rating = getRating(average);
     return (
       <div className="text-center space-y-6">
@@ -73,6 +76,8 @@ export default function ReactionTest() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}ms</p>}
         </div>
 
         <div className="grid grid-cols-5 gap-2">

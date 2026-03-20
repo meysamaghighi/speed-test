@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 const paragraphs = [
   "The quick brown fox jumps over the lazy dog near the river bank where the children play every summer afternoon.",
@@ -14,6 +15,7 @@ const paragraphs = [
 ];
 
 export default function TypingTest() {
+  const pb = usePersonalBest("pb-typing", "higher");
   const [phase, setPhase] = useState<"ready" | "typing" | "done">("ready");
   const [text, setText] = useState("");
   const [typed, setTyped] = useState("");
@@ -78,6 +80,7 @@ export default function TypingTest() {
   }
 
   if (phase === "done") {
+    pb.checkAndSet(wpm);
     const rating = getRating(wpm);
     return (
       <div className="text-center space-y-6">
@@ -87,6 +90,8 @@ export default function TypingTest() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} WPM</p>}
         </div>
 
         <div className="grid grid-cols-3 gap-3">

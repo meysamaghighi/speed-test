@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { usePersonalBest } from "../hooks/usePersonalBest";
 
 const wordList = [
   "apple","bridge","castle","dragon","engine","forest","garden","harbor","island","jungle",
@@ -15,6 +16,7 @@ const wordList = [
 ];
 
 export default function VerbalMemory() {
+  const pb = usePersonalBest("pb-verbal", "higher");
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
   const [seenWords, setSeenWords] = useState<Set<string>>(new Set());
   const [currentWord, setCurrentWord] = useState("");
@@ -115,6 +117,7 @@ export default function VerbalMemory() {
   }
 
   if (phase === "done") {
+    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
@@ -123,6 +126,8 @@ export default function VerbalMemory() {
           <p className="text-6xl font-black text-indigo-400">{score}</p>
           <p className="text-gray-400 mt-1">words correct</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
+          {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
         </div>
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
           <p className="font-bold text-white mb-2">How You Compare</p>
