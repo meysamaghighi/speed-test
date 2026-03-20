@@ -28,6 +28,62 @@ const passages = [
       { q: "When were the best-preserved sections built?", options: ["7th century BC", "Han Dynasty", "Tang Dynasty", "Ming Dynasty"], correct: 3 },
     ],
   },
+  {
+    text: "Octopuses have three hearts, nine brains, and blue blood. Two of their hearts pump blood to the gills, while the third pumps it to the rest of the body. Each of their eight arms contains a mini-brain that can act independently, allowing the arms to taste, touch, and even make basic decisions without input from the central brain. Their blue blood uses copper-based hemocyanin instead of iron-based hemoglobin, which is more efficient at transporting oxygen in cold, low-oxygen deep-sea environments. Octopuses are also masters of camouflage, able to change color, texture, and shape in milliseconds using specialized cells called chromatophores. Some species can even mimic other sea creatures to avoid predators.",
+    questions: [
+      { q: "How many hearts does an octopus have?", options: ["One", "Two", "Three", "Four"], correct: 2 },
+      { q: "Why is octopus blood blue?", options: ["Iron-based hemoglobin", "Copper-based hemocyanin", "High salt content", "Lack of oxygen"], correct: 1 },
+      { q: "What are the color-changing cells called?", options: ["Melanocytes", "Chromatophores", "Rhodopsins", "Pigmentocytes"], correct: 1 },
+    ],
+  },
+  {
+    text: "Honey never spoils. Archaeologists have found 3,000-year-old honey in Egyptian tombs that was still perfectly edible. The secret lies in honey's unique chemistry: it has very low moisture content, high acidity, and naturally produces small amounts of hydrogen peroxide. These properties create an inhospitable environment for bacteria and microorganisms. Bees contribute to this preservation by fanning the nectar with their wings to evaporate water, reducing moisture to below 18%. They also add an enzyme called glucose oxidase, which produces the hydrogen peroxide that acts as a natural preservative. However, honey must be stored in sealed containers because it is hygroscopic, meaning it readily absorbs moisture from the air, which could eventually allow fermentation.",
+    questions: [
+      { q: "How old was the edible honey found in tombs?", options: ["1,000 years", "2,000 years", "3,000 years", "5,000 years"], correct: 2 },
+      { q: "What do bees do to reduce moisture in honey?", options: ["Heat it", "Fan it with their wings", "Add wax", "Compress it"], correct: 1 },
+      { q: "What does hygroscopic mean?", options: ["Repels water", "Absorbs moisture from air", "Produces heat", "Resists bacteria"], correct: 1 },
+    ],
+  },
+  {
+    text: "The Mariana Trench is the deepest known point in Earth's oceans, reaching a depth of approximately 36,000 feet at its lowest point, called the Challenger Deep. The pressure at this depth is over 1,000 times atmospheric pressure at sea level, crushing most human-made equipment. Despite these extreme conditions, life thrives there. Scientists have discovered shrimp-like amphipods, sea cucumbers, and even fish adapted to the crushing pressure and complete darkness. In 2019, explorer Victor Vescovo set a new record by diving to 35,853 feet and was dismayed to find plastic waste at the bottom, including a plastic bag and candy wrappers, highlighting the far reach of human pollution.",
+    questions: [
+      { q: "What is the deepest point called?", options: ["Mariana Point", "Abyssal Plain", "Challenger Deep", "Hadal Zone"], correct: 2 },
+      { q: "What pressure exists at the bottom?", options: ["100 times", "500 times", "Over 1,000 times", "10,000 times"], correct: 2 },
+      { q: "What did Victor Vescovo find at the bottom?", options: ["New species", "Volcanic vents", "Plastic waste", "Shipwrecks"], correct: 2 },
+    ],
+  },
+  {
+    text: "The speed of light in a vacuum is approximately 186,282 miles per second, making it the fastest speed possible in the universe according to Einstein's theory of special relativity. At this speed, light from the Sun takes about 8 minutes and 20 seconds to reach Earth. The nearest star beyond our Sun, Proxima Centauri, is about 4.24 light-years away, meaning its light takes over four years to reach us. This also means that when we observe distant galaxies billions of light-years away, we are literally looking back in time, seeing them as they appeared billions of years ago. Scientists use this property to study the early universe by observing the most distant objects detectable with current telescopes.",
+    questions: [
+      { q: "How long does sunlight take to reach Earth?", options: ["About 1 minute", "About 8 minutes", "About 30 minutes", "About 1 hour"], correct: 1 },
+      { q: "How far is Proxima Centauri?", options: ["1.5 light-years", "4.24 light-years", "10 light-years", "25 light-years"], correct: 1 },
+      { q: "What can scientists study by observing distant galaxies?", options: ["Future events", "Dark matter only", "The early universe", "Parallel dimensions"], correct: 2 },
+    ],
+  },
+  {
+    text: "Venus rotates in the opposite direction to most planets in our solar system, meaning the Sun rises in the west and sets in the east. A single day on Venus, measured as one full rotation, takes about 243 Earth days, which is actually longer than its year of 225 Earth days. This makes Venus the only planet where a day is longer than a year. The planet's surface temperature averages around 867 degrees Fahrenheit, hot enough to melt lead, due to a runaway greenhouse effect caused by its thick atmosphere of carbon dioxide. Despite these harsh conditions, Soviet Venera missions in the 1970s and 1980s successfully landed probes on Venus, which transmitted images and data for up to two hours before succumbing to the extreme heat and pressure.",
+    questions: [
+      { q: "In which direction does Venus rotate?", options: ["Same as Earth", "Opposite to most planets", "It doesn't rotate", "Vertically"], correct: 1 },
+      { q: "How long is a day on Venus in Earth days?", options: ["24 hours", "116 days", "243 days", "365 days"], correct: 2 },
+      { q: "Which country landed probes on Venus?", options: ["USA", "Soviet Union", "Japan", "China"], correct: 1 },
+    ],
+  },
+  {
+    text: "Bananas are technically berries, while strawberries are not. In botanical terms, a berry is a fruit that develops from a single ovary and contains seeds embedded in the flesh. By this definition, grapes, avocados, and even eggplants qualify as berries. Strawberries, raspberries, and blackberries fail the botanical test because they develop from multiple ovaries. The banana plant itself is not actually a tree but the world's largest herbaceous plant, with what appears to be a trunk actually being tightly packed leaf bases. Wild bananas contain large, hard seeds, but the commercial Cavendish banana has been selectively bred to be seedless. This lack of genetic diversity makes commercial bananas vulnerable to diseases like Panama disease, which has already wiped out the previous dominant variety, the Gros Michel.",
+    questions: [
+      { q: "Are bananas technically berries?", options: ["Yes", "No", "Only some varieties", "Only when ripe"], correct: 0 },
+      { q: "What is a banana plant classified as?", options: ["A tree", "A vine", "An herbaceous plant", "A shrub"], correct: 2 },
+      { q: "What disease threatens commercial bananas?", options: ["Blight", "Panama disease", "Rust fungus", "Mosaic virus"], correct: 1 },
+    ],
+  },
+  {
+    text: "Antarctica is the driest continent on Earth, receiving less precipitation annually than the Sahara Desert. The interior of the continent gets only about 2 inches of precipitation per year, technically classifying it as a polar desert. Despite this, Antarctica holds about 70% of the world's fresh water, locked in its massive ice sheets that are up to 3 miles thick in places. If all of Antarctica's ice melted, global sea levels would rise by approximately 200 feet, submerging most coastal cities. The continent has no permanent human population, but research stations house between 1,000 and 5,000 people depending on the season. Temperatures can drop below minus 128 degrees Fahrenheit, the coldest ever recorded on Earth's surface.",
+    questions: [
+      { q: "How much of Earth's fresh water does Antarctica hold?", options: ["About 30%", "About 50%", "About 70%", "About 90%"], correct: 2 },
+      { q: "How much precipitation does interior Antarctica get yearly?", options: ["About 2 inches", "About 10 inches", "About 20 inches", "About 50 inches"], correct: 0 },
+      { q: "How much would sea levels rise if all ice melted?", options: ["20 feet", "75 feet", "200 feet", "500 feet"], correct: 2 },
+    ],
+  },
 ];
 
 export default function ReadingSpeed() {

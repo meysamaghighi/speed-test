@@ -41,11 +41,26 @@ export default function TypingTest() {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if (startTime === 0) setStartTime(performance.now());
+
+    // Prevent holding a key: reject if last N chars are all the same and don't match the text
+    if (val.length > 2) {
+      const lastThree = val.slice(-3);
+      const expected = text.slice(val.length - 3, val.length);
+      if (lastThree === lastThree[0].repeat(3) && lastThree !== expected) {
+        return; // Reject repeated key spam
+      }
+    }
+
     setTyped(val);
 
     if (val.length >= text.length) {
-      setEndTime(performance.now());
-      setPhase("done");
+      // Only finish if accuracy is reasonable (>50%) to prevent gibberish
+      const correct = val.split("").filter((c, i) => c === text[i]).length;
+      const acc = correct / text.length;
+      if (acc > 0.5) {
+        setEndTime(performance.now());
+        setPhase("done");
+      }
     }
   };
 
