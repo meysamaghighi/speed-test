@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,12 +12,30 @@ interface NavLink {
 export default function MobileNav({ links }: { links: NavLink[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  // Close on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <div className="md:hidden">
+    <div ref={menuRef} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="text-gray-400 p-1"
+        className="text-gray-400 hover:text-white p-1 transition-colors"
         aria-label="Toggle menu"
       >
         {open ? (
@@ -32,17 +50,16 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 right-0 bg-gray-950 border-b border-gray-800 shadow-lg">
-          <div className="flex flex-col py-2">
+        <div className="absolute right-0 top-full mt-2 w-64 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl overflow-hidden z-50">
+          <div className="grid grid-cols-2 p-2 gap-1">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setOpen(false)}
-                className={`px-4 py-3 text-sm font-medium transition-colors ${
+                className={`px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                   pathname.startsWith(link.href)
-                    ? "text-white bg-gray-900"
-                    : "text-gray-400 hover:bg-gray-900 hover:text-white"
+                    ? "text-white bg-gray-800"
+                    : "text-gray-400 hover:bg-gray-800 hover:text-white"
                 }`}
               >
                 {link.label}

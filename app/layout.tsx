@@ -57,17 +57,6 @@ gtag('config', 'G-LN22YK2CZT');` }} />
             <Link href="/" className="font-black text-lg text-white">
               BenchMyBrain
             </Link>
-            <div className="hidden md:flex gap-4 text-sm font-medium text-gray-400">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="hover:text-white transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
             <MobileNav links={navLinks} />
           </div>
         </nav>
