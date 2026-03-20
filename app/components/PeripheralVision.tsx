@@ -3,106 +3,101 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
+const TOTAL_ROUNDS = 15;
+
 export default function PeripheralVision() {
-  const [phase, setPhase] = useState<"ready" | "fixate" | "target" | "result">("ready");
+  const [phase, setPhase] = useState<"ready" | "playing" | "result">("ready");
   const [round, setRound] = useState(0);
   const [times, setTimes] = useState<number[]>([]);
   const [misses, setMisses] = useState(0);
   const [targetPos, setTargetPos] = useState<{ x: number; y: number } | null>(null);
-  const [showTarget, setShowTarget] = useState(false);
+  const targetShown = useRef(false);
   const startTime = useRef(0);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const totalRounds = 15;
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const avgTime = times.length > 0 ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : 0;
-
   const pb = usePersonalBest("pb-peripheral", "lower", phase === "result" && avgTime > 0 ? avgTime : null);
 
-  const startGame = () => {
-    setPhase("fixate");
-    setRound(0);
-    setTimes([]);
-    setMisses(0);
-    showNextTarget();
+  const clearTimer = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = undefined;
+    }
   };
 
-  const showNextTarget = useCallback(() => {
-    setShowTarget(false);
+  useEffect(() => {
+    return () => clearTimer();
+  }, []);
+
+  const scheduleTarget = useCallback(() => {
+    clearTimer();
     setTargetPos(null);
+    targetShown.current = false;
 
-    // Random delay 1-3s before showing target
     const delay = 1000 + Math.random() * 2000;
-    timeoutRef.current = setTimeout(() => {
-      // Place target at random position, biased toward edges
+    timerRef.current = setTimeout(() => {
+      // Place target at random angle, biased toward edges
       const angle = Math.random() * Math.PI * 2;
-      const minDist = 25; // minimum % from center
-      const maxDist = 42; // maximum % from center
-      const dist = minDist + Math.random() * (maxDist - minDist);
-      const x = 50 + Math.cos(angle) * dist;
-      const y = 50 + Math.sin(angle) * dist;
+      const dist = 25 + Math.random() * 17; // 25-42% from center
+      const x = Math.max(5, Math.min(95, 50 + Math.cos(angle) * dist));
+      const y = Math.max(5, Math.min(95, 50 + Math.sin(angle) * dist));
 
-      setTargetPos({ x: Math.max(5, Math.min(95, x)), y: Math.max(5, Math.min(95, y)) });
-      setShowTarget(true);
+      setTargetPos({ x, y });
+      targetShown.current = true;
       startTime.current = performance.now();
 
       // Auto-miss after 3 seconds
-      timeoutRef.current = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
+        targetShown.current = false;
+        setTargetPos(null);
         setMisses((m) => m + 1);
-        nextRound();
+        advanceRound();
       }, 3000);
     }, delay);
   }, []);
 
-  const nextRound = useCallback(() => {
+  const advanceRound = useCallback(() => {
     setRound((r) => {
-      if (r + 1 >= totalRounds) {
+      const next = r + 1;
+      if (next >= TOTAL_ROUNDS) {
         setPhase("result");
-        return r + 1;
+        return next;
       }
-      setShowTarget(false);
-      setTargetPos(null);
-      // Next target after brief pause
-      const delay = 500 + Math.random() * 1000;
-      timeoutRef.current = setTimeout(() => showNextTarget(), delay);
-      return r + 1;
+      // Brief pause before next target
+      clearTimer();
+      timerRef.current = setTimeout(() => scheduleTarget(), 500 + Math.random() * 500);
+      return next;
     });
-  }, [showNextTarget]);
+  }, [scheduleTarget]);
 
-  const handleTargetClick = () => {
-    if (!showTarget) return;
-    clearTimeout(timeoutRef.current);
+  const startGame = () => {
+    setRound(0);
+    setTimes([]);
+    setMisses(0);
+    setTargetPos(null);
+    targetShown.current = false;
+    setPhase("playing");
+    scheduleTarget();
+  };
+
+  const handleTargetClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!targetShown.current) return;
+    clearTimer();
     const elapsed = Math.round(performance.now() - startTime.current);
     setTimes((t) => [...t, elapsed]);
-    nextRound();
+    targetShown.current = false;
+    setTargetPos(null);
+    advanceRound();
   };
 
-  const handleFieldClick = (e: React.MouseEvent) => {
-    // Only count misclicks when target is visible
-    if (showTarget && targetPos) {
-      // Check if click was far from target
-      const rect = containerRef.current?.getBoundingClientRect();
-      if (rect) {
-        const clickX = ((e.clientX - rect.left) / rect.width) * 100;
-        const clickY = ((e.clientY - rect.top) / rect.height) * 100;
-        const dist = Math.sqrt((clickX - targetPos.x) ** 2 + (clickY - targetPos.y) ** 2);
-        if (dist > 8) {
-          // Misclick
-          setMisses((m) => m + 1);
-        }
-      }
+  const handleFieldClick = () => {
+    // Misclick when target is visible
+    if (targetShown.current && targetPos) {
+      setMisses((m) => m + 1);
     }
   };
-
-  useEffect(() => {
-    return () => clearTimeout(timeoutRef.current);
-  }, []);
-
-  useEffect(() => {
-    if (phase === "fixate") {
-      showNextTarget();
-    }
-  }, [phase]);
 
   const getRating = () => {
     if (avgTime === 0) return { label: "No Detections", color: "text-red-400" };
@@ -118,7 +113,7 @@ export default function PeripheralVision() {
       <div className="text-center">
         <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
           <p className="text-lg text-gray-300 mb-4">Stare at the center dot. Click targets that appear in your <strong className="text-white">peripheral vision</strong>.</p>
-          <p className="text-sm text-gray-500 mb-6">{totalRounds} rounds. Targets appear at the edges -- don't look away from center!</p>
+          <p className="text-sm text-gray-500 mb-6">{TOTAL_ROUNDS} rounds. Targets appear at the edges -- don't look away from center!</p>
           <button onClick={startGame} className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-bold text-lg hover:from-cyan-400 hover:to-blue-400 transition-all">
             Start
           </button>
@@ -158,7 +153,7 @@ export default function PeripheralVision() {
           </button>
           <button
             onClick={() => {
-              const text = `Peripheral Vision: ${avgTime}ms avg (${times.length}/${totalRounds} detected) - ${rating.label} | benchmybrain.com/peripheral`;
+              const text = `Peripheral Vision: ${avgTime}ms avg (${times.length}/${TOTAL_ROUNDS} detected) - ${rating.label} | benchmybrain.com/peripheral`;
               if (navigator.share) navigator.share({ title: "Peripheral Vision Test", text });
               else navigator.clipboard.writeText(text);
             }}
@@ -174,8 +169,8 @@ export default function PeripheralVision() {
   return (
     <div className="space-y-4">
       <div className="flex justify-between text-sm text-gray-400">
-        <span>Round {round + 1} / {totalRounds}</span>
-        <span>Detected: {times.length}</span>
+        <span>Round {Math.min(round + 1, TOTAL_ROUNDS)} / {TOTAL_ROUNDS}</span>
+        <span>Detected: {times.length} | Missed: {misses}</span>
       </div>
 
       <div
@@ -186,7 +181,7 @@ export default function PeripheralVision() {
       >
         {/* Center fixation dot */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="w-4 h-4 rounded-full bg-white animate-pulse" />
+          <div className="w-4 h-4 rounded-full bg-white" />
         </div>
 
         {/* Crosshair lines */}
@@ -194,10 +189,10 @@ export default function PeripheralVision() {
         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-800" />
 
         {/* Target */}
-        {showTarget && targetPos && (
+        {targetPos && (
           <button
-            onClick={(e) => { e.stopPropagation(); handleTargetClick(); }}
-            className="absolute w-8 h-8 -ml-4 -mt-4 rounded-full bg-cyan-400 hover:bg-cyan-300 shadow-lg shadow-cyan-500/50 animate-ping-once"
+            onClick={handleTargetClick}
+            className="absolute w-8 h-8 -ml-4 -mt-4 rounded-full bg-cyan-400 hover:bg-cyan-300 shadow-lg shadow-cyan-500/50 transition-transform hover:scale-110"
             style={{ left: `${targetPos.x}%`, top: `${targetPos.y}%` }}
           />
         )}
