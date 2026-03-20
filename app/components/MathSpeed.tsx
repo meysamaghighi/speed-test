@@ -72,10 +72,10 @@ function generateProblem(level: number): Problem {
 }
 
 export default function MathSpeed() {
-  const pb = usePersonalBest("pb-math", "higher");
   const [phase, setPhase] = useState<"ready" | "playing" | "result">("ready");
   const [level, setLevel] = useState(1);
   const [score, setScore] = useState(0);
+  const pb = usePersonalBest("pb-math", "higher", phase === "result" ? score : null);
   const [streak, setStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
   const [problem, setProblem] = useState<Problem | null>(null);
@@ -170,7 +170,6 @@ export default function MathSpeed() {
   }
 
   if (phase === "result") {
-    pb.checkAndSet(score);
     const rating = getRating();
     const accuracy = totalAnswered > 0 ? Math.round((correct / totalAnswered) * 100) : 0;
     return (

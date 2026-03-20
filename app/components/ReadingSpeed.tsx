@@ -31,12 +31,12 @@ const passages = [
 ];
 
 export default function ReadingSpeed() {
-  const pb = usePersonalBest("pb-reading", "higher");
   const [phase, setPhase] = useState<"ready" | "reading" | "quiz" | "result">("ready");
   const [passageIdx, setPassageIdx] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [readingTime, setReadingTime] = useState(0);
   const [wpm, setWpm] = useState(0);
+  const pb = usePersonalBest("pb-reading", "higher", phase === "result" ? wpm : null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [quizCorrect, setQuizCorrect] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -156,7 +156,6 @@ export default function ReadingSpeed() {
   }
 
   // Result
-  pb.checkAndSet(wpm);
   const rating = getRating();
   const comprehension = Math.round((quizCorrect / passage.questions.length) * 100);
   return (

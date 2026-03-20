@@ -4,12 +4,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function SequenceMemory() {
-  const pb = usePersonalBest("pb-sequence", "higher");
   const [phase, setPhase] = useState<"ready" | "showing" | "input" | "correct" | "wrong">("ready");
   const [sequence, setSequence] = useState<number[]>([]);
   const [inputIndex, setInputIndex] = useState(0);
   const [activeCell, setActiveCell] = useState<number | null>(null);
   const [level, setLevel] = useState(1);
+  const pb = usePersonalBest("pb-sequence", "higher", phase === "wrong" ? level - 1 : null);
   const [highScore, setHighScore] = useState(0);
   const showingRef = useRef(false);
   const gridSize = 9; // 3x3
@@ -121,7 +121,6 @@ export default function SequenceMemory() {
 
   if (phase === "wrong") {
     const score = level - 1;
-    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">

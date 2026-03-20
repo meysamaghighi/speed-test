@@ -16,12 +16,12 @@ const wordList = [
 ];
 
 export default function VerbalMemory() {
-  const pb = usePersonalBest("pb-verbal", "higher");
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
   const [seenWords, setSeenWords] = useState<Set<string>>(new Set());
   const [currentWord, setCurrentWord] = useState("");
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
+  const pb = usePersonalBest("pb-verbal", "higher", phase === "done" ? score : null);
   const [isNewWord, setIsNewWord] = useState(true);
   const [highScore, setHighScore] = useState(0);
   const [usedIndices, setUsedIndices] = useState<Set<number>>(new Set());
@@ -117,7 +117,6 @@ export default function VerbalMemory() {
   }
 
   if (phase === "done") {
-    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">

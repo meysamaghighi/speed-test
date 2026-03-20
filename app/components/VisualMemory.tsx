@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function VisualMemory() {
-  const pb = usePersonalBest("pb-visual-memory", "higher");
   const [phase, setPhase] = useState<"ready" | "show" | "input" | "correct" | "wrong">("ready");
   const [level, setLevel] = useState(1);
   const [gridSize, setGridSize] = useState(3);
@@ -12,6 +11,7 @@ export default function VisualMemory() {
   const [clicked, setClicked] = useState<Set<number>>(new Set());
   const [wrong, setWrong] = useState<Set<number>>(new Set());
   const [lives, setLives] = useState(3);
+  const pb = usePersonalBest("pb-visual-memory", "higher", phase === "wrong" && lives <= 0 ? level - 1 : null);
   const [highScore, setHighScore] = useState(0);
 
   const tilesForLevel = (lvl: number) => Math.min(3 + lvl, 25);
@@ -140,7 +140,6 @@ export default function VisualMemory() {
 
   if (phase === "wrong" && lives <= 0) {
     const score = level - 1;
-    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">

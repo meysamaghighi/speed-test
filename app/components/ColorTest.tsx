@@ -15,13 +15,13 @@ const colors = [
 ];
 
 export default function ColorTest() {
-  const pb = usePersonalBest("pb-stroop", "higher");
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
   const [displayName, setDisplayName] = useState("");
   const [displayColor, setDisplayColor] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [options, setOptions] = useState<string[]>([]);
   const [score, setScore] = useState(0);
+  const pb = usePersonalBest("pb-stroop", "higher", phase === "done" ? score : null);
   const [round, setRound] = useState(0);
   const [times, setTimes] = useState<number[]>([]);
   const [lastTime, setLastTime] = useState(0);
@@ -124,7 +124,6 @@ export default function ColorTest() {
   }
 
   if (phase === "done") {
-    pb.checkAndSet(score);
     const rating = getRating(score, average);
     return (
       <div className="text-center space-y-6">

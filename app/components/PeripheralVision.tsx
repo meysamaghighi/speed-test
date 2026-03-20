@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function PeripheralVision() {
-  const pb = usePersonalBest("pb-peripheral", "lower");
   const [phase, setPhase] = useState<"ready" | "fixate" | "target" | "result">("ready");
   const [round, setRound] = useState(0);
   const [times, setTimes] = useState<number[]>([]);
@@ -15,6 +14,10 @@ export default function PeripheralVision() {
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const totalRounds = 15;
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const avgTime = times.length > 0 ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : 0;
+
+  const pb = usePersonalBest("pb-peripheral", "lower", phase === "result" && avgTime > 0 ? avgTime : null);
 
   const startGame = () => {
     setPhase("fixate");
@@ -101,8 +104,6 @@ export default function PeripheralVision() {
     }
   }, [phase]);
 
-  const avgTime = times.length > 0 ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : 0;
-
   const getRating = () => {
     if (avgTime === 0) return { label: "No Detections", color: "text-red-400" };
     if (avgTime < 400) return { label: "Eagle Eyes", color: "text-yellow-400" };
@@ -127,7 +128,6 @@ export default function PeripheralVision() {
   }
 
   if (phase === "result") {
-    if (avgTime > 0) pb.checkAndSet(avgTime);
     const rating = getRating();
     return (
       <div className="text-center space-y-6">

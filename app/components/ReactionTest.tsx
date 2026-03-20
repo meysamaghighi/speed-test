@@ -6,7 +6,6 @@ import { usePersonalBest } from "../hooks/usePersonalBest";
 type Phase = "waiting" | "ready" | "go" | "result" | "too-early";
 
 export default function ReactionTest() {
-  const pb = usePersonalBest("pb-reaction", "lower");
   const [phase, setPhase] = useState<Phase>("waiting");
   const [times, setTimes] = useState<number[]>([]);
   const [currentTime, setCurrentTime] = useState(0);
@@ -14,6 +13,14 @@ export default function ReactionTest() {
   const timeout = useRef<NodeJS.Timeout | null>(null);
   const round = times.length + (phase === "result" ? 0 : phase === "waiting" ? 0 : 1);
   const totalRounds = 5;
+
+  const average =
+    times.length > 0
+      ? Math.round(times.reduce((s, t) => s + t, 0) / times.length)
+      : 0;
+
+  const isFinished = times.length === totalRounds && phase === "result";
+  const pb = usePersonalBest("pb-reaction", "lower", isFinished ? average : null);
 
   const startRound = useCallback(() => {
     setPhase("ready");
@@ -51,11 +58,6 @@ export default function ReactionTest() {
     setCurrentTime(0);
   };
 
-  const average =
-    times.length > 0
-      ? Math.round(times.reduce((s, t) => s + t, 0) / times.length)
-      : 0;
-
   const getRating = (ms: number) => {
     if (ms < 180) return { label: "Incredible", color: "text-emerald-400" };
     if (ms < 220) return { label: "Fast", color: "text-green-400" };
@@ -66,7 +68,6 @@ export default function ReactionTest() {
 
   // Final results screen
   if (times.length === totalRounds && phase === "result") {
-    pb.checkAndSet(average);
     const rating = getRating(average);
     return (
       <div className="text-center space-y-6">

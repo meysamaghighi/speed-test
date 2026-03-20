@@ -15,13 +15,18 @@ const paragraphs = [
 ];
 
 export default function TypingTest() {
-  const pb = usePersonalBest("pb-typing", "higher");
   const [phase, setPhase] = useState<"ready" | "typing" | "done">("ready");
   const [text, setText] = useState("");
   const [typed, setTyped] = useState("");
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const elapsed = endTime > 0 ? (endTime - startTime) / 1000 : 0;
+  const words = text.split(" ").length;
+  const wpm = elapsed > 0 ? Math.round((words / elapsed) * 60) : 0;
+
+  const pb = usePersonalBest("pb-typing", "higher", phase === "done" ? wpm : null);
 
   const startTest = useCallback(() => {
     const p = paragraphs[Math.floor(Math.random() * paragraphs.length)];
@@ -43,10 +48,6 @@ export default function TypingTest() {
       setPhase("done");
     }
   };
-
-  const elapsed = endTime > 0 ? (endTime - startTime) / 1000 : 0;
-  const words = text.split(" ").length;
-  const wpm = elapsed > 0 ? Math.round((words / elapsed) * 60) : 0;
 
   // Calculate accuracy
   const correctChars = typed
@@ -80,7 +81,6 @@ export default function TypingTest() {
   }
 
   if (phase === "done") {
-    pb.checkAndSet(wpm);
     const rating = getRating(wpm);
     return (
       <div className="text-center space-y-6">

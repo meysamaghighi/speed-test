@@ -1,44 +1,48 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 
 /**
  * Hook for localStorage personal bests.
  * @param key - localStorage key (e.g. "pb-reaction")
- * @param mode - "lower" if lower scores are better (e.g. reaction time), "higher" if higher is better
+ * @param mode - "lower" if lower scores are better, "higher" if higher is better
+ * @param score - current score to check, or null when not in result phase
  */
-export function usePersonalBest(key: string, mode: "lower" | "higher") {
-  const [best, setBestState] = useState<number | null>(null);
+export function usePersonalBest(key: string, mode: "lower" | "higher", score: number | null) {
+  const [best, setBest] = useState<number | null>(null);
   const [isNewBest, setIsNewBest] = useState(false);
+  const initialized = useRef(false);
 
+  // Load from localStorage on mount
   useEffect(() => {
     try {
       const stored = localStorage.getItem(key);
-      if (stored !== null) setBestState(parseFloat(stored));
+      if (stored !== null) setBest(parseFloat(stored));
     } catch {}
+    initialized.current = true;
   }, [key]);
 
-  const checkAndSet = useCallback(
-    (value: number) => {
-      const isBetter =
-        best === null ||
-        (mode === "higher" ? value > best : value < best);
+  // Check score when it changes (non-null = result phase)
+  useEffect(() => {
+    if (score === null || !initialized.current) {
+      setIsNewBest(false);
+      return;
+    }
 
-      if (isBetter) {
-        setBestState(value);
-        setIsNewBest(true);
-        try {
-          localStorage.setItem(key, String(value));
-        } catch {}
-      } else {
-        setIsNewBest(false);
-      }
-      return isBetter;
-    },
-    [key, mode, best]
-  );
+    const isBetter =
+      best === null ||
+      (mode === "higher" ? score > best : score < best);
 
-  const resetNewBest = useCallback(() => setIsNewBest(false), []);
+    if (isBetter) {
+      setBest(score);
+      setIsNewBest(true);
+      try {
+        localStorage.setItem(key, String(score));
+      } catch {}
+    } else {
+      setIsNewBest(false);
+    }
+  }, [score]); // intentionally only depend on score
 
-  return { best, checkAndSet, isNewBest, resetNewBest };
+  return { best, isNewBest };
 }

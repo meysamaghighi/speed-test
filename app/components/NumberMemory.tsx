@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function NumberMemory() {
-  const pb = usePersonalBest("pb-number-memory", "higher");
   const [phase, setPhase] = useState<"ready" | "show" | "input" | "correct" | "wrong">("ready");
   const [level, setLevel] = useState(1);
+  const pb = usePersonalBest("pb-number-memory", "higher", phase === "wrong" ? level - 1 : null);
   const [number, setNumber] = useState("");
   const [guess, setGuess] = useState("");
   const [highScore, setHighScore] = useState(0);
@@ -171,7 +171,6 @@ export default function NumberMemory() {
 
   // Wrong
   const finalScore = level - 1;
-  pb.checkAndSet(finalScore);
   const rating = getRating(finalScore);
   return (
     <div className="text-center space-y-6">

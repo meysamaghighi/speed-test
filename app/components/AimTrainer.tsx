@@ -10,7 +10,6 @@ interface Target {
 }
 
 export default function AimTrainer() {
-  const pb = usePersonalBest("pb-aim", "lower");
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
   const [target, setTarget] = useState<Target | null>(null);
   const [hits, setHits] = useState(0);
@@ -18,6 +17,13 @@ export default function AimTrainer() {
   const totalTargets = 30;
   const lastHit = useRef(0);
   const areaRef = useRef<HTMLDivElement>(null);
+
+  const average =
+    times.length > 0
+      ? Math.round(times.reduce((s, t) => s + t, 0) / times.length)
+      : 0;
+
+  const pb = usePersonalBest("pb-aim", "lower", phase === "done" ? average : null);
 
   const spawnTarget = useCallback(() => {
     const size = 40 + Math.random() * 20; // 40-60px
@@ -51,11 +57,6 @@ export default function AimTrainer() {
     }
   };
 
-  const average =
-    times.length > 0
-      ? Math.round(times.reduce((s, t) => s + t, 0) / times.length)
-      : 0;
-
   const getRating = (ms: number) => {
     if (ms < 300) return { label: "Aimbot", color: "text-emerald-400" };
     if (ms < 450) return { label: "Sharp Shooter", color: "text-green-400" };
@@ -65,7 +66,6 @@ export default function AimTrainer() {
   };
 
   if (phase === "done") {
-    pb.checkAndSet(average);
     const rating = getRating(average);
     return (
       <div className="text-center space-y-6">

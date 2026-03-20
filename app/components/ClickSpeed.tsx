@@ -4,11 +4,11 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function ClickSpeed() {
-  const pb = usePersonalBest("pb-cps", "higher");
   const [phase, setPhase] = useState<"ready" | "clicking" | "done">("ready");
   const [clicks, setClicks] = useState(0);
   const [timeLeft, setTimeLeft] = useState(5);
   const [cps, setCps] = useState(0);
+  const pb = usePersonalBest("pb-cps", "higher", phase === "done" ? cps : null);
   const [bestCps, setBestCps] = useState(0);
   const startTime = useRef(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -64,7 +64,6 @@ export default function ClickSpeed() {
   };
 
   if (phase === "done") {
-    pb.checkAndSet(cps);
     const rating = getRating(cps);
     return (
       <div className="text-center space-y-6">

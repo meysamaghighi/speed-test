@@ -13,9 +13,9 @@ interface Cell {
 }
 
 export default function ChimpTest() {
-  const pb = usePersonalBest("pb-chimp", "higher");
   const [phase, setPhase] = useState<"ready" | "memorize" | "play" | "correct" | "wrong">("ready");
   const [level, setLevel] = useState(4);
+  const pb = usePersonalBest("pb-chimp", "higher", phase === "wrong" ? level - 1 : null);
   const [cells, setCells] = useState<Cell[]>([]);
   const [nextExpected, setNextExpected] = useState(1);
   const [highScore, setHighScore] = useState(0);
@@ -152,7 +152,6 @@ export default function ChimpTest() {
 
   if (phase === "wrong") {
     const score = level - 1;
-    pb.checkAndSet(score);
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
