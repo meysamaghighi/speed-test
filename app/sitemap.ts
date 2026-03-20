@@ -17,5 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/sequence`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/verbal`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/stroop`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/color-blind`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/math`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/peripheral`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/reading`, lastModified: now, priority: 0.9 },
   ];
 }

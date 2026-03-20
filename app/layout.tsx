@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory. Compare with averages and share your scores.",
   openGraph: {
     title: "BenchMyBrain - Free Brain & Speed Tests",
-    description: "10 free online tests: reaction time, typing speed, memory, aim, and more. No sign-up required.",
+    description: "14 free online tests: reaction time, typing speed, memory, aim, color blind, math, and more. No sign-up required.",
     type: "website",
     siteName: "BenchMyBrain",
   },
@@ -27,6 +27,10 @@ const navLinks = [
   { href: "/sequence", label: "Sequence" },
   { href: "/verbal", label: "Verbal" },
   { href: "/stroop", label: "Stroop" },
+  { href: "/color-blind", label: "Color" },
+  { href: "/math", label: "Math" },
+  { href: "/peripheral", label: "Peripheral" },
+  { href: "/reading", label: "Reading" },
 ];
 
 export default function RootLayout({

@@ -71,6 +71,34 @@ const tests = [
     color: "from-fuchsia-500 to-pink-600",
     avg: "Tests attention",
   },
+  {
+    href: "/color-blind",
+    title: "Color Blind Test",
+    desc: "Can you see the hidden numbers? 12 Ishihara-style plates test your color vision.",
+    color: "from-lime-500 to-green-600",
+    avg: "8% of men affected",
+  },
+  {
+    href: "/math",
+    title: "Math Speed",
+    desc: "60-second mental math blitz. Addition, subtraction, multiplication -- difficulty adapts.",
+    color: "from-amber-500 to-red-500",
+    avg: "Score: 200+ is fast",
+  },
+  {
+    href: "/peripheral",
+    title: "Peripheral Vision",
+    desc: "Stare at the center dot and click targets in your side vision. Don't look away!",
+    color: "from-cyan-500 to-blue-600",
+    avg: "Average: 700ms",
+  },
+  {
+    href: "/reading",
+    title: "Reading Speed",
+    desc: "How fast do you read? WPM test with comprehension quiz -- speed without understanding doesn't count.",
+    color: "from-violet-500 to-purple-600",
+    avg: "Average: 230 WPM",
+  },
 ];
 
 export default function Home() {
@@ -116,7 +144,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick from 10 brain and reflex tests.
+              Pick from 14 brain and reflex tests.
             </p>
           </div>
           <div>
