@@ -12,7 +12,7 @@ export default function RhythmTest() {
   const [userTaps, setUserTaps] = useState<number[]>([]);
   const [tapStartTime, setTapStartTime] = useState(0);
   const [avgError, setAvgError] = useState(0);
-  const [tolerance, setTolerance] = useState(150); // starts at 150ms, tightens by 10ms each level
+  const [tolerance, setTolerance] = useState(200); // starts at 200ms, tightens by 10ms each level
   const [flash, setFlash] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -48,7 +48,7 @@ export default function RhythmTest() {
   const startGame = () => {
     setLevel(1);
     setLives(3);
-    setTolerance(150);
+    setTolerance(200);
     startLevel(1);
   };
 
@@ -98,9 +98,11 @@ export default function RhythmTest() {
   };
 
   const evaluateTaps = (taps: number[]) => {
-    // Calculate timing errors
-    const errors = taps.map((tap, i) => Math.abs(tap - beatPattern[i]));
-    const avgErr = errors.reduce((a, b) => a + b, 0) / errors.length;
+    // Compare intervals between taps vs intervals between beats (rhythm, not absolute timing)
+    const beatIntervals = beatPattern.slice(1).map((t, i) => t - beatPattern[i]);
+    const tapIntervals = taps.slice(1).map((t, i) => t - taps[i]);
+    const errors = tapIntervals.map((tap, i) => Math.abs(tap - beatIntervals[i]));
+    const avgErr = errors.length > 0 ? errors.reduce((a, b) => a + b, 0) / errors.length : 0;
     setAvgError(avgErr);
 
     // Check if passed
