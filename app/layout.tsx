@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://benchmybrain.com"),
   title: "BenchMyBrain - Free Reaction Time, Typing Speed & Brain Tests",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory. Compare with averages and share your scores.",
+    "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory, pattern recognition, spatial rotation, rhythm timing. Compare with averages and share your scores.",
   openGraph: {
     title: "BenchMyBrain - Free Brain & Speed Tests",
-    description: "14 free online tests: reaction time, typing speed, memory, aim, color blind, math, and more. No sign-up required.",
+    description: "18 free online tests: reaction time, typing speed, memory, aim, pattern recognition, spatial rotation, rhythm, and more. No sign-up required.",
     type: "website",
     siteName: "BenchMyBrain",
   },
@@ -31,6 +31,10 @@ const navLinks = [
   { href: "/math", label: "Math" },
   { href: "/peripheral", label: "Peripheral" },
   { href: "/reading", label: "Reading" },
+  { href: "/reverse-memory", label: "Reverse" },
+  { href: "/pattern", label: "Pattern" },
+  { href: "/rotation", label: "Rotation" },
+  { href: "/rhythm", label: "Rhythm" },
 ];
 
 export default function RootLayout({

@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BenchMyBrain - 14 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  title: "BenchMyBrain - 18 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
+    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
   keywords: [
     "brain test",
     "reaction time test",
     "typing speed test",
     "memory test",
+    "pattern recognition test",
+    "IQ test",
     "aim trainer",
     "click speed test",
     "chimp test",
@@ -19,9 +21,9 @@ export const metadata: Metadata = {
     "speed test online",
   ],
   openGraph: {
-    title: "BenchMyBrain - 14 Free Brain & Speed Tests",
+    title: "BenchMyBrain - 18 Free Brain & Speed Tests",
     description:
-      "Free online brain tests: reaction time, typing speed, memory, aim, color blind, math, and more. No sign-up required.",
+      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, aim, color blind, math, and more. No sign-up required.",
     type: "website",
   },
 };
@@ -69,6 +71,21 @@ const tests = [
         <text x="8" y="34" fill="white" fontSize="20" fontWeight="900" fontFamily="monospace" opacity="0.9">4</text>
         <text x="20" y="34" fill="white" fontSize="20" fontWeight="900" fontFamily="monospace">7</text>
         <text x="32" y="34" fill="white" fontSize="20" fontWeight="900" fontFamily="monospace" opacity="0.5">2</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/reverse-memory",
+    title: "Reverse Memory",
+    desc: "Digits flash one at a time. Type them back in REVERSE order.",
+    color: "from-cyan-500 to-teal-600",
+    avg: "Average: 5 digits",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="4" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.5">3</text>
+        <text x="18" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.7">7</text>
+        <text x="32" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace">4</text>
+        <path d="M38 14 L34 18 L38 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
       </svg>
     ),
   },
@@ -249,6 +266,53 @@ const tests = [
       </svg>
     ),
   },
+  {
+    href: "/rotation",
+    title: "Spatial Rotation",
+    desc: "Compare two block shapes. Are they the SAME (rotated) or DIFFERENT? Mental rotation test.",
+    color: "from-orange-500 to-red-600",
+    avg: "Average: 10/15",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <rect x="12" y="12" width="8" height="8" rx="1" fill="white" opacity="0.9" />
+        <rect x="20" y="12" width="8" height="8" rx="1" fill="white" opacity="0.9" />
+        <rect x="12" y="20" width="8" height="8" rx="1" fill="white" opacity="0.9" />
+        <path d="M32 28 L36 28 L36 24 M36 28 L36 32 L40 32 L40 24 L36 24" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+      </svg>
+    ),
+  },
+  {
+    href: "/rhythm",
+    title: "Rhythm Timing",
+    desc: "Listen to a beat pattern and tap it back. Test your sense of rhythm and timing accuracy.",
+    color: "from-violet-500 to-fuchsia-600",
+    avg: "Average: Level 5",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="12" cy="24" r="4" fill="white" opacity="0.4" />
+        <circle cx="24" cy="24" r="5" fill="white" opacity="0.7" />
+        <circle cx="36" cy="24" r="6" fill="white" opacity="1" />
+        <path d="M12 12v8" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
+        <path d="M24 14v8" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+        <path d="M36 10v10" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="1" />
+      </svg>
+    ),
+  },
+  {
+    href: "/pattern",
+    title: "Pattern Recognition",
+    desc: "What comes next? Identify patterns in numbers, colors, shapes, and sizes.",
+    color: "from-rose-500 to-pink-600",
+    avg: "Tests IQ reasoning",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="10" cy="24" r="5" fill="white" opacity="0.9" />
+        <rect x="19" y="19" width="10" height="10" rx="2" fill="white" opacity="0.6" />
+        <circle cx="38" cy="24" r="5" fill="white" opacity="0.9" />
+        <text x="18" y="44" fill="white" fontSize="24" fontWeight="900" opacity="0.4">?</text>
+      </svg>
+    ),
+  },
 ];
 
 export default function Home() {
@@ -296,7 +360,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick from 14 brain and reflex tests.
+              Pick from 18 brain and reflex tests.
             </p>
           </div>
           <div>

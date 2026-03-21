@@ -15,12 +15,16 @@ const allTests = [
   { href: "/math", label: "Math Speed", color: "from-amber-500 to-red-500" },
   { href: "/peripheral", label: "Peripheral Vision", color: "from-cyan-500 to-blue-600" },
   { href: "/reading", label: "Reading Speed", color: "from-violet-500 to-purple-600" },
+  { href: "/reverse-memory", label: "Reverse Memory", color: "from-cyan-500 to-teal-600" },
+  { href: "/rotation", label: "Spatial Rotation", color: "from-orange-500 to-red-600" },
+  { href: "/rhythm", label: "Rhythm Timing", color: "from-violet-500 to-fuchsia-600" },
+  { href: "/pattern", label: "Pattern Recognition", color: "from-rose-500 to-pink-600" },
 ];
 
 const relatedMap: Record<string, string[]> = {
   "/reaction": ["/aim", "/click-speed", "/peripheral"],
   "/typing": ["/reaction", "/reading", "/math"],
-  "/memory": ["/sequence", "/visual-memory", "/verbal"],
+  "/memory": ["/reverse-memory", "/sequence", "/visual-memory"],
   "/aim": ["/reaction", "/click-speed", "/peripheral"],
   "/click-speed": ["/reaction", "/aim", "/typing"],
   "/chimp": ["/visual-memory", "/memory", "/sequence"],
@@ -29,9 +33,13 @@ const relatedMap: Record<string, string[]> = {
   "/verbal": ["/memory", "/reading", "/stroop"],
   "/stroop": ["/reaction", "/verbal", "/color-blind"],
   "/color-blind": ["/stroop", "/peripheral", "/visual-memory"],
-  "/math": ["/typing", "/memory", "/reaction"],
+  "/math": ["/typing", "/memory", "/reverse-memory"],
   "/peripheral": ["/aim", "/reaction", "/visual-memory"],
   "/reading": ["/typing", "/verbal", "/memory"],
+  "/reverse-memory": ["/memory", "/sequence", "/math"],
+  "/rotation": ["/visual-memory", "/chimp", "/peripheral"],
+  "/rhythm": ["/reaction", "/sequence", "/memory"],
+  "/pattern": ["/math", "/sequence", "/memory"],
 };
 
 export default function RelatedTests({ current }: { current: string }) {
