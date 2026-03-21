@@ -77,6 +77,8 @@ gtag('config', 'G-LN22YK2CZT');` }} />
               <Link href="/" className="hover:text-gray-300">BenchMyBrain</Link>
               {" | "}
               <Link href="https://doodlelab.fun" className="hover:text-gray-300">DoodleLab</Link>
+              {" | "}
+              <Link href="https://playmini.fun" className="hover:text-gray-300">PlayMini</Link>
             </p>
           </div>
         </footer>
