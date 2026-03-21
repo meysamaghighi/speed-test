@@ -55,6 +55,12 @@ export default function RelatedTests({ current }: { current: string }) {
             {test.label}
           </Link>
         ))}
+        <Link
+          href="/"
+          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors"
+        >
+          All Tests
+        </Link>
       </div>
     </section>
   );
