@@ -328,6 +328,24 @@ export default function Home() {
         </p>
       </div>
 
+      {/* Brain Score CTA */}
+      <Link
+        href="/brain-score"
+        className="block mb-8 group relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-6 hover:from-indigo-500 hover:to-purple-500 transition-all"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-black text-white mb-1">Brain Score</h2>
+            <p className="text-indigo-200 text-sm">
+              Take all 17 tests and get your overall cognitive score out of 1000. How smart are you?
+            </p>
+          </div>
+          <div className="text-5xl font-black text-white/20 group-hover:text-white/30 transition-colors">
+            ?
+          </div>
+        </div>
+      </Link>
+
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
         {tests.map((test) => (
           <Link

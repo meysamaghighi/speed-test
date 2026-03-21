@@ -19,6 +19,7 @@ const allTests = [
   { href: "/rotation", label: "Spatial Rotation", color: "from-orange-500 to-red-600" },
   { href: "/rhythm", label: "Rhythm Timing", color: "from-violet-500 to-fuchsia-600" },
   { href: "/pattern", label: "Pattern Recognition", color: "from-rose-500 to-pink-600" },
+  { href: "/brain-score", label: "Brain Score", color: "from-indigo-500 to-purple-600" },
 ];
 
 const relatedMap: Record<string, string[]> = {
@@ -40,6 +41,7 @@ const relatedMap: Record<string, string[]> = {
   "/rotation": ["/visual-memory", "/chimp", "/peripheral"],
   "/rhythm": ["/reaction", "/sequence", "/memory"],
   "/pattern": ["/math", "/sequence", "/memory"],
+  "/brain-score": ["/reaction", "/memory", "/typing"],
 };
 
 export default function RelatedTests({ current }: { current: string }) {

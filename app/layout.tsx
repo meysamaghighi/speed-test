@@ -35,6 +35,7 @@ const navLinks = [
   { href: "/pattern", label: "Pattern" },
   { href: "/rotation", label: "Rotation" },
   { href: "/rhythm", label: "Rhythm" },
+  { href: "/brain-score", label: "Brain Score" },
 ];
 
 export default function RootLayout({
