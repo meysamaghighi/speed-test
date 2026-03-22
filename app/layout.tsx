@@ -37,6 +37,9 @@ const navLinks = [
   { href: "/rhythm", label: "Rhythm" },
   { href: "/word-speed", label: "Word Speed" },
   { href: "/number-speed", label: "Number Speed" },
+  { href: "/face-memory", label: "Face Memory" },
+  { href: "/color-match", label: "Color Match" },
+  { href: "/focus-timer", label: "Focus Timer" },
   { href: "/brain-score", label: "Brain Score" },
 ];
 

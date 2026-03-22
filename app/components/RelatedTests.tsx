@@ -21,6 +21,9 @@ const allTests = [
   { href: "/pattern", label: "Pattern Recognition", color: "from-rose-500 to-pink-600" },
   { href: "/word-speed", label: "Word Speed", color: "from-sky-500 to-blue-600" },
   { href: "/number-speed", label: "Number Speed", color: "from-emerald-500 to-green-600" },
+  { href: "/face-memory", label: "Face Memory", color: "from-yellow-500 to-orange-600" },
+  { href: "/color-match", label: "Color Match", color: "from-pink-500 to-red-600" },
+  { href: "/focus-timer", label: "Focus Timer", color: "from-gray-500 to-slate-600" },
   { href: "/brain-score", label: "Brain Score", color: "from-indigo-500 to-purple-600" },
 ];
 
@@ -45,6 +48,9 @@ const relatedMap: Record<string, string[]> = {
   "/pattern": ["/math", "/sequence", "/memory"],
   "/word-speed": ["/typing", "/reading", "/verbal"],
   "/number-speed": ["/memory", "/reverse-memory", "/sequence"],
+  "/face-memory": ["/visual-memory", "/memory", "/chimp"],
+  "/color-match": ["/stroop", "/reaction", "/aim"],
+  "/focus-timer": ["/reaction", "/rhythm", "/memory"],
   "/brain-score": ["/reaction", "/memory", "/typing"],
 };
 

@@ -27,6 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/rhythm`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/word-speed`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/number-speed`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/face-memory`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/color-match`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/focus-timer`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified: now, priority: 0.8 },
   ];
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BenchMyBrain - 20 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  title: "BenchMyBrain - 23 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
     "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "speed test online",
   ],
   openGraph: {
-    title: "BenchMyBrain - 20 Free Brain & Speed Tests",
+    title: "BenchMyBrain - 23 Free Brain & Speed Tests",
     description:
       "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, aim, color blind, math, and more. No sign-up required.",
     type: "website",
@@ -337,6 +337,48 @@ const tests = [
       <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
         <text x="4" y="30" fill="white" fontSize="16" fontWeight="bold" opacity="0.9">1 2 3</text>
         <text x="14" y="44" fill="white" fontSize="10" opacity="0.4">...</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/face-memory",
+    title: "Face Memory",
+    desc: "Spot which emoji faces changed in the grid.",
+    color: "from-yellow-500 to-orange-600",
+    avg: "Tests observation",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="4" y="20" fill="white" fontSize="16">😀😎</text>
+        <text x="4" y="40" fill="white" fontSize="16">🤔😂</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/color-match",
+    title: "Color Match",
+    desc: "Match the display color, not the word. A Stroop challenge.",
+    color: "from-pink-500 to-red-600",
+    avg: "Average: 85%",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="6" y="22" fill="#3b82f6" fontSize="14" fontWeight="bold">RED</text>
+        <circle cx="12" cy="36" r="6" fill="#ef4444" />
+        <circle cx="28" cy="36" r="6" fill="#3b82f6" />
+        <circle cx="44" cy="36" r="6" fill="#22c55e" opacity="0.4" />
+      </svg>
+    ),
+  },
+  {
+    href: "/focus-timer",
+    title: "Focus Timer",
+    desc: "Estimate exact time intervals without a clock.",
+    color: "from-gray-500 to-slate-600",
+    avg: "Tests time sense",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="24" cy="24" r="18" stroke="white" strokeWidth="2" opacity="0.3" />
+        <circle cx="24" cy="24" r="3" fill="white" />
+        <text x="24" y="44" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold" opacity="0.5">5s?</text>
       </svg>
     ),
   },
