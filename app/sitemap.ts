@@ -25,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/pattern`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/rotation`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/rhythm`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/word-speed`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/number-speed`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified: now, priority: 0.8 },
   ];
 }

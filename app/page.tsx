@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BenchMyBrain - 18 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  title: "BenchMyBrain - 20 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
     "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "speed test online",
   ],
   openGraph: {
-    title: "BenchMyBrain - 18 Free Brain & Speed Tests",
+    title: "BenchMyBrain - 20 Free Brain & Speed Tests",
     description:
       "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, aim, color blind, math, and more. No sign-up required.",
     type: "website",
@@ -310,6 +310,33 @@ const tests = [
         <rect x="19" y="19" width="10" height="10" rx="2" fill="white" opacity="0.6" />
         <circle cx="38" cy="24" r="5" fill="white" opacity="0.9" />
         <text x="18" y="44" fill="white" fontSize="24" fontWeight="900" opacity="0.4">?</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/word-speed",
+    title: "Word Speed",
+    desc: "Type words as fast as you can. How many WPM can you hit?",
+    color: "from-sky-500 to-blue-600",
+    avg: "Average: 40 WPM",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="6" y="22" fill="white" fontSize="14" fontWeight="bold" opacity="0.9">ABC</text>
+        <text x="6" y="40" fill="white" fontSize="14" fontWeight="bold" opacity="0.5">XYZ</text>
+        <path d="M34 12l6 6-6 6" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    href: "/number-speed",
+    title: "Number Speed",
+    desc: "Remember and type back growing number sequences.",
+    color: "from-emerald-500 to-green-600",
+    avg: "Average: 7 digits",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="4" y="30" fill="white" fontSize="16" fontWeight="bold" opacity="0.9">1 2 3</text>
+        <text x="14" y="44" fill="white" fontSize="10" opacity="0.4">...</text>
       </svg>
     ),
   },

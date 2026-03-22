@@ -35,6 +35,8 @@ const navLinks = [
   { href: "/pattern", label: "Pattern" },
   { href: "/rotation", label: "Rotation" },
   { href: "/rhythm", label: "Rhythm" },
+  { href: "/word-speed", label: "Word Speed" },
+  { href: "/number-speed", label: "Number Speed" },
   { href: "/brain-score", label: "Brain Score" },
 ];
 
