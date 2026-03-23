@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BenchMyBrain - 23 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  title: "BenchMyBrain - 25 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
+    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
   keywords: [
     "brain test",
     "reaction time test",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "speed test online",
   ],
   openGraph: {
-    title: "BenchMyBrain - 23 Free Brain & Speed Tests",
+    title: "BenchMyBrain - 25 Free Brain & Speed Tests",
     description:
-      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, aim, color blind, math, and more. No sign-up required.",
+      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, aim, color blind, math, and more. No sign-up required.",
     type: "website",
   },
 };
@@ -382,6 +382,34 @@ const tests = [
       </svg>
     ),
   },
+  {
+    href: "/digit-span",
+    title: "Digit Span",
+    desc: "Digits flash one at a time. Type them back forward or backward.",
+    color: "from-blue-500 to-indigo-600",
+    avg: "Average: 7 forward",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="8" y="30" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.4">3</text>
+        <text x="20" y="30" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.7">7</text>
+        <text x="32" y="30" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace">2</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/emotion",
+    title: "Emotion Recognition",
+    desc: "Identify emoji emotions (happy, sad, angry, surprised, etc.) quickly.",
+    color: "from-purple-500 to-fuchsia-600",
+    avg: "Tests EQ",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="6" y="24" fill="white" fontSize="20">😀</text>
+        <text x="26" y="24" fill="white" fontSize="20" opacity="0.6">😢</text>
+        <text x="14" y="42" fill="white" fontSize="20" opacity="0.3">😠</text>
+      </svg>
+    ),
+  },
 ];
 
 export default function Home() {
@@ -447,7 +475,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick from 18 brain and reflex tests.
+              Pick from 25 brain and reflex tests.
             </p>
           </div>
           <div>

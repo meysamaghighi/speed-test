@@ -30,6 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/face-memory`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/color-match`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/focus-timer`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/digit-span`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/emotion`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified: now, priority: 0.8 },
   ];
 }

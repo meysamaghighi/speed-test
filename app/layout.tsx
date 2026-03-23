@@ -40,6 +40,8 @@ const navLinks = [
   { href: "/face-memory", label: "Face Memory" },
   { href: "/color-match", label: "Color Match" },
   { href: "/focus-timer", label: "Focus Timer" },
+  { href: "/digit-span", label: "Digit Span" },
+  { href: "/emotion", label: "Emotion" },
   { href: "/brain-score", label: "Brain Score" },
 ];
 

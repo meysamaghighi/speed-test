@@ -3,21 +3,22 @@ import ColorMatchTest from "../components/ColorMatchTest";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Color Match Test - Color Recognition Speed Test | BenchMyBrain",
+  title: "Odd Color Out - Color Perception Test | BenchMyBrain",
   description:
-    "Test your color recognition and response speed. See a color name displayed in a different color, then tap the correct displayed color. 20 rounds of cognitive challenge.",
+    "Test your color perception. Find the tile with a slightly different shade in an increasingly difficult grid. How subtle can you detect?",
   keywords: [
-    "color match test",
-    "color recognition test",
-    "Stroop test",
-    "cognitive test",
     "color perception test",
-    "visual attention test",
+    "odd color out",
+    "color vision test",
+    "color difference test",
+    "visual perception test",
+    "eye test",
+    "shade detection",
   ],
   openGraph: {
-    title: "Color Match Test - Color Recognition Speed Test | BenchMyBrain",
+    title: "Odd Color Out - Color Perception Test | BenchMyBrain",
     description:
-      "Test your color recognition and response speed. See a color name displayed in a different color, then tap the correct displayed color. 20 rounds of cognitive challenge.",
+      "Test your color perception. Find the tile with a slightly different shade in an increasingly difficult grid.",
     type: "website",
   },
 };
@@ -27,65 +28,48 @@ export default function ColorMatchPage() {
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-black text-white mb-3">
-          Color Match Test
+          Odd Color Out
         </h1>
         <p className="text-gray-400">
-          Tap the displayed color (not the word). 20 rounds testing speed and accuracy.
+          Find the tile that is a different shade. Gets harder as you level up.
         </p>
       </div>
 
       <ColorMatchTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">How It Works</h2>
-        <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-          <p className="text-sm text-gray-400 mb-3">
-            You'll see a color name (like "RED") displayed in a different color (like blue text).
-            Your task is to identify the DISPLAYED COLOR (blue), not what the word says (red).
-          </p>
-          <p className="text-sm text-gray-400 mb-3">
-            This creates cognitive interference similar to the Stroop effect, where reading the word
-            competes with identifying the color. Fast, accurate responses require focus and inhibition.
-          </p>
-          <p className="text-sm text-gray-400">
-            Score = (correct answers × 100) + speed bonus. Faster correct answers earn higher scores.
-          </p>
-        </div>
-      </section>
-
-      <section className="mt-8 space-y-6">
         <h2 className="text-xl font-bold text-white">About Color Perception</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">The Stroop Effect</h3>
+            <h3 className="font-bold text-white mb-2">What This Tests</h3>
             <p className="text-sm text-gray-400">
-              This test is inspired by the Stroop effect, where naming the ink color of a
-              color word (e.g., "RED" in blue ink) is slower than reading the word itself.
-              It measures cognitive control and selective attention.
+              This test measures your ability to distinguish subtle color differences.
+              It tests your cone cells (color receptors) and visual cortex processing.
+              People with normal color vision can typically reach level 15-18.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Why It's Hard</h3>
+            <h3 className="font-bold text-white mb-2">Why It Gets Harder</h3>
             <p className="text-sm text-gray-400">
-              Reading is automatic for literate adults. When you see "RED," your brain
-              reads it faster than it processes the color. You must inhibit the automatic
-              reading response to focus on the visual color.
+              As levels increase, the grid grows larger (more tiles to scan) and the
+              color difference shrinks. Your brain must detect increasingly subtle
+              hue or lightness variations under time pressure.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Brain Regions Involved</h3>
+            <h3 className="font-bold text-white mb-2">Factors That Help</h3>
             <p className="text-sm text-gray-400">
-              The anterior cingulate cortex (ACC) detects conflict between word reading and
-              color naming. The prefrontal cortex helps you inhibit the wrong response and
-              select the correct one.
+              Screen brightness and quality matter. Calibrated displays show more
+              subtle differences. Women statistically have slightly better color
+              discrimination due to having more cone types on average.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Improving Performance</h3>
+            <h3 className="font-bold text-white mb-2">Real-World Application</h3>
             <p className="text-sm text-gray-400">
-              Practice reduces interference. Gamers and musicians often score better due to
-              enhanced executive function. Adequate sleep and reduced stress improve cognitive
-              control and performance on tasks like this.
+              Color discrimination is important for designers, artists, photographers,
+              and quality control inspectors. This type of test is also used to screen
+              for color vision deficiencies.
             </p>
           </div>
         </div>
@@ -99,8 +83,9 @@ export default function ColorMatchPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Color Match Test",
-            description: "Free online color recognition and cognitive control test. Match displayed colors, not words.",
+            name: "Odd Color Out - Color Perception Test",
+            description:
+              "Free online color perception test. Find the differently-shaded tile in an increasingly difficult grid.",
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -117,34 +102,26 @@ export default function ColorMatchPage() {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "What is the Stroop effect?",
+                name: "What does the Odd Color Out test measure?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "The Stroop effect is a cognitive phenomenon where naming the color of a word (e.g., 'RED' printed in blue ink) takes longer than reading the word. It demonstrates interference between automatic reading and color naming.",
+                  text: "It measures your color discrimination ability -- how well you can distinguish subtle differences in hue and lightness. It tests the sensitivity of your cone cells and visual processing speed.",
                 },
               },
               {
                 "@type": "Question",
-                name: "Why is this test difficult?",
+                name: "What is a good score on this test?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Reading is automatic for literate adults. When you see a color word, your brain reads it faster than identifying the ink color. You must inhibit the automatic reading response to focus on the visual color.",
+                  text: "Reaching level 15+ with high accuracy indicates excellent color perception. Most people with normal color vision can reach level 10-15. Scores above 2400 are considered excellent.",
                 },
               },
               {
                 "@type": "Question",
-                name: "What does this test measure?",
+                name: "Is this test related to the Stroop test?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "This test measures cognitive control, selective attention, and inhibition. It engages the anterior cingulate cortex (conflict detection) and prefrontal cortex (response inhibition).",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice reduces interference. Focus on the color, not the word. Adequate sleep, reduced stress, and activities that enhance executive function (gaming, music) can improve performance.",
+                  text: "No. The Stroop test measures cognitive interference (reading vs. color naming). This test measures pure color perception -- your ability to detect subtle shade differences, which is a visual rather than cognitive skill.",
                 },
               },
             ],
