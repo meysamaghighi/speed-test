@@ -150,6 +150,102 @@ const TESTS: TestDef[] = [
     unit: "level",
     toScore: (lvl) => clamp((lvl / 10) * 100),
   },
+  {
+    key: "pb-word-speed",
+    label: "Word Speed",
+    href: "/word-speed",
+    mode: "higher",
+    unit: "WPM",
+    toScore: (wpm) => clamp(((wpm - 20) / 80) * 100), // 20=0, 100=100
+  },
+  {
+    key: "pb-number-speed",
+    label: "Number Speed",
+    href: "/number-speed",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 10) * 100), // 10=100
+  },
+  {
+    key: "pb-face-memory",
+    label: "Face Memory",
+    href: "/face-memory",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 12) * 100), // 12=100
+  },
+  {
+    key: "pb-color-match",
+    label: "Color Match",
+    href: "/color-match",
+    mode: "higher",
+    unit: "%",
+    toScore: (pct) => clamp(((pct - 50) / 50) * 100), // 50%=0, 100%=100
+  },
+  {
+    key: "pb-focus-timer",
+    label: "Focus Timer",
+    href: "/focus-timer",
+    mode: "higher",
+    unit: "acc%",
+    toScore: (acc) => clamp(((acc - 50) / 50) * 100), // 50%=0, 100%=100
+  },
+  {
+    key: "pb-digit-span",
+    label: "Digit Span",
+    href: "/digit-span",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 10) * 100), // 10=100
+  },
+  {
+    key: "pb-emotion",
+    label: "Emotion Recognition",
+    href: "/emotion",
+    mode: "higher",
+    unit: "score",
+    toScore: (s) => clamp((s / 20) * 100), // 20=100
+  },
+  {
+    key: "pb-trail-making",
+    label: "Trail Making",
+    href: "/trail-making",
+    mode: "lower",
+    unit: "s",
+    toScore: (s) => clamp(100 - ((s - 15) / 45) * 100), // 15s=100, 60s=0
+  },
+  {
+    key: "pb-go-no-go",
+    label: "Go/No-Go",
+    href: "/go-no-go",
+    mode: "lower",
+    unit: "ms",
+    toScore: (ms) => clamp(100 - ((ms - 250) / 450) * 100), // 250ms=100, 700ms=0
+  },
+  {
+    key: "pb-n-back",
+    label: "N-Back",
+    href: "/n-back",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 5) * 100), // 5=100
+  },
+  {
+    key: "pb-hand-eye",
+    label: "Hand-Eye Coordination",
+    href: "/hand-eye",
+    mode: "higher",
+    unit: "catches",
+    toScore: (c) => clamp((c / 50) * 100), // 50=100
+  },
+  {
+    key: "pb-audio-memory",
+    label: "Audio Memory",
+    href: "/audio-memory",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 12) * 100), // 12=100
+  },
 ];
 
 function clamp(v: number) {

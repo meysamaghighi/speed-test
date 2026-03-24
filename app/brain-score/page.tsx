@@ -5,7 +5,7 @@ import RelatedTests from "../components/RelatedTests";
 export const metadata: Metadata = {
   title: "Brain Score - Your Overall Cognitive Score | BenchMyBrain",
   description:
-    "Get your Brain Score out of 1000 based on 17 cognitive tests: reaction time, memory, typing, aim, pattern recognition, and more. See how your brain stacks up.",
+    "Get your Brain Score out of 1000 based on 30 cognitive tests: reaction time, memory, typing, aim, pattern recognition, and more. See how your brain stacks up.",
   keywords: [
     "brain score",
     "cognitive score",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Brain Score - Your Overall Cognitive Score | BenchMyBrain",
     description:
-      "Get your Brain Score out of 1000 based on 17 cognitive tests. See how your brain stacks up.",
+      "Get your Brain Score out of 1000 based on 30 cognitive tests. See how your brain stacks up.",
     type: "website",
   },
 };
@@ -43,7 +43,7 @@ export default function BrainScorePage() {
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
             <h3 className="font-bold text-white mb-2">How It Works</h3>
             <p className="text-sm text-gray-400">
-              Each of the 17 tests measures a different cognitive ability. Your
+              Each of the 30 tests measures a different cognitive ability. Your
               personal best on each test is normalized to a 0-100 scale, then
               averaged to produce your Brain Score (0-1000). The more tests you
               complete, the more comprehensive your score.
@@ -71,7 +71,7 @@ export default function BrainScorePage() {
             "@type": "WebApplication",
             name: "Brain Score Calculator",
             description:
-              "Calculate your overall Brain Score out of 1000 based on 17 cognitive tests.",
+              "Calculate your overall Brain Score out of 1000 based on 30 cognitive tests.",
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -91,7 +91,7 @@ export default function BrainScorePage() {
                 name: "What is Brain Score?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Brain Score is a composite cognitive score from 0-1000 based on your performance across 17 different brain tests including reaction time, memory, typing speed, pattern recognition, and more.",
+                  text: "Brain Score is a composite cognitive score from 0-1000 based on your performance across 30 different brain tests including reaction time, memory, typing speed, pattern recognition, and more.",
                 },
               },
               {
@@ -99,7 +99,7 @@ export default function BrainScorePage() {
                 name: "How is Brain Score calculated?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Each test score is normalized to a 0-100 scale based on human performance ranges. These normalized scores are averaged and multiplied by 10 to give a score out of 1000. Complete all 17 tests for the most accurate result.",
+                  text: "Each test score is normalized to a 0-100 scale based on human performance ranges. These normalized scores are averaged and multiplied by 10 to give a score out of 1000. Complete all 30 tests for the most accurate result.",
                 },
               },
               {

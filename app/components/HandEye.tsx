@@ -24,13 +24,20 @@ export default function HandEye() {
   const pb = usePersonalBest("pb-hand-eye", "higher", phase === "done" ? score : null);
 
   const spawnTarget = useCallback((currentLevel: number) => {
+    if (!areaRef.current) return;
+
+    const rect = areaRef.current.getBoundingClientRect();
     const size = Math.max(30, 60 - currentLevel * 3); // Gets smaller each level
     const speed = 1 + currentLevel * 0.3; // Gets faster each level
     const angle = Math.random() * Math.PI * 2;
 
+    // Spawn at random position in pixels, not percentages
+    const x = size / 2 + Math.random() * (rect.width - size);
+    const y = size / 2 + Math.random() * (rect.height - size);
+
     setTarget({
-      x: 50,
-      y: 50,
+      x,
+      y,
       size,
       vx: Math.cos(angle) * speed,
       vy: Math.sin(angle) * speed,

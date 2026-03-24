@@ -507,7 +507,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl font-black text-white mb-1">Brain Score</h2>
             <p className="text-indigo-200 text-sm">
-              Take all 17 tests and get your overall cognitive score out of 1000. How smart are you?
+              Take all 30 tests and get your overall cognitive score out of 1000. How smart are you?
             </p>
           </div>
           <div className="text-5xl font-black text-white/20 group-hover:text-white/30 transition-colors">

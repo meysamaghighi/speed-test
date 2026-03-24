@@ -18,6 +18,7 @@ export default function GoNoGo() {
   const trialStartTime = useRef(0);
   const timeoutRef = useRef<number | null>(null);
   const clickedThisTrial = useRef(false);
+  const trialSequence = useRef<Trial[]>([]);
 
   const averageRT = goTimes.length > 0 ? Math.round(goTimes.reduce((s, t) => s + t, 0) / goTimes.length) : 0;
   const accuracy = trialNumber > 0 ? Math.round(((hits + (trialNumber - hits - misses - falseAlarms)) / trialNumber) * 100) : 0;
@@ -30,6 +31,18 @@ export default function GoNoGo() {
     setHits(0);
     setMisses(0);
     setFalseAlarms(0);
+
+    // Generate randomized trial sequence: 70% go, 30% nogo
+    const sequence: Trial[] = [];
+    for (let i = 0; i < goCount; i++) sequence.push("go");
+    for (let i = 0; i < totalTrials - goCount; i++) sequence.push("nogo");
+    // Shuffle using Fisher-Yates
+    for (let i = sequence.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [sequence[i], sequence[j]] = [sequence[j], sequence[i]];
+    }
+    trialSequence.current = sequence;
+
     setPhase("playing");
     nextTrial(0);
   };
@@ -41,9 +54,8 @@ export default function GoNoGo() {
       return;
     }
 
-    // Generate trial sequence: 70% go, 30% nogo
-    const isGo = currentIndex < goCount;
-    const trial: Trial = isGo ? "go" : "nogo";
+    // Get trial from randomized sequence
+    const trial: Trial = trialSequence.current[currentIndex];
 
     // Wait 800-1500ms between trials
     const delay = 800 + Math.random() * 700;
