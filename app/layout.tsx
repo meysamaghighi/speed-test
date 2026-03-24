@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://benchmybrain.com"),
   title: "BenchMyBrain - Free Reaction Time, Typing Speed & Brain Tests",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, aim trainer, click speed, chimp test, visual memory, pattern recognition, spatial rotation, rhythm timing. Compare with averages and share your scores.",
+    "Free online brain tests: reaction time, typing speed, number memory, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, pattern recognition, spatial rotation, rhythm timing. Compare with averages and share your scores.",
   openGraph: {
     title: "BenchMyBrain - Free Brain & Speed Tests",
-    description: "18 free online tests: reaction time, typing speed, memory, aim, pattern recognition, spatial rotation, rhythm, and more. No sign-up required.",
+    description: "30 free online tests: reaction time, typing speed, memory, trail making, go/no-go, n-back, hand-eye, audio memory, aim, pattern recognition, spatial rotation, rhythm, and more. No sign-up required.",
     type: "website",
     siteName: "BenchMyBrain",
   },
@@ -42,6 +42,11 @@ const navLinks = [
   { href: "/focus-timer", label: "Focus Timer" },
   { href: "/digit-span", label: "Digit Span" },
   { href: "/emotion", label: "Emotion" },
+  { href: "/trail-making", label: "Trail Making" },
+  { href: "/go-no-go", label: "Go/No-Go" },
+  { href: "/n-back", label: "N-Back" },
+  { href: "/hand-eye", label: "Hand-Eye" },
+  { href: "/audio-memory", label: "Audio Memory" },
   { href: "/brain-score", label: "Brain Score" },
 ];
 

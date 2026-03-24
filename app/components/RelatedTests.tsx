@@ -26,6 +26,11 @@ const allTests = [
   { href: "/focus-timer", label: "Focus Timer", color: "from-gray-500 to-slate-600" },
   { href: "/digit-span", label: "Digit Span", color: "from-blue-500 to-indigo-600" },
   { href: "/emotion", label: "Emotion Recognition", color: "from-purple-500 to-fuchsia-600" },
+  { href: "/trail-making", label: "Trail Making", color: "from-cyan-500 to-blue-600" },
+  { href: "/go-no-go", label: "Go/No-Go", color: "from-green-500 to-red-600" },
+  { href: "/n-back", label: "N-Back", color: "from-purple-500 to-indigo-600" },
+  { href: "/hand-eye", label: "Hand-Eye Coordination", color: "from-orange-500 to-amber-600" },
+  { href: "/audio-memory", label: "Audio Memory", color: "from-violet-500 to-purple-600" },
   { href: "/brain-score", label: "Brain Score", color: "from-indigo-500 to-purple-600" },
 ];
 
@@ -55,6 +60,11 @@ const relatedMap: Record<string, string[]> = {
   "/focus-timer": ["/reaction", "/rhythm", "/memory"],
   "/digit-span": ["/memory", "/reverse-memory", "/number-speed"],
   "/emotion": ["/face-memory", "/reaction", "/stroop"],
+  "/trail-making": ["/visual-memory", "/sequence", "/chimp"],
+  "/go-no-go": ["/reaction", "/stroop", "/aim"],
+  "/n-back": ["/memory", "/reverse-memory", "/sequence"],
+  "/hand-eye": ["/aim", "/reaction", "/peripheral"],
+  "/audio-memory": ["/sequence", "/memory", "/rhythm"],
   "/brain-score": ["/reaction", "/memory", "/typing"],
 };
 

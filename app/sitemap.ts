@@ -32,6 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/focus-timer`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/digit-span`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/emotion`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/trail-making`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/go-no-go`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/n-back`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/hand-eye`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/audio-memory`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified: now, priority: 0.8 },
   ];
 }

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BenchMyBrain - 25 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  title: "BenchMyBrain - 30 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
+    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
   keywords: [
     "brain test",
     "reaction time test",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "speed test online",
   ],
   openGraph: {
-    title: "BenchMyBrain - 25 Free Brain & Speed Tests",
+    title: "BenchMyBrain - 30 Free Brain & Speed Tests",
     description:
-      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, aim, color blind, math, and more. No sign-up required.",
+      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, and more. No sign-up required.",
     type: "website",
   },
 };
@@ -410,6 +410,79 @@ const tests = [
       </svg>
     ),
   },
+  {
+    href: "/trail-making",
+    title: "Trail Making",
+    desc: "Connect circles in alternating order: 1-A-2-B-3-C... as fast as you can.",
+    color: "from-cyan-500 to-blue-600",
+    avg: "Average: 30s",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="10" cy="10" r="4" fill="white" opacity="0.9" />
+        <circle cx="24" cy="18" r="4" fill="white" opacity="0.7" />
+        <circle cx="38" cy="12" r="4" fill="white" opacity="0.5" />
+        <circle cx="16" cy="32" r="4" fill="white" opacity="0.3" />
+        <path d="M10 10 L24 18 L38 12" stroke="white" strokeWidth="2" opacity="0.6" />
+        <text x="8" y="13" fill="black" fontSize="6" fontWeight="900">1</text>
+        <text x="22" y="21" fill="black" fontSize="6" fontWeight="900">A</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/go-no-go",
+    title: "Go/No-Go",
+    desc: "Green = click fast. Red = DON'T click. Tests reaction time AND impulse control.",
+    color: "from-green-500 to-red-600",
+    avg: "Average: 350ms",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="18" cy="24" r="10" fill="#22c55e" opacity="0.9" />
+        <circle cx="30" cy="24" r="10" fill="#ef4444" opacity="0.9" />
+        <path d="M15 24 L21 24" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.7" />
+      </svg>
+    ),
+  },
+  {
+    href: "/n-back",
+    title: "N-Back",
+    desc: "See letters. Click 'Match' if current = N positions back. Levels up.",
+    color: "from-purple-500 to-indigo-600",
+    avg: "Average: Level 3",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="6" y="30" fill="white" fontSize="18" fontWeight="900" opacity="0.4">K</text>
+        <text x="18" y="30" fill="white" fontSize="18" fontWeight="900" opacity="0.6">B</text>
+        <text x="30" y="30" fill="white" fontSize="18" fontWeight="900">K</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/hand-eye",
+    title: "Hand-Eye Coordination",
+    desc: "Click a moving target that bounces around. Gets smaller and faster!",
+    color: "from-orange-500 to-amber-600",
+    avg: "Average: 25 catches",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="24" cy="24" r="8" fill="white" opacity="0.9" />
+        <path d="M10 10 L18 18 M38 10 L30 18 M10 38 L18 30 M38 38 L30 30" stroke="white" strokeWidth="2" opacity="0.3" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    href: "/audio-memory",
+    title: "Audio Memory",
+    desc: "Hear tones and repeat them. Like Simon but with audio. Turn on sound!",
+    color: "from-violet-500 to-purple-600",
+    avg: "Average: Level 6",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <path d="M12 18 L12 30 L18 30 L26 36 L26 12 Z" fill="white" opacity="0.9" />
+        <path d="M30 18 Q36 24 30 30" stroke="white" strokeWidth="2.5" fill="none" opacity="0.6" strokeLinecap="round" />
+        <path d="M34 14 Q42 24 34 34" stroke="white" strokeWidth="2.5" fill="none" opacity="0.4" strokeLinecap="round" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Home() {
@@ -420,7 +493,7 @@ export default function Home() {
           Test Your Brain
         </h1>
         <p className="text-xl text-gray-400 max-w-lg mx-auto">
-          Free online tests for reaction time, typing speed, memory, aim, and
+          30 free online tests for reaction time, typing speed, memory, cognitive function, and
           more. No sign-up required.
         </p>
       </div>
@@ -475,7 +548,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick from 25 brain and reflex tests.
+              Pick from 30 brain and reflex tests.
             </p>
           </div>
           <div>
