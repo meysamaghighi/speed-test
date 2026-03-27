@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BenchMyBrain - 30 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  title: "BenchMyBrain - 35 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, and reading speed. No sign-up required.",
+    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, reading speed, color memory, word association, number comparison, visual search. No sign-up required.",
   keywords: [
     "brain test",
     "reaction time test",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "speed test online",
   ],
   openGraph: {
-    title: "BenchMyBrain - 30 Free Brain & Speed Tests",
+    title: "BenchMyBrain - 35 Free Brain & Speed Tests",
     description:
-      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, and more. No sign-up required.",
+      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, and more. No sign-up required.",
     type: "website",
   },
 };
@@ -483,6 +483,78 @@ const tests = [
       </svg>
     ),
   },
+  {
+    href: "/color-memory",
+    title: "Color Memory",
+    desc: "Watch colored circles flash in sequence and repeat the pattern.",
+    color: "from-purple-500 to-violet-600",
+    avg: "Average: 5-6 colors",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="12" cy="24" r="7" fill="#ef4444" opacity="0.9" />
+        <circle cx="24" cy="24" r="7" fill="#3b82f6" opacity="0.9" />
+        <circle cx="36" cy="24" r="7" fill="#22c55e" opacity="0.9" />
+      </svg>
+    ),
+  },
+  {
+    href: "/word-association",
+    title: "Word Association",
+    desc: "See a word, type the opposite as fast as you can. Tests verbal speed.",
+    color: "from-blue-500 to-indigo-600",
+    avg: "Average: 1200ms",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="4" y="22" fill="white" fontSize="14" fontWeight="bold" opacity="0.9">HOT</text>
+        <path d="M18 28 L30 28 M24 24 L24 32" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+        <text x="4" y="44" fill="white" fontSize="14" fontWeight="bold" opacity="0.5">COLD</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/number-comparison",
+    title: "Number Comparison",
+    desc: "Click the larger number as fast as you can. Tests numerical processing.",
+    color: "from-emerald-500 to-green-600",
+    avg: "Average: 700ms",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="4" y="30" fill="white" fontSize="16" fontWeight="900" opacity="0.9">42</text>
+        <text x="28" y="30" fill="white" fontSize="16" fontWeight="900" opacity="0.5">87</text>
+        <path d="M16 18 L22 18 M19 15 L19 21" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.3" />
+      </svg>
+    ),
+  },
+  {
+    href: "/visual-search",
+    title: "Visual Search",
+    desc: "Find the odd one out in a grid. Tests attention and search speed.",
+    color: "from-orange-500 to-red-600",
+    avg: "Average: 2500ms",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="4" y="18" fill="white" fontSize="14" fontWeight="900" opacity="0.4">O O O</text>
+        <text x="4" y="32" fill="white" fontSize="14" fontWeight="900" opacity="0.4">O</text>
+        <text x="16" y="32" fill="#ef4444" fontSize="14" fontWeight="900" opacity="0.9">Q</text>
+        <text x="28" y="32" fill="white" fontSize="14" fontWeight="900" opacity="0.4">O</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/peripheral-test",
+    title: "Peripheral Test",
+    desc: "Focus on center, detect targets in your side vision. Tests visual field.",
+    color: "from-cyan-500 to-blue-600",
+    avg: "Average: 180px",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="24" cy="24" r="3" fill="#ef4444" />
+        <circle cx="24" cy="24" r="14" stroke="white" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
+        <circle cx="8" cy="18" r="4" fill="#22c55e" opacity="0.8" />
+        <circle cx="40" cy="30" r="3.5" fill="#22c55e" opacity="0.5" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Home() {
@@ -493,7 +565,7 @@ export default function Home() {
           Test Your Brain
         </h1>
         <p className="text-xl text-gray-400 max-w-lg mx-auto">
-          30 free online tests for reaction time, typing speed, memory, cognitive function, and
+          35 free online tests for reaction time, typing speed, memory, cognitive function, and
           more. No sign-up required.
         </p>
       </div>
@@ -507,7 +579,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl font-black text-white mb-1">Brain Score</h2>
             <p className="text-indigo-200 text-sm">
-              Take all 30 tests and get your overall cognitive score out of 1000. How smart are you?
+              Take all 35 tests and get your overall cognitive score out of 1000. How smart are you?
             </p>
           </div>
           <div className="text-5xl font-black text-white/20 group-hover:text-white/30 transition-colors">
@@ -548,7 +620,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick from 30 brain and reflex tests.
+              Pick from 35 brain and reflex tests.
             </p>
           </div>
           <div>

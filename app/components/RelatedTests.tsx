@@ -31,6 +31,11 @@ const allTests = [
   { href: "/n-back", label: "N-Back", color: "from-purple-500 to-indigo-600" },
   { href: "/hand-eye", label: "Hand-Eye Coordination", color: "from-orange-500 to-amber-600" },
   { href: "/audio-memory", label: "Audio Memory", color: "from-violet-500 to-purple-600" },
+  { href: "/color-memory", label: "Color Memory", color: "from-purple-500 to-violet-600" },
+  { href: "/word-association", label: "Word Association", color: "from-blue-500 to-indigo-600" },
+  { href: "/number-comparison", label: "Number Comparison", color: "from-emerald-500 to-green-600" },
+  { href: "/visual-search", label: "Visual Search", color: "from-orange-500 to-red-600" },
+  { href: "/peripheral-test", label: "Peripheral Test", color: "from-cyan-500 to-blue-600" },
   { href: "/brain-score", label: "Brain Score", color: "from-indigo-500 to-purple-600" },
 ];
 
@@ -65,6 +70,11 @@ const relatedMap: Record<string, string[]> = {
   "/n-back": ["/memory", "/reverse-memory", "/sequence"],
   "/hand-eye": ["/aim", "/reaction", "/peripheral"],
   "/audio-memory": ["/sequence", "/memory", "/rhythm"],
+  "/color-memory": ["/visual-memory", "/sequence", "/memory"],
+  "/word-association": ["/typing", "/reading", "/verbal"],
+  "/number-comparison": ["/math", "/memory", "/reaction"],
+  "/visual-search": ["/visual-memory", "/aim", "/peripheral"],
+  "/peripheral-test": ["/peripheral", "/aim", "/visual-memory"],
   "/brain-score": ["/reaction", "/memory", "/typing"],
 };
 
