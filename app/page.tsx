@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "BenchMyBrain - 35 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
+  title: "BenchMyBrain - 40 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, reading speed, color memory, word association, number comparison, visual search. No sign-up required.",
+    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, reading speed, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation. No sign-up required.",
   keywords: [
     "brain test",
     "reaction time test",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "speed test online",
   ],
   openGraph: {
-    title: "BenchMyBrain - 35 Free Brain & Speed Tests",
+    title: "BenchMyBrain - 40 Free Brain & Speed Tests",
     description:
-      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, and more. No sign-up required.",
+      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation, and more. No sign-up required.",
     type: "website",
   },
 };
@@ -555,6 +555,92 @@ const tests = [
       </svg>
     ),
   },
+  {
+    href: "/pattern-speed",
+    title: "Pattern Speed",
+    desc: "Memorize flashing grid patterns and reproduce them. How many cells can you recall?",
+    color: "from-purple-500 to-violet-600",
+    avg: "Average: Level 5",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <rect x="6" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
+        <rect x="19" y="6" width="10" height="10" rx="2" fill="white" opacity="0.3" />
+        <rect x="32" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
+        <rect x="6" y="19" width="10" height="10" rx="2" fill="white" opacity="0.3" />
+        <rect x="19" y="19" width="10" height="10" rx="2" fill="white" opacity="0.9" />
+        <rect x="32" y="19" width="10" height="10" rx="2" fill="white" opacity="0.3" />
+        <rect x="6" y="32" width="10" height="10" rx="2" fill="white" opacity="0.9" />
+        <rect x="19" y="32" width="10" height="10" rx="2" fill="white" opacity="0.3" />
+        <rect x="32" y="32" width="10" height="10" rx="2" fill="white" opacity="0.9" />
+      </svg>
+    ),
+  },
+  {
+    href: "/math-memory",
+    title: "Math Memory",
+    desc: "Equations flash briefly. Memorize and solve them. One mistake ends the test.",
+    color: "from-blue-500 to-cyan-600",
+    avg: "Average: 8 correct",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <text x="6" y="22" fill="white" fontSize="14" fontWeight="900" fontFamily="monospace" opacity="0.9">5+7</text>
+        <text x="6" y="40" fill="white" fontSize="16" fontWeight="900" fontFamily="monospace">=12</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/dual-task",
+    title: "Dual Task",
+    desc: "Track a moving dot AND count beeps. Tests divided attention and multitasking.",
+    color: "from-cyan-500 to-teal-600",
+    avg: "Average: 75%",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="18" cy="24" r="8" fill="#ef4444" opacity="0.9" />
+        <path d="M30 18 L30 30 L36 30 L42 36 L42 12 Z" fill="white" opacity="0.9" />
+        <path d="M28 20 Q26 24 28 28" stroke="white" strokeWidth="2" fill="none" opacity="0.4" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    href: "/change-detection",
+    title: "Change Detection",
+    desc: "A grid of colors flashes twice. One color changes. Click the changed circle.",
+    color: "from-pink-500 to-rose-600",
+    avg: "Average: Level 4",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="12" cy="12" r="6" fill="#ef4444" />
+        <circle cx="24" cy="12" r="6" fill="#3b82f6" />
+        <circle cx="36" cy="12" r="6" fill="#22c55e" />
+        <circle cx="12" cy="28" r="6" fill="#a855f7" />
+        <circle cx="24" cy="28" r="6" fill="#eab308" />
+        <circle cx="36" cy="28" r="6" fill="#ec4899" opacity="0.5" />
+        <path d="M32 24 L40 24 M36 20 L36 28" stroke="white" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+      </svg>
+    ),
+  },
+  {
+    href: "/estimation",
+    title: "Estimation Test",
+    desc: "Dots flash for 1 second. How many were there? Tests number sense and subitizing.",
+    color: "from-amber-500 to-orange-600",
+    avg: "Average: 75%",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+        <circle cx="10" cy="12" r="3" fill="white" opacity="0.9" />
+        <circle cx="20" cy="10" r="3" fill="white" opacity="0.9" />
+        <circle cx="30" cy="14" r="3" fill="white" opacity="0.9" />
+        <circle cx="38" cy="18" r="3" fill="white" opacity="0.9" />
+        <circle cx="12" cy="24" r="3" fill="white" opacity="0.9" />
+        <circle cx="24" cy="26" r="3" fill="white" opacity="0.9" />
+        <circle cx="36" cy="30" r="3" fill="white" opacity="0.9" />
+        <circle cx="14" cy="36" r="3" fill="white" opacity="0.9" />
+        <circle cx="28" cy="38" r="3" fill="white" opacity="0.9" />
+        <text x="18" y="44" fill="white" fontSize="12" fontWeight="900" opacity="0.6">?</text>
+      </svg>
+    ),
+  },
 ];
 
 export default function Home() {
@@ -565,7 +651,7 @@ export default function Home() {
           Test Your Brain
         </h1>
         <p className="text-xl text-gray-400 max-w-lg mx-auto">
-          35 free online tests for reaction time, typing speed, memory, cognitive function, and
+          40 free online tests for reaction time, typing speed, memory, cognitive function, and
           more. No sign-up required.
         </p>
       </div>
@@ -579,7 +665,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl font-black text-white mb-1">Brain Score</h2>
             <p className="text-indigo-200 text-sm">
-              Take all 35 tests and get your overall cognitive score out of 1000. How smart are you?
+              Take all 40 tests and get your overall cognitive score out of 1000. How smart are you?
             </p>
           </div>
           <div className="text-5xl font-black text-white/20 group-hover:text-white/30 transition-colors">
@@ -620,7 +706,7 @@ export default function Home() {
             <div className="text-3xl mb-2">1</div>
             <h3 className="font-bold text-white mb-1">Choose a Test</h3>
             <p className="text-sm text-gray-400">
-              Pick from 35 brain and reflex tests.
+              Pick from 40 brain and reflex tests.
             </p>
           </div>
           <div>
