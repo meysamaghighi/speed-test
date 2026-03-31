@@ -37,6 +37,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/n-back`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/hand-eye`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/audio-memory`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/color-memory`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/word-association`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/number-comparison`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/visual-search`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/peripheral-test`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/pattern-speed`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/math-memory`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/dual-task`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/change-detection`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/estimation`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified: now, priority: 0.8 },
   ];
 }

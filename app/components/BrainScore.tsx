@@ -246,6 +246,86 @@ const TESTS: TestDef[] = [
     unit: "level",
     toScore: (lvl) => clamp((lvl / 12) * 100), // 12=100
   },
+  {
+    key: "pb-color-memory",
+    label: "Color Memory",
+    href: "/color-memory",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 12) * 100), // 12=100
+  },
+  {
+    key: "pb-word-association",
+    label: "Word Association",
+    href: "/word-association",
+    mode: "higher",
+    unit: "WPM",
+    toScore: (wpm) => clamp(((wpm - 5) / 20) * 100), // 5=0, 25=100
+  },
+  {
+    key: "pb-number-comparison",
+    label: "Number Comparison",
+    href: "/number-comparison",
+    mode: "higher",
+    unit: "score",
+    toScore: (s) => clamp((s / 50) * 100), // 50=100
+  },
+  {
+    key: "pb-visual-search",
+    label: "Visual Search",
+    href: "/visual-search",
+    mode: "lower",
+    unit: "ms",
+    toScore: (ms) => clamp(100 - ((ms - 800) / 1200) * 100), // 800ms=100, 2000ms=0
+  },
+  {
+    key: "pb-peripheral-test",
+    label: "Peripheral Test",
+    href: "/peripheral-test",
+    mode: "higher",
+    unit: "angle",
+    toScore: (deg) => clamp(((deg - 30) / 150) * 100), // 30=0, 180=100
+  },
+  {
+    key: "pb-pattern-speed",
+    label: "Pattern Speed",
+    href: "/pattern-speed",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 10) * 100), // 10=100
+  },
+  {
+    key: "pb-math-memory",
+    label: "Math Memory",
+    href: "/math-memory",
+    mode: "higher",
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 10) * 100), // 10=100
+  },
+  {
+    key: "pb-dual-task",
+    label: "Dual Task",
+    href: "/dual-task",
+    mode: "higher",
+    unit: "score",
+    toScore: (s) => clamp((s / 100) * 100), // 100=100
+  },
+  {
+    key: "pb-change-detection",
+    label: "Change Detection",
+    href: "/change-detection",
+    mode: "higher",
+    unit: "score",
+    toScore: (s) => clamp((s / 30) * 100), // 30=100
+  },
+  {
+    key: "pb-estimation",
+    label: "Estimation Test",
+    href: "/estimation",
+    mode: "higher",
+    unit: "acc%",
+    toScore: (acc) => clamp(((acc - 50) / 50) * 100), // 50%=0, 100%=100
+  },
 ];
 
 function clamp(v: number) {
