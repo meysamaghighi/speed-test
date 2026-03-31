@@ -25,22 +25,37 @@ export default function VerbalMemory() {
   const [isNewWord, setIsNewWord] = useState(true);
   const [highScore, setHighScore] = useState(0);
   const [usedIndices, setUsedIndices] = useState<Set<number>>(new Set());
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const getNextWord = useCallback((seen: Set<string>, used: Set<number>) => {
+  const getNextWord = useCallback((seen: Set<string>, used: Set<number>, currentWord: string) => {
     // 50% chance to show a seen word (if any exist)
     if (seen.size > 0 && Math.random() < 0.5) {
       const arr = Array.from(seen);
-      const word = arr[Math.floor(Math.random() * arr.length)];
-      return { word, isNew: false, newUsed: used };
+      // Filter out the current word to prevent back-to-back duplicates
+      const availableSeen = arr.filter(w => w !== currentWord);
+      if (availableSeen.length > 0) {
+        const word = availableSeen[Math.floor(Math.random() * availableSeen.length)];
+        return { word, isNew: false, newUsed: used };
+      }
+      // If all seen words are the current word, fall through to show a new word
     }
     // Show a new word
     const available = wordList.filter((_, i) => !used.has(i));
     if (available.length === 0) {
       // All words used, recycle
-      const word = wordList[Math.floor(Math.random() * wordList.length)];
+      const recycleList = wordList.filter(w => w !== currentWord);
+      if (recycleList.length === 0) {
+        // Edge case: only one word exists, return it
+        const word = wordList[Math.floor(Math.random() * wordList.length)];
+        return { word, isNew: !seen.has(word), newUsed: used };
+      }
+      const word = recycleList[Math.floor(Math.random() * recycleList.length)];
       return { word, isNew: !seen.has(word), newUsed: used };
     }
-    const idx = wordList.indexOf(available[Math.floor(Math.random() * available.length)]);
+    // Filter out current word from available new words
+    const availableFiltered = available.filter(w => w !== currentWord);
+    const pickFrom = availableFiltered.length > 0 ? availableFiltered : available;
+    const idx = wordList.indexOf(pickFrom[Math.floor(Math.random() * pickFrom.length)]);
     const newUsed = new Set(used);
     newUsed.add(idx);
     return { word: wordList[idx], isNew: true, newUsed };
@@ -49,7 +64,7 @@ export default function VerbalMemory() {
   const startGame = () => {
     const seen = new Set<string>();
     const used = new Set<number>();
-    const { word, isNew, newUsed } = getNextWord(seen, used);
+    const { word, isNew, newUsed } = getNextWord(seen, used, "");
     setSeenWords(seen);
     setUsedIndices(newUsed);
     setCurrentWord(word);
@@ -57,6 +72,7 @@ export default function VerbalMemory() {
     setScore(0);
     setLives(3);
     setPhase("playing");
+    setIsTransitioning(false);
   };
 
   const handleAnswer = (answeredSeen: boolean) => {
@@ -66,26 +82,37 @@ export default function VerbalMemory() {
     newSeen.add(currentWord);
     setSeenWords(newSeen);
 
-    if (correct) {
-      const newScore = score + 1;
-      setScore(newScore);
-      const { word, isNew, newUsed } = getNextWord(newSeen, usedIndices);
-      setUsedIndices(newUsed);
-      setCurrentWord(word);
-      setIsNewWord(isNew);
-    } else {
-      const newLives = lives - 1;
-      setLives(newLives);
-      if (newLives <= 0) {
-        if (score > highScore) setHighScore(score);
-        setPhase("done");
-        return;
+    // Trigger fade-out transition
+    setIsTransitioning(true);
+
+    // Wait for fade-out, then update word and fade back in
+    setTimeout(() => {
+      if (correct) {
+        const newScore = score + 1;
+        setScore(newScore);
+        const { word, isNew, newUsed } = getNextWord(newSeen, usedIndices, currentWord);
+        setUsedIndices(newUsed);
+        setCurrentWord(word);
+        setIsNewWord(isNew);
+      } else {
+        const newLives = lives - 1;
+        setLives(newLives);
+        if (newLives <= 0) {
+          if (score > highScore) setHighScore(score);
+          setPhase("done");
+          return;
+        }
+        const { word, isNew, newUsed } = getNextWord(newSeen, usedIndices, currentWord);
+        setUsedIndices(newUsed);
+        setCurrentWord(word);
+        setIsNewWord(isNew);
       }
-      const { word, isNew, newUsed } = getNextWord(newSeen, usedIndices);
-      setUsedIndices(newUsed);
-      setCurrentWord(word);
-      setIsNewWord(isNew);
-    }
+
+      // Fade back in
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 100);
   };
 
   const getRating = (s: number) => {
@@ -161,7 +188,12 @@ export default function VerbalMemory() {
       </div>
 
       <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 text-center">
-        <p className="text-4xl md:text-5xl font-black text-white">{currentWord}</p>
+        <p
+          className="text-4xl md:text-5xl font-black text-white transition-opacity duration-100"
+          style={{ opacity: isTransitioning ? 0 : 1 }}
+        >
+          {currentWord}
+        </p>
       </div>
 
       <div className="flex gap-4 justify-center">
