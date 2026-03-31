@@ -30,13 +30,32 @@ export const metadata: Metadata = {
 
 const tests = [
   {
+    href: "/chimp",
+    title: "Chimp Test",
+    desc: "Can you beat a chimpanzee? Click numbers in order from memory.",
+    color: "from-orange-500 to-amber-600",
+    avg: "Chimps score: 9",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <rect x="6" y="10" width="10" height="10" rx="2" fill="white" opacity="0.9" />
+        <rect x="19" y="10" width="10" height="10" rx="2" fill="white" opacity="0.5" />
+        <rect x="32" y="10" width="10" height="10" rx="2" fill="white" opacity="0.3" />
+        <rect x="6" y="28" width="10" height="10" rx="2" fill="white" opacity="0.3" />
+        <rect x="19" y="28" width="10" height="10" rx="2" fill="white" opacity="0.7" />
+        <text x="8.5" y="18.5" fill="black" fontSize="8" fontWeight="900">1</text>
+        <text x="21.5" y="18.5" fill="black" fontSize="8" fontWeight="900">2</text>
+        <text x="34.5" y="18.5" fill="black" fontSize="8" fontWeight="900">3</text>
+      </svg>
+    ),
+  },
+  {
     href: "/reaction",
     title: "Reaction Time",
     desc: "How fast can you click after the screen changes color?",
     color: "from-green-500 to-emerald-600",
     avg: "Average: 250ms",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <path d="M24 8v16l10 10" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="24" cy="24" r="18" stroke="white" strokeWidth="3" opacity="0.5" />
         <circle cx="24" cy="24" r="3" fill="white" />
@@ -50,7 +69,7 @@ const tests = [
     color: "from-blue-500 to-indigo-600",
     avg: "Average: 40 WPM",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="4" y="14" width="40" height="24" rx="4" stroke="white" strokeWidth="3" opacity="0.5" />
         <rect x="10" y="20" width="5" height="4" rx="1" fill="white" />
         <rect x="18" y="20" width="5" height="4" rx="1" fill="white" />
@@ -67,25 +86,10 @@ const tests = [
     color: "from-purple-500 to-violet-600",
     avg: "Average: 7 digits",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="8" y="34" fill="white" fontSize="20" fontWeight="900" fontFamily="monospace" opacity="0.9">4</text>
         <text x="20" y="34" fill="white" fontSize="20" fontWeight="900" fontFamily="monospace">7</text>
         <text x="32" y="34" fill="white" fontSize="20" fontWeight="900" fontFamily="monospace" opacity="0.5">2</text>
-      </svg>
-    ),
-  },
-  {
-    href: "/reverse-memory",
-    title: "Reverse Memory",
-    desc: "Digits flash one at a time. Type them back in REVERSE order.",
-    color: "from-cyan-500 to-teal-600",
-    avg: "Average: 5 digits",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
-        <text x="4" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.5">3</text>
-        <text x="18" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.7">7</text>
-        <text x="32" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace">4</text>
-        <path d="M38 14 L34 18 L38 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
       </svg>
     ),
   },
@@ -96,7 +100,7 @@ const tests = [
     color: "from-red-500 to-rose-600",
     avg: "Average: 600ms/target",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="16" stroke="white" strokeWidth="3" opacity="0.3" />
         <circle cx="24" cy="24" r="10" stroke="white" strokeWidth="3" opacity="0.6" />
         <circle cx="24" cy="24" r="4" fill="white" />
@@ -114,29 +118,10 @@ const tests = [
     color: "from-amber-500 to-yellow-600",
     avg: "Average: 6.5 CPS",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <path d="M20 8c0 0-2 4-2 8s4 8 4 12c0 4-2 8-2 12" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
         <path d="M28 8c0 0 2 4 2 8s-4 8-4 12c0 4 2 8 2 12" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
         <circle cx="24" cy="24" r="6" fill="white" opacity="0.9" />
-      </svg>
-    ),
-  },
-  {
-    href: "/chimp",
-    title: "Chimp Test",
-    desc: "Can you beat a chimpanzee? Click numbers in order from memory.",
-    color: "from-orange-500 to-amber-600",
-    avg: "Chimps score: 9",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
-        <rect x="6" y="10" width="10" height="10" rx="2" fill="white" opacity="0.9" />
-        <rect x="19" y="10" width="10" height="10" rx="2" fill="white" opacity="0.5" />
-        <rect x="32" y="10" width="10" height="10" rx="2" fill="white" opacity="0.3" />
-        <rect x="6" y="28" width="10" height="10" rx="2" fill="white" opacity="0.3" />
-        <rect x="19" y="28" width="10" height="10" rx="2" fill="white" opacity="0.7" />
-        <text x="8.5" y="18.5" fill="black" fontSize="8" fontWeight="900">1</text>
-        <text x="21.5" y="18.5" fill="black" fontSize="8" fontWeight="900">2</text>
-        <text x="34.5" y="18.5" fill="black" fontSize="8" fontWeight="900">3</text>
       </svg>
     ),
   },
@@ -147,7 +132,7 @@ const tests = [
     color: "from-pink-500 to-rose-600",
     avg: "Average: Level 7",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="6" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
         <rect x="19" y="6" width="10" height="10" rx="2" fill="white" opacity="0.2" />
         <rect x="32" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
@@ -161,13 +146,26 @@ const tests = [
     ),
   },
   {
+    href: "/hand-eye",
+    title: "Hand-Eye Coordination",
+    desc: "Click a moving target that bounces around. Gets smaller and faster!",
+    color: "from-orange-500 to-amber-600",
+    avg: "Average: 25 catches",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <circle cx="24" cy="24" r="8" fill="white" opacity="0.9" />
+        <path d="M10 10 L18 18 M38 10 L30 18 M10 38 L18 30 M38 38 L30 30" stroke="white" strokeWidth="2" opacity="0.3" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
     href: "/sequence",
     title: "Sequence Memory",
     desc: "Watch tiles light up in order, then repeat the pattern. Like Simon.",
     color: "from-teal-500 to-cyan-600",
     avg: "Average: Level 7",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="12" cy="24" r="5" fill="white" opacity="0.4" />
         <circle cx="24" cy="24" r="5" fill="white" opacity="0.7" />
         <circle cx="36" cy="24" r="5" fill="white" opacity="1" />
@@ -183,9 +181,24 @@ const tests = [
     color: "from-indigo-500 to-blue-600",
     avg: "Average: 30 words",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="6" y="22" fill="white" fontSize="14" fontWeight="800" fontFamily="sans-serif" opacity="0.9">Abc</text>
         <text x="14" y="38" fill="white" fontSize="10" fontWeight="700" fontFamily="sans-serif" opacity="0.4">seen?</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/reverse-memory",
+    title: "Reverse Memory",
+    desc: "Digits flash one at a time. Type them back in REVERSE order.",
+    color: "from-cyan-500 to-teal-600",
+    avg: "Average: 5 digits",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <text x="4" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.5">3</text>
+        <text x="18" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.7">7</text>
+        <text x="32" y="28" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace">4</text>
+        <path d="M38 14 L34 18 L38 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
       </svg>
     ),
   },
@@ -196,7 +209,7 @@ const tests = [
     color: "from-fuchsia-500 to-pink-600",
     avg: "Tests attention",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="5" y="30" fontSize="16" fontWeight="900" fontFamily="sans-serif" fill="#3b82f6">RED</text>
         <text x="5" y="42" fontSize="8" fontFamily="sans-serif" fill="white" opacity="0.5">What color?</text>
       </svg>
@@ -209,7 +222,7 @@ const tests = [
     color: "from-lime-500 to-green-600",
     avg: "8% of men affected",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="18" fill="white" opacity="0.15" />
         <circle cx="16" cy="18" r="4" fill="#7BA05B" />
         <circle cx="26" cy="14" r="3.5" fill="#C45A3C" />
@@ -228,7 +241,7 @@ const tests = [
     color: "from-amber-500 to-red-500",
     avg: "Score: 200+ is fast",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="4" y="22" fill="white" fontSize="16" fontWeight="900" fontFamily="monospace" opacity="0.7">7x8</text>
         <text x="4" y="40" fill="white" fontSize="14" fontWeight="900" fontFamily="monospace">=56</text>
       </svg>
@@ -241,7 +254,7 @@ const tests = [
     color: "from-cyan-500 to-blue-600",
     avg: "Average: 700ms",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="3" fill="white" />
         <circle cx="24" cy="24" r="14" stroke="white" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
         <circle cx="8" cy="18" r="4" fill="white" opacity="0.8" />
@@ -257,7 +270,7 @@ const tests = [
     color: "from-violet-500 to-purple-600",
     avg: "Average: 230 WPM",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="10" y="6" width="28" height="36" rx="3" stroke="white" strokeWidth="2.5" opacity="0.4" />
         <line x1="16" y1="14" x2="32" y2="14" stroke="white" strokeWidth="2" opacity="0.8" />
         <line x1="16" y1="20" x2="32" y2="20" stroke="white" strokeWidth="2" opacity="0.6" />
@@ -273,7 +286,7 @@ const tests = [
     color: "from-orange-500 to-red-600",
     avg: "Average: 10/15",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="12" y="12" width="8" height="8" rx="1" fill="white" opacity="0.9" />
         <rect x="20" y="12" width="8" height="8" rx="1" fill="white" opacity="0.9" />
         <rect x="12" y="20" width="8" height="8" rx="1" fill="white" opacity="0.9" />
@@ -288,7 +301,7 @@ const tests = [
     color: "from-violet-500 to-fuchsia-600",
     avg: "Average: Level 5",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="12" cy="24" r="4" fill="white" opacity="0.4" />
         <circle cx="24" cy="24" r="5" fill="white" opacity="0.7" />
         <circle cx="36" cy="24" r="6" fill="white" opacity="1" />
@@ -305,7 +318,7 @@ const tests = [
     color: "from-rose-500 to-pink-600",
     avg: "Tests IQ reasoning",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="10" cy="24" r="5" fill="white" opacity="0.9" />
         <rect x="19" y="19" width="10" height="10" rx="2" fill="white" opacity="0.6" />
         <circle cx="38" cy="24" r="5" fill="white" opacity="0.9" />
@@ -320,7 +333,7 @@ const tests = [
     color: "from-sky-500 to-blue-600",
     avg: "Average: 40 WPM",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="6" y="22" fill="white" fontSize="14" fontWeight="bold" opacity="0.9">ABC</text>
         <text x="6" y="40" fill="white" fontSize="14" fontWeight="bold" opacity="0.5">XYZ</text>
         <path d="M34 12l6 6-6 6" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -334,7 +347,7 @@ const tests = [
     color: "from-emerald-500 to-green-600",
     avg: "Average: 7 digits",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="4" y="30" fill="white" fontSize="16" fontWeight="bold" opacity="0.9">1 2 3</text>
         <text x="14" y="44" fill="white" fontSize="10" opacity="0.4">...</text>
       </svg>
@@ -347,7 +360,7 @@ const tests = [
     color: "from-yellow-500 to-orange-600",
     avg: "Tests observation",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="4" y="20" fill="white" fontSize="16">😀😎</text>
         <text x="4" y="40" fill="white" fontSize="16">🤔😂</text>
       </svg>
@@ -360,7 +373,7 @@ const tests = [
     color: "from-pink-500 to-red-600",
     avg: "Average: 85%",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="6" y="22" fill="#3b82f6" fontSize="14" fontWeight="bold">RED</text>
         <circle cx="12" cy="36" r="6" fill="#ef4444" />
         <circle cx="28" cy="36" r="6" fill="#3b82f6" />
@@ -375,7 +388,7 @@ const tests = [
     color: "from-gray-500 to-slate-600",
     avg: "Tests time sense",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="18" stroke="white" strokeWidth="2" opacity="0.3" />
         <circle cx="24" cy="24" r="3" fill="white" />
         <text x="24" y="44" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold" opacity="0.5">5s?</text>
@@ -389,7 +402,7 @@ const tests = [
     color: "from-blue-500 to-indigo-600",
     avg: "Average: 7 forward",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="8" y="30" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.4">3</text>
         <text x="20" y="30" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace" opacity="0.7">7</text>
         <text x="32" y="30" fill="white" fontSize="18" fontWeight="900" fontFamily="monospace">2</text>
@@ -403,7 +416,7 @@ const tests = [
     color: "from-purple-500 to-fuchsia-600",
     avg: "Tests EQ",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="6" y="24" fill="white" fontSize="20">😀</text>
         <text x="26" y="24" fill="white" fontSize="20" opacity="0.6">😢</text>
         <text x="14" y="42" fill="white" fontSize="20" opacity="0.3">😠</text>
@@ -417,7 +430,7 @@ const tests = [
     color: "from-cyan-500 to-blue-600",
     avg: "Average: 30s",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="10" cy="10" r="4" fill="white" opacity="0.9" />
         <circle cx="24" cy="18" r="4" fill="white" opacity="0.7" />
         <circle cx="38" cy="12" r="4" fill="white" opacity="0.5" />
@@ -435,7 +448,7 @@ const tests = [
     color: "from-green-500 to-red-600",
     avg: "Average: 350ms",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="18" cy="24" r="10" fill="#22c55e" opacity="0.9" />
         <circle cx="30" cy="24" r="10" fill="#ef4444" opacity="0.9" />
         <path d="M15 24 L21 24" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.7" />
@@ -449,7 +462,7 @@ const tests = [
     color: "from-purple-500 to-indigo-600",
     avg: "Average: Level 3",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="6" y="30" fill="white" fontSize="18" fontWeight="900" opacity="0.4">K</text>
         <text x="18" y="30" fill="white" fontSize="18" fontWeight="900" opacity="0.6">B</text>
         <text x="30" y="30" fill="white" fontSize="18" fontWeight="900">K</text>
@@ -463,7 +476,7 @@ const tests = [
     color: "from-orange-500 to-amber-600",
     avg: "Average: 25 catches",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="8" fill="white" opacity="0.9" />
         <path d="M10 10 L18 18 M38 10 L30 18 M10 38 L18 30 M38 38 L30 30" stroke="white" strokeWidth="2" opacity="0.3" strokeLinecap="round" />
       </svg>
@@ -476,7 +489,7 @@ const tests = [
     color: "from-violet-500 to-purple-600",
     avg: "Average: Level 6",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <path d="M12 18 L12 30 L18 30 L26 36 L26 12 Z" fill="white" opacity="0.9" />
         <path d="M30 18 Q36 24 30 30" stroke="white" strokeWidth="2.5" fill="none" opacity="0.6" strokeLinecap="round" />
         <path d="M34 14 Q42 24 34 34" stroke="white" strokeWidth="2.5" fill="none" opacity="0.4" strokeLinecap="round" />
@@ -490,7 +503,7 @@ const tests = [
     color: "from-purple-500 to-violet-600",
     avg: "Average: 5-6 colors",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="12" cy="24" r="7" fill="#ef4444" opacity="0.9" />
         <circle cx="24" cy="24" r="7" fill="#3b82f6" opacity="0.9" />
         <circle cx="36" cy="24" r="7" fill="#22c55e" opacity="0.9" />
@@ -504,7 +517,7 @@ const tests = [
     color: "from-blue-500 to-indigo-600",
     avg: "Average: 1200ms",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="4" y="22" fill="white" fontSize="14" fontWeight="bold" opacity="0.9">HOT</text>
         <path d="M18 28 L30 28 M24 24 L24 32" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
         <text x="4" y="44" fill="white" fontSize="14" fontWeight="bold" opacity="0.5">COLD</text>
@@ -518,7 +531,7 @@ const tests = [
     color: "from-emerald-500 to-green-600",
     avg: "Average: 700ms",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="4" y="30" fill="white" fontSize="16" fontWeight="900" opacity="0.9">42</text>
         <text x="28" y="30" fill="white" fontSize="16" fontWeight="900" opacity="0.5">87</text>
         <path d="M16 18 L22 18 M19 15 L19 21" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.3" />
@@ -532,7 +545,7 @@ const tests = [
     color: "from-orange-500 to-red-600",
     avg: "Average: 2500ms",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="4" y="18" fill="white" fontSize="14" fontWeight="900" opacity="0.4">O O O</text>
         <text x="4" y="32" fill="white" fontSize="14" fontWeight="900" opacity="0.4">O</text>
         <text x="16" y="32" fill="#ef4444" fontSize="14" fontWeight="900" opacity="0.9">Q</text>
@@ -547,7 +560,7 @@ const tests = [
     color: "from-cyan-500 to-blue-600",
     avg: "Average: 180px",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="3" fill="#ef4444" />
         <circle cx="24" cy="24" r="14" stroke="white" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
         <circle cx="8" cy="18" r="4" fill="#22c55e" opacity="0.8" />
@@ -562,7 +575,7 @@ const tests = [
     color: "from-purple-500 to-violet-600",
     avg: "Average: Level 5",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="6" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
         <rect x="19" y="6" width="10" height="10" rx="2" fill="white" opacity="0.3" />
         <rect x="32" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
@@ -582,7 +595,7 @@ const tests = [
     color: "from-blue-500 to-cyan-600",
     avg: "Average: 8 correct",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <text x="6" y="22" fill="white" fontSize="14" fontWeight="900" fontFamily="monospace" opacity="0.9">5+7</text>
         <text x="6" y="40" fill="white" fontSize="16" fontWeight="900" fontFamily="monospace">=12</text>
       </svg>
@@ -595,7 +608,7 @@ const tests = [
     color: "from-cyan-500 to-teal-600",
     avg: "Average: 75%",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="18" cy="24" r="8" fill="#ef4444" opacity="0.9" />
         <path d="M30 18 L30 30 L36 30 L42 36 L42 12 Z" fill="white" opacity="0.9" />
         <path d="M28 20 Q26 24 28 28" stroke="white" strokeWidth="2" fill="none" opacity="0.4" strokeLinecap="round" />
@@ -609,7 +622,7 @@ const tests = [
     color: "from-pink-500 to-rose-600",
     avg: "Average: Level 4",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="12" cy="12" r="6" fill="#ef4444" />
         <circle cx="24" cy="12" r="6" fill="#3b82f6" />
         <circle cx="36" cy="12" r="6" fill="#22c55e" />
@@ -627,7 +640,7 @@ const tests = [
     color: "from-amber-500 to-orange-600",
     avg: "Average: 75%",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-14 h-14">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="10" cy="12" r="3" fill="white" opacity="0.9" />
         <circle cx="20" cy="10" r="3" fill="white" opacity="0.9" />
         <circle cx="30" cy="14" r="3" fill="white" opacity="0.9" />
@@ -645,53 +658,62 @@ const tests = [
 
 export default function Home() {
   return (
-    <main className="max-w-4xl mx-auto px-4 pt-16 pb-12">
-      <div className="text-center mb-16">
-        <h1 className="text-5xl md:text-6xl font-black text-white mb-4">
+    <main className="max-w-4xl mx-auto px-4 pt-8 pb-8">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl md:text-5xl font-black text-white mb-4">
           Test Your Brain
         </h1>
-        <p className="text-xl text-gray-400 max-w-lg mx-auto">
+        <p className="text-base text-gray-400 max-w-lg mx-auto">
           40 free online tests for reaction time, typing speed, memory, cognitive function, and
           more. No sign-up required.
         </p>
       </div>
 
+      <div className="flex flex-wrap justify-center gap-3 mb-8 text-xs text-gray-500">
+        <span>Also try:</span>
+        <a href="https://playmini.fun" className="text-purple-400 hover:text-purple-300 transition-colors">PlayMini - Browser Games</a>
+        <span className="text-gray-700">|</span>
+        <a href="https://doodlelab.fun" className="text-pink-400 hover:text-pink-300 transition-colors">DoodleLab - Drawing Games</a>
+        <span className="text-gray-700">|</span>
+        <a href="https://cashcalcs.com" className="text-green-400 hover:text-green-300 transition-colors">CashCalcs - Financial Tools</a>
+      </div>
+
       {/* Brain Score CTA */}
       <Link
         href="/brain-score"
-        className="block mb-8 group relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-6 hover:from-indigo-500 hover:to-purple-500 transition-all"
+        className="block mb-8 group relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-4 hover:from-indigo-500 hover:to-purple-500 transition-all"
       >
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black text-white mb-1">Brain Score</h2>
+            <h2 className="text-lg font-black text-white mb-1">Brain Score</h2>
             <p className="text-indigo-200 text-sm">
               Take all 40 tests and get your overall cognitive score out of 1000. How smart are you?
             </p>
           </div>
-          <div className="text-5xl font-black text-white/20 group-hover:text-white/30 transition-colors">
+          <div className="text-3xl font-black text-white/20 group-hover:text-white/30 transition-colors">
             ?
           </div>
         </div>
       </Link>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {tests.map((test) => (
           <Link
             key={test.href}
             href={test.href}
-            className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-gray-700 transition-all hover:scale-105"
+            className="group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-700 transition-all"
           >
             <div
-              className={`h-32 bg-gradient-to-br ${test.color} opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center`}
+              className={`h-16 bg-gradient-to-br ${test.color} opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center`}
             >
               {test.icon}
             </div>
-            <div className="p-6">
-              <h2 className="text-xl font-bold text-white mb-2">
+            <div className="p-3">
+              <h2 className="text-sm sm:text-base font-bold text-white mb-1">
                 {test.title}
               </h2>
-              <p className="text-gray-400 text-sm mb-3">{test.desc}</p>
-              <p className="text-xs text-gray-500">{test.avg}</p>
+              <p className="text-xs text-gray-400 mb-1 hidden sm:block">{test.desc}</p>
+              <p className="text-xs text-gray-500 hidden sm:block">{test.avg}</p>
             </div>
           </Link>
         ))}
