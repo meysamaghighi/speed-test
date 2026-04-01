@@ -3,9 +3,9 @@ import SpatialRotation from "../components/SpatialRotation";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Mental Rotation Test - 3D Spatial Rotation Recognition Game | BenchMyBrain",
+  title: "Spatial Rotation Test - Free 3D Mental Rotation Game Online | BenchMyBrain",
   description:
-    "Free online mental rotation test. Test your spatial reasoning and 3D spatial rotation recognition with this interactive game. Compare rotated 3D shapes and measure your visual-spatial intelligence.",
+    "Free online spatial rotation test. Compare rotated 3D shapes and measure your visual-spatial intelligence. Test your spatial reasoning with this interactive mental rotation game.",
   keywords: [
     "mental rotation test",
     "3d spatial rotation recognition game",
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     "spatial intelligence test",
   ],
   openGraph: {
-    title: "Mental Rotation Test - 3D Spatial Rotation Game | BenchMyBrain",
+    title: "Spatial Rotation Test - Free 3D Mental Rotation Game | BenchMyBrain",
     description:
-      "Test your spatial reasoning with this mental rotation challenge. Compare rotated 3D shapes and measure your visual-spatial intelligence. Free online test.",
+      "Free spatial rotation test online. Compare rotated 3D shapes and measure your visual-spatial intelligence. Interactive mental rotation challenge.",
     type: "website",
   },
 };
