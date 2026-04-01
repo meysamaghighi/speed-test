@@ -279,8 +279,8 @@ export default function PatternTest() {
 
     if (pattern.type === "number") {
       return (
-        <div key={index} className="bg-gray-800 rounded-xl px-6 py-4 min-w-[80px] flex items-center justify-center">
-          <span className="text-3xl font-black text-white">{item}</span>
+        <div key={index} className="bg-gray-800 rounded-xl px-4 py-4 min-w-[60px] sm:min-w-[80px] sm:px-6 flex items-center justify-center">
+          <span className="text-2xl sm:text-3xl font-black text-white">{item}</span>
         </div>
       );
     }
@@ -436,11 +436,11 @@ export default function PatternTest() {
         <span>Score: <span className="text-white font-bold">{score}</span></span>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+      <div className="bg-gray-900 rounded-2xl p-4 sm:p-8 border border-gray-800">
         <p className="text-gray-400 text-sm mb-4">What comes next?</p>
-        <div className="flex items-center justify-center gap-4 mb-4">
+        <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4 overflow-x-auto">
           {pattern?.sequence.map((item, i) => renderSequenceItem(item, i))}
-          <div className="text-4xl font-black text-gray-600">?</div>
+          <div className="text-3xl sm:text-4xl font-black text-gray-600">?</div>
         </div>
       </div>
 

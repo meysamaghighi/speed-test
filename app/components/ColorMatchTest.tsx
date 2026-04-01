@@ -221,10 +221,10 @@ export default function ColorMatchTest() {
         <p className="text-center text-gray-400 text-sm">Tap the tile that is a different color</p>
 
         <div
-          className="grid gap-2 mx-auto"
+          className="grid gap-2 mx-auto w-full"
           style={{
             gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
-            maxWidth: `${gridSize * 80}px`,
+            maxWidth: `min(${gridSize * 80}px, calc(100vw - 3rem))`,
           }}
         >
           {Array.from({ length: totalCells }).map((_, i) => {
@@ -236,7 +236,7 @@ export default function ColorMatchTest() {
                 className="aspect-square rounded-lg transition-transform active:scale-95 hover:scale-105"
                 style={{
                   backgroundColor: hsl(isOdd ? oddColor : baseColor),
-                  minHeight: "48px",
+                  minHeight: "40px",
                 }}
               />
             );

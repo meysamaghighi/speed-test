@@ -55,7 +55,7 @@ export default function ChangeDetectionTest() {
         setShowTime(performance.now());
         setPhase("show2");
       }, 300);
-    }, 1000 + level * 100);
+    }, 2000 + level * 200);
   }, [level, generateGrid]);
 
   const handleCellClick = useCallback((index: number) => {
@@ -188,15 +188,19 @@ export default function ChangeDetectionTest() {
         <span className="text-red-400">❤️ x {lives}</span>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+      <div className={`rounded-2xl p-6 border transition-colors ${
+        phase === "show1" ? "bg-blue-950/30 border-blue-800" :
+        phase === "show2" ? "bg-pink-950/30 border-pink-800" :
+        "bg-gray-900 border-gray-800"
+      }`}>
         {phase === "show1" && (
-          <p className="text-center text-white font-bold mb-4">Memorize the colors</p>
+          <p className="text-center text-blue-400 font-bold text-lg mb-4">MEMORIZE THE COLORS</p>
         )}
         {phase === "blank" && (
           <p className="text-center text-gray-400 mb-4">...</p>
         )}
         {phase === "show2" && (
-          <p className="text-center text-white font-bold mb-4">Click the changed circle!</p>
+          <p className="text-center text-pink-400 font-bold text-lg mb-4">WHAT CHANGED?</p>
         )}
         {phase === "result" && (
           <p className={`text-center font-bold mb-4 ${lives < 3 ? "text-red-400" : "text-green-400"}`}>
@@ -210,9 +214,10 @@ export default function ChangeDetectionTest() {
           </div>
         ) : (
           <div
-            className="grid gap-3 max-w-md mx-auto"
+            className="grid gap-2 sm:gap-3 w-full mx-auto"
             style={{
               gridTemplateColumns: `repeat(${grid.size}, 1fr)`,
+              maxWidth: grid.size <= 3 ? "240px" : grid.size === 4 ? "320px" : "min(90vw, 400px)",
             }}
           >
             {displayColors.map((color, i) => (

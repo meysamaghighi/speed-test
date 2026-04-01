@@ -71,14 +71,14 @@ export default function NBack() {
     setCurrentIndex(idx);
     setFeedback(null);
 
-    // Show letter for 500ms, then blank for 2000ms
+    // Show letter for 1500ms, then blank for 2000ms
     timeoutRef.current = window.setTimeout(() => {
       setCurrentIndex(idx + 1);
       // Auto-advance as "no match" if no click
       setTimeout(() => {
         nextTrial(seq, idx + 1, n);
       }, 2000);
-    }, 500);
+    }, 1500);
   };
 
   const handleMatch = () => {
@@ -182,8 +182,8 @@ export default function NBack() {
     );
   }
 
-  const currentLetter = currentIndex < sequence.length && currentIndex === currentIndex ? sequence[currentIndex] : "";
-  const showLetter = currentIndex < sequence.length && currentIndex % 1 === 0;
+  const currentLetter = currentIndex < sequence.length ? sequence[currentIndex] : "";
+  const showLetter = currentIndex < sequence.length;
 
   return (
     <div className="space-y-4">

@@ -11,7 +11,7 @@ interface Round {
   errorPercent: number;
 }
 
-const TARGET_DURATIONS = [5, 10, 15, 30]; // seconds
+const TARGET_DURATIONS = [3, 5, 7, 10]; // seconds
 
 export default function FocusTimerTest() {
   const [phase, setPhase] = useState<Phase>("waiting");
@@ -222,7 +222,7 @@ export default function FocusTimerTest() {
           Test your internal clock. Estimate exact durations without looking at a timer.
         </p>
         <p className="text-sm text-gray-500 mb-4">
-          You'll do 4 rounds with different target durations: 5s, 10s, 15s, and 30s.
+          You'll do 4 rounds with different target durations: 3s, 5s, 7s, and 10s.
         </p>
         <div className="bg-gray-800 rounded-lg p-4 text-sm text-gray-400">
           <p className="font-bold text-white mb-2">How it works:</p>

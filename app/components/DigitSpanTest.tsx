@@ -283,7 +283,7 @@ export default function DigitSpanTest() {
             {level} digits · {mode === "forward" ? "Forward" : "Backward"}
           </p>
           <input
-            type="text"
+            type="tel"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value.replace(/\D/g, ""))}
             onKeyDown={(e) => {
