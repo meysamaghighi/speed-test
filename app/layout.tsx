@@ -83,6 +83,9 @@ gtag('config', 'G-LN22YK2CZT');` }} />
         <footer className="border-t border-gray-800 mt-16">
           <div className="max-w-4xl mx-auto px-4 py-8 text-center">
             <p className="text-xs text-gray-500">Free online speed tests. No account required. Your data stays in your browser.</p>
+            <div className="mt-3 mb-4">
+              <Link href="/about" className="text-xs text-gray-400 hover:text-gray-300 transition-colors">About</Link>
+            </div>
             <div className="mt-4">
               <p className="text-sm text-gray-400 mb-2">Check out our other sites:</p>
               <div className="flex flex-wrap justify-center gap-3">
