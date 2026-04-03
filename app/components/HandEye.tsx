@@ -27,6 +27,8 @@ export default function HandEye() {
     if (!areaRef.current) return;
 
     const rect = areaRef.current.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
     const size = Math.max(30, 60 - currentLevel * 3); // Gets smaller each level
     const speed = 1 + currentLevel * 0.3; // Gets faster each level
     const angle = Math.random() * Math.PI * 2;
@@ -50,8 +52,14 @@ export default function HandEye() {
     setTimeLeft(30);
     setPhase("playing");
     startTime.current = performance.now();
-    spawnTarget(1);
   };
+
+  // Spawn first target after the game area div renders
+  useEffect(() => {
+    if (phase === "playing" && !target && areaRef.current) {
+      spawnTarget(1);
+    }
+  }, [phase, target, spawnTarget]);
 
   const updateTarget = useCallback(() => {
     if (phase !== "playing" || !target || !areaRef.current) return;

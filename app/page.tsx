@@ -473,19 +473,6 @@ const tests = [
     ),
   },
   {
-    href: "/hand-eye",
-    title: "Hand-Eye Coordination",
-    desc: "Click a moving target that bounces around. Gets smaller and faster!",
-    color: "from-orange-500 to-amber-600",
-    avg: "Average: 25 catches",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <circle cx="24" cy="24" r="8" fill="white" opacity="0.9" />
-        <path d="M10 10 L18 18 M38 10 L30 18 M10 38 L18 30 M38 38 L30 30" stroke="white" strokeWidth="2" opacity="0.3" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
     href: "/audio-memory",
     title: "Audio Memory",
     desc: "Hear tones and repeat them. Like Simon but with audio. Turn on sound!",
