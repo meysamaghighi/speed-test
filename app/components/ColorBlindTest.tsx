@@ -11,18 +11,18 @@ interface Plate {
 }
 
 const plates: Plate[] = [
-  { number: 12, bgDots: "#8B9467", fgDots: "#C45A3C", type: "demo" },
-  { number: 8, bgDots: "#B5593C", fgDots: "#6B8E4E", type: "red-green" },
-  { number: 6, bgDots: "#7BA05B", fgDots: "#C9534F", type: "red-green" },
-  { number: 29, bgDots: "#C45A3C", fgDots: "#7BA05B", type: "red-green" },
-  { number: 5, bgDots: "#B5593C", fgDots: "#6B8E4E", type: "red-green" },
-  { number: 3, bgDots: "#7BA05B", fgDots: "#D4773C", type: "red-green" },
-  { number: 15, bgDots: "#C9534F", fgDots: "#6B8E4E", type: "red-green" },
-  { number: 74, bgDots: "#7BA05B", fgDots: "#C45A3C", type: "red-green" },
-  { number: 45, bgDots: "#D4773C", fgDots: "#6B8E4E", type: "red-green" },
-  { number: 7, bgDots: "#C9534F", fgDots: "#8CB054", type: "red-green" },
-  { number: 16, bgDots: "#7BA05B", fgDots: "#B5593C", type: "red-green" },
-  { number: 2, bgDots: "#B97D4B", fgDots: "#3A7CA5", type: "blue-yellow" },
+  { number: 12, bgDots: "#8B9467", fgDots: "#D4583C", type: "demo" },
+  { number: 8, bgDots: "#C56640", fgDots: "#6BA050", type: "red-green" },
+  { number: 6, bgDots: "#7DB05D", fgDots: "#D64A48", type: "red-green" },
+  { number: 29, bgDots: "#D46040", fgDots: "#78B058", type: "red-green" },
+  { number: 5, bgDots: "#C56640", fgDots: "#68A04C", type: "red-green" },
+  { number: 3, bgDots: "#7DB05D", fgDots: "#E47840", type: "red-green" },
+  { number: 15, bgDots: "#D65050", fgDots: "#68A04C", type: "red-green" },
+  { number: 74, bgDots: "#7DB05D", fgDots: "#D4583C", type: "red-green" },
+  { number: 45, bgDots: "#E47840", fgDots: "#68A04C", type: "red-green" },
+  { number: 7, bgDots: "#D65050", fgDots: "#90C058", type: "red-green" },
+  { number: 16, bgDots: "#7DB05D", fgDots: "#C56640", type: "red-green" },
+  { number: 2, bgDots: "#C88850", fgDots: "#3A8CB8", type: "blue-yellow" },
 ];
 
 function generateDots(
@@ -79,7 +79,7 @@ function varyColor(hex: string, rand: () => number): string {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
-  const vary = (v: number) => Math.max(0, Math.min(255, v + Math.floor((rand() - 0.5) * 40)));
+  const vary = (v: number) => Math.max(0, Math.min(255, v + Math.floor((rand() - 0.5) * 24)));
   return `rgb(${vary(r)},${vary(g)},${vary(b)})`;
 }
 
@@ -138,9 +138,9 @@ export default function ColorBlindTest() {
 
   const getRating = () => {
     const pct = correctCount / plates.length;
-    if (pct >= 0.92) return { label: "Normal Color Vision", color: "text-green-400", desc: "You identified all or nearly all plates correctly. Your color vision appears normal." };
-    if (pct >= 0.75) return { label: "Mild Deficiency", color: "text-yellow-400", desc: "You missed a few plates. You may have a mild color vision deficiency. Consider a professional eye exam." };
-    if (pct >= 0.5) return { label: "Moderate Deficiency", color: "text-orange-400", desc: "You missed several plates. This suggests a moderate color vision deficiency. We recommend seeing an eye care professional." };
+    if (pct >= 0.83) return { label: "Normal Color Vision", color: "text-green-400", desc: "You identified all or nearly all plates correctly. Your color vision appears normal." };
+    if (pct >= 0.67) return { label: "Mild Deficiency", color: "text-yellow-400", desc: "You missed a few plates. You may have a mild color vision deficiency. Consider a professional eye exam." };
+    if (pct >= 0.42) return { label: "Moderate Deficiency", color: "text-orange-400", desc: "You missed several plates. This suggests a moderate color vision deficiency. We recommend seeing an eye care professional." };
     return { label: "Significant Deficiency", color: "text-red-400", desc: "You missed many plates. This may indicate a significant color vision deficiency. Please consult an eye care professional for proper diagnosis." };
   };
 
