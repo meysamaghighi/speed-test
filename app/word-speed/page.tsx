@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your word typing speed. Type words as fast as you can, measured in WPM. Free online test with accuracy tracking.",
     type: "website",
   },
+  alternates: {
+    canonical: "/word-speed",
+  },
 };
 
 export default function WordSpeedPage() {

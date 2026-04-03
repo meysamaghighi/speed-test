@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your divided attention. Track a moving dot visually while counting audio beeps. How well can you multitask?",
     type: "website",
   },
+  alternates: {
+    canonical: "/dual-task",
+  },
 };
 
 export default function DualTaskPage() {

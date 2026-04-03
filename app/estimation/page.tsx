@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your number estimation and subitizing ability. Dots flash for 1 second - how many were there? From 5 to 85 dots across 10 rounds.",
     type: "website",
   },
+  alternates: {
+    canonical: "/estimation",
+  },
 };
 
 export default function EstimationPage() {

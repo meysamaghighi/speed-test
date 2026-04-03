@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your change blindness. A grid of colored circles flashes twice - one color changes. Can you spot what changed?",
     type: "website",
   },
+  alternates: {
+    canonical: "/change-detection",
+  },
 };
 
 export default function ChangeDetectionPage() {

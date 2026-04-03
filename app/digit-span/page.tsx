@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       "Test your working memory with the digit span test. Digits appear one at a time - type them back forward or backward. How many can you remember?",
     type: "website",
   },
+  alternates: {
+    canonical: "/digit-span",
+  },
 };
 
 export default function DigitSpanPage() {

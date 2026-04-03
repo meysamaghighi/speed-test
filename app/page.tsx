@@ -26,6 +26,9 @@ export const metadata: Metadata = {
       "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation, and more. No sign-up required.",
     type: "website",
   },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 const tests = [

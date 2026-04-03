@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your face memory and recognition skills. Study emoji faces, then identify which ones changed. Progressively harder levels with more faces and less time.",
     type: "website",
   },
+  alternates: {
+    canonical: "/face-memory",
+  },
 };
 
 export default function FaceMemoryPage() {

@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your reaction time with this free online tool. Click when the screen turns green and see your speed in milliseconds. Average is 250ms.",
     type: "website",
   },
+  alternates: {
+    canonical: "/reaction",
+  },
 };
 
 export default function ReactionPage() {

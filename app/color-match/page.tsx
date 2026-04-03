@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       "Test your color perception. Find the tile with a slightly different shade in an increasingly difficult grid.",
     type: "website",
   },
+  alternates: {
+    canonical: "/color-match",
+  },
 };
 
 export default function ColorMatchPage() {

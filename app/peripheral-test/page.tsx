@@ -19,6 +19,9 @@ export const metadata: Metadata = {
       "Test your peripheral vision. Focus on the center and detect targets at the edge of your vision. Measures visual field awareness.",
     type: "website",
   },
+  alternates: {
+    canonical: "/peripheral-test",
+  },
 };
 
 export default function PeripheralTestPage() {

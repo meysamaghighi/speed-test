@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free Trail Making Test. Connect circles in alternating number-letter order (1-A-2-B-3-C...) as fast as you can. Tests executive function and mental flexibility.",
     type: "website",
   },
+  alternates: {
+    canonical: "/trail-making",
+  },
 };
 
 export default function TrailMakingPage() {

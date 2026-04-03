@@ -19,6 +19,9 @@ export const metadata: Metadata = {
       "Test your word association speed. See a word and type the opposite as fast as you can. Measures verbal processing speed and cognitive flexibility.",
     type: "website",
   },
+  alternates: {
+    canonical: "/word-association",
+  },
 };
 
 export default function WordAssociationPage() {

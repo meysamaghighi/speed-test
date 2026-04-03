@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Take the famous chimpanzee memory test. Can you beat the chimp? Test your memory against Ayumu's legendary performance.",
     type: "website",
   },
+  alternates: {
+    canonical: "/chimp",
+  },
 };
 
 export default function ChimpPage() {

@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: "Free sequence memory test (Simon says). Watch tiles light up in order, then repeat the pattern. Each level adds one more step.",
     type: "website",
   },
+  alternates: {
+    canonical: "/sequence",
+  },
 };
 
 export default function SequencePage() {

@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your rhythm and timing accuracy with this free online tool. Listen to beat patterns and tap them back. Challenge your musical timing and coordination.",
     type: "website",
   },
+  alternates: {
+    canonical: "/rhythm",
+  },
 };
 
 export default function RhythmPage() {

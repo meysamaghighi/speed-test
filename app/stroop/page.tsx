@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: "Free Stroop effect test. A color name appears in a different ink color. Pick the ink color, not the word. Tests cognitive flexibility and attention.",
     type: "website",
   },
+  alternates: {
+    canonical: "/stroop",
+  },
 };
 
 export default function StroopPage() {

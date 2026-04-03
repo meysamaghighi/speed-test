@@ -19,6 +19,9 @@ export const metadata: Metadata = {
       "Test your number comparison speed. See two numbers and click the larger one as fast as you can. Measures numerical processing and reaction time.",
     type: "website",
   },
+  alternates: {
+    canonical: "/number-comparison",
+  },
 };
 
 export default function NumberComparisonPage() {

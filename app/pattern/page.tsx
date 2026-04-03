@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your pattern recognition and logical reasoning skills. Identify the next item in number sequences, color patterns, and shape patterns.",
     type: "website",
   },
+  alternates: {
+    canonical: "/pattern",
+  },
 };
 
 export default function PatternPage() {

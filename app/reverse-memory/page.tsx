@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your working memory with the digit span backward test. Remember sequences of digits and type them in reverse order. Free online brain test.",
     type: "website",
   },
+  alternates: {
+    canonical: "/reverse-memory",
+  },
 };
 
 export default function ReverseMemoryPage() {

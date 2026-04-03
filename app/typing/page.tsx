@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       "Free typing speed test. Measure your WPM (words per minute) and accuracy. Average typing speed is 40 WPM.",
     type: "website",
   },
+  alternates: {
+    canonical: "/typing",
+  },
 };
 
 export default function TypingPage() {

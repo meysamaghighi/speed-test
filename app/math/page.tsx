@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     description: "Test your mental math speed with this free 60-second challenge. Addition, subtraction, multiplication and division with increasing difficulty. Beat the clock!",
     type: "website",
   },
+  alternates: {
+    canonical: "/math",
+  },
 };
 
 export default function MathPage() {

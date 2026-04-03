@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free Hand-Eye Coordination Test. Click/tap a moving target that gets smaller and faster. 30 seconds.",
     type: "website",
   },
+  alternates: {
+    canonical: "/hand-eye",
+  },
 };
 
 export default function HandEyePage() {

@@ -19,6 +19,9 @@ export const metadata: Metadata = {
       "Test your color memory. Watch colored circles flash in sequence and repeat the pattern. How many colors can you remember?",
     type: "website",
   },
+  alternates: {
+    canonical: "/color-memory",
+  },
 };
 
 export default function ColorMemoryPage() {

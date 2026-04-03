@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free aim trainer. Click 30 targets as fast as you can. Measures your average time per target. Great practice for FPS games.",
     type: "website",
   },
+  alternates: {
+    canonical: "/aim",
+  },
 };
 
 export default function AimPage() {

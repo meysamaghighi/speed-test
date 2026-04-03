@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your digit span and working memory. Memorize sequences of numbers and recall them. Free online test for cognitive assessment.",
     type: "website",
   },
+  alternates: {
+    canonical: "/number-speed",
+  },
 };
 
 export default function NumberSpeedPage() {

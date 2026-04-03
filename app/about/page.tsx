@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     description: "40 free, original cognitive tests. No accounts, no personal data, no downloads.",
     type: "website",
   },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

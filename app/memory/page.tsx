@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your number memory. A number flashes on screen, then you type it back. How many digits can you remember? Average is 7.",
     type: "website",
   },
+  alternates: {
+    canonical: "/memory",
+  },
 };
 
 export default function MemoryPage() {

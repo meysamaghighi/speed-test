@@ -19,6 +19,9 @@ export const metadata: Metadata = {
       "Test your visual search speed. Find the different shape in a grid as fast as you can. Measures attention and visual processing.",
     type: "website",
   },
+  alternates: {
+    canonical: "/visual-search",
+  },
 };
 
 export default function VisualSearchPage() {

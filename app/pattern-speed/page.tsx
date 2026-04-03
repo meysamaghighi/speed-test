@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your visual pattern memory. Memorize flashing grid patterns and reproduce them. How many cells can you remember?",
     type: "website",
   },
+  alternates: {
+    canonical: "/pattern-speed",
+  },
 };
 
 export default function PatternSpeedPage() {

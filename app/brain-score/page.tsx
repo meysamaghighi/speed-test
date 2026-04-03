@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       "Get your Brain Score out of 1000 based on 40 cognitive tests. See how your brain stacks up.",
     type: "website",
   },
+  alternates: {
+    canonical: "/brain-score",
+  },
 };
 
 export default function BrainScorePage() {

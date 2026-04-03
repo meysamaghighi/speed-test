@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your math working memory. Equations flash briefly, then disappear. Can you solve them from memory? Difficulty increases with each correct answer.",
     type: "website",
   },
+  alternates: {
+    canonical: "/math-memory",
+  },
 };
 
 export default function MathMemoryPage() {

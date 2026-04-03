@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     description: "Free online color blindness test with 12 Ishihara-style plates. Screen for red-green and blue-yellow color vision deficiency in under 2 minutes.",
     type: "website",
   },
+  alternates: {
+    canonical: "/color-blind",
+  },
 };
 
 export default function ColorBlindPage() {

@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: "Free verbal memory test. Words appear one at a time. Click SEEN if you saw it before, or NEW if it is new. 3 lives. How high can you score?",
     type: "website",
   },
+  alternates: {
+    canonical: "/verbal",
+  },
 };
 
 export default function VerbalPage() {

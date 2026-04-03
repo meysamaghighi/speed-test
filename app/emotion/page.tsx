@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your emotion recognition skills. Identify emoji emotions (happy, sad, angry, surprised, disgusted, fearful, neutral) as fast and accurately as possible.",
     type: "website",
   },
+  alternates: {
+    canonical: "/emotion",
+  },
 };
 
 export default function EmotionPage() {

@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Test your internal sense of time. Estimate exact durations (5s, 10s, 15s, 30s) without a visible clock. Measure your time perception accuracy.",
     type: "website",
   },
+  alternates: {
+    canonical: "/focus-timer",
+  },
 };
 
 export default function FocusTimerPage() {

@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free CPS test (clicks per second). Click as fast as you can for 5 seconds and measure your click speed. Average is 6.5 CPS.",
     type: "website",
   },
+  alternates: {
+    canonical: "/click-speed",
+  },
 };
 
 export default function ClickSpeedPage() {

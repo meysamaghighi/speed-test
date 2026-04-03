@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     description: "Test your peripheral vision online. Stare at the center and detect targets appearing at the edges of your vision. Free, no sign-up required.",
     type: "website",
   },
+  alternates: {
+    canonical: "/peripheral",
+  },
 };
 
 export default function PeripheralPage() {

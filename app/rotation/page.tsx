@@ -22,6 +22,9 @@ export const metadata: Metadata = {
       "Free spatial rotation test online. Compare rotated 3D shapes and measure your visual-spatial intelligence. Interactive mental rotation challenge.",
     type: "website",
   },
+  alternates: {
+    canonical: "/rotation",
+  },
 };
 
 export default function RotationPage() {

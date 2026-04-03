@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     description: "Measure your reading speed in words per minute (WPM) with comprehension quiz. The average adult reads 200-250 WPM. How fast are you?",
     type: "website",
   },
+  alternates: {
+    canonical: "/reading",
+  },
 };
 
 export default function ReadingPage() {

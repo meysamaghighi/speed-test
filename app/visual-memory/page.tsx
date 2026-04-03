@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free visual memory test. A pattern of tiles flashes on a grid — remember and click them. Each level adds more tiles. 3 lives. How far can you go?",
     type: "website",
   },
+  alternates: {
+    canonical: "/visual-memory",
+  },
 };
 
 export default function VisualMemoryPage() {

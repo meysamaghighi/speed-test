@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free Go/No-Go Test. Click on green circles, don't click on red ones. 40 trials testing reaction time AND impulse control.",
     type: "website",
   },
+  alternates: {
+    canonical: "/go-no-go",
+  },
 };
 
 export default function GoNoGoPage() {

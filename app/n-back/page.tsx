@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free N-Back Test. See a sequence of letters. Click 'Match' if current = N back. Tests working memory and fluid intelligence.",
     type: "website",
   },
+  alternates: {
+    canonical: "/n-back",
+  },
 };
 
 export default function NBackPage() {

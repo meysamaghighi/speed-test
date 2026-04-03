@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "Free Audio Memory Test. Hear a sequence of tones and repeat it. Like Simon with audio. Tests auditory working memory.",
     type: "website",
   },
+  alternates: {
+    canonical: "/audio-memory",
+  },
 };
 
 export default function AudioMemoryPage() {
