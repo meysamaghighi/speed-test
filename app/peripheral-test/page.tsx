@@ -3,20 +3,21 @@ import PeripheralTest from "../components/PeripheralTest";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Peripheral Vision Test - How Far Can You See? | BenchMyBrain",
+  title: "Peripheral Vision Test - UFOV Divided Attention Test | BenchMyBrain",
   description:
-    "Test your peripheral vision. Focus on the center and detect targets at the edge of your vision. Measures visual field awareness.",
+    "Test your peripheral vision with the UFOV (Useful Field of View) test. Identify center targets while detecting peripheral stimuli. Measures divided attention and visual awareness.",
   keywords: [
     "peripheral vision test",
-    "side vision test",
+    "UFOV test",
+    "useful field of view",
+    "divided attention test",
     "visual field test",
-    "vision test",
-    "eye test",
+    "peripheral awareness",
   ],
   openGraph: {
-    title: "Peripheral Vision Test - How Far Can You See? | BenchMyBrain",
+    title: "Peripheral Vision Test - UFOV Divided Attention Test | BenchMyBrain",
     description:
-      "Test your peripheral vision. Focus on the center and detect targets at the edge of your vision. Measures visual field awareness.",
+      "Test your peripheral vision with the UFOV test. Identify center targets while detecting peripheral stimuli simultaneously.",
     type: "website",
   },
   alternates: {
@@ -32,29 +33,25 @@ export default function PeripheralTestPage() {
           Peripheral Vision Test
         </h1>
         <p className="text-gray-400">
-          Focus on the center dot and click targets that appear in your side vision.
+          The UFOV (Useful Field of View) test. Identify center letters while detecting peripheral targets simultaneously.
         </p>
       </div>
 
       <PeripheralTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Peripheral Vision</h2>
+        <h2 className="text-xl font-bold text-white">About the UFOV Test</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Visual Field</h3>
+            <h3 className="font-bold text-white mb-2">What is UFOV?</h3>
             <p className="text-sm text-gray-400">
-              Peripheral vision is what you see outside your central focus. Humans have
-              about 180-200 degrees of horizontal visual field. Athletes, drivers, and
-              gamers rely heavily on peripheral awareness.
+              The Useful Field of View (UFOV) is a validated cognitive test that measures divided attention and peripheral awareness. It requires you to process central and peripheral information simultaneously, testing your ability to split attention across your visual field.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Rods vs Cones</h3>
+            <h3 className="font-bold text-white mb-2">Why It Matters</h3>
             <p className="text-sm text-gray-400">
-              Peripheral vision uses rod cells, which detect motion and low light but
-              not fine detail. Central vision uses cones for sharp, color detail. This
-              is why you notice movement better in your periphery.
+              UFOV performance predicts driving safety, fall risk in older adults, and athletic performance. Athletes, pilots, and drivers need strong divided attention to monitor central tasks while maintaining peripheral awareness of their environment.
             </p>
           </div>
         </div>
@@ -68,9 +65,9 @@ export default function PeripheralTestPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Peripheral Vision Test",
-            description: "Free online peripheral vision test. Measure your visual field awareness.",
-            applicationCategory: "GameApplication",
+            name: "Peripheral Vision Test - UFOV",
+            description: "Free online UFOV (Useful Field of View) test. Measure divided attention and peripheral awareness.",
+            applicationCategory: "HealthApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
           }),
@@ -86,18 +83,26 @@ export default function PeripheralTestPage() {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "What is a good peripheral vision score?",
+                name: "What is the UFOV test?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Excellent peripheral vision is 220+ pixels detection distance. Good is 180-220 pixels. Average is 150-180 pixels. Athletes and gamers tend to score higher due to training.",
+                  text: "UFOV (Useful Field of View) is a cognitive test that measures divided attention and peripheral awareness. You must identify a central target while simultaneously detecting and locating a peripheral stimulus. It's used to assess driving safety, fall risk, and cognitive function.",
                 },
               },
               {
                 "@type": "Question",
-                name: "Can peripheral vision be improved?",
+                name: "What is a good UFOV score?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! Athletes use peripheral awareness drills. Playing sports, video games, or practicing visual attention exercises can improve peripheral detection speed and range.",
+                  text: "Scores above 80 indicate exceptional divided attention abilities. 65-79 is excellent, 50-64 is good, 35-49 is average. Athletes, pilots, and experienced gamers typically score higher due to training in divided attention tasks.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can you improve UFOV performance?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes! UFOV can be improved through practice. Activities that train divided attention (sports, action video games, dual-task exercises) have been shown to improve UFOV scores. Regular practice with tests like this can enhance peripheral awareness and attentional control.",
                 },
               },
             ],

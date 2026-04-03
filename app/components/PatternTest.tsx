@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
-type PatternType = "number" | "color" | "size" | "shape";
+type PatternType = "number" | "color" | "size" | "shape" | "letter";
 
 interface Pattern {
   type: PatternType;
@@ -58,6 +58,126 @@ function generateNumberPattern(difficulty: number): Pattern {
       const answer = start + add - sub + add - sub;
       return { seq, answer };
     },
+    // Fibonacci true sequence - variation 1
+    () => {
+      const seq = [1, 1, 2, 3];
+      const answer = 5;
+      return { seq, answer };
+    },
+    // Fibonacci true sequence - variation 2
+    () => {
+      const seq = [2, 3, 5, 8];
+      const answer = 13;
+      return { seq, answer };
+    },
+    // Fibonacci true sequence - variation 3
+    () => {
+      const seq = [1, 2, 3, 5];
+      const answer = 8;
+      return { seq, answer };
+    },
+    // Alternating operations: multiply then subtract - variation 1
+    () => {
+      const seq = [2, 6, 4, 12];
+      const answer = 10;
+      return { seq, answer };
+    },
+    // Alternating operations: multiply then subtract - variation 2
+    () => {
+      const seq = [3, 9, 7, 21];
+      const answer = 19;
+      return { seq, answer };
+    },
+    // Alternating operations: multiply then subtract - variation 3
+    () => {
+      const seq = [4, 12, 10, 30];
+      const answer = 28;
+      return { seq, answer };
+    },
+    // Mirror/palindrome pattern - variation 1
+    () => {
+      const seq = [1, 3, 5, 7];
+      const answer = 5;
+      return { seq, answer };
+    },
+    // Mirror/palindrome pattern - variation 2
+    () => {
+      const seq = [2, 4, 6, 8];
+      const answer = 6;
+      return { seq, answer };
+    },
+    // Mirror/palindrome pattern - variation 3
+    () => {
+      const seq = [10, 20, 30, 40];
+      const answer = 30;
+      return { seq, answer };
+    },
+    // Cubes - variation 1
+    () => {
+      const seq = [1, 8, 27, 64];
+      const answer = 125;
+      return { seq, answer };
+    },
+    // Cubes - variation 2
+    () => {
+      const seq = [8, 27, 64, 125];
+      const answer = 216;
+      return { seq, answer };
+    },
+    // Powers of 2
+    () => {
+      const seq = [2, 4, 8, 16];
+      const answer = 32;
+      return { seq, answer };
+    },
+    // Powers of 3
+    () => {
+      const seq = [3, 9, 27, 81];
+      const answer = 243;
+      return { seq, answer };
+    },
+    // Geometric with offset: prev*2+1 - variation 1
+    () => {
+      const seq = [3, 7, 15, 31];
+      const answer = 63;
+      return { seq, answer };
+    },
+    // Geometric with offset: prev*2+1 - variation 2
+    () => {
+      const seq = [1, 3, 7, 15];
+      const answer = 31;
+      return { seq, answer };
+    },
+    // Geometric with offset: prev*3+1 - variation 3
+    () => {
+      const seq = [1, 4, 13, 40];
+      const answer = 121;
+      return { seq, answer };
+    },
+    // Prime numbers - variation 1
+    () => {
+      const seq = [2, 3, 5, 7];
+      const answer = 11;
+      return { seq, answer };
+    },
+    // Prime numbers - variation 2
+    () => {
+      const seq = [3, 5, 7, 11];
+      const answer = 13;
+      return { seq, answer };
+    },
+    // Prime numbers - variation 3
+    () => {
+      const seq = [5, 7, 11, 13];
+      const answer = 17;
+      return { seq, answer };
+    },
+    // Triangular numbers
+    () => {
+      const seq = [1, 3, 6, 10];
+      const answer = 15;
+      return { seq, answer };
+    },
   ];
 
   const patternFn = patterns[Math.floor(Math.random() * Math.min(patterns.length, 3 + Math.floor(difficulty / 3)))];
@@ -80,6 +200,94 @@ function generateNumberPattern(difficulty: number): Pattern {
     type: "number",
     sequence: seq.map(String),
     correctAnswer: String(answer),
+    wrongOptions,
+  };
+}
+
+function generateLetterPattern(difficulty: number): Pattern {
+  const patterns = [
+    // Skip by 2: A, C, E, G
+    () => {
+      const seq = ["A", "C", "E", "G"];
+      const answer = "I";
+      return { seq, answer };
+    },
+    // Skip by 2: B, D, F, H
+    () => {
+      const seq = ["B", "D", "F", "H"];
+      const answer = "J";
+      return { seq, answer };
+    },
+    // Skip by 2: C, E, G, I
+    () => {
+      const seq = ["C", "E", "G", "I"];
+      const answer = "K";
+      return { seq, answer };
+    },
+    // Skip by 3: A, D, G, J
+    () => {
+      const seq = ["A", "D", "G", "J"];
+      const answer = "M";
+      return { seq, answer };
+    },
+    // Skip by 3: B, E, H, K
+    () => {
+      const seq = ["B", "E", "H", "K"];
+      const answer = "N";
+      return { seq, answer };
+    },
+    // Reverse skip by 2: Z, X, V, T
+    () => {
+      const seq = ["Z", "X", "V", "T"];
+      const answer = "R";
+      return { seq, answer };
+    },
+    // Skip by 4: A, E, I, M
+    () => {
+      const seq = ["A", "E", "I", "M"];
+      const answer = "Q";
+      return { seq, answer };
+    },
+    // Skip by 1 (consecutive): C, D, E, F
+    () => {
+      const seq = ["C", "D", "E", "F"];
+      const answer = "G";
+      return { seq, answer };
+    },
+  ];
+
+  const { seq, answer } = patterns[Math.floor(Math.random() * patterns.length)]();
+
+  // Generate wrong options
+  const wrongOptions: string[] = [];
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const answerIndex = alphabet.indexOf(answer);
+
+  // Try common mistakes: answer-1, answer+1, answer-2, answer+2
+  const offsets = [-2, -1, 1, 2, -3, 3];
+  for (const offset of offsets) {
+    const wrongIndex = answerIndex + offset;
+    if (wrongIndex >= 0 && wrongIndex < alphabet.length) {
+      const wrong = alphabet[wrongIndex];
+      if (wrong !== answer && !wrongOptions.includes(wrong)) {
+        wrongOptions.push(wrong);
+        if (wrongOptions.length >= 3) break;
+      }
+    }
+  }
+
+  // If we don't have enough, add random letters
+  while (wrongOptions.length < 3) {
+    const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+    if (randomLetter !== answer && !wrongOptions.includes(randomLetter)) {
+      wrongOptions.push(randomLetter);
+    }
+  }
+
+  return {
+    type: "letter",
+    sequence: seq,
+    correctAnswer: answer,
     wrongOptions,
   };
 }
@@ -180,14 +388,14 @@ function generateShapePattern(difficulty: number): Pattern {
 
 function generatePattern(round: number): Pattern {
   const difficulty = round + 1;
-  const types: PatternType[] = ["number", "color", "size", "shape"];
+  const types: PatternType[] = ["number", "letter", "color", "size", "shape"];
 
-  // Bias toward numbers early, introduce visual patterns later
+  // Bias toward numbers and letters early, introduce visual patterns later
   let type: PatternType;
   if (round < 3) {
-    type = "number";
+    type = Math.random() < 0.7 ? "number" : "letter";
   } else if (round < 6) {
-    type = Math.random() < 0.6 ? "number" : types[Math.floor(Math.random() * types.length)];
+    type = Math.random() < 0.5 ? "number" : types[Math.floor(Math.random() * types.length)];
   } else {
     type = types[Math.floor(Math.random() * types.length)];
   }
@@ -195,6 +403,8 @@ function generatePattern(round: number): Pattern {
   switch (type) {
     case "number":
       return generateNumberPattern(difficulty);
+    case "letter":
+      return generateLetterPattern(difficulty);
     case "color":
       return generateColorPattern(difficulty);
     case "size":
@@ -277,7 +487,7 @@ export default function PatternTest() {
   const renderSequenceItem = (item: string, index: number) => {
     if (!pattern) return null;
 
-    if (pattern.type === "number") {
+    if (pattern.type === "number" || pattern.type === "letter") {
       return (
         <div key={index} className="bg-gray-800 rounded-xl px-4 py-4 min-w-[60px] sm:min-w-[80px] sm:px-6 flex items-center justify-center">
           <span className="text-2xl sm:text-3xl font-black text-white">{item}</span>
@@ -324,7 +534,7 @@ export default function PatternTest() {
   const renderOption = (option: string) => {
     if (!pattern) return null;
 
-    if (pattern.type === "number") {
+    if (pattern.type === "number" || pattern.type === "letter") {
       return <span className="text-2xl font-black">{option}</span>;
     }
 

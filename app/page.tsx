@@ -560,21 +560,20 @@ const tests = [
   },
   {
     href: "/pattern-speed",
-    title: "Pattern Speed",
-    desc: "Memorize flashing grid patterns and reproduce them. How many cells can you recall?",
-    color: "from-purple-500 to-violet-600",
-    avg: "Average: Level 5",
+    title: "Rapid Estimation",
+    desc: "Count dots, estimate multiplication, compare quantities. Fast-paced mental math speed test.",
+    color: "from-blue-500 to-cyan-600",
+    avg: "Average: 1000",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect x="6" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
-        <rect x="19" y="6" width="10" height="10" rx="2" fill="white" opacity="0.3" />
-        <rect x="32" y="6" width="10" height="10" rx="2" fill="white" opacity="0.9" />
-        <rect x="6" y="19" width="10" height="10" rx="2" fill="white" opacity="0.3" />
-        <rect x="19" y="19" width="10" height="10" rx="2" fill="white" opacity="0.9" />
-        <rect x="32" y="19" width="10" height="10" rx="2" fill="white" opacity="0.3" />
-        <rect x="6" y="32" width="10" height="10" rx="2" fill="white" opacity="0.9" />
-        <rect x="19" y="32" width="10" height="10" rx="2" fill="white" opacity="0.3" />
-        <rect x="32" y="32" width="10" height="10" rx="2" fill="white" opacity="0.9" />
+        <circle cx="12" cy="12" r="3" fill="white" />
+        <circle cx="24" cy="8" r="3" fill="white" />
+        <circle cx="36" cy="14" r="3" fill="white" />
+        <circle cx="18" cy="24" r="3" fill="white" />
+        <circle cx="30" cy="28" r="3" fill="white" />
+        <circle cx="10" cy="32" r="3" fill="white" />
+        <circle cx="26" cy="40" r="3" fill="white" />
+        <circle cx="38" cy="36" r="3" fill="white" />
       </svg>
     ),
   },

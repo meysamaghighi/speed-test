@@ -288,11 +288,11 @@ const TESTS: TestDef[] = [
   },
   {
     key: "pb-pattern-speed",
-    label: "Pattern Speed",
+    label: "Rapid Estimation",
     href: "/pattern-speed",
     mode: "higher",
-    unit: "level",
-    toScore: (lvl) => clamp((lvl / 10) * 100), // 10=100
+    unit: "score",
+    toScore: (pts) => clamp((pts / 2000) * 100), // 2000=100
   },
   {
     key: "pb-math-memory",
