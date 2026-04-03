@@ -3,20 +3,21 @@ import WordAssociationTest from "../components/WordAssociationTest";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Word Association Test - How Fast Can You Think? | BenchMyBrain",
+  title: "Word Fluency Test - How Many Words Can You Name? | BenchMyBrain",
   description:
-    "Test your word association speed. See a word and type the opposite as fast as you can. Measures verbal processing speed and cognitive flexibility.",
+    "Test your word fluency! Name as many words as you can in a category within 60 seconds. Measures verbal fluency, vocabulary, and processing speed.",
   keywords: [
-    "word association test",
-    "cognitive speed test",
-    "verbal processing",
-    "thinking speed test",
-    "reaction time test",
+    "word fluency test",
+    "verbal fluency test",
+    "vocabulary test",
+    "cognitive test",
+    "word naming test",
+    "semantic fluency",
   ],
   openGraph: {
-    title: "Word Association Test - How Fast Can You Think? | BenchMyBrain",
+    title: "Word Fluency Test - How Many Words Can You Name? | BenchMyBrain",
     description:
-      "Test your word association speed. See a word and type the opposite as fast as you can. Measures verbal processing speed and cognitive flexibility.",
+      "Test your word fluency! Name as many words as you can in a category within 60 seconds. Measures verbal fluency, vocabulary, and processing speed.",
     type: "website",
   },
   alternates: {
@@ -29,30 +30,30 @@ export default function WordAssociationPage() {
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-black text-white mb-3">
-          Word Association Test
+          Word Fluency Test
         </h1>
         <p className="text-gray-400">
-          See a word, type the opposite as fast as you can. Tests verbal processing speed.
+          Name as many words as you can in a category within 60 seconds. Tests verbal fluency and vocabulary.
         </p>
       </div>
 
       <WordAssociationTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Word Association</h2>
+        <h2 className="text-xl font-bold text-white">About Word Fluency</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Processing Speed</h3>
+            <h3 className="font-bold text-white mb-2">Verbal Fluency</h3>
             <p className="text-sm text-gray-400">
-              This test measures how quickly your brain can process language, access semantic
-              memory, and generate responses. Faster times indicate better verbal fluency.
+              This test measures your ability to rapidly retrieve words from semantic memory.
+              It's a classic neuropsychological test used to assess language ability and executive function.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Cognitive Flexibility</h3>
+            <h3 className="font-bold text-white mb-2">Cognitive Assessment</h3>
             <p className="text-sm text-gray-400">
-              Word association tests cognitive flexibility -- the ability to switch between
-              concepts quickly. Used in psychology and cognitive assessments.
+              Word fluency tests are used in clinical settings to assess cognitive health.
+              They measure vocabulary, processing speed, and mental flexibility.
             </p>
           </div>
         </div>
@@ -66,8 +67,8 @@ export default function WordAssociationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Word Association Test",
-            description: "Free online word association test. Measure your verbal processing speed.",
+            name: "Word Fluency Test",
+            description: "Free online word fluency test. Name as many words as you can in a category within 60 seconds.",
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -84,18 +85,18 @@ export default function WordAssociationPage() {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "What is a good word association time?",
+                name: "What is a good score on the word fluency test?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Fast responses are under 800ms. Average is 1000-1500ms. Times over 2000ms suggest slower verbal processing. Native speakers are typically faster than non-native speakers.",
+                  text: "Excellent performance is 20+ words in 60 seconds. Good is 15-19 words, average is 10-14 words, and below average is under 10 words. Native speakers typically score higher than non-native speakers.",
                 },
               },
               {
                 "@type": "Question",
-                name: "What does word association measure?",
+                name: "What does word fluency measure?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "It measures verbal processing speed, semantic memory access, and cognitive flexibility. Used in psychology to assess language skills and cognitive function.",
+                  text: "Word fluency tests measure verbal ability, vocabulary size, processing speed, and executive function. They're used in neuropsychological assessments to evaluate language skills and cognitive health.",
                 },
               },
             ],

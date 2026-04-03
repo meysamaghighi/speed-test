@@ -26,9 +26,14 @@ export default function ColorTest() {
   const [times, setTimes] = useState<number[]>([]);
   const [lastTime, setLastTime] = useState(0);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
+  const [questionMode, setQuestionMode] = useState<"color" | "text">("color");
   const totalRounds = 20;
 
   const generateRound = useCallback(() => {
+    // Randomly choose question mode: "color" (ink color) or "text" (word itself)
+    const mode = Math.random() < 0.5 ? "color" : "text";
+    setQuestionMode(mode);
+
     // Pick a random color name to display
     const nameIdx = Math.floor(Math.random() * colors.length);
     // Pick a DIFFERENT color to display it in (the ink color)
@@ -39,12 +44,19 @@ export default function ColorTest() {
 
     const name = colors[nameIdx].name;
     const inkColor = colors[inkIdx].hex;
-    const correct = colors[inkIdx].name; // Answer is the INK color, not the word
+
+    // Correct answer depends on the mode
+    const correct = mode === "color" ? colors[inkIdx].name : name;
 
     // Generate 4 options including the correct one
     const optionSet = new Set<string>([correct]);
-    // Also add the word name as a distractor
-    optionSet.add(name);
+    // Also add the word name as a distractor (important for "color" mode)
+    if (mode === "color") {
+      optionSet.add(name);
+    } else {
+      // For "text" mode, add the ink color as distractor
+      optionSet.add(colors[inkIdx].name);
+    }
     while (optionSet.size < 4) {
       optionSet.add(colors[Math.floor(Math.random() * colors.length)].name);
     }
@@ -115,9 +127,10 @@ export default function ColorTest() {
           Start Stroop Test
         </button>
         <p className="text-gray-500 text-sm mt-3">
-          A color name appears in a different ink color. Select the <strong>ink color</strong>,
-          not the word. This is called the Stroop effect — your brain wants to
-          read the word instead.
+          Two question types will alternate:<br />
+          <strong className="text-blue-400">What COLOR is the ink?</strong> (select the ink color)<br />
+          <strong className="text-emerald-400">What does the text SAY?</strong> (select the word itself)<br />
+          Pay attention to the question — your brain will try to trick you!
         </p>
       </div>
     );
@@ -171,6 +184,11 @@ export default function ColorTest() {
   }
 
   // Playing
+  const borderColor = questionMode === "color" ? "border-blue-500" : "border-emerald-500";
+  const bgTint = questionMode === "color" ? "bg-blue-950/30" : "bg-emerald-950/30";
+  const questionText = questionMode === "color" ? "What COLOR is the ink?" : "What does the text SAY?";
+  const questionColor = questionMode === "color" ? "text-blue-400" : "text-emerald-400";
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between text-sm text-gray-400">
@@ -178,14 +196,14 @@ export default function ColorTest() {
         <span>Score: <span className="text-white font-bold">{score}</span></span>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 text-center">
+      <div className={`bg-gray-900 rounded-2xl p-12 border-4 ${borderColor} ${bgTint} text-center transition-all`}>
         <p
           className="text-5xl md:text-6xl font-black"
           style={{ color: displayColor }}
         >
           {displayName}
         </p>
-        <p className="text-gray-500 text-sm mt-3">What color is the INK?</p>
+        <p className={`text-lg font-bold mt-4 ${questionColor}`}>{questionText}</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3">

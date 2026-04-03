@@ -171,7 +171,7 @@ export default function NumberSpeedTest() {
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
             <input
               ref={inputRef}
-              type="text"
+              type="tel"
               inputMode="numeric"
               pattern="[0-9]*"
               value={input}

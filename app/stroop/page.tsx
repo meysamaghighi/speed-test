@@ -22,8 +22,10 @@ export default function StroopPage() {
       <div className="text-center mb-8">
         <h1 className="text-4xl font-black text-white mb-3">Stroop Color Test</h1>
         <p className="text-gray-400">
-          A color name appears in a different ink color. Your job: select the
-          <strong> ink color</strong>, not the word. Harder than it sounds.
+          A color name appears in a different ink color. The twist: questions alternate between
+          <strong className="text-blue-400"> "What COLOR is the ink?"</strong> and
+          <strong className="text-emerald-400"> "What does the text SAY?"</strong>
+          <br />Switch between reading and identifying — harder than it sounds!
         </p>
       </div>
       <ColorTest />
