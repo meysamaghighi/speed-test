@@ -57,7 +57,16 @@ export default function HandEye() {
   // Spawn first target after the game area div renders
   useEffect(() => {
     if (phase === "playing" && !target && areaRef.current) {
-      spawnTarget(1);
+      const trySpawn = () => {
+        if (!areaRef.current) return;
+        const rect = areaRef.current.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) {
+          requestAnimationFrame(trySpawn);
+          return;
+        }
+        spawnTarget(1);
+      };
+      trySpawn();
     }
   }, [phase, target, spawnTarget]);
 
@@ -124,6 +133,34 @@ export default function HandEye() {
 
     const dx = clickX - target.x;
     const dy = clickY - target.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance <= target.size / 2) {
+      const newScore = score + 1;
+      setScore(newScore);
+
+      // Level up every 5 catches
+      if (newScore % 5 === 0) {
+        const newLevel = level + 1;
+        setLevel(newLevel);
+        spawnTarget(newLevel);
+      } else {
+        spawnTarget(level);
+      }
+    }
+  };
+
+  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!target || !areaRef.current || phase !== "playing") return;
+    e.preventDefault();
+
+    const touch = e.touches[0];
+    const rect = areaRef.current.getBoundingClientRect();
+    const touchX = touch.clientX - rect.left;
+    const touchY = touch.clientY - rect.top;
+
+    const dx = touchX - target.x;
+    const dy = touchY - target.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     if (distance <= target.size / 2) {
@@ -224,6 +261,7 @@ export default function HandEye() {
       <div
         ref={areaRef}
         onClick={handleClick}
+        onTouchStart={handleTouch}
         className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden cursor-crosshair"
       >
         {target && (
