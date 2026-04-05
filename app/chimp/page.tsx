@@ -3,14 +3,14 @@ import ChimpTest from "../components/ChimpTest";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Chimp Test - Are You Smarter Than a Chimpanzee? Beat the Chimp Memory Test",
+  title: "Are You Smarter Than a Chimpanzee? Take the Chimp Memory Test",
   description:
-    "Take the famous chimpanzee memory test from Kyoto University. Can you beat the chimp? Numbers flash on screen — click them in order. Test your memory against Ayumu the chimp. Free online chimp memory test.",
-  keywords: ["chimp test", "chimpanzee memory test", "are you smarter than a chimpanzee", "beat the chimp", "chimp memory test", "Ayumu chimp test", "number memory game"],
+    "Are you smarter than a chimpanzee? Take the famous chimp test from Kyoto University. Numbers flash on screen — can you beat the chimp like Ayumu? Test your memory against the world's smartest chimp. Free online chimp memory test.",
+  keywords: ["are you smarter than a chimpanzee", "chimp test", "chimpanzee memory test", "are you smarter than a chimp", "beat the chimp", "chimp memory test", "Ayumu chimp test", "number memory test"],
   openGraph: {
-    title: "Chimp Test - Are You Smarter Than a Chimpanzee? | BenchMyBrain",
+    title: "Are You Smarter Than a Chimpanzee? Take the Chimp Memory Test",
     description:
-      "Take the famous chimpanzee memory test. Can you beat the chimp? Test your memory against Ayumu's legendary performance.",
+      "Are you smarter than a chimpanzee? Take the famous chimp test from Kyoto University. Can you beat Ayumu the chimp at this legendary memory challenge?",
     type: "website",
   },
   alternates: {
@@ -30,23 +30,28 @@ export default function ChimpPage() {
       </div>
       <ChimpTest />
       <section className="mt-12 space-y-6">
-        <h2 className="text-2xl font-bold text-white">What is the Chimp Test?</h2>
+        <h2 className="text-2xl font-bold text-white">Are You Smarter Than a Chimpanzee?</h2>
         <p className="text-gray-300 leading-relaxed">
-          The chimp test (also known as the chimpanzee memory test) is a famous cognitive experiment from Kyoto University that challenges humans to beat a chimpanzee at a number memory task. In this test, numbers appear briefly on a grid, and you must click them in ascending order after they disappear. The question &quot;are you smarter than a chimpanzee?&quot; became famous when researchers discovered that Ayumu, a young chimp, could consistently outperform humans at this specific memory challenge.
+          The question &quot;are you smarter than a chimpanzee?&quot; became famous after a 2007 Kyoto University study revealed something shocking: chimpanzees could beat humans at a specific memory test. While humans excel at language, abstract reasoning, and complex problem-solving, chimps have one surprising advantage — photographic memory for spatial positions. The chimp test challenges you to prove whether you can beat a chimp at their own game. Spoiler: it&apos;s harder than you think. Most humans cannot beat the chimp consistently, even with practice.
         </p>
 
-        <h2 className="text-2xl font-bold text-white mt-8">The Original Chimp Memory Test</h2>
+        <h2 className="text-2xl font-bold text-white mt-8">What is the Chimp Test?</h2>
+        <p className="text-gray-300 leading-relaxed">
+          The chimp test (also known as the chimpanzee memory test or chimp memory test) is a cognitive experiment from Kyoto University where numbers appear briefly on a grid, and you must click them in ascending order after they disappear. The test measures your working memory and visual recall — specifically, whether you&apos;re smarter than a chimpanzee at remembering number positions. The original research by Tetsuro Matsuzawa showed that Ayumu, a young chimp, could consistently outperform adult humans, scoring 80%+ on trials where humans averaged under 40%.
+        </p>
+
+        <h2 className="text-2xl font-bold text-white mt-8">The Original Experiment: How Ayumu Beat Humans</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
             <h3 className="font-bold text-white mb-2">Ayumu the Chimpanzee</h3>
             <p className="text-sm text-gray-400">
-              In 2007, researchers at Kyoto University found that chimpanzee Ayumu could remember the positions of 9 numbers after seeing them for just 210 milliseconds — outperforming every human tested. This challenged the assumption that humans have superior memory. Ayumu became famous for his ability to beat humans at this memory test consistently.
+              In 2007, researchers at Kyoto University&apos;s Primate Research Institute found that Ayumu, a young chimpanzee, could remember the positions of 9 numbers after seeing them for just 210 milliseconds — outperforming every human tested. Ayumu scored approximately 80% accuracy on the hardest trials, while college students averaged 40%. This discovery challenged the long-held assumption that humans have superior memory in all domains. The study made headlines worldwide when people asked: &quot;Are you smarter than a chimpanzee?&quot; For this specific memory task, the answer for most humans is no.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">How Chimps Beat Us</h3>
+            <h3 className="font-bold text-white mb-2">Why Chimps Beat Us</h3>
             <p className="text-sm text-gray-400">
-              Researchers believe chimps have superior &quot;eidetic&quot; (photographic) short-term memory. They can capture an entire visual scene in a fraction of a second. Humans evolved to trade this ability for language processing in the same brain regions. This is why it&apos;s so difficult to beat the chimp at this specific task.
+              Researchers believe chimps have superior &quot;eidetic&quot; (photographic) short-term memory for visual-spatial information. They can capture an entire visual scene in a fraction of a second — a skill that may have helped their ancestors track multiple predators and food sources simultaneously. Humans likely traded this ability during evolution to develop language processing in the same brain regions. This evolutionary trade-off is why it&apos;s so difficult for humans to beat the chimp at this memory test, even with extensive practice. Are you smarter than a chimp overall? Yes. Can you beat the chimp at this test? Probably not.
             </p>
           </div>
         </div>
@@ -72,9 +77,41 @@ export default function ChimpPage() {
             </li>
             <li className="flex gap-3">
               <span className="font-bold text-white shrink-0">5.</span>
-              <span>Your goal: beat the chimp by reaching 9+ numbers consistently</span>
+              <span>Your goal: beat the chimp by reaching 9+ numbers consistently (most humans can&apos;t)</span>
             </li>
           </ol>
+        </div>
+
+        <h2 className="text-2xl font-bold text-white mt-8">Can You Beat the Chimp? Tips for Improving</h2>
+        <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+          <p className="text-gray-300 mb-4">
+            While it&apos;s extremely difficult to beat a chimpanzee at this memory test, humans can improve with practice. Here are strategies to help you get closer to Ayumu&apos;s level:
+          </p>
+          <ul className="space-y-3 text-gray-300">
+            <li className="flex gap-3">
+              <span className="text-white shrink-0">•</span>
+              <span><strong>Chunk patterns:</strong> Instead of memorizing individual numbers, try to see patterns (diagonals, clusters, shapes)</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-white shrink-0">•</span>
+              <span><strong>Snapshot the grid:</strong> Take a mental &quot;photo&quot; of the entire grid rather than scanning numbers sequentially</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-white shrink-0">•</span>
+              <span><strong>Use spatial memory:</strong> Remember positions relative to other numbers, not absolute locations</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-white shrink-0">•</span>
+              <span><strong>Practice regularly:</strong> Your score can improve 20-30% with consistent practice over several weeks</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-white shrink-0">•</span>
+              <span><strong>Stay relaxed:</strong> Anxiety reduces working memory capacity. Take deep breaths before each round</span>
+            </li>
+          </ul>
+          <p className="text-gray-300 mt-4">
+            Even with these strategies, reaching Ayumu&apos;s consistent 80%+ accuracy on 9-number trials is extremely rare for humans. If you can beat the chimp regularly, you have exceptional visual memory!
+          </p>
         </div>
       </section>
 
@@ -88,13 +125,19 @@ export default function ChimpPage() {
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
             <h3 className="font-bold text-white mb-2">Are you smarter than a chimpanzee?</h3>
             <p className="text-gray-300">
-              It depends on the task. While humans excel at language, abstract reasoning, and complex problem-solving, chimpanzees have superior photographic memory for spatial positions. The chimp test specifically measures one type of memory where chimps naturally excel. So while you might be smarter overall, beating the chimp at this specific memory test is extremely difficult.
+              It depends on the task. While humans excel at language, abstract reasoning, and complex problem-solving, chimpanzees have superior photographic memory for spatial positions. The chimp test specifically measures one type of memory where chimps naturally excel. In the 2007 Kyoto University study, Ayumu the chimp scored 80% accuracy while humans averaged 40%. So while you might be smarter overall, beating the chimp at this specific memory test is extremely difficult. Most humans cannot beat the chimp even with practice.
+            </p>
+          </div>
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <h3 className="font-bold text-white mb-2">Are you smarter than a chimp at the memory test?</h3>
+            <p className="text-gray-300">
+              Probably not. The 2007 Kyoto University research showed that Ayumu the chimpanzee consistently beat humans at the chimp memory test, scoring approximately 80% on the hardest trials while college students averaged under 40%. Chimps have superior photographic memory for visual-spatial information, making it extremely difficult for humans to beat the chimp at this specific task.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
             <h3 className="font-bold text-white mb-2">Can chimps really beat humans at memory?</h3>
             <p className="text-gray-300">
-              Yes. In the 2007 Kyoto University study, chimpanzee Ayumu could remember 9 numbers after seeing them for just 210 milliseconds, outperforming every human tested. Ayumu&apos;s ability to beat humans at the chimp memory test has been replicated in hundreds of trials.
+              Yes. In the 2007 Kyoto University study, chimpanzee Ayumu could remember the positions of 9 numbers after seeing them for just 210 milliseconds, outperforming every human tested. Ayumu&apos;s ability to beat humans at the chimp memory test has been replicated in hundreds of trials. Chimps scored approximately 80% accuracy on the hardest trials, while humans averaged 40%.
             </p>
           </div>
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
@@ -136,7 +179,15 @@ export default function ChimpPage() {
                 name: "Are you smarter than a chimpanzee?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "It depends on the task. While humans excel at language, abstract reasoning, and complex problem-solving, chimpanzees have superior photographic memory for spatial positions. The chimp test specifically measures one type of memory where chimps naturally excel. So while you might be smarter overall, beating the chimp at this specific memory test is extremely difficult.",
+                  text: "It depends on the task. While humans excel at language, abstract reasoning, and complex problem-solving, chimpanzees have superior photographic memory for spatial positions. The chimp test specifically measures one type of memory where chimps naturally excel. In the 2007 Kyoto University study, Ayumu the chimp scored 80% accuracy while humans averaged 40%. So while you might be smarter overall, beating the chimp at this specific memory test is extremely difficult. Most humans cannot beat the chimp even with practice.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Are you smarter than a chimp at the memory test?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Probably not. The 2007 Kyoto University research showed that Ayumu the chimpanzee consistently beat humans at the chimp memory test, scoring approximately 80% on the hardest trials while college students averaged under 40%. Chimps have superior photographic memory for visual-spatial information, making it extremely difficult for humans to beat the chimp at this specific task.",
                 },
               },
               {
@@ -144,7 +195,7 @@ export default function ChimpPage() {
                 name: "Can chimps really beat humans at memory?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. In the 2007 Kyoto University study, chimpanzee Ayumu could remember 9 numbers after seeing them for just 210 milliseconds, outperforming every human tested. Ayumu's ability to beat humans at the chimp memory test has been replicated in hundreds of trials.",
+                  text: "Yes. In the 2007 Kyoto University study, chimpanzee Ayumu could remember the positions of 9 numbers after seeing them for just 210 milliseconds, outperforming every human tested. Ayumu's ability to beat humans at the chimp memory test has been replicated in hundreds of trials. Chimps scored approximately 80% accuracy on the hardest trials, while humans averaged 40%.",
                 },
               },
               {
