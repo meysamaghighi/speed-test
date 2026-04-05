@@ -4,19 +4,29 @@ import { useState, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 export default function AudioMemory() {
-  const [phase, setPhase] = useState<"ready" | "listening" | "playing" | "done">("ready");
+  const [phase, setPhase] = useState<"ready" | "practice" | "listening" | "playing" | "done">("ready");
   const [level, setLevel] = useState(1);
   const [sequence, setSequence] = useState<number[]>([]);
   const [userSequence, setUserSequence] = useState<number[]>([]);
   const [lives, setLives] = useState(3);
+  const [highlightedKey, setHighlightedKey] = useState<number | null>(null);
+  const [isPlayingSequence, setIsPlayingSequence] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
 
   const pb = usePersonalBest("pb-audio-memory", "higher", phase === "done" ? level : null);
 
-  const frequencies = [262, 330, 392, 523, 659]; // C4, E4, G4, C5, E5
-  const buttonLabels = ["1", "2", "3", "4", "5"];
+  // Piano frequencies: C4, D4, E4, F4, G4
+  const frequencies = [261.63, 293.66, 329.63, 349.23, 392.00];
+  const keyColors = [
+    "bg-red-500 hover:bg-red-400",
+    "bg-orange-500 hover:bg-orange-400",
+    "bg-yellow-500 hover:bg-yellow-400",
+    "bg-green-500 hover:bg-green-400",
+    "bg-blue-500 hover:bg-blue-400",
+  ];
+  const keyLabels = ["C", "D", "E", "F", "G"];
 
-  const playTone = (freq: number, duration: number = 300) => {
+  const playTone = (freq: number, duration: number = 350) => {
     if (!audioContextRef.current) {
       audioContextRef.current = new AudioContext();
     }
@@ -28,21 +38,34 @@ export default function AudioMemory() {
     gain.connect(ctx.destination);
 
     osc.frequency.value = freq;
-    osc.type = "sine";
-    gain.gain.value = 0.3;
+    osc.type = "triangle";
+    gain.gain.value = 0.25;
 
     osc.start();
+    // Smooth envelope
     gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration / 1000);
     osc.stop(ctx.currentTime + duration / 1000);
   };
 
   const playSequence = async (seq: number[]) => {
+    if (isPlayingSequence) return; // Prevent race condition
+    setIsPlayingSequence(true);
     setPhase("listening");
     for (let i = 0; i < seq.length; i++) {
-      playTone(frequencies[seq[i]]);
-      await new Promise(resolve => setTimeout(resolve, 600));
+      const note = seq[i];
+      if (note < 0 || note >= frequencies.length) continue; // Bounds check
+      setHighlightedKey(note);
+      playTone(frequencies[note]);
+      await new Promise(resolve => setTimeout(resolve, 650));
+      setHighlightedKey(null);
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
+    setIsPlayingSequence(false);
     setPhase("playing");
+  };
+
+  const startPractice = () => {
+    setPhase("practice");
   };
 
   const startGame = () => {
@@ -60,14 +83,21 @@ export default function AudioMemory() {
   };
 
   const handleToneClick = (index: number) => {
-    if (phase !== "playing") return;
+    if (phase === "practice") {
+      // Practice mode: just play the tone
+      playTone(frequencies[index], 350);
+      return;
+    }
 
-    playTone(frequencies[index], 200);
+    if (phase !== "playing" || isPlayingSequence) return; // Prevent clicks during playback
+
+    playTone(frequencies[index], 250);
     const newUserSeq = [...userSequence, index];
     setUserSequence(newUserSeq);
 
     // Check if wrong
-    if (sequence[newUserSeq.length - 1] !== index) {
+    const expectedIndex = newUserSeq.length - 1;
+    if (expectedIndex >= sequence.length || sequence[expectedIndex] !== index) {
       const newLives = lives - 1;
       setLives(newLives);
       if (newLives === 0) {
@@ -155,14 +185,50 @@ export default function AudioMemory() {
     return (
       <div className="text-center">
         <button
-          onClick={startGame}
+          onClick={startPractice}
           className="px-8 py-4 bg-violet-600 text-white font-bold text-xl rounded-2xl hover:bg-violet-700 transition-colors"
         >
           Start Audio Memory
         </button>
         <p className="text-gray-500 text-sm mt-3 max-w-md mx-auto">
-          Hear a sequence of tones. Repeat by clicking buttons 1-5. Like Simon but with audio. Turn on sound!
+          Learn piano tones, then repeat sequences from memory. Like Simon but with musical notes. Turn on sound!
         </p>
+      </div>
+    );
+  }
+
+  if (phase === "practice") {
+    return (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h3 className="text-xl font-bold text-white mb-2">Practice the Keys</h3>
+          <p className="text-gray-400 text-sm max-w-md mx-auto">
+            Click each key to hear its tone. When you're ready, start the test!
+          </p>
+        </div>
+
+        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 flex items-center justify-center">
+          <div className="flex gap-2 w-full max-w-lg">
+            {frequencies.map((freq, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleToneClick(idx)}
+                className={`flex-1 h-40 ${keyColors[idx]} rounded-lg font-bold text-white text-2xl transition-all active:scale-95 shadow-lg flex flex-col items-center justify-end pb-4`}
+              >
+                {keyLabels[idx]}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center">
+          <button
+            onClick={startGame}
+            className="px-8 py-3 bg-emerald-600 text-white font-bold text-lg rounded-xl hover:bg-emerald-700 transition-colors"
+          >
+            Start Test
+          </button>
+        </div>
       </div>
     );
   }
@@ -182,18 +248,21 @@ export default function AudioMemory() {
           </div>
         )}
         {phase === "playing" && (
-          <div className="flex flex-col gap-3 w-full max-w-sm px-4">
+          <div className="flex flex-col gap-3 w-full max-w-2xl px-4">
             <p className="text-gray-400 text-sm text-center mb-2">
               Repeat: {userSequence.length}/{sequence.length}
             </p>
-            <div className="grid grid-cols-5 gap-2">
-              {buttonLabels.map((label, idx) => (
+            <div className="flex gap-2">
+              {frequencies.map((freq, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleToneClick(idx)}
-                  className="aspect-square bg-violet-600 hover:bg-violet-500 rounded-xl font-bold text-white text-xl transition-all active:scale-95"
+                  disabled={isPlayingSequence}
+                  className={`flex-1 h-32 ${keyColors[idx]} ${
+                    highlightedKey === idx ? "scale-110 brightness-150" : ""
+                  } rounded-lg font-bold text-white text-xl transition-all active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-center justify-end pb-3`}
                 >
-                  {label}
+                  {keyLabels[idx]}
                 </button>
               ))}
             </div>
@@ -202,7 +271,7 @@ export default function AudioMemory() {
       </div>
 
       <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400 text-center">
-        {phase === "listening" ? "Memorize the sequence of tones" : "Click buttons to repeat the sequence"}
+        {phase === "listening" ? "Memorize the sequence of tones" : "Click the piano keys to repeat the sequence"}
       </div>
     </div>
   );

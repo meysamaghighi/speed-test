@@ -49,15 +49,17 @@ export default function ColorMemoryTest() {
       if (currentIndex < sequence.length) {
         const timer = setTimeout(() => {
           setCurrentIndex((prev) => prev + 1);
-        }, 800);
+        }, 1200); // Increased from 800ms to make colors display longer
         return () => clearTimeout(timer);
       } else {
         const timer = setTimeout(() => {
           setPhase("delay");
-          setTimeout(() => {
+          const delayTimer = setTimeout(() => {
             setPhase("recall");
             setCurrentIndex(0);
           }, 500);
+          // Store timer ref for cleanup
+          return () => clearTimeout(delayTimer);
         }, 500);
         return () => clearTimeout(timer);
       }
@@ -70,6 +72,9 @@ export default function ColorMemoryTest() {
     const newUserSequence = [...userSequence, colorIndex];
     setUserSequence(newUserSequence);
 
+    // Guard against out-of-bounds access
+    if (newUserSequence.length > sequence.length) return;
+
     const expectedIndex = sequence[newUserSequence.length - 1];
     if (colorIndex !== expectedIndex) {
       // Wrong color
@@ -79,14 +84,18 @@ export default function ColorMemoryTest() {
         setPhase("result");
       } else {
         // Retry same level
-        setTimeout(() => startRound(), 1000);
+        setTimeout(() => {
+          if (phase === "recall") startRound();
+        }, 1000);
       }
     } else if (newUserSequence.length === sequence.length) {
       // Completed level
       setTimeout(() => {
         setLevel((prev) => prev + 1);
       }, 500);
-      setTimeout(() => startRound(), 1200);
+      setTimeout(() => {
+        if (phase === "recall") startRound();
+      }, 1200);
     }
   };
 
@@ -167,7 +176,8 @@ export default function ColorMemoryTest() {
     );
   }
 
-  const showingColor = phase === "showing" && currentIndex < sequence.length ? sequence[currentIndex] : null;
+  // Safe access to current color - prevent out of bounds crash
+  const showingColor = phase === "showing" && currentIndex < sequence.length && sequence[currentIndex] !== undefined ? sequence[currentIndex] : null;
 
   return (
     <div className="space-y-6">

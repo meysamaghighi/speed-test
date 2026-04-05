@@ -283,8 +283,8 @@ const TESTS: TestDef[] = [
     label: "Peripheral Test",
     href: "/peripheral-test",
     mode: "higher",
-    unit: "angle",
-    toScore: (deg) => clamp(((deg - 30) / 150) * 100), // 30=0, 180=100
+    unit: "%",
+    toScore: (pct) => clamp(pct), // Already 0-100 percentage
   },
   {
     key: "pb-pattern-speed",

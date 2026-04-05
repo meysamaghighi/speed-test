@@ -18,7 +18,8 @@ export default function TrailMaking() {
   const [elapsedTime, setElapsedTime] = useState(0);
   const areaRef = useRef<HTMLDivElement>(null);
 
-  const pb = usePersonalBest("pb-trail-making", "lower", phase === "done" ? elapsedTime : null);
+  // Store time in seconds for Brain Score compatibility (BrainScore expects seconds, not ms)
+  const pb = usePersonalBest("pb-trail-making", "lower", phase === "done" ? elapsedTime / 1000 : null);
 
   const generateSequence = useCallback(() => {
     // Generate alternating number-letter sequence: 1-A-2-B-3-C...
@@ -72,7 +73,7 @@ export default function TrailMaking() {
     setConnected(newConnected);
 
     if (newConnected.length === circles.length) {
-      const elapsed = Math.round(performance.now() - startTime);
+      const elapsed = Math.round(performance.now() - startTime); // milliseconds
       setElapsedTime(elapsed);
       setPhase("done");
     }
@@ -98,7 +99,7 @@ export default function TrailMaking() {
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {(pb.best / 1000).toFixed(1)}s</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best.toFixed(1)}s</p>}
         </div>
 
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">

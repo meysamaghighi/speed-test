@@ -121,7 +121,7 @@ export default function WordAssociationTest() {
 
   const score = submittedWords.length;
   const isFinished = phase === "result";
-  const pb = usePersonalBest("pb-word-fluency", "higher", isFinished ? score : null);
+  const pb = usePersonalBest("pb-word-association", "higher", isFinished ? score : null);
 
   const startTest = useCallback(() => {
     // Pick a random category

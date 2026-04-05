@@ -13,7 +13,8 @@ export default function PatternSpeedTest() {
   const [highestLevel, setHighestLevel] = useState(0);
 
   const isFinished = phase === "finished";
-  const pb = usePersonalBest("pb-pattern-speed", "higher", isFinished ? highestLevel : null);
+  // NOTE: This component is unused. Changed key to avoid conflict with RapidEstimationTest.
+  const pb = usePersonalBest("pb-pattern-speed-old", "higher", isFinished ? highestLevel : null);
 
   const generatePattern = useCallback((numCells: number) => {
     const cells = Array.from({ length: 9 }, (_, i) => i);
