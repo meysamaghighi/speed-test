@@ -154,7 +154,10 @@ export default function HandEye() {
     if (!target || !areaRef.current || phase !== "playing") return;
     e.preventDefault();
 
-    const touch = e.touches[0];
+    // Use changedTouches for touchend event
+    const touch = e.changedTouches[0] || e.touches[0];
+    if (!touch) return;
+
     const rect = areaRef.current.getBoundingClientRect();
     const touchX = touch.clientX - rect.left;
     const touchY = touch.clientY - rect.top;
@@ -261,7 +264,7 @@ export default function HandEye() {
       <div
         ref={areaRef}
         onClick={handleClick}
-        onTouchStart={handleTouch}
+        onTouchEnd={handleTouch}
         className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden cursor-crosshair"
       >
         {target && (
