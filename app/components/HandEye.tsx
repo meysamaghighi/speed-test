@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 interface Target {
@@ -13,50 +13,62 @@ interface Target {
 
 export default function HandEye() {
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
-  const [target, setTarget] = useState<Target | null>(null);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [level, setLevel] = useState(1);
   const areaRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<Target | null>(null);
   const rafRef = useRef<number | null>(null);
-  const startTime = useRef(0);
+  const scoreRef = useRef(0);
+  const levelRef = useRef(1);
 
   const pb = usePersonalBest("pb-hand-eye", "higher", phase === "done" ? score : null);
 
-  const spawnTarget = useCallback((currentLevel: number) => {
+  const spawnTarget = (currentLevel: number) => {
     if (!areaRef.current) return;
 
     const rect = areaRef.current.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return;
 
-    const size = Math.max(30, 60 - currentLevel * 3); // Gets smaller each level
-    const speed = 1 + currentLevel * 0.3; // Gets faster each level
+    const size = Math.max(24, 60 - currentLevel * 3); // Gets smaller each level, min 24px
+    const speed = 3 + (currentLevel - 1) * 0.5; // Starts at 3 px/frame, increases by 0.5 per level
     const angle = Math.random() * Math.PI * 2;
 
-    // Spawn at random position in pixels, not percentages
+    // Spawn at random position in pixels
     const x = size / 2 + Math.random() * (rect.width - size);
     const y = size / 2 + Math.random() * (rect.height - size);
 
-    setTarget({
+    targetRef.current = {
       x,
       y,
       size,
       vx: Math.cos(angle) * speed,
       vy: Math.sin(angle) * speed,
-    });
-  }, []);
+    };
+
+    // Update DOM directly
+    if (circleRef.current) {
+      circleRef.current.style.width = `${size}px`;
+      circleRef.current.style.height = `${size}px`;
+      circleRef.current.style.left = `${x - size / 2}px`;
+      circleRef.current.style.top = `${y - size / 2}px`;
+    }
+  };
 
   const startGame = () => {
+    scoreRef.current = 0;
+    levelRef.current = 1;
+    targetRef.current = null;
     setScore(0);
     setLevel(1);
     setTimeLeft(30);
     setPhase("playing");
-    startTime.current = performance.now();
   };
 
   // Spawn first target after the game area div renders
   useEffect(() => {
-    if (phase === "playing" && !target && areaRef.current) {
+    if (phase === "playing" && !targetRef.current && areaRef.current) {
       const trySpawn = () => {
         if (!areaRef.current) return;
         const rect = areaRef.current.getBoundingClientRect();
@@ -68,11 +80,12 @@ export default function HandEye() {
       };
       trySpawn();
     }
-  }, [phase, target, spawnTarget]);
+  }, [phase]);
 
-  const updateTarget = useCallback(() => {
-    if (phase !== "playing" || !target || !areaRef.current) return;
+  const updateTarget = () => {
+    if (phase !== "playing" || !targetRef.current || !areaRef.current || !circleRef.current) return;
 
+    const target = targetRef.current;
     const rect = areaRef.current.getBoundingClientRect();
     const maxX = rect.width;
     const maxY = rect.height;
@@ -92,10 +105,18 @@ export default function HandEye() {
       newY = Math.max(target.size / 2, Math.min(maxY - target.size / 2, newY));
     }
 
-    setTarget({ ...target, x: newX, y: newY, vx: newVx, vy: newVy });
+    // Update ref
+    target.x = newX;
+    target.y = newY;
+    target.vx = newVx;
+    target.vy = newVy;
+
+    // Update DOM directly
+    circleRef.current.style.left = `${newX - target.size / 2}px`;
+    circleRef.current.style.top = `${newY - target.size / 2}px`;
 
     rafRef.current = requestAnimationFrame(updateTarget);
-  }, [phase, target]);
+  };
 
   useEffect(() => {
     if (phase === "playing") {
@@ -104,7 +125,7 @@ export default function HandEye() {
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
       };
     }
-  }, [phase, updateTarget]);
+  }, [phase]);
 
   useEffect(() => {
     if (phase !== "playing") return;
@@ -124,61 +145,44 @@ export default function HandEye() {
     return () => clearInterval(interval);
   }, [phase]);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!target || !areaRef.current || phase !== "playing") return;
+  const handleHit = (clientX: number, clientY: number) => {
+    if (!targetRef.current || !areaRef.current) return;
 
     const rect = areaRef.current.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const clickY = e.clientY - rect.top;
+    const hitX = clientX - rect.left;
+    const hitY = clientY - rect.top;
 
-    const dx = clickX - target.x;
-    const dy = clickY - target.y;
+    const target = targetRef.current;
+    const dx = hitX - target.x;
+    const dy = hitY - target.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     if (distance <= target.size / 2) {
-      const newScore = score + 1;
+      scoreRef.current += 1;
+      const newScore = scoreRef.current;
       setScore(newScore);
 
-      // Level up every 5 catches
       if (newScore % 5 === 0) {
-        const newLevel = level + 1;
-        setLevel(newLevel);
-        spawnTarget(newLevel);
+        levelRef.current += 1;
+        setLevel(levelRef.current);
+        spawnTarget(levelRef.current);
       } else {
-        spawnTarget(level);
+        spawnTarget(levelRef.current);
       }
     }
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (phase !== "playing") return;
+    handleHit(e.clientX, e.clientY);
+  };
+
   const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!target || !areaRef.current || phase !== "playing") return;
+    if (phase !== "playing") return;
     e.preventDefault();
-
-    // Use changedTouches for touchend event
-    const touch = e.changedTouches[0] || e.touches[0];
+    const touch = e.touches[0];
     if (!touch) return;
-
-    const rect = areaRef.current.getBoundingClientRect();
-    const touchX = touch.clientX - rect.left;
-    const touchY = touch.clientY - rect.top;
-
-    const dx = touchX - target.x;
-    const dy = touchY - target.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance <= target.size / 2) {
-      const newScore = score + 1;
-      setScore(newScore);
-
-      // Level up every 5 catches
-      if (newScore % 5 === 0) {
-        const newLevel = level + 1;
-        setLevel(newLevel);
-        spawnTarget(newLevel);
-      } else {
-        spawnTarget(level);
-      }
-    }
+    handleHit(touch.clientX, touch.clientY);
   };
 
   const getRating = (catches: number) => {
@@ -264,17 +268,18 @@ export default function HandEye() {
       <div
         ref={areaRef}
         onClick={handleClick}
-        onTouchEnd={handleTouch}
+        onTouchStart={handleTouch}
         className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden cursor-crosshair"
       >
-        {target && (
+        {phase === "playing" && (
           <div
-            className="absolute rounded-full bg-orange-500 shadow-lg shadow-orange-500/30 transition-all"
+            ref={circleRef}
+            className="absolute rounded-full bg-orange-500 shadow-lg shadow-orange-500/30"
             style={{
-              width: `${target.size}px`,
-              height: `${target.size}px`,
-              left: `${target.x - target.size / 2}px`,
-              top: `${target.y - target.size / 2}px`,
+              width: "60px",
+              height: "60px",
+              left: "0px",
+              top: "0px",
             }}
           />
         )}
