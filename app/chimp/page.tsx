@@ -22,10 +22,9 @@ export default function ChimpPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">Chimp Test</h1>
+        <h1 className="text-4xl font-black text-white mb-3">Chimp Test: Are You Smarter Than a Chimpanzee?</h1>
         <p className="text-gray-400">
-          Numbers appear on a grid. Click them in order starting from 1. After you
-          click the first number, the rest disappear. How many can you remember?
+          Take the famous chimp memory test from Kyoto University. Numbers appear on a grid -- click them in order starting from 1. After you click the first number, the rest disappear. Can you beat the chimp like Ayumu? Most humans can&apos;t.
         </p>
       </div>
       <ChimpTest />
@@ -113,6 +112,30 @@ export default function ChimpPage() {
             Even with these strategies, reaching Ayumu&apos;s consistent 80%+ accuracy on 9-number trials is extremely rare for humans. If you can beat the chimp regularly, you have exceptional visual memory!
           </p>
         </div>
+
+        <h2 className="text-2xl font-bold text-white mt-8">Understanding Your Chimp Test Score</h2>
+        <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+          <p className="text-gray-300 mb-4">
+            How do you compare to other humans and chimps on the chimp memory test? Here&apos;s what different scores mean:
+          </p>
+          <div className="space-y-4 text-gray-300">
+            <div className="border-l-4 border-red-600 pl-4">
+              <strong className="text-white">4-5 numbers:</strong> Below average. Most first-time users start here. With practice, you can improve significantly.
+            </div>
+            <div className="border-l-4 border-yellow-600 pl-4">
+              <strong className="text-white">6-7 numbers:</strong> Average human performance. This is where most people plateau after a few tries. You&apos;re in the majority, but far from beating the chimp.
+            </div>
+            <div className="border-l-4 border-blue-600 pl-4">
+              <strong className="text-white">8 numbers:</strong> Above average. You have good visual memory and are approaching chimp-level performance. Only about 20% of humans reach this consistently.
+            </div>
+            <div className="border-l-4 border-green-600 pl-4">
+              <strong className="text-white">9+ numbers:</strong> Exceptional. You&apos;ve beaten the chimp test at Ayumu&apos;s level. Less than 5% of humans can maintain this score. You have rare photographic memory abilities for spatial recall.
+            </div>
+          </div>
+          <p className="text-gray-300 mt-4">
+            Remember: Ayumu the chimpanzee scores 80%+ accuracy at the 9-number level consistently. Most humans struggle to reach 40% accuracy at that level, even with extensive practice.
+          </p>
+        </div>
       </section>
 
       <RelatedTests current="/chimp" />
@@ -162,6 +185,12 @@ export default function ChimpPage() {
             <h3 className="font-bold text-white mb-2">Who is Ayumu the chimpanzee?</h3>
             <p className="text-gray-300">
               Ayumu is a chimpanzee at Kyoto University&apos;s Primate Research Institute who became famous for his extraordinary memory abilities. Born in 2000, Ayumu has been participating in cognitive research since he was young and consistently beats humans at the chimp memory test.
+            </p>
+          </div>
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <h3 className="font-bold text-white mb-2">Where can I take the chimp test online?</h3>
+            <p className="text-gray-300">
+              You can take the chimp test online for free right here on BenchMyBrain. Our chimp memory test replicates the original Kyoto University experiment. Simply click Start above to begin the test. Numbers will appear on a grid, and after you click the first number, the rest disappear. Try to beat the chimp by clicking all positions in order from memory.
             </p>
           </div>
         </div>
@@ -228,6 +257,14 @@ export default function ChimpPage() {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "Ayumu is a chimpanzee at Kyoto University's Primate Research Institute who became famous for his extraordinary memory abilities. Born in 2000, Ayumu has been participating in cognitive research since he was young and consistently beats humans at the chimp memory test.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Where can I take the chimp test online?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "You can take the chimp test online for free on BenchMyBrain. The online chimp memory test replicates the original Kyoto University experiment. Numbers appear on a grid, and after you click the first number, the rest disappear. Try to beat the chimp by clicking all positions in order from memory.",
                 },
               },
             ],
