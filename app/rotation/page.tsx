@@ -3,23 +3,25 @@ import SpatialRotation from "../components/SpatialRotation";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Spatial Rotation Test - Free Mental Rotation & 3D Rotation Test Online",
+  title: "Mental Rotation Test Online - Free 3D Spatial Rotation Test",
   description:
-    "Free spatial rotation test online. Measure your mental rotation skills with this 3D rotation test. Compare rotated 3D shapes and measure your visual-spatial intelligence. Used by engineers and architects to test spatial reasoning.",
+    "Take the mental rotation test online for free. Compare rotated 3D shapes and measure your spatial intelligence. Used by engineers and architects. Test your mental rotation skills now.",
   keywords: [
-    "spatial rotation test",
+    "mental rotation test online",
     "mental rotation test",
+    "mental rotation tests",
     "3D rotation test",
-    "mental rotation",
-    "3d spatial rotation recognition game",
+    "spatial rotation test",
+    "brain rotation test",
     "spatial reasoning test",
+    "3d spatial rotation recognition game",
     "visual spatial test",
     "spatial intelligence test",
   ],
   openGraph: {
-    title: "Spatial Rotation Test - Free Mental Rotation & 3D Rotation Test",
+    title: "Mental Rotation Test Online - Free 3D Spatial Rotation Test",
     description:
-      "Free spatial rotation test online. Measure your mental rotation skills with this 3D rotation test. Compare rotated shapes and test your spatial reasoning.",
+      "Take the mental rotation test online for free. Compare rotated 3D shapes and measure your spatial intelligence. Used by engineers and architects.",
     type: "website",
   },
   alternates: {
@@ -32,19 +34,19 @@ export default function RotationPage() {
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-black text-white mb-3">
-          Spatial Rotation Test
+          Mental Rotation Test Online
         </h1>
         <p className="text-gray-400">
-          Compare two block shapes and decide if they are the SAME (rotated) or DIFFERENT. Test your mental rotation ability across 15 rounds.
+          Compare two block shapes and decide if they are the SAME (rotated) or DIFFERENT. Test your mental rotation ability across 15 rounds. Free 3D spatial rotation test online.
         </p>
       </div>
 
       <SpatialRotation />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-2xl font-bold text-white">What is a Spatial Rotation Test?</h2>
+        <h2 className="text-2xl font-bold text-white">What is a Mental Rotation Test Online?</h2>
         <p className="text-gray-300 leading-relaxed">
-          A spatial rotation test (also called a mental rotation test or 3D rotation test) measures your ability to mentally manipulate and rotate 3D objects in your mind. In this spatial rotation test, you compare two 3D block shapes shown from different angles and determine if they are the same shape (just rotated) or completely different shapes. This mental rotation test is a core measure of spatial intelligence and visual-spatial reasoning, widely used in cognitive research and professional assessments for STEM careers.
+          A mental rotation test online (also called a spatial rotation test or 3D rotation test) measures your ability to mentally manipulate and rotate 3D objects in your mind. In this mental rotation test online, you compare two 3D block shapes shown from different angles and determine if they are the same shape (just rotated) or completely different shapes. Mental rotation tests are a core measure of spatial intelligence and visual-spatial reasoning, widely used in cognitive research and professional assessments for STEM careers. Taking a mental rotation test online lets you practice this skill from anywhere.
         </p>
 
         <h2 className="text-2xl font-bold text-white mt-8">What is Mental Rotation?</h2>
@@ -135,8 +137,8 @@ export default function RotationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Spatial Rotation Test",
-            description: "Free online mental rotation test. Measure your spatial reasoning and visual-spatial intelligence.",
+            name: "Mental Rotation Test Online",
+            description: "Free mental rotation test online. Measure your spatial reasoning and visual-spatial intelligence with this 3D rotation test.",
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
