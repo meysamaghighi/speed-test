@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 interface Cell {
@@ -13,6 +14,10 @@ interface Cell {
 }
 
 export default function ChimpTest() {
+  const searchParams = useSearchParams();
+  const rawScore = searchParams?.get("score");
+  const challengerScore = rawScore !== null && rawScore !== undefined && rawScore !== "" ? Number(rawScore) : null;
+
   const [phase, setPhase] = useState<"ready" | "memorize" | "play" | "correct" | "wrong">("ready");
   const [level, setLevel] = useState(4);
   const pb = usePersonalBest("pb-chimp", "higher", phase === "wrong" ? level - 1 : null);
@@ -109,9 +114,34 @@ export default function ChimpTest() {
     return { label: "Keep Practicing", color: "text-orange-400" };
   };
 
+  const getShareUrl = (score: number) => {
+    if (typeof window === "undefined") return "";
+    return `${window.location.origin}/chimp?score=${score}`;
+  };
+
+  const handleShare = (score: number) => {
+    const url = getShareUrl(score);
+    const text = `I remembered ${score} numbers on the Chimp Test — can you beat me?`;
+    if (navigator.share) {
+      navigator.share({ title: "Chimp Memory Test", text, url }).catch(() => {});
+    } else {
+      navigator.clipboard
+        .writeText(`${text} ${url}`)
+        .then(() => alert("Link copied!"))
+        .catch(() => {});
+    }
+  };
+
   if (phase === "ready") {
     return (
       <div className="text-center">
+        {challengerScore !== null && (
+          <div className="mb-4 bg-orange-950/40 border border-orange-800 rounded-xl p-4">
+            <p className="text-orange-300 text-sm font-bold">
+              Challenger scored {challengerScore} numbers — can you beat them?
+            </p>
+          </div>
+        )}
         <button
           onClick={startGame}
           className="px-8 py-4 bg-orange-600 text-white font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
@@ -153,6 +183,22 @@ export default function ChimpTest() {
   if (phase === "wrong") {
     const score = level - 1;
     const rating = getRating(score);
+    const ayumuScore = 9;
+    const vsAyumu =
+      score >= ayumuScore
+        ? "You beat Ayumu!"
+        : score >= ayumuScore - 1
+        ? "Almost chimp level"
+        : `Ayumu scores ${ayumuScore}`;
+    const vsChallenger =
+      challengerScore !== null
+        ? score > challengerScore
+          ? `You beat the challenger (${challengerScore})!`
+          : score === challengerScore
+          ? `Tied with challenger (${challengerScore})`
+          : `Challenger scored ${challengerScore} — try again!`
+        : null;
+
     return (
       <div className="text-center space-y-6">
         <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
@@ -162,8 +208,14 @@ export default function ChimpTest() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          <p className="text-gray-500 text-sm mt-1">{vsAyumu}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
           {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
+          {vsChallenger && (
+            <p className="text-orange-300 text-sm font-bold mt-3 border-t border-gray-800 pt-3">
+              {vsChallenger}
+            </p>
+          )}
         </div>
 
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
@@ -184,14 +236,7 @@ export default function ChimpTest() {
             Try Again
           </button>
           <button
-            onClick={() => {
-              const t = `Chimp Test: I remembered ${score} numbers! Can you beat me?`;
-              if (navigator.share) {
-                navigator.share({ text: t }).catch(() => {});
-              } else {
-                navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
-              }
-            }}
+            onClick={() => handleShare(score)}
             className="px-6 py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors"
           >
             Share Score
