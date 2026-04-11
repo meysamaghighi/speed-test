@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 };
 
 const navLinks = [
+  { href: "/daily", label: "🔥 Daily" },
   { href: "/reaction", label: "Reaction" },
   { href: "/typing", label: "Typing" },
   { href: "/memory", label: "Memory" },
