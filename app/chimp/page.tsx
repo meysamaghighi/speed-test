@@ -176,6 +176,38 @@ export default function ChimpPage() {
               Scores of 4–5 numbers are typical for first-time players. Most people plateau at 6–7 with practice. Reaching 8 is above average; 9+ means you are performing at Ayumu&apos;s level — fewer than 5% of humans get there consistently. Ayumu himself averaged 80%+ accuracy at 9 numbers; most humans average under 40% at that difficulty.
             </p>
           </div>
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <h3 className="font-bold text-white mb-2">Is this the official &quot;are you smarter than a chimpanzee&quot; test?</h3>
+            <p className="text-gray-300">
+              This is a faithful free recreation of the Kyoto University chimpanzee memory test made famous by Ayumu and researcher Tetsuro Matsuzawa. The original test is not publicly available online — it was run on touchscreen hardware in a controlled lab setting. This version replicates the core mechanic: numbers flash briefly on a grid, you tap the first one, the rest vanish, and you must recall all positions in order. The difficulty scaling (starting at 4 numbers, increasing as you succeed) mirrors the original protocol.
+            </p>
+          </div>
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <h3 className="font-bold text-white mb-2">Are you smarter than a chimpanzee overall?</h3>
+            <p className="text-gray-300">
+              Yes — in almost every meaningful cognitive domain. Humans vastly outperform chimpanzees in language, abstract reasoning, planning, tool-making, mathematics, and social cognition. Chimps have one narrow advantage: photographic short-term memory for visual-spatial positions. This specific ability — snapshotting a grid of numbers in milliseconds — is the only domain where chimps consistently beat adult humans in controlled studies. So the honest answer is: you are smarter than a chimpanzee, but you probably cannot beat a chimpanzee at this particular test.
+            </p>
+          </div>
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <h3 className="font-bold text-white mb-2">Human vs chimpanzee: how do the scores actually compare?</h3>
+            <div className="overflow-x-auto mt-2">
+              <table className="w-full text-sm text-gray-300">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-2 pr-4 font-semibold text-white">Metric</th>
+                    <th className="text-left py-2 pr-4 font-semibold text-orange-400">Ayumu (chimp)</th>
+                    <th className="text-left py-2 font-semibold text-blue-400">Average human</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-800">
+                  <tr><td className="py-2 pr-4">Numbers recalled (consistent)</td><td className="py-2 pr-4 text-orange-400">9</td><td className="py-2 text-blue-400">6–7</td></tr>
+                  <tr><td className="py-2 pr-4">Accuracy at 9 numbers</td><td className="py-2 pr-4 text-orange-400">~80%</td><td className="py-2 text-blue-400">~40%</td></tr>
+                  <tr><td className="py-2 pr-4">Flash duration mastered</td><td className="py-2 pr-4 text-orange-400">210 ms</td><td className="py-2 text-blue-400">500+ ms</td></tr>
+                  <tr><td className="py-2 pr-4">Improvement with practice</td><td className="py-2 pr-4 text-orange-400">Minimal (already maxed)</td><td className="py-2 text-blue-400">20–30% possible</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -216,6 +248,22 @@ export default function ChimpPage() {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "Scores of 4–5 numbers are typical for first-time players. Most people plateau at 6–7 with practice. Reaching 8 is above average; 9+ means you are performing at Ayumu's level — fewer than 5% of humans get there consistently.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is this the official are you smarter than a chimpanzee test?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "This is a faithful free recreation of the Kyoto University chimpanzee memory test made famous by Ayumu. The original test ran on lab hardware and is not publicly available. This version replicates the core mechanic: numbers flash briefly on a grid, you tap the first, the rest vanish, and you recall all positions in order.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Are you smarter than a chimpanzee?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes — in almost every meaningful cognitive domain. Humans vastly outperform chimpanzees in language, abstract reasoning, planning, and mathematics. Chimps have one narrow advantage: photographic short-term memory for visual-spatial positions. You are smarter than a chimpanzee overall, but you probably cannot beat a chimpanzee at this specific memory test.",
                 },
               },
             ],
