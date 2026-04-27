@@ -31,6 +31,76 @@ export const metadata: Metadata = {
   },
 };
 
+type Faculty = "reflex" | "memory" | "logic" | "attention" | "verbal" | "spatial";
+
+const FACULTY_ORDER: Faculty[] = ["reflex", "memory", "logic", "attention", "verbal", "spatial"];
+
+const FACULTY_LABEL: Record<Faculty, string> = {
+  reflex: "Reflex",
+  memory: "Memory",
+  logic: "Logic",
+  attention: "Attention",
+  verbal: "Verbal",
+  spatial: "Spatial",
+};
+
+const FACULTY_BLURB: Record<Faculty, string> = {
+  reflex: "Speed of motor and perceptual response",
+  memory: "Encoding, holding and recalling information",
+  logic: "Reasoning, math and pattern inference",
+  attention: "Focus, impulse control and divided attention",
+  verbal: "Word recognition, reading and language",
+  spatial: "Mental rotation and visuospatial reasoning",
+};
+
+const FACULTY_OF: Record<string, Faculty> = {
+  "/reaction": "reflex",
+  "/typing": "reflex",
+  "/aim": "reflex",
+  "/click-speed": "reflex",
+  "/hand-eye": "reflex",
+  "/rhythm": "reflex",
+
+  "/chimp": "memory",
+  "/memory": "memory",
+  "/visual-memory": "memory",
+  "/sequence": "memory",
+  "/reverse-memory": "memory",
+  "/digit-span": "memory",
+  "/face-memory": "memory",
+  "/audio-memory": "memory",
+  "/color-memory": "memory",
+  "/n-back": "memory",
+  "/number-speed": "memory",
+  "/math-memory": "memory",
+
+  "/math": "logic",
+  "/pattern": "logic",
+  "/pattern-speed": "logic",
+  "/number-comparison": "logic",
+  "/estimation": "logic",
+
+  "/stroop": "attention",
+  "/peripheral": "attention",
+  "/peripheral-test": "attention",
+  "/color-match": "attention",
+  "/focus-timer": "attention",
+  "/trail-making": "attention",
+  "/go-no-go": "attention",
+  "/visual-search": "attention",
+  "/dual-task": "attention",
+  "/change-detection": "attention",
+  "/emotion": "attention",
+
+  "/verbal": "verbal",
+  "/word-speed": "verbal",
+  "/word-association": "verbal",
+  "/reading": "verbal",
+
+  "/rotation": "spatial",
+  "/color-blind": "spatial",
+};
+
 const tests = [
   {
     href: "/chimp",
@@ -716,28 +786,48 @@ export default function Home() {
         </div>
       </Link>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-        {tests.map((test) => (
-          <Link
-            key={test.href}
-            href={test.href}
-            className="group relative overflow-hidden rounded-xl bg-paper-2 border border-line hover:border-ink-3 transition-all"
-          >
-            <div
-              className={`h-16 bg-gradient-to-br ${test.color} opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center`}
-            >
-              {test.icon}
-            </div>
-            <div className="p-3">
-              <h2 className="text-sm sm:text-base font-bold text-ink mb-1">
-                {test.title}
+      {FACULTY_ORDER.map((faculty) => {
+        const facultyTests = tests.filter((t) => FACULTY_OF[t.href] === faculty);
+        if (facultyTests.length === 0) return null;
+        return (
+          <section key={faculty} className="mb-8">
+            <div className="flex items-baseline justify-between mb-3">
+              <h2
+                className="font-display text-xl text-ink"
+                style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
+              >
+                {FACULTY_LABEL[faculty]}
+                <span className="ml-2 text-sm font-normal text-ink-3">
+                  ({facultyTests.length})
+                </span>
               </h2>
-              <p className="text-xs text-ink-2 mb-1 hidden sm:block">{test.desc}</p>
-              <p className="text-xs text-ink-3 hidden sm:block">{test.avg}</p>
+              <p className="text-xs text-ink-3 hidden sm:block">{FACULTY_BLURB[faculty]}</p>
             </div>
-          </Link>
-        ))}
-      </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {facultyTests.map((test) => (
+                <Link
+                  key={test.href}
+                  href={test.href}
+                  className="group relative overflow-hidden rounded-xl bg-paper-2 border border-line hover:border-ink-3 transition-all"
+                >
+                  <div
+                    className={`h-16 bg-gradient-to-br ${test.color} opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center`}
+                  >
+                    {test.icon}
+                  </div>
+                  <div className="p-3">
+                    <h2 className="text-sm sm:text-base font-bold text-ink mb-1">
+                      {test.title}
+                    </h2>
+                    <p className="text-xs text-ink-2 mb-1 hidden sm:block">{test.desc}</p>
+                    <p className="text-xs text-ink-3 hidden sm:block">{test.avg}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        );
+      })}
 
       <section className="mt-16">
         <h2
