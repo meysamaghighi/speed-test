@@ -14,7 +14,6 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
@@ -26,7 +25,6 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
     return () => document.removeEventListener("mousedown", handler);
   }, [open]);
 
-  // Close on route change
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
@@ -35,7 +33,7 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
     <div ref={menuRef} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="text-gray-400 hover:text-white p-1 transition-colors"
+        className="text-ink-2 hover:text-ink p-1 transition-colors"
         aria-label="Toggle menu"
       >
         {open ? (
@@ -50,7 +48,7 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-64 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl overflow-hidden z-50">
+        <div className="absolute right-0 top-full mt-2 w-64 bg-paper border border-line rounded-xl shadow-2xl overflow-hidden z-50">
           <div className="grid grid-cols-2 p-2 gap-1">
             {links.map((link) => (
               <Link
@@ -58,8 +56,8 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
                 href={link.href}
                 className={`px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                   pathname.startsWith(link.href)
-                    ? "text-white bg-gray-800"
-                    : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                    ? "text-ink bg-paper-2"
+                    : "text-ink-2 hover:bg-paper-2 hover:text-ink"
                 }`}
               >
                 {link.label}

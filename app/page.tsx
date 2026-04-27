@@ -649,55 +649,68 @@ export default function Home() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-8 pb-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-5xl font-black text-white mb-4">
-          Test Your Brain
+        <p className="font-mono text-xs uppercase tracking-wider text-ink-3 mb-3">
+          Daily Challenge
+        </p>
+        <h1
+          className="font-display text-4xl md:text-6xl text-ink mb-4"
+          style={{ fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 0.95 }}
+        >
+          Test your brain.
         </h1>
-        <p className="text-base text-gray-400 max-w-lg mx-auto">
+        <p className="text-base text-ink-2 max-w-lg mx-auto">
           40 free online tests for reaction time, typing speed, memory, cognitive function, and
           more. No sign-up required.
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3 mb-8 text-xs text-gray-500">
-        <span>Also try:</span>
-        <a href="https://playmini.fun" className="text-purple-400 hover:text-purple-300 transition-colors">PlayMini - Browser Games</a>
-        <span className="text-gray-700">|</span>
-        <a href="https://doodlelab.fun" className="text-pink-400 hover:text-pink-300 transition-colors">DoodleLab - Drawing Games</a>
-        <span className="text-gray-700">|</span>
-        <a href="https://cashcalcs.com" className="text-green-400 hover:text-green-300 transition-colors">CashCalcs - Financial Tools</a>
-      </div>
-
       {/* Daily Challenge CTA */}
       <Link
         href="/daily"
-        className="block mb-4 group relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 p-4 hover:from-violet-500 hover:to-indigo-500 transition-all"
+        className="block mb-4 group relative overflow-hidden rounded-2xl border border-line p-4 hover:bg-paper-2 transition-all"
+        style={{ background: "color-mix(in oklab, var(--accent) 8%, var(--paper))" }}
       >
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-lg">🔥</span>
-              <h2 className="text-lg font-black text-white">Daily Challenge</h2>
-              <span className="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">NEW</span>
+              <h2
+                className="font-display text-lg text-ink"
+                style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
+              >
+                Daily Challenge
+              </h2>
+              <span
+                className="text-xs font-bold px-2 py-0.5 rounded-full text-paper"
+                style={{ background: "var(--accent)" }}
+              >
+                NEW
+              </span>
             </div>
-            <p className="text-indigo-200 text-sm">5 tests per day · Same for everyone · Build your streak</p>
+            <p className="text-ink-2 text-sm">5 tests per day · Same for everyone · Build your streak</p>
           </div>
-          <div className="text-white text-2xl group-hover:translate-x-1 transition-transform">→</div>
+          <div className="text-ink text-2xl group-hover:translate-x-1 transition-transform">→</div>
         </div>
       </Link>
 
       {/* Brain Score CTA */}
       <Link
         href="/brain-score"
-        className="block mb-8 group relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-4 hover:from-indigo-500 hover:to-purple-500 transition-all"
+        className="block mb-8 group relative overflow-hidden rounded-2xl border border-line p-4 hover:bg-paper-2 transition-all bg-paper"
       >
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-black text-white mb-1">Brain Score</h2>
-            <p className="text-indigo-200 text-sm">
+            <h2
+              className="font-display text-lg text-ink mb-1"
+              style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
+            >
+              Brain Score
+            </h2>
+            <p className="text-ink-2 text-sm">
               Take all 40 tests and get your overall cognitive score out of 1000. How smart are you?
             </p>
           </div>
-          <div className="text-3xl font-black text-white/20 group-hover:text-white/30 transition-colors">
+          <div className="text-3xl font-black text-ink-3 group-hover:text-ink-2 transition-colors">
             ?
           </div>
         </div>
@@ -708,7 +721,7 @@ export default function Home() {
           <Link
             key={test.href}
             href={test.href}
-            className="group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-700 transition-all"
+            className="group relative overflow-hidden rounded-xl bg-paper-2 border border-line hover:border-ink-3 transition-all"
           >
             <div
               className={`h-16 bg-gradient-to-br ${test.color} opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center`}
@@ -716,39 +729,42 @@ export default function Home() {
               {test.icon}
             </div>
             <div className="p-3">
-              <h2 className="text-sm sm:text-base font-bold text-white mb-1">
+              <h2 className="text-sm sm:text-base font-bold text-ink mb-1">
                 {test.title}
               </h2>
-              <p className="text-xs text-gray-400 mb-1 hidden sm:block">{test.desc}</p>
-              <p className="text-xs text-gray-500 hidden sm:block">{test.avg}</p>
+              <p className="text-xs text-ink-2 mb-1 hidden sm:block">{test.desc}</p>
+              <p className="text-xs text-ink-3 hidden sm:block">{test.avg}</p>
             </div>
           </Link>
         ))}
       </div>
 
       <section className="mt-16">
-        <h2 className="text-2xl font-bold text-white mb-6 text-center">
+        <h2
+          className="font-display text-2xl text-ink mb-6 text-center"
+          style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
+        >
           How It Works
         </h2>
         <div className="grid md:grid-cols-3 gap-6 text-center">
           <div>
-            <div className="text-3xl mb-2">1</div>
-            <h3 className="font-bold text-white mb-1">Choose a Test</h3>
-            <p className="text-sm text-gray-400">
+            <div className="text-3xl mb-2 text-ink">1</div>
+            <h3 className="font-bold text-ink mb-1">Choose a Test</h3>
+            <p className="text-sm text-ink-2">
               Pick from 40 brain and reflex tests.
             </p>
           </div>
           <div>
-            <div className="text-3xl mb-2">2</div>
-            <h3 className="font-bold text-white mb-1">Take the Test</h3>
-            <p className="text-sm text-gray-400">
+            <div className="text-3xl mb-2 text-ink">2</div>
+            <h3 className="font-bold text-ink mb-1">Take the Test</h3>
+            <p className="text-sm text-ink-2">
               Follow the instructions and try your best. Each test takes under 60 seconds.
             </p>
           </div>
           <div>
-            <div className="text-3xl mb-2">3</div>
-            <h3 className="font-bold text-white mb-1">Share Your Score</h3>
-            <p className="text-sm text-gray-400">
+            <div className="text-3xl mb-2 text-ink">3</div>
+            <h3 className="font-bold text-ink mb-1">Share Your Score</h3>
+            <p className="text-sm text-ink-2">
               See how you compare to averages and share with friends.
             </p>
           </div>
