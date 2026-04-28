@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import DigitSpanTest from "../components/DigitSpanTest";
+import DigitSpanPlay from "./DigitSpanPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -30,13 +30,8 @@ export default function DigitSpanPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Digit Span Test</h1>
-        <p className="text-ink-2">
-          Digits flash one at a time. Type them back in order (forward or backward).
-        </p>
       </div>
-
-      <DigitSpanTest />
+        <DigitSpanPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">How It Works</h2>

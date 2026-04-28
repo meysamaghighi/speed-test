@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ColorBlindTest from "../components/ColorBlindTest";
+import ColorBlindPlay from "./ColorBlindPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,16 +29,8 @@ export default function ColorBlindPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Color Blind Test
-        </h1>
-        <p className="text-ink-2">
-          12 Ishihara-style plates. Identify the number hidden in each circle of
-          colored dots. Takes about 2 minutes.
-        </p>
       </div>
-
-      <ColorBlindTest />
+        <ColorBlindPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Color Blindness</h2>

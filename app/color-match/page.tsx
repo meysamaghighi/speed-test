@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ColorMatchTest from "../components/ColorMatchTest";
+import ColorMatchPlay from "./ColorMatchPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -30,15 +30,8 @@ export default function ColorMatchPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Odd Color Out
-        </h1>
-        <p className="text-ink-2">
-          Find the tile that is a different shade. Gets harder as you level up.
-        </p>
       </div>
-
-      <ColorMatchTest />
+        <ColorMatchPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Color Perception</h2>

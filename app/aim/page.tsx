@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AimTrainer from "../components/AimTrainer";
+import AimPlay from "./AimPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -22,13 +22,8 @@ export default function AimPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Aim Trainer</h1>
-        <p className="text-ink-2">
-          Click 30 targets as fast and accurately as you can. We measure your
-          average reaction time per target.
-        </p>
       </div>
-      <AimTrainer />
+        <AimPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">Improve Your Aim</h2>
         <div className="grid md:grid-cols-2 gap-4">

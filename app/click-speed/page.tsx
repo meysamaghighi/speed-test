@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ClickSpeed from "../components/ClickSpeed";
+import ClickSpeedPlay from "./ClickSpeedPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -22,12 +22,8 @@ export default function ClickSpeedPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Click Speed Test</h1>
-        <p className="text-ink-2">
-          Click as many times as you can in 5 seconds. Measures your CPS (clicks per second).
-        </p>
       </div>
-      <ClickSpeed />
+        <ClickSpeedPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">Click Speed Tips</h2>
         <div className="grid md:grid-cols-2 gap-4">

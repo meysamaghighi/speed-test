@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import NumberMemory from "../components/NumberMemory";
+import MemoryPlay from "./MemoryPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,16 +29,8 @@ export default function MemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Number Memory Test
-        </h1>
-        <p className="text-ink-2">
-          A number will flash on screen. Memorize it, then type it back. Each
-          level adds one more digit. How far can you go?
-        </p>
       </div>
-
-      <NumberMemory />
+        <MemoryPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Number Memory</h2>

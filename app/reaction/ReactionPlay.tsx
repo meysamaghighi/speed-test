@@ -37,8 +37,10 @@ export default function ReactionPlay() {
       // contributes only the new chrome (back link, how-to, fullscreen).
       status="idle"
     >
-      <div className="px-4 py-6 max-w-2xl mx-auto bg-gray-950 text-white">
-        <ReactionTest onComplete={handleComplete} />
+      <div className="flex-1 flex items-center justify-center min-h-[480px] bg-gray-950 text-white">
+        <div className="w-full max-w-2xl px-4 py-6">
+          <ReactionTest onComplete={handleComplete} />
+        </div>
       </div>
     </TestShell>
   );

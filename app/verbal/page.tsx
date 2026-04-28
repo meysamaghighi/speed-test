@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import VerbalMemory from "../components/VerbalMemory";
+import VerbalPlay from "./VerbalPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -20,13 +20,8 @@ export default function VerbalPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Verbal Memory</h1>
-        <p className="text-ink-2">
-          Words appear one at a time. If you have seen the word before in this
-          round, click SEEN. If it is new, click NEW. You have 3 lives.
-        </p>
       </div>
-      <VerbalMemory />
+        <VerbalPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Verbal Memory</h2>
         <div className="grid md:grid-cols-2 gap-4">

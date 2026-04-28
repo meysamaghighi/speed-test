@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import SpatialRotation from "../components/SpatialRotation";
+import RotationPlay from "./RotationPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -33,15 +33,8 @@ export default function RotationPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Mental Rotation Test Online
-        </h1>
-        <p className="text-ink-2">
-          Compare two block shapes and decide if they are the SAME (rotated) or DIFFERENT. Test your mental rotation ability across 15 rounds. Free 3D spatial rotation test online.
-        </p>
       </div>
-
-      <SpatialRotation />
+        <RotationPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-2xl font-bold text-ink">What is a Mental Rotation Test Online?</h2>

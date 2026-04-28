@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import RhythmTest from "../components/RhythmTest";
+import RhythmPlay from "./RhythmPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,16 +29,8 @@ export default function RhythmPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Rhythm Timing Test
-        </h1>
-        <p className="text-ink-2">
-          Listen to the beat pattern, then tap it back as accurately as you can.
-          Each level adds one beat and tightens the timing tolerance.
-        </p>
       </div>
-
-      <RhythmTest />
+        <RhythmPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Rhythm & Timing</h2>

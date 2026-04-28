@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TypingTest from "../components/TypingTest";
+import TypingPlay from "./TypingPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -30,16 +30,8 @@ export default function TypingPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Typing Speed Test
-        </h1>
-        <p className="text-ink-2">
-          Type the paragraph as fast and accurately as you can. Your speed is
-          measured in words per minute (WPM).
-        </p>
       </div>
-
-      <TypingTest />
+        <TypingPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">Typing Speed Guide</h2>

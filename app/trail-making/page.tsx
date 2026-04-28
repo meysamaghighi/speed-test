@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TrailMaking from "../components/TrailMaking";
+import TrailMakingPlay from "./TrailMakingPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -22,12 +22,8 @@ export default function TrailMakingPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Trail Making Test</h1>
-        <p className="text-ink-2">
-          Connect circles in alternating order: 1-A-2-B-3-C... as fast as you can. Tests executive function and cognitive flexibility.
-        </p>
       </div>
-      <TrailMaking />
+        <TrailMakingPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Trail Making</h2>
         <div className="grid md:grid-cols-2 gap-4">

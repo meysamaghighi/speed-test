@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import ChimpTest from "../components/ChimpTest";
+import ChimpPlay from "./ChimpPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -23,17 +23,13 @@ export default function ChimpPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Chimp Memory Test</h1>
-        <p className="text-ink-2 mb-6">
-          In 2007, researchers at Primate Research Institute, Kyoto discovered that a chimpanzee named Ayumu could memorize and tap sequences of numbers faster and more accurately than any adult human tested. This finding challenged long-held assumptions about human cognitive superiority. Numbers appear on a grid — click them in order starting from 1. After you click the first number, the rest disappear.
-        </p>
         <div className="bg-orange-950/40 border border-orange-800 rounded-xl p-4 mb-4">
           <p className="text-orange-300 font-bold text-lg">Can you beat a chimp?</p>
           <p className="text-ink-2 text-sm mt-1">Ayumu consistently recalled 9 numbers. Most humans max out at 5–7.</p>
         </div>
       </div>
       <Suspense>
-        <ChimpTest />
+        <ChimpPlay />
       </Suspense>
       <section className="mt-12 space-y-6">
         <h2 className="text-2xl font-bold text-ink">Are You Smarter Than a Chimpanzee?</h2>

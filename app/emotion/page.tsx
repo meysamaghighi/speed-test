@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import EmotionTest from "../components/EmotionTest";
+import EmotionPlay from "./EmotionPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,15 +29,8 @@ export default function EmotionPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Emotion Recognition Test
-        </h1>
-        <p className="text-ink-2">
-          Emoji faces appear. Identify the emotion as quickly and accurately as possible.
-        </p>
       </div>
-
-      <EmotionTest />
+        <EmotionPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">How It Works</h2>

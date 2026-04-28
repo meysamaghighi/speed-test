@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ReadingSpeed from "../components/ReadingSpeed";
+import ReadingPlay from "./ReadingPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,16 +29,8 @@ export default function ReadingPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Reading Speed Test
-        </h1>
-        <p className="text-ink-2">
-          Read a passage at your normal pace, then answer comprehension
-          questions. Speed without understanding doesn't count!
-        </p>
       </div>
-
-      <ReadingSpeed />
+        <ReadingPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Reading Speed</h2>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import VisualMemory from "../components/VisualMemory";
+import VisualMemoryPlay from "./VisualMemoryPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -22,13 +22,8 @@ export default function VisualMemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Visual Memory Test</h1>
-        <p className="text-ink-2">
-          A pattern of white tiles will flash on the grid. Memorize them, then
-          click the correct tiles. Each level adds more tiles. You have 3 lives.
-        </p>
       </div>
-      <VisualMemory />
+        <VisualMemoryPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Visual Memory</h2>
         <div className="grid md:grid-cols-2 gap-4">

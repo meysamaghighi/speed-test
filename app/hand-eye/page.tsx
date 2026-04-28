@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HandEye from "../components/HandEye";
+import HandEyePlay from "./HandEyePlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -22,12 +22,8 @@ export default function HandEyePage() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Hand-Eye Coordination</h1>
-        <p className="text-ink-2">
-          Click the moving target as many times as you can in 30 seconds. It gets smaller and faster!
-        </p>
       </div>
-      <HandEye />
+        <HandEyePlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Hand-Eye Coordination</h2>
         <div className="grid md:grid-cols-2 gap-4">

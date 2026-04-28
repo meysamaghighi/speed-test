@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import DualTaskTest from "../components/DualTaskTest";
+import DualTaskPlay from "./DualTaskPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,16 +29,8 @@ export default function DualTaskPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Dual Task Test
-        </h1>
-        <p className="text-ink-2">
-          Track a moving red dot with your eyes while counting beeps.
-          Tests your ability to process visual and audio information simultaneously.
-        </p>
       </div>
-
-      <DualTaskTest />
+        <DualTaskPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Divided Attention</h2>

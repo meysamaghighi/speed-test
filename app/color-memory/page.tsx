@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ColorMemoryTest from "../components/ColorMemoryTest";
+import ColorMemoryPlay from "./ColorMemoryPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -28,15 +28,8 @@ export default function ColorMemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Color Memory Test
-        </h1>
-        <p className="text-ink-2">
-          Watch colored circles appear in sequence, then click them back in the same order.
-        </p>
       </div>
-
-      <ColorMemoryTest />
+        <ColorMemoryPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Color Memory</h2>

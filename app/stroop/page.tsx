@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ColorTest from "../components/ColorTest";
+import StroopPlay from "./StroopPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -20,15 +20,8 @@ export default function StroopPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Stroop Color Test</h1>
-        <p className="text-ink-2">
-          A color name appears in a different ink color. The twist: questions alternate between
-          <strong className="text-blue-400"> "What COLOR is the ink?"</strong> and
-          <strong className="text-emerald-400"> "What does the text SAY?"</strong>
-          <br />Switch between reading and identifying — harder than it sounds!
-        </p>
       </div>
-      <ColorTest />
+        <StroopPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">The Stroop Effect</h2>
         <div className="grid md:grid-cols-2 gap-4">

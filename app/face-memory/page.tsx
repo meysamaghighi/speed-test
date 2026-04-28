@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import FaceMemoryTest from "../components/FaceMemoryTest";
+import FaceMemoryPlay from "./FaceMemoryPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,15 +29,8 @@ export default function FaceMemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Face Memory Test
-        </h1>
-        <p className="text-ink-2">
-          Memorize the grid of faces, then identify which ones changed. Each level increases difficulty.
-        </p>
       </div>
-
-      <FaceMemoryTest />
+        <FaceMemoryPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">How It Works</h2>

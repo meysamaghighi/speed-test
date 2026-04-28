@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import NumberComparisonTest from "../components/NumberComparisonTest";
+import NumberComparisonPlay from "./NumberComparisonPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -28,15 +28,8 @@ export default function NumberComparisonPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Number Comparison Test
-        </h1>
-        <p className="text-ink-2">
-          Click the larger number as fast as you can. Tests numerical processing speed.
-        </p>
       </div>
-
-      <NumberComparisonTest />
+        <NumberComparisonPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Number Comparison</h2>

@@ -132,7 +132,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-emerald-600 text-ink font-bold rounded-xl hover:bg-emerald-700 transition-colors"
+            className="px-6 py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-colors"
           >
             Share Score
           </button>
@@ -150,7 +150,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
       ? "bg-orange-500"
       : phase === "result"
       ? "bg-blue-600"
-      : "bg-paper-2";
+      : "bg-gray-800";
 
   const message =
     phase === "waiting"
@@ -165,7 +165,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-ink-3 px-1">
+      <div className="flex justify-between text-sm text-gray-400 px-1">
         <span>Round {Math.min(round, totalRounds)} of {totalRounds}</span>
         {times.length > 0 && <span>Avg: {average}ms</span>}
       </div>
@@ -174,7 +174,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
         onClick={handleClick}
         className={`w-full h-64 md:h-80 rounded-2xl ${bgColor} transition-colors duration-100 flex items-center justify-center cursor-pointer select-none`}
       >
-        <span className="text-2xl md:text-3xl font-bold text-ink drop-shadow">
+        <span className="text-2xl md:text-3xl font-bold text-white drop-shadow">
           {message}
         </span>
       </button>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import GoNoGo from "../components/GoNoGo";
+import GoNoGoPlay from "./GoNoGoPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -22,12 +22,8 @@ export default function GoNoGoPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">Go/No-Go Test</h1>
-        <p className="text-ink-2">
-          Green circle = Click fast. Red circle = DON'T click. Tests reaction time AND impulse control.
-        </p>
       </div>
-      <GoNoGo />
+        <GoNoGoPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Go/No-Go</h2>
         <div className="grid md:grid-cols-2 gap-4">

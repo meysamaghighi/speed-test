@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import NumberSpeedTest from "../components/NumberSpeedTest";
+import NumberSpeedPlay from "./NumberSpeedPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,16 +29,8 @@ export default function NumberSpeedPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Number Speed Test
-        </h1>
-        <p className="text-ink-2">
-          Watch a sequence of numbers flash briefly, then type them back.
-          Measures your digit span.
-        </p>
       </div>
-
-      <NumberSpeedTest />
+        <NumberSpeedPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Digit Span</h2>

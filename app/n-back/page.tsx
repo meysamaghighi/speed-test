@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import NBack from "../components/NBack";
+import NBackPlay from "./NBackPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -22,12 +22,8 @@ export default function NBackPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">N-Back Test</h1>
-        <p className="text-ink-2">
-          See letters one at a time. Click "Match" if current letter = letter from N positions back. Levels up.
-        </p>
       </div>
-      <NBack />
+        <NBackPlay />
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About N-Back</h2>
         <div className="grid md:grid-cols-2 gap-4">

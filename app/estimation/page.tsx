@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import EstimationTest from "../components/EstimationTest";
+import EstimationPlay from "./EstimationPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,16 +29,8 @@ export default function EstimationPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Estimation Test
-        </h1>
-        <p className="text-ink-2">
-          Dots appear for 1 second. Estimate how many you saw.
-          10 rounds, from 5 to 85 dots. Tests your number sense.
-        </p>
       </div>
-
-      <EstimationTest />
+        <EstimationPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Number Sense</h2>

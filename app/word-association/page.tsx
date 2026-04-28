@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import WordAssociationTest from "../components/WordAssociationTest";
+import WordAssociationPlay from "./WordAssociationPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -29,15 +29,8 @@ export default function WordAssociationPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-ink mb-3">
-          Word Fluency Test
-        </h1>
-        <p className="text-ink-2">
-          Name as many words as you can in a category within 60 seconds. Tests verbal fluency and vocabulary.
-        </p>
       </div>
-
-      <WordAssociationTest />
+        <WordAssociationPlay />
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Word Fluency</h2>
