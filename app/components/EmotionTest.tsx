@@ -156,8 +156,8 @@ export default function EmotionTest() {
 
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Emotion Recognition Score</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Emotion Recognition Score</p>
           <p className="text-6xl font-black text-purple-400">{score}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
@@ -168,29 +168,29 @@ export default function EmotionTest() {
             </p>
           )}
           {pb.best !== null && !pb.isNewBest && (
-            <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>
+            <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>
           )}
         </div>
 
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
             <p className="text-2xl font-black text-green-400">{correctCount}/20</p>
-            <p className="text-xs text-gray-500">Correct</p>
+            <p className="text-xs text-ink-3">Correct</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
             <p className="text-2xl font-black text-blue-400">{accuracy.toFixed(0)}%</p>
-            <p className="text-xs text-gray-500">Accuracy</p>
+            <p className="text-xs text-ink-3">Accuracy</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
             <p className="text-2xl font-black text-cyan-400">{avgReactionTime.toFixed(0)}ms</p>
-            <p className="text-xs text-gray-500">Avg Time</p>
+            <p className="text-xs text-ink-3">Avg Time</p>
           </div>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">Scoring</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">Scoring</p>
           <p>Score = Accuracy % - time penalty</p>
-          <p className="text-xs mt-2 text-gray-500">
+          <p className="text-xs mt-2 text-ink-3">
             Fast & accurate = higher score. Over 1s reaction time reduces score.
           </p>
         </div>
@@ -198,7 +198,7 @@ export default function EmotionTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -214,7 +214,7 @@ export default function EmotionTest() {
                   .catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+            className="px-6 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
           >
             Share Score
           </button>
@@ -227,19 +227,19 @@ export default function EmotionTest() {
   if (phase === "waiting") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-4xl mb-4">😊</p>
-          <p className="text-gray-300 mb-4">
+          <p className="text-ink-2 mb-4">
             An emoji face will appear. Identify the emotion as quickly and accurately as possible.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-ink-3">
             20 rounds. Speed and accuracy both matter.
           </p>
         </div>
 
         <button
           onClick={startTest}
-          className="px-8 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors text-lg"
+          className="px-8 py-4 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors text-lg"
         >
           Start Test
         </button>
@@ -254,10 +254,10 @@ export default function EmotionTest() {
     return (
       <div className="space-y-6">
         <div className="text-center">
-          <p className="text-sm text-gray-500 mb-2">
+          <p className="text-sm text-ink-3 mb-2">
             Round {currentRound + 1}/{totalRounds}
           </p>
-          <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 mb-6">
+          <div className="bg-paper-2 rounded-2xl p-12 border border-line mb-6">
             <p className="text-9xl">{currentEmoji.emoji}</p>
           </div>
         </div>
@@ -267,7 +267,7 @@ export default function EmotionTest() {
             <button
               key={emotion}
               onClick={() => handleAnswer(emotion)}
-              className="px-4 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-purple-600 transition-colors"
+              className="px-4 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-purple-600 transition-colors"
             >
               {EMOTION_LABELS[emotion]}
             </button>

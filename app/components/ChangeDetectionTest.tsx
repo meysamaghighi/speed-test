@@ -99,16 +99,16 @@ export default function ChangeDetectionTest() {
   if (phase === "finished") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Highest Level + Avg Response Time</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Highest Level + Avg Response Time</p>
           <p className="text-5xl font-black text-pink-400">Level {level}</p>
-          <p className="text-2xl text-gray-400 mt-2">{avgResponseTime}ms avg</p>
+          <p className="text-2xl text-ink-2 mt-2">{avgResponseTime}ms avg</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">Change Detection Rating</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">Change Detection Rating</p>
           <div className="grid grid-cols-2 gap-2">
             <span>Level 1-2: Beginner</span>
             <span>Level 3-4: Average</span>
@@ -120,7 +120,7 @@ export default function ChangeDetectionTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -133,7 +133,7 @@ export default function ChangeDetectionTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-pink-600 text-white font-bold rounded-xl hover:bg-pink-700 transition-colors"
+            className="px-6 py-3 bg-pink-600 text-ink font-bold rounded-xl hover:bg-pink-700 transition-colors"
           >
             Share Score
           </button>
@@ -146,9 +146,9 @@ export default function ChangeDetectionTest() {
   if (phase === "ready") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-left text-gray-400 space-y-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-left text-ink-2 space-y-2">
             <p>• A grid of colored circles will appear</p>
             <p>• It briefly disappears, then reappears</p>
             <p>• ONE color has changed</p>
@@ -159,7 +159,7 @@ export default function ChangeDetectionTest() {
         </div>
         <button
           onClick={startLevel}
-          className="px-8 py-4 bg-pink-600 text-white font-bold text-xl rounded-xl hover:bg-pink-700 transition-colors"
+          className="px-8 py-4 bg-pink-600 text-ink font-bold text-xl rounded-xl hover:bg-pink-700 transition-colors"
         >
           Start Test
         </button>
@@ -183,7 +183,7 @@ export default function ChangeDetectionTest() {
   // Game screen
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400 px-1">
+      <div className="flex justify-between text-sm text-ink-2 px-1">
         <span>Level {level} • {grid.size}x{grid.size} grid</span>
         <span className="text-red-400">❤️ x {lives}</span>
       </div>
@@ -191,13 +191,13 @@ export default function ChangeDetectionTest() {
       <div className={`rounded-2xl p-6 border transition-colors ${
         phase === "show1" ? "bg-blue-950/30 border-blue-800" :
         phase === "show2" ? "bg-pink-950/30 border-pink-800" :
-        "bg-gray-900 border-gray-800"
+        "bg-paper-2 border-line"
       }`}>
         {phase === "show1" && (
           <p className="text-center text-blue-400 font-bold text-lg mb-4">MEMORIZE THE COLORS</p>
         )}
         {phase === "blank" && (
-          <p className="text-center text-gray-400 mb-4">...</p>
+          <p className="text-center text-ink-2 mb-4">...</p>
         )}
         {phase === "show2" && (
           <p className="text-center text-pink-400 font-bold text-lg mb-4">WHAT CHANGED?</p>
@@ -210,7 +210,7 @@ export default function ChangeDetectionTest() {
 
         {phase === "blank" ? (
           <div className="flex items-center justify-center h-64">
-            <div className="text-6xl text-gray-700">...</div>
+            <div className="text-6xl text-ink-3">...</div>
           </div>
         ) : (
           <div

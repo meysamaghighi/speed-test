@@ -104,15 +104,15 @@ export default function FocusTimerTest() {
 
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Focus Score</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Focus Score</p>
           <p className="text-6xl font-black text-cyan-400">{score}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
-          <p className="text-sm text-gray-500 mt-1">Avg Error: {avgError.toFixed(1)}%</p>
+          <p className="text-sm text-ink-3 mt-1">Avg Error: {avgError.toFixed(1)}%</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>}
         </div>
 
         <div className="space-y-3">
@@ -120,11 +120,11 @@ export default function FocusTimerTest() {
             const diff = round.actualSeconds - round.targetSeconds;
             const diffSign = diff > 0 ? "+" : "";
             return (
-              <div key={idx} className="bg-gray-900 rounded-xl p-4 border border-gray-800">
+              <div key={idx} className="bg-paper-2 rounded-xl p-4 border border-line">
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="text-sm text-gray-500">Target: {round.targetSeconds}s</p>
-                    <p className="text-lg font-bold text-white">
+                    <p className="text-sm text-ink-3">Target: {round.targetSeconds}s</p>
+                    <p className="text-lg font-bold text-ink">
                       {round.actualSeconds}s
                       <span className={`text-sm ml-2 ${diff > 0 ? "text-orange-400" : diff < 0 ? "text-blue-400" : "text-green-400"}`}>
                         ({diffSign}{diff.toFixed(2)}s)
@@ -135,7 +135,7 @@ export default function FocusTimerTest() {
                     <p className={`text-2xl font-bold ${round.errorPercent < 5 ? "text-green-400" : round.errorPercent < 15 ? "text-yellow-400" : "text-orange-400"}`}>
                       {round.errorPercent.toFixed(1)}%
                     </p>
-                    <p className="text-xs text-gray-600">error</p>
+                    <p className="text-xs text-ink-3">error</p>
                   </div>
                 </div>
               </div>
@@ -143,16 +143,16 @@ export default function FocusTimerTest() {
           })}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">Scoring</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">Scoring</p>
           <p>Score = 100 - average error %</p>
-          <p className="text-xs mt-2 text-gray-500">Lower error = higher score (max 100)</p>
+          <p className="text-xs mt-2 text-ink-3">Lower error = higher score (max 100)</p>
         </div>
 
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -165,7 +165,7 @@ export default function FocusTimerTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors"
+            className="px-6 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors"
           >
             Share Score
           </button>
@@ -180,7 +180,7 @@ export default function FocusTimerTest() {
       <div className="flex items-center justify-center" style={{ minHeight: "400px" }}>
         <button
           onClick={stopTiming}
-          className="px-12 py-8 bg-cyan-600 text-white font-bold rounded-2xl hover:bg-cyan-700 transition-colors text-2xl"
+          className="px-12 py-8 bg-cyan-600 text-ink font-bold rounded-2xl hover:bg-cyan-700 transition-colors text-2xl"
         >
           STOP
         </button>
@@ -192,20 +192,20 @@ export default function FocusTimerTest() {
   if (phase === "instructions") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-sm text-gray-500 mb-2">Round {currentRound + 1} of {totalRounds}</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-sm text-ink-3 mb-2">Round {currentRound + 1} of {totalRounds}</p>
           <p className="text-6xl font-black text-cyan-400 mb-4">{currentTarget}s</p>
-          <p className="text-gray-300 mb-4">
+          <p className="text-ink-2 mb-4">
             Press START, then press STOP when you think exactly {currentTarget} seconds have passed.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-ink-3">
             No clock will be shown. Use your internal sense of time.
           </p>
         </div>
 
         <button
           onClick={startTiming}
-          className="px-8 py-4 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors text-lg"
+          className="px-8 py-4 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors text-lg"
         >
           START
         </button>
@@ -216,27 +216,27 @@ export default function FocusTimerTest() {
   // Waiting screen
   return (
     <div className="text-center space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line">
         <p className="text-4xl mb-4">⏱️</p>
-        <p className="text-gray-300 mb-4">
+        <p className="text-ink-2 mb-4">
           Test your internal clock. Estimate exact durations without looking at a timer.
         </p>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-ink-3 mb-4">
           You'll do 4 rounds with different target durations: 3s, 5s, 7s, and 10s.
         </p>
-        <div className="bg-gray-800 rounded-lg p-4 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How it works:</p>
+        <div className="bg-paper-2 rounded-lg p-4 text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How it works:</p>
           <p>1. See the target duration (e.g., 10 seconds)</p>
           <p>2. Press START</p>
           <p>3. Wait (screen goes dark, no clock visible)</p>
           <p>4. Press STOP when you think time is up</p>
-          <p className="text-xs text-gray-500 mt-2">Accuracy is measured as % error from target</p>
+          <p className="text-xs text-ink-3 mt-2">Accuracy is measured as % error from target</p>
         </div>
       </div>
 
       <button
         onClick={startTest}
-        className="px-8 py-4 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors text-lg"
+        className="px-8 py-4 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors text-lg"
       >
         Start Test
       </button>

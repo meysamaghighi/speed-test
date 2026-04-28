@@ -489,8 +489,8 @@ export default function PatternTest() {
 
     if (pattern.type === "number" || pattern.type === "letter") {
       return (
-        <div key={index} className="bg-gray-800 rounded-xl px-4 py-4 min-w-[60px] sm:min-w-[80px] sm:px-6 flex items-center justify-center">
-          <span className="text-2xl sm:text-3xl font-black text-white">{item}</span>
+        <div key={index} className="bg-paper-2 rounded-xl px-4 py-4 min-w-[60px] sm:min-w-[80px] sm:px-6 flex items-center justify-center">
+          <span className="text-2xl sm:text-3xl font-black text-ink">{item}</span>
         </div>
       );
     }
@@ -575,11 +575,11 @@ export default function PatternTest() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-rose-600 text-white font-bold text-xl rounded-2xl hover:bg-rose-700 transition-colors"
+          className="px-8 py-4 bg-rose-600 text-ink font-bold text-xl rounded-2xl hover:bg-rose-700 transition-colors"
         >
           Start Pattern Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Identify the next item in each pattern. Tests logical reasoning and pattern recognition.
         </p>
       </div>
@@ -590,18 +590,18 @@ export default function PatternTest() {
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Pattern Recognition</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Pattern Recognition</p>
           <p className="text-6xl font-black text-rose-400">
             {score}/{totalRounds}
           </p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Genius: 11+</span>
             <span>Great: 9+</span>
@@ -613,7 +613,7 @@ export default function PatternTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startGame}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -626,7 +626,7 @@ export default function PatternTest() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition-colors"
+            className="px-6 py-3 bg-rose-600 text-ink font-bold rounded-xl hover:bg-rose-700 transition-colors"
           >
             Share Score
           </button>
@@ -638,35 +638,35 @@ export default function PatternTest() {
   // Playing
   return (
     <div className="space-y-6">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Question {round + 1} / {totalRounds}</span>
-        <span className={`font-mono text-lg font-bold ${timeLeft <= 5 ? "text-red-400" : "text-white"}`}>
+        <span className={`font-mono text-lg font-bold ${timeLeft <= 5 ? "text-red-400" : "text-ink"}`}>
           {timeLeft}s
         </span>
-        <span>Score: <span className="text-white font-bold">{score}</span></span>
+        <span>Score: <span className="text-ink font-bold">{score}</span></span>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-4 sm:p-8 border border-gray-800">
-        <p className="text-gray-400 text-sm mb-4">What comes next?</p>
+      <div className="bg-paper-2 rounded-2xl p-4 sm:p-8 border border-line">
+        <p className="text-ink-2 text-sm mb-4">What comes next?</p>
         <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4 overflow-x-auto">
           {pattern?.sequence.map((item, i) => renderSequenceItem(item, i))}
-          <div className="text-3xl sm:text-4xl font-black text-gray-600">?</div>
+          <div className="text-3xl sm:text-4xl font-black text-ink-3">?</div>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         {options.map((opt) => {
-          let bg = "bg-gray-800 hover:bg-gray-700";
+          let bg = "bg-paper-2 hover:bg-paper-2";
           if (feedback !== null) {
             if (opt === pattern?.correctAnswer) bg = "bg-emerald-700";
-            else if (feedback === "wrong") bg = "bg-gray-800 opacity-50";
+            else if (feedback === "wrong") bg = "bg-paper-2 opacity-50";
           }
           return (
             <button
               key={opt}
               onClick={() => handleAnswer(opt)}
               disabled={feedback !== null}
-              className={`py-4 text-white font-bold text-lg rounded-xl transition-colors ${bg}`}
+              className={`py-4 text-ink font-bold text-lg rounded-xl transition-colors ${bg}`}
             >
               {renderOption(opt)}
             </button>

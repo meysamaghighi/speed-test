@@ -122,11 +122,11 @@ export default function ColorTest() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-fuchsia-600 text-white font-bold text-xl rounded-2xl hover:bg-fuchsia-700 transition-colors"
+          className="px-8 py-4 bg-fuchsia-600 text-ink font-bold text-xl rounded-2xl hover:bg-fuchsia-700 transition-colors"
         >
           Start Stroop Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Two question types will alternate:<br />
           <strong className="text-blue-400">What COLOR is the ink?</strong> (select the ink color)<br />
           <strong className="text-emerald-400">What does the text SAY?</strong> (select the word itself)<br />
@@ -140,27 +140,27 @@ export default function ColorTest() {
     const rating = getRating(score, average);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Stroop Color Test</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Stroop Color Test</p>
           <p className="text-6xl font-black text-fuchsia-400">
             {score}/{totalRounds}
           </p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-xs text-gray-500">Accuracy</p>
-            <p className="text-2xl font-bold text-white">{Math.round((score / totalRounds) * 100)}%</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-xs text-ink-3">Accuracy</p>
+            <p className="text-2xl font-bold text-ink">{Math.round((score / totalRounds) * 100)}%</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-xs text-gray-500">Avg Response</p>
-            <p className="text-2xl font-bold text-white">{average}ms</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-xs text-ink-3">Avg Response</p>
+            <p className="text-2xl font-bold text-ink">{average}ms</p>
           </div>
         </div>
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Perfect: 20/20</span>
             <span>Good: 17+</span>
@@ -169,14 +169,14 @@ export default function ColorTest() {
           </div>
         </div>
         <div className="flex gap-3 justify-center">
-          <button onClick={startGame} className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors">Try Again</button>
+          <button onClick={startGame} className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors">Try Again</button>
           <button
             onClick={() => {
               const t = `Stroop Color Test: ${score}/${totalRounds} correct in ${average}ms avg! The Stroop effect is tricky!`;
               if (navigator.share) navigator.share({ text: t }).catch(() => {});
               else navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
             }}
-            className="px-6 py-3 bg-fuchsia-600 text-white font-bold rounded-xl hover:bg-fuchsia-700 transition-colors"
+            className="px-6 py-3 bg-fuchsia-600 text-ink font-bold rounded-xl hover:bg-fuchsia-700 transition-colors"
           >Share Score</button>
         </div>
       </div>
@@ -191,12 +191,12 @@ export default function ColorTest() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Round {round + 1} / {totalRounds}</span>
-        <span>Score: <span className="text-white font-bold">{score}</span></span>
+        <span>Score: <span className="text-ink font-bold">{score}</span></span>
       </div>
 
-      <div className={`bg-gray-900 rounded-2xl p-12 border-4 ${borderColor} ${bgTint} text-center transition-all`}>
+      <div className={`bg-paper-2 rounded-2xl p-12 border-4 ${borderColor} ${bgTint} text-center transition-all`}>
         <p
           className="text-5xl md:text-6xl font-black"
           style={{ color: displayColor }}
@@ -208,16 +208,16 @@ export default function ColorTest() {
 
       <div className="grid grid-cols-2 gap-3">
         {options.map((opt) => {
-          let bg = "bg-gray-800 hover:bg-gray-700";
+          let bg = "bg-paper-2 hover:bg-paper-2";
           if (feedback !== null) {
             if (opt === correctAnswer) bg = "bg-emerald-700";
-            else if (opt !== correctAnswer && feedback === "wrong") bg = "bg-gray-800 opacity-50";
+            else if (opt !== correctAnswer && feedback === "wrong") bg = "bg-paper-2 opacity-50";
           }
           return (
             <button
               key={opt}
               onClick={() => handleAnswer(opt)}
-              className={`py-4 text-white font-bold text-lg rounded-xl transition-colors ${bg}`}
+              className={`py-4 text-ink font-bold text-lg rounded-xl transition-colors ${bg}`}
             >
               {opt}
             </button>

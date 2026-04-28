@@ -140,37 +140,37 @@ export default function ColorMatchTest() {
 
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Your Score</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Your Score</p>
           <p className="text-6xl font-black text-blue-400">{score}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && (
             <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>
           )}
           {pb.best !== null && !pb.isNewBest && (
-            <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>
+            <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>
           )}
         </div>
 
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-gray-500 text-sm">Accuracy</p>
-            <p className="text-2xl font-bold text-white">{accuracy}%</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-ink-3 text-sm">Accuracy</p>
+            <p className="text-2xl font-bold text-ink">{accuracy}%</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-gray-500 text-sm">Level</p>
-            <p className="text-2xl font-bold text-white">{level}</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-ink-3 text-sm">Level</p>
+            <p className="text-2xl font-bold text-ink">{level}</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-gray-500 text-sm">Avg Speed</p>
-            <p className="text-2xl font-bold text-white">{avgSpeed}ms</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-ink-3 text-sm">Avg Speed</p>
+            <p className="text-2xl font-bold text-ink">{avgSpeed}ms</p>
           </div>
         </div>
 
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -186,7 +186,7 @@ export default function ColorMatchTest() {
                   .catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors"
           >
             Share Score
           </button>
@@ -203,14 +203,14 @@ export default function ColorMatchTest() {
     return (
       <div className="space-y-4">
         <div className="flex justify-between items-center text-sm px-1">
-          <span className="text-gray-400">
+          <span className="text-ink-2">
             Round {rounds.length + 1}/{totalRounds} | Level {level}
           </span>
           <div className="flex gap-1">
             {Array.from({ length: 3 }).map((_, i) => (
               <span
                 key={i}
-                className={`text-lg ${i < lives ? "text-red-500" : "text-gray-700"}`}
+                className={`text-lg ${i < lives ? "text-red-500" : "text-ink-3"}`}
               >
                 &#9829;
               </span>
@@ -218,7 +218,7 @@ export default function ColorMatchTest() {
           </div>
         </div>
 
-        <p className="text-center text-gray-400 text-sm">Tap the tile that is a different color</p>
+        <p className="text-center text-ink-2 text-sm">Tap the tile that is a different color</p>
 
         <div
           className="grid gap-2 mx-auto w-full"
@@ -249,19 +249,19 @@ export default function ColorMatchTest() {
   // Waiting screen
   return (
     <div className="text-center space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line">
         <p className="text-4xl mb-4">&#128065;</p>
-        <h2 className="text-xl font-bold text-white mb-3">Odd Color Out</h2>
-        <p className="text-gray-300 mb-4">
+        <h2 className="text-xl font-bold text-ink mb-3">Odd Color Out</h2>
+        <p className="text-ink-2 mb-4">
           A grid of colored tiles is shown. One tile is a slightly different shade.
           Find it as fast as you can!
         </p>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-ink-3 mb-4">
           The grid gets larger and the color difference gets more subtle as you progress.
           You have 3 lives.
         </p>
-        <div className="bg-gray-800 rounded-lg p-4 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How It Works:</p>
+        <div className="bg-paper-2 rounded-lg p-4 text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How It Works:</p>
           <p>Level 1-5: 3x3 grid, obvious difference</p>
           <p>Level 6-12: 4x4 grid, subtle difference</p>
           <p>Level 13-18: 5x5 grid, very subtle</p>
@@ -271,7 +271,7 @@ export default function ColorMatchTest() {
 
       <button
         onClick={startTest}
-        className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors text-lg"
+        className="px-8 py-4 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors text-lg"
       >
         Start Test
       </button>

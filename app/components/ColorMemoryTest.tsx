@@ -111,9 +111,9 @@ export default function ColorMemoryTest() {
   if (phase === "instructions") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-gray-400 space-y-3 text-left max-w-md mx-auto">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-ink-2 space-y-3 text-left max-w-md mx-auto">
             <p>1. Watch colored circles appear one at a time</p>
             <p>2. After the sequence ends, click the colors in the same order</p>
             <p>3. Sequences get longer each level (starts at 3 colors)</p>
@@ -123,7 +123,7 @@ export default function ColorMemoryTest() {
 
         <button
           onClick={startRound}
-          className="px-8 py-4 bg-gradient-to-r from-purple-600 to-violet-600 text-white text-xl font-bold rounded-xl hover:from-purple-700 hover:to-violet-700 transition-colors"
+          className="px-8 py-4 bg-gradient-to-r from-purple-600 to-violet-600 text-ink text-xl font-bold rounded-xl hover:from-purple-700 hover:to-violet-700 transition-colors"
         >
           Start Test
         </button>
@@ -134,16 +134,16 @@ export default function ColorMemoryTest() {
   if (phase === "result") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Longest Sequence Completed</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Longest Sequence Completed</p>
           <p className="text-6xl font-black text-purple-400">{level - 1}</p>
-          <p className="text-lg text-gray-400 mt-2">colors</p>
+          <p className="text-lg text-ink-2 mt-2">colors</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-3 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} colors</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} colors</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="space-y-1">
             <p>Average: 5-6 colors</p>
             <p>Good: 7-8 colors</p>
@@ -154,7 +154,7 @@ export default function ColorMemoryTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -167,7 +167,7 @@ export default function ColorMemoryTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+            className="px-6 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
           >
             Share Score
           </button>
@@ -181,32 +181,32 @@ export default function ColorMemoryTest() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between text-sm text-gray-500 px-1">
+      <div className="flex justify-between text-sm text-ink-3 px-1">
         <span>Level {level}</span>
         <span>Lives: {"❤️".repeat(lives)}</span>
       </div>
 
       {phase === "showing" && (
         <div className="text-center space-y-4">
-          <p className="text-gray-400">Watch the sequence...</p>
+          <p className="text-ink-2">Watch the sequence...</p>
           <div className="flex justify-center">
             <div
-              className={`w-32 h-32 rounded-full ${showingColor !== null ? COLORS[showingColor].bg : "bg-gray-800"} transition-all duration-200`}
+              className={`w-32 h-32 rounded-full ${showingColor !== null ? COLORS[showingColor].bg : "bg-paper-2"} transition-all duration-200`}
             />
           </div>
-          <p className="text-gray-500 text-sm">{currentIndex} / {sequence.length}</p>
+          <p className="text-ink-3 text-sm">{currentIndex} / {sequence.length}</p>
         </div>
       )}
 
       {phase === "delay" && (
         <div className="text-center py-16">
-          <p className="text-gray-400 text-lg">Ready...</p>
+          <p className="text-ink-2 text-lg">Ready...</p>
         </div>
       )}
 
       {phase === "recall" && (
         <div className="space-y-4">
-          <p className="text-center text-gray-400">Click the colors in order!</p>
+          <p className="text-center text-ink-2">Click the colors in order!</p>
           <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
             {COLORS.map((color, idx) => (
               <button
@@ -217,7 +217,7 @@ export default function ColorMemoryTest() {
               />
             ))}
           </div>
-          <p className="text-center text-gray-500 text-sm">{userSequence.length} / {sequence.length}</p>
+          <p className="text-center text-ink-3 text-sm">{userSequence.length} / {sequence.length}</p>
         </div>
       )}
     </div>

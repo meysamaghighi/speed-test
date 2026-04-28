@@ -87,11 +87,11 @@ export default function SequenceMemory() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-teal-600 text-white font-bold text-xl rounded-2xl hover:bg-teal-700 transition-colors"
+          className="px-8 py-4 bg-teal-600 text-ink font-bold text-xl rounded-2xl hover:bg-teal-700 transition-colors"
         >
           Start Sequence Memory
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Watch the sequence of tiles light up, then repeat it. Each level adds
           one more tile to the sequence.
         </p>
@@ -107,11 +107,11 @@ export default function SequenceMemory() {
       <div className="text-center space-y-4">
         <div className="bg-emerald-900/30 rounded-2xl p-8 border border-emerald-800">
           <p className="text-emerald-400 text-2xl font-bold mb-2">Correct!</p>
-          <p className="text-gray-400">Level {level} — {sequence.length} tiles</p>
+          <p className="text-ink-2">Level {level} — {sequence.length} tiles</p>
         </div>
         <button
           onClick={nextLevel}
-          className="px-8 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors"
+          className="px-8 py-3 bg-teal-600 text-ink font-bold rounded-xl hover:bg-teal-700 transition-colors"
         >
           Next Level
         </button>
@@ -124,15 +124,15 @@ export default function SequenceMemory() {
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Sequence Memory</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Sequence Memory</p>
           <p className="text-6xl font-black text-teal-400">Level {score}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
         </div>
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Amazing: 15+</span>
             <span>Great: 10+</span>
@@ -141,14 +141,14 @@ export default function SequenceMemory() {
           </div>
         </div>
         <div className="flex gap-3 justify-center">
-          <button onClick={startGame} className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors">Try Again</button>
+          <button onClick={startGame} className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors">Try Again</button>
           <button
             onClick={() => {
               const t = `Sequence Memory: Level ${score}! Can you beat my pattern memory?`;
               if (navigator.share) navigator.share({ text: t }).catch(() => {});
               else navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
             }}
-            className="px-6 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors"
+            className="px-6 py-3 bg-teal-600 text-ink font-bold rounded-xl hover:bg-teal-700 transition-colors"
           >Share Score</button>
         </div>
       </div>
@@ -158,7 +158,7 @@ export default function SequenceMemory() {
   // Showing or Input phase
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Level {level}</span>
         <span>{phase === "showing" ? "Watch..." : "Your turn!"}</span>
       </div>
@@ -171,7 +171,7 @@ export default function SequenceMemory() {
             className={`aspect-square rounded-xl transition-all duration-200 ${
               activeCell === idx
                 ? "bg-white scale-95"
-                : "bg-gray-800 hover:bg-gray-700 cursor-pointer"
+                : "bg-paper-2 hover:bg-paper-2 cursor-pointer"
             }`}
           />
         ))}

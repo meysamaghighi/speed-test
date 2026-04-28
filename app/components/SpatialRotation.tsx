@@ -177,11 +177,11 @@ export default function SpatialRotation() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-orange-600 text-white font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
+          className="px-8 py-4 bg-orange-600 text-ink font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
         >
           Start Rotation Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Compare two shapes and decide if they are the SAME (rotated) or DIFFERENT. 15 rounds total.
         </p>
       </div>
@@ -194,13 +194,13 @@ export default function SpatialRotation() {
 
     return (
       <div className="space-y-6">
-        <div className="flex justify-between text-sm text-gray-400">
+        <div className="flex justify-between text-sm text-ink-2">
           <span>Round {currentRound + 1}/{totalRounds}</span>
           <span>{correctCount} correct</span>
         </div>
 
-        <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
-          <p className="text-gray-400 text-sm text-center mb-4">
+        <div className="bg-paper-2 rounded-2xl p-6 border border-line">
+          <p className="text-ink-2 text-sm text-center mb-4">
             Are these the same shape?
           </p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
@@ -212,13 +212,13 @@ export default function SpatialRotation() {
         <div className="flex gap-4 justify-center">
           <button
             onClick={() => handleAnswer(true)}
-            className="px-8 py-4 bg-green-600 text-white font-bold text-lg rounded-xl hover:bg-green-700 transition-colors"
+            className="px-8 py-4 bg-green-600 text-ink font-bold text-lg rounded-xl hover:bg-green-700 transition-colors"
           >
             Same
           </button>
           <button
             onClick={() => handleAnswer(false)}
-            className="px-8 py-4 bg-red-600 text-white font-bold text-lg rounded-xl hover:bg-red-700 transition-colors"
+            className="px-8 py-4 bg-red-600 text-ink font-bold text-lg rounded-xl hover:bg-red-700 transition-colors"
           >
             Different
           </button>
@@ -233,21 +233,21 @@ export default function SpatialRotation() {
 
   return (
     <div className="text-center space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-        <p className="text-gray-400 text-sm mb-2">Your Spatial Rotation Score</p>
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+        <p className="text-ink-2 text-sm mb-2">Your Spatial Rotation Score</p>
         <p className="text-6xl font-black text-orange-400">
           {correctCount}/{totalRounds}
         </p>
-        <p className="text-gray-400 mt-2">Average time: {avgTime}s per decision</p>
+        <p className="text-ink-2 mt-2">Average time: {avgTime}s per decision</p>
         <p className={`text-lg font-bold mt-2 ${rating.color}`}>
           {rating.label}
         </p>
         {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-        {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
+        {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-        <p className="font-bold text-white mb-2">How You Compare</p>
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+        <p className="font-bold text-ink mb-2">How You Compare</p>
         <div className="flex justify-between">
           <span>Genius: 14+</span>
           <span>Great: 12+</span>
@@ -259,7 +259,7 @@ export default function SpatialRotation() {
       <div className="flex gap-3 justify-center">
         <button
           onClick={startGame}
-          className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+          className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
         >
           Try Again
         </button>
@@ -272,7 +272,7 @@ export default function SpatialRotation() {
               navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
             }
           }}
-          className="px-6 py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors"
+          className="px-6 py-3 bg-orange-600 text-ink font-bold rounded-xl hover:bg-orange-700 transition-colors"
         >
           Share Score
         </button>

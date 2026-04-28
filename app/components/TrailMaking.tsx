@@ -92,18 +92,18 @@ export default function TrailMaking() {
     const seconds = (elapsedTime / 1000).toFixed(1);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Completion Time</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Completion Time</p>
           <p className="text-6xl font-black text-cyan-400">{seconds}s</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best.toFixed(1)}s</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best.toFixed(1)}s</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Fast: &lt;20s</span>
             <span>Good: &lt;30s</span>
@@ -115,7 +115,7 @@ export default function TrailMaking() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startGame}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -128,7 +128,7 @@ export default function TrailMaking() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors"
+            className="px-6 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors"
           >
             Share Score
           </button>
@@ -142,11 +142,11 @@ export default function TrailMaking() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-cyan-600 text-white font-bold text-xl rounded-2xl hover:bg-cyan-700 transition-colors"
+          className="px-8 py-4 bg-cyan-600 text-ink font-bold text-xl rounded-2xl hover:bg-cyan-700 transition-colors"
         >
           Start Trail Making
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Connect circles in alternating order: 1-A-2-B-3-C... as fast as you can.
         </p>
       </div>
@@ -155,14 +155,14 @@ export default function TrailMaking() {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Connected: {connected.length} / {circles.length}</span>
         <span>Next: {circles[connected.length]?.label}</span>
       </div>
 
       <div
         ref={areaRef}
-        className="relative w-full h-96 md:h-[500px] bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden"
+        className="relative w-full h-96 md:h-[500px] bg-paper-2 rounded-2xl border border-line overflow-hidden"
       >
         <svg className="absolute inset-0 w-full h-full pointer-events-none">
           {connected.map((id, idx) => {
@@ -194,10 +194,10 @@ export default function TrailMaking() {
               onClick={() => handleCircleClick(circle.id)}
               className={`absolute rounded-full w-12 h-12 border-2 font-bold transition-all ${
                 isConnected
-                  ? "bg-cyan-600 border-cyan-400 text-white"
+                  ? "bg-cyan-600 border-cyan-400 text-ink"
                   : isNext
-                  ? "bg-cyan-500/20 border-cyan-400 text-white ring-2 ring-cyan-400"
-                  : "bg-gray-800 border-gray-600 text-gray-300 hover:border-gray-500"
+                  ? "bg-cyan-500/20 border-cyan-400 text-ink ring-2 ring-cyan-400"
+                  : "bg-paper-2 border-line text-ink-2 hover:border-gray-500"
               }`}
               style={{
                 left: `calc(${circle.x}% - 24px)`,

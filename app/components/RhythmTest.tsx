@@ -143,11 +143,11 @@ export default function RhythmTest() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold text-xl rounded-2xl hover:opacity-90 transition-opacity"
+          className="px-8 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-ink font-bold text-xl rounded-2xl hover:opacity-90 transition-opacity"
         >
           Start Rhythm Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Listen to the beat pattern, then tap it back as accurately as you can.
         </p>
         {pb.best !== null && pb.best > 0 && (
@@ -162,7 +162,7 @@ export default function RhythmTest() {
   if (phase === "listen") {
     return (
       <div className="text-center space-y-6">
-        <p className="text-gray-400 text-sm">Level {level} — Listen carefully</p>
+        <p className="text-ink-2 text-sm">Level {level} — Listen carefully</p>
         <div className="flex justify-center gap-2 mb-4">
           {Array.from({ length: lives }).map((_, i) => (
             <div key={i} className="w-3 h-3 bg-red-500 rounded-full" />
@@ -172,12 +172,12 @@ export default function RhythmTest() {
           className={`w-64 h-64 mx-auto rounded-full border-8 flex items-center justify-center transition-colors duration-100 ${
             flash
               ? "bg-white border-white"
-              : "bg-gray-900 border-violet-500"
+              : "bg-paper-2 border-violet-500"
           }`}
         >
-          <p className="text-2xl font-bold text-gray-400">Listen...</p>
+          <p className="text-2xl font-bold text-ink-2">Listen...</p>
         </div>
-        <p className="text-gray-500 text-sm">{beatPattern.length} beats</p>
+        <p className="text-ink-3 text-sm">{beatPattern.length} beats</p>
       </div>
     );
   }
@@ -185,7 +185,7 @@ export default function RhythmTest() {
   if (phase === "tap") {
     return (
       <div className="text-center space-y-6">
-        <p className="text-gray-400 text-sm">Level {level} — Tap the rhythm back</p>
+        <p className="text-ink-2 text-sm">Level {level} — Tap the rhythm back</p>
         <div className="flex justify-center gap-2 mb-4">
           {Array.from({ length: lives }).map((_, i) => (
             <div key={i} className="w-3 h-3 bg-red-500 rounded-full" />
@@ -199,14 +199,14 @@ export default function RhythmTest() {
               : "bg-gradient-to-br from-violet-600 to-fuchsia-600 border-violet-500 hover:scale-105"
           }`}
         >
-          <p className="text-3xl font-bold text-white">Tap!</p>
+          <p className="text-3xl font-bold text-ink">Tap!</p>
         </button>
         <div className="flex justify-center gap-2">
           {Array.from({ length: beatPattern.length }).map((_, i) => (
             <div
               key={i}
               className={`w-3 h-3 rounded-full ${
-                i < userTaps.length ? "bg-violet-400" : "bg-gray-700"
+                i < userTaps.length ? "bg-violet-400" : "bg-paper-2"
               }`}
             />
           ))}
@@ -238,10 +238,10 @@ export default function RhythmTest() {
           >
             {passed ? "Good!" : "Miss"}
           </p>
-          <p className="text-gray-400 text-sm">
+          <p className="text-ink-2 text-sm">
             Average timing: {Math.round(avgError)}ms off
           </p>
-          <p className="text-gray-500 text-xs mt-1">
+          <p className="text-ink-3 text-xs mt-1">
             (Tolerance: {Math.round(tolerance)}ms)
           </p>
         </div>
@@ -254,12 +254,12 @@ export default function RhythmTest() {
   const rating = getRating(finalScore);
   return (
     <div className="text-center space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-        <p className="text-gray-400 text-sm mb-2">Your Rhythm Timing</p>
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+        <p className="text-ink-2 text-sm mb-2">Your Rhythm Timing</p>
         <p className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
           Level {finalScore}
         </p>
-        <p className="text-gray-400 mt-1">{finalScore + 3} beats</p>
+        <p className="text-ink-2 mt-1">{finalScore + 3} beats</p>
         <p className={`text-lg font-bold mt-2 ${rating.color}`}>
           {rating.label}
         </p>
@@ -269,12 +269,12 @@ export default function RhythmTest() {
           </p>
         )}
         {pb.best !== null && !pb.isNewBest && (
-          <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>
+          <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>
         )}
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-        <p className="font-bold text-white mb-2">How You Compare</p>
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+        <p className="font-bold text-ink mb-2">How You Compare</p>
         <div className="flex justify-between">
           <span>Master: 10+</span>
           <span>Great: 7+</span>
@@ -286,7 +286,7 @@ export default function RhythmTest() {
       <div className="flex gap-3 justify-center">
         <button
           onClick={startGame}
-          className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+          className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
         >
           Try Again
         </button>
@@ -299,7 +299,7 @@ export default function RhythmTest() {
               navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
             }
           }}
-          className="px-6 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold rounded-xl hover:opacity-90 transition-opacity"
+          className="px-6 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-ink font-bold rounded-xl hover:opacity-90 transition-opacity"
         >
           Share Score
         </button>

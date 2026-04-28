@@ -128,11 +128,11 @@ export default function VerbalMemory() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-indigo-600 text-white font-bold text-xl rounded-2xl hover:bg-indigo-700 transition-colors"
+          className="px-8 py-4 bg-indigo-600 text-ink font-bold text-xl rounded-2xl hover:bg-indigo-700 transition-colors"
         >
           Start Verbal Memory
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Words appear one at a time. If you have seen the word before, click
           SEEN. If it is new, click NEW. You have 3 lives.
         </p>
@@ -147,16 +147,16 @@ export default function VerbalMemory() {
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Verbal Memory Score</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Verbal Memory Score</p>
           <p className="text-6xl font-black text-indigo-400">{score}</p>
-          <p className="text-gray-400 mt-1">words correct</p>
+          <p className="text-ink-2 mt-1">words correct</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>}
         </div>
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Top: 80+</span>
             <span>Great: 50+</span>
@@ -165,14 +165,14 @@ export default function VerbalMemory() {
           </div>
         </div>
         <div className="flex gap-3 justify-center">
-          <button onClick={startGame} className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors">Try Again</button>
+          <button onClick={startGame} className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors">Try Again</button>
           <button
             onClick={() => {
               const t = `Verbal Memory: ${score} words correct (${rating.label})! Test your word memory!`;
               if (navigator.share) navigator.share({ text: t }).catch(() => {});
               else navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
             }}
-            className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors"
+            className="px-6 py-3 bg-indigo-600 text-ink font-bold rounded-xl hover:bg-indigo-700 transition-colors"
           >Share Score</button>
         </div>
       </div>
@@ -182,14 +182,14 @@ export default function VerbalMemory() {
   // Playing
   return (
     <div className="space-y-6">
-      <div className="flex justify-between text-sm text-gray-400">
-        <span>Score: <span className="text-white font-bold">{score}</span></span>
+      <div className="flex justify-between text-sm text-ink-2">
+        <span>Score: <span className="text-ink font-bold">{score}</span></span>
         <span>{"♥".repeat(lives)}{"♡".repeat(3 - lives)}</span>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 text-center">
+      <div className="bg-paper-2 rounded-2xl p-12 border border-line text-center">
         <p
-          className="text-4xl md:text-5xl font-black text-white transition-opacity duration-100"
+          className="text-4xl md:text-5xl font-black text-ink transition-opacity duration-100"
           style={{ opacity: isTransitioning ? 0 : 1 }}
         >
           {currentWord}
@@ -199,13 +199,13 @@ export default function VerbalMemory() {
       <div className="flex gap-4 justify-center">
         <button
           onClick={() => handleAnswer(false)}
-          className="flex-1 max-w-xs py-4 bg-blue-600 text-white font-bold text-lg rounded-xl hover:bg-blue-700 transition-colors"
+          className="flex-1 max-w-xs py-4 bg-blue-600 text-ink font-bold text-lg rounded-xl hover:bg-blue-700 transition-colors"
         >
           NEW
         </button>
         <button
           onClick={() => handleAnswer(true)}
-          className="flex-1 max-w-xs py-4 bg-orange-600 text-white font-bold text-lg rounded-xl hover:bg-orange-700 transition-colors"
+          className="flex-1 max-w-xs py-4 bg-orange-600 text-ink font-bold text-lg rounded-xl hover:bg-orange-700 transition-colors"
         >
           SEEN
         </button>

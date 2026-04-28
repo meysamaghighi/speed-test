@@ -84,11 +84,11 @@ export default function ReverseMemory() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-cyan-600 text-white font-bold text-xl rounded-2xl hover:bg-cyan-700 transition-colors"
+          className="px-8 py-4 bg-cyan-600 text-ink font-bold text-xl rounded-2xl hover:bg-cyan-700 transition-colors"
         >
           Start Reverse Memory Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Digits will flash one at a time. Type them back in REVERSE order.
         </p>
         {highScore > 0 && (
@@ -103,8 +103,8 @@ export default function ReverseMemory() {
   if (phase === "show") {
     return (
       <div className="text-center space-y-4">
-        <p className="text-gray-400 text-sm">Level {level} — Memorize the sequence</p>
-        <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 min-h-[200px] flex items-center justify-center">
+        <p className="text-ink-2 text-sm">Level {level} — Memorize the sequence</p>
+        <div className="bg-paper-2 rounded-2xl p-12 border border-line min-h-[200px] flex items-center justify-center">
           <p
             className="font-mono font-black text-cyan-400 tracking-widest animate-pulse"
             style={{ fontSize: "72px" }}
@@ -112,10 +112,10 @@ export default function ReverseMemory() {
             {sequence[currentIndex]}
           </p>
         </div>
-        <p className="text-gray-500 text-sm">
+        <p className="text-ink-3 text-sm">
           Digit {currentIndex + 1} of {digits}
         </p>
-        <div className="w-full bg-gray-800 rounded-full h-1 overflow-hidden">
+        <div className="w-full bg-paper-2 rounded-full h-1 overflow-hidden">
           <div
             className="bg-cyan-500 h-full rounded-full"
             style={{
@@ -131,20 +131,20 @@ export default function ReverseMemory() {
   if (phase === "input") {
     return (
       <div className="text-center space-y-4">
-        <p className="text-gray-400 text-sm">Level {level} — Type the digits in REVERSE order</p>
+        <p className="text-ink-2 text-sm">Level {level} — Type the digits in REVERSE order</p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             ref={inputRef}
             type="tel"
             value={guess}
             onChange={(e) => setGuess(e.target.value.replace(/\D/g, ""))}
-            className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-4 text-white font-mono text-3xl text-center tracking-widest focus:outline-none focus:border-cyan-500"
+            className="w-full bg-paper-2 border border-line rounded-xl px-4 py-4 text-ink font-mono text-3xl text-center tracking-widest focus:outline-none focus:border-cyan-500"
             placeholder="Type reversed..."
             autoComplete="off"
           />
           <button
             type="submit"
-            className="px-8 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors"
+            className="px-8 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors"
           >
             Submit
           </button>
@@ -159,16 +159,16 @@ export default function ReverseMemory() {
       <div className="text-center space-y-4">
         <div className="bg-emerald-900/30 rounded-2xl p-8 border border-emerald-800">
           <p className="text-emerald-400 text-2xl font-bold mb-2">Correct!</p>
-          <p className="text-4xl font-mono font-black text-white tracking-widest">
+          <p className="text-4xl font-mono font-black text-ink tracking-widest">
             {reversed}
           </p>
-          <p className="text-gray-400 text-sm mt-2">
+          <p className="text-ink-2 text-sm mt-2">
             Level {level} — {digits} digits
           </p>
         </div>
         <button
           onClick={nextLevel}
-          className="px-8 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors"
+          className="px-8 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors"
         >
           Next Level ({digits + 1} digits)
         </button>
@@ -182,30 +182,30 @@ export default function ReverseMemory() {
   const reversed = sequence.slice().reverse().join("");
   return (
     <div className="text-center space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-        <p className="text-gray-400 text-sm mb-2">Your Reverse Memory</p>
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+        <p className="text-ink-2 text-sm mb-2">Your Reverse Memory</p>
         <p className="text-6xl font-black text-cyan-400">
           Level {finalScore}
         </p>
-        <p className="text-gray-400 mt-1">{finalScore + 2} digits</p>
+        <p className="text-ink-2 mt-1">{finalScore + 2} digits</p>
         <p className={`text-lg font-bold mt-2 ${rating.color}`}>
           {rating.label}
         </p>
         {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-        {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
+        {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-        <p className="text-sm text-gray-500 mb-2">The sequence was:</p>
-        <p className="font-mono text-xl text-white tracking-widest">{sequence.join(" ")}</p>
-        <p className="text-sm text-gray-500 mt-3">Reversed:</p>
+      <div className="bg-paper-2 rounded-xl p-4 border border-line">
+        <p className="text-sm text-ink-3 mb-2">The sequence was:</p>
+        <p className="font-mono text-xl text-ink tracking-widest">{sequence.join(" ")}</p>
+        <p className="text-sm text-ink-3 mt-3">Reversed:</p>
         <p className="font-mono text-xl text-emerald-400 tracking-widest">{reversed}</p>
-        <p className="text-sm text-gray-500 mt-3">You typed:</p>
+        <p className="text-sm text-ink-3 mt-3">You typed:</p>
         <p className="font-mono text-xl text-red-400 tracking-widest">{guess}</p>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-        <p className="font-bold text-white mb-2">How You Compare</p>
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+        <p className="font-bold text-ink mb-2">How You Compare</p>
         <div className="flex justify-between">
           <span>Genius: 10+</span>
           <span>Great: 7+</span>
@@ -217,7 +217,7 @@ export default function ReverseMemory() {
       <div className="flex gap-3 justify-center">
         <button
           onClick={startGame}
-          className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+          className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
         >
           Try Again
         </button>
@@ -230,7 +230,7 @@ export default function ReverseMemory() {
               navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
             }
           }}
-          className="px-6 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors"
+          className="px-6 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors"
         >
           Share Score
         </button>

@@ -121,19 +121,19 @@ export default function NBack() {
     const rating = getRating(level);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Highest Level Reached</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Highest Level Reached</p>
           <p className="text-6xl font-black text-purple-400">{level}-back</p>
-          <p className="text-gray-400 text-sm mt-2">Score: {score}</p>
+          <p className="text-ink-2 text-sm mt-2">Score: {score}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}-back</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}-back</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Good: 4-back</span>
             <span>Average: 3-back</span>
@@ -144,7 +144,7 @@ export default function NBack() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startGame}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -157,7 +157,7 @@ export default function NBack() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+            className="px-6 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
           >
             Share Score
           </button>
@@ -171,11 +171,11 @@ export default function NBack() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-purple-600 text-white font-bold text-xl rounded-2xl hover:bg-purple-700 transition-colors"
+          className="px-8 py-4 bg-purple-600 text-ink font-bold text-xl rounded-2xl hover:bg-purple-700 transition-colors"
         >
           Start N-Back
         </button>
-        <p className="text-gray-500 text-sm mt-3 max-w-md mx-auto">
+        <p className="text-ink-3 text-sm mt-3 max-w-md mx-auto">
           See a sequence of letters. Click "Match" if the current letter is the SAME as N positions back. Starts at 2-back, levels up.
         </p>
       </div>
@@ -187,14 +187,14 @@ export default function NBack() {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>{level}-back • Trial: {currentIndex + 1}/{sequence.length}</span>
         <span>Lives: {"❤️".repeat(lives)}</span>
       </div>
 
-      <div className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl border border-gray-800 flex items-center justify-center">
+      <div className="relative w-full h-80 md:h-96 bg-paper-2 rounded-2xl border border-line flex items-center justify-center">
         {showLetter && currentLetter && (
-          <div className={`text-8xl font-black text-white transition-all ${
+          <div className={`text-8xl font-black text-ink transition-all ${
             feedback === "correct" ? "text-green-400" : feedback === "wrong" ? "text-red-400" : ""
           }`}>
             {currentLetter}
@@ -205,12 +205,12 @@ export default function NBack() {
       <button
         onClick={handleMatch}
         disabled={!showLetter || feedback !== null}
-        className="w-full px-6 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-4 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Match
       </button>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400 text-center">
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2 text-center">
         Click "Match" if current letter = letter from {level} positions back
       </div>
     </div>

@@ -87,27 +87,27 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
     const rating = getRating(average);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Your Average Reaction Time</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Your Average Reaction Time</p>
           <p className="text-6xl font-black text-emerald-400">{average}ms</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}ms</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}ms</p>}
         </div>
 
         <div className="grid grid-cols-5 gap-2">
           {times.map((t, i) => (
-            <div key={i} className="bg-gray-900 rounded-lg p-3 border border-gray-800">
-              <p className="text-xs text-gray-500">#{i + 1}</p>
-              <p className="text-lg font-bold text-white">{t}ms</p>
+            <div key={i} className="bg-paper-2 rounded-lg p-3 border border-line">
+              <p className="text-xs text-ink-3">#{i + 1}</p>
+              <p className="text-lg font-bold text-ink">{t}ms</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Top 1%: &lt;150ms</span>
             <span>Fast: &lt;220ms</span>
@@ -119,7 +119,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -132,7 +132,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-colors"
+            className="px-6 py-3 bg-emerald-600 text-ink font-bold rounded-xl hover:bg-emerald-700 transition-colors"
           >
             Share Score
           </button>
@@ -150,7 +150,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
       ? "bg-orange-500"
       : phase === "result"
       ? "bg-blue-600"
-      : "bg-gray-800";
+      : "bg-paper-2";
 
   const message =
     phase === "waiting"
@@ -165,7 +165,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-500 px-1">
+      <div className="flex justify-between text-sm text-ink-3 px-1">
         <span>Round {Math.min(round, totalRounds)} of {totalRounds}</span>
         {times.length > 0 && <span>Avg: {average}ms</span>}
       </div>
@@ -174,7 +174,7 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
         onClick={handleClick}
         className={`w-full h-64 md:h-80 rounded-2xl ${bgColor} transition-colors duration-100 flex items-center justify-center cursor-pointer select-none`}
       >
-        <span className="text-2xl md:text-3xl font-bold text-white drop-shadow">
+        <span className="text-2xl md:text-3xl font-bold text-ink drop-shadow">
           {message}
         </span>
       </button>
@@ -182,9 +182,9 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
       {times.length > 0 && (
         <div className="flex gap-2">
           {times.map((t, i) => (
-            <div key={i} className="bg-gray-900 rounded-lg px-3 py-2 text-center flex-1 border border-gray-800">
-              <p className="text-xs text-gray-500">#{i + 1}</p>
-              <p className="text-sm font-bold text-white">{t}ms</p>
+            <div key={i} className="bg-paper-2 rounded-lg px-3 py-2 text-center flex-1 border border-line">
+              <p className="text-xs text-ink-3">#{i + 1}</p>
+              <p className="text-sm font-bold text-ink">{t}ms</p>
             </div>
           ))}
         </div>

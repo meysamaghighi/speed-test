@@ -144,11 +144,11 @@ export default function ChimpTest() {
         )}
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-orange-600 text-white font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
+          className="px-8 py-4 bg-orange-600 text-ink font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
         >
           Start Chimp Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Numbers appear on a grid. Click them in order (1, 2, 3...). After you
           click 1, the rest hide. How many can you remember?
         </p>
@@ -166,13 +166,13 @@ export default function ChimpTest() {
       <div className="text-center space-y-4">
         <div className="bg-emerald-900/30 rounded-2xl p-8 border border-emerald-800">
           <p className="text-emerald-400 text-2xl font-bold mb-2">Correct!</p>
-          <p className="text-gray-400">
+          <p className="text-ink-2">
             Level {level} — {level} numbers
           </p>
         </div>
         <button
           onClick={nextLevel}
-          className="px-8 py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors"
+          className="px-8 py-3 bg-orange-600 text-ink font-bold rounded-xl hover:bg-orange-700 transition-colors"
         >
           Next Level ({level + 1} numbers)
         </button>
@@ -201,25 +201,25 @@ export default function ChimpTest() {
 
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Your Chimp Test Score</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Your Chimp Test Score</p>
           <p className="text-6xl font-black text-orange-400">{score}</p>
-          <p className="text-gray-400 mt-1">numbers remembered</p>
+          <p className="text-ink-2 mt-1">numbers remembered</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
-          <p className="text-gray-500 text-sm mt-1">{vsAyumu}</p>
+          <p className="text-ink-3 text-sm mt-1">{vsAyumu}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>}
           {vsChallenger && (
-            <p className="text-orange-300 text-sm font-bold mt-3 border-t border-gray-800 pt-3">
+            <p className="text-orange-300 text-sm font-bold mt-3 border-t border-line pt-3">
               {vsChallenger}
             </p>
           )}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Amazing: 15+</span>
             <span>Great: 10+</span>
@@ -231,13 +231,13 @@ export default function ChimpTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startGame}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
           <button
             onClick={() => handleShare(score)}
-            className="px-6 py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors"
+            className="px-6 py-3 bg-orange-600 text-ink font-bold rounded-xl hover:bg-orange-700 transition-colors"
           >
             Share Score
           </button>
@@ -249,7 +249,7 @@ export default function ChimpTest() {
   // Memorize or Play phase - show grid
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Level {level} — {level} numbers</span>
         <span>
           {phase === "memorize" ? "Click 1 to start" : `Next: ${nextExpected}`}
@@ -269,7 +269,7 @@ export default function ChimpTest() {
             return (
               <div
                 key={idx}
-                className="aspect-square rounded-lg bg-gray-900/30"
+                className="aspect-square rounded-lg bg-paper-2/30"
               />
             );
           }

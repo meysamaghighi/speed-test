@@ -67,19 +67,19 @@ export default function ClickSpeed() {
     const rating = getRating(cps);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Your Click Speed</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Your Click Speed</p>
           <p className="text-6xl font-black text-amber-400">{cps} CPS</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
-          <p className="text-gray-500 text-sm mt-1">{clicks} clicks in 5 seconds</p>
+          <p className="text-ink-3 text-sm mt-1">{clicks} clicks in 5 seconds</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-1">Personal Best: {pb.best} CPS</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-1">Personal Best: {pb.best} CPS</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>World record: 16+</span>
             <span>Fast: 9+</span>
@@ -91,7 +91,7 @@ export default function ClickSpeed() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={() => { setPhase("ready"); setClicks(0); setTimeLeft(5); }}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -104,7 +104,7 @@ export default function ClickSpeed() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-amber-700 transition-colors"
+            className="px-6 py-3 bg-amber-600 text-ink font-bold rounded-xl hover:bg-amber-700 transition-colors"
           >
             Share Score
           </button>
@@ -117,8 +117,8 @@ export default function ClickSpeed() {
     <div className="space-y-4">
       {phase === "clicking" && (
         <div className="flex justify-between text-sm">
-          <span className="text-gray-400">Clicks: <span className="text-white font-bold">{clicks}</span></span>
-          <span className="text-gray-400">Time: <span className="text-amber-400 font-bold">{timeLeft.toFixed(1)}s</span></span>
+          <span className="text-ink-2">Clicks: <span className="text-ink font-bold">{clicks}</span></span>
+          <span className="text-ink-2">Time: <span className="text-amber-400 font-bold">{timeLeft.toFixed(1)}s</span></span>
         </div>
       )}
 
@@ -127,14 +127,14 @@ export default function ClickSpeed() {
         className={`w-full h-64 md:h-80 rounded-2xl transition-all duration-100 flex flex-col items-center justify-center cursor-pointer select-none active:scale-95 ${
           phase === "clicking"
             ? "bg-amber-600 hover:bg-amber-500"
-            : "bg-gray-800 hover:bg-gray-700"
+            : "bg-paper-2 hover:bg-paper-2"
         }`}
       >
-        <span className="text-2xl md:text-3xl font-bold text-white drop-shadow">
+        <span className="text-2xl md:text-3xl font-bold text-ink drop-shadow">
           {phase === "ready" ? "Click to Start!" : "Keep Clicking!"}
         </span>
         {phase === "clicking" && (
-          <span className="text-6xl font-black text-white/80 mt-2">{clicks}</span>
+          <span className="text-6xl font-black text-ink/80 mt-2">{clicks}</span>
         )}
       </button>
 

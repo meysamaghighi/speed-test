@@ -197,19 +197,19 @@ export default function HandEye() {
     const rating = getRating(score);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Targets Caught</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Targets Caught</p>
           <p className="text-6xl font-black text-orange-400">{score}</p>
-          <p className="text-gray-400 text-sm mt-2">Highest Level: {level}</p>
+          <p className="text-ink-2 text-sm mt-2">Highest Level: {level}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} catches</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} catches</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Good: 25+</span>
             <span>Average: 20-25</span>
@@ -220,7 +220,7 @@ export default function HandEye() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startGame}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -233,7 +233,7 @@ export default function HandEye() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors"
+            className="px-6 py-3 bg-orange-600 text-ink font-bold rounded-xl hover:bg-orange-700 transition-colors"
           >
             Share Score
           </button>
@@ -247,11 +247,11 @@ export default function HandEye() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-orange-600 text-white font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
+          className="px-8 py-4 bg-orange-600 text-ink font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
         >
           Start Hand-Eye Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           A moving target bounces around. Click/tap it as many times as you can in 30 seconds. It gets smaller and faster!
         </p>
       </div>
@@ -260,7 +260,7 @@ export default function HandEye() {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Score: {score} • Level: {level}</span>
         <span className="font-bold text-orange-400">{timeLeft.toFixed(1)}s</span>
       </div>
@@ -269,7 +269,7 @@ export default function HandEye() {
         ref={areaRef}
         onClick={handleClick}
         onTouchStart={handleTouch}
-        className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden cursor-crosshair"
+        className="relative w-full h-80 md:h-96 bg-paper-2 rounded-2xl border border-line overflow-hidden cursor-crosshair"
       >
         {phase === "playing" && (
           <div

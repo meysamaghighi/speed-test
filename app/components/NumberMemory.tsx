@@ -75,11 +75,11 @@ export default function NumberMemory() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-purple-600 text-white font-bold text-xl rounded-2xl hover:bg-purple-700 transition-colors"
+          className="px-8 py-4 bg-purple-600 text-ink font-bold text-xl rounded-2xl hover:bg-purple-700 transition-colors"
         >
           Start Memory Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           A number will flash on screen. Memorize it, then type it back.
         </p>
         {highScore > 0 && (
@@ -94,8 +94,8 @@ export default function NumberMemory() {
   if (phase === "show") {
     return (
       <div className="text-center space-y-4">
-        <p className="text-gray-400 text-sm">Level {level} — Memorize this number</p>
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+        <p className="text-ink-2 text-sm">Level {level} — Memorize this number</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p
             className="font-mono font-black text-purple-400 tracking-widest"
             style={{ fontSize: `${Math.max(24, 60 - digits * 3)}px` }}
@@ -103,8 +103,8 @@ export default function NumberMemory() {
             {number}
           </p>
         </div>
-        <p className="text-gray-500 text-sm">{digits} digits</p>
-        <div className="w-full bg-gray-800 rounded-full h-1 overflow-hidden">
+        <p className="text-ink-3 text-sm">{digits} digits</p>
+        <div className="w-full bg-paper-2 rounded-full h-1 overflow-hidden">
           <div
             className="bg-purple-500 h-full rounded-full animate-shrink"
             style={{
@@ -125,20 +125,20 @@ export default function NumberMemory() {
   if (phase === "input") {
     return (
       <div className="text-center space-y-4">
-        <p className="text-gray-400 text-sm">Level {level} — What was the number?</p>
+        <p className="text-ink-2 text-sm">Level {level} — What was the number?</p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             ref={inputRef}
             type="tel"
             value={guess}
             onChange={(e) => setGuess(e.target.value.replace(/\D/g, ""))}
-            className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-4 text-white font-mono text-3xl text-center tracking-widest focus:outline-none focus:border-purple-500"
+            className="w-full bg-paper-2 border border-line rounded-xl px-4 py-4 text-ink font-mono text-3xl text-center tracking-widest focus:outline-none focus:border-purple-500"
             placeholder="Type the number..."
             autoComplete="off"
           />
           <button
             type="submit"
-            className="px-8 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+            className="px-8 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
           >
             Submit
           </button>
@@ -152,16 +152,16 @@ export default function NumberMemory() {
       <div className="text-center space-y-4">
         <div className="bg-emerald-900/30 rounded-2xl p-8 border border-emerald-800">
           <p className="text-emerald-400 text-2xl font-bold mb-2">Correct!</p>
-          <p className="text-4xl font-mono font-black text-white tracking-widest">
+          <p className="text-4xl font-mono font-black text-ink tracking-widest">
             {number}
           </p>
-          <p className="text-gray-400 text-sm mt-2">
+          <p className="text-ink-2 text-sm mt-2">
             Level {level} — {digits} digits
           </p>
         </div>
         <button
           onClick={nextLevel}
-          className="px-8 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+          className="px-8 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
         >
           Next Level ({digits + 1} digits)
         </button>
@@ -174,28 +174,28 @@ export default function NumberMemory() {
   const rating = getRating(finalScore);
   return (
     <div className="text-center space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-        <p className="text-gray-400 text-sm mb-2">Your Number Memory</p>
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+        <p className="text-ink-2 text-sm mb-2">Your Number Memory</p>
         <p className="text-6xl font-black text-purple-400">
           Level {finalScore}
         </p>
-        <p className="text-gray-400 mt-1">{finalScore + 2} digits</p>
+        <p className="text-ink-2 mt-1">{finalScore + 2} digits</p>
         <p className={`text-lg font-bold mt-2 ${rating.color}`}>
           {rating.label}
         </p>
         {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-        {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
+        {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-        <p className="text-sm text-gray-500 mb-2">The number was:</p>
+      <div className="bg-paper-2 rounded-xl p-4 border border-line">
+        <p className="text-sm text-ink-3 mb-2">The number was:</p>
         <p className="font-mono text-xl text-emerald-400 tracking-widest">{number}</p>
-        <p className="text-sm text-gray-500 mt-2">You typed:</p>
+        <p className="text-sm text-ink-3 mt-2">You typed:</p>
         <p className="font-mono text-xl text-red-400 tracking-widest">{guess}</p>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-        <p className="font-bold text-white mb-2">How You Compare</p>
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+        <p className="font-bold text-ink mb-2">How You Compare</p>
         <div className="flex justify-between">
           <span>Genius: 12+</span>
           <span>Great: 9+</span>
@@ -207,7 +207,7 @@ export default function NumberMemory() {
       <div className="flex gap-3 justify-center">
         <button
           onClick={startGame}
-          className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+          className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
         >
           Try Again
         </button>
@@ -220,7 +220,7 @@ export default function NumberMemory() {
               navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
             }
           }}
-          className="px-6 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+          className="px-6 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
         >
           Share Score
         </button>

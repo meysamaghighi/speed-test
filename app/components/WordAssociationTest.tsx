@@ -210,9 +210,9 @@ export default function WordAssociationTest() {
   if (phase === "instructions") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-gray-400 space-y-3 text-left max-w-md mx-auto">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-ink-2 space-y-3 text-left max-w-md mx-auto">
             <p>1. You'll be given a random category (animals, colors, countries, etc.)</p>
             <p>2. Type as many valid words in that category as you can</p>
             <p>3. You have 60 seconds</p>
@@ -223,7 +223,7 @@ export default function WordAssociationTest() {
 
         <button
           onClick={startTest}
-          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xl font-bold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-colors"
+          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-ink text-xl font-bold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-colors"
         >
           Start Test
         </button>
@@ -234,16 +234,16 @@ export default function WordAssociationTest() {
   if (phase === "result") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Category: {category.name}</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Category: {category.name}</p>
           <p className="text-6xl font-black text-blue-400">{score}</p>
-          <p className="text-gray-400 text-sm mt-2">words in 60 seconds</p>
+          <p className="text-ink-2 text-sm mt-2">words in 60 seconds</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-3 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} words</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} words</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-          <p className="text-white font-bold mb-3">Your Words</p>
+        <div className="bg-paper-2 rounded-xl p-6 border border-line">
+          <p className="text-ink font-bold mb-3">Your Words</p>
           <div className="flex flex-wrap gap-2 justify-center max-h-48 overflow-y-auto">
             {submittedWords.map((word, i) => (
               <span key={i} className="px-3 py-1 bg-green-900/30 text-green-400 rounded-lg text-sm border border-green-800">
@@ -253,8 +253,8 @@ export default function WordAssociationTest() {
           </div>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="space-y-1">
             <p>Excellent: 20+ words</p>
             <p>Good: 15-19 words</p>
@@ -266,7 +266,7 @@ export default function WordAssociationTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -279,7 +279,7 @@ export default function WordAssociationTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors"
           >
             Share Score
           </button>
@@ -291,8 +291,8 @@ export default function WordAssociationTest() {
   if (phase === "countdown") {
     return (
       <div className="text-center py-20">
-        <p className="text-gray-400 text-xl mb-8">Category: {category.name}</p>
-        <p className="text-8xl font-black text-white">{countdown}</p>
+        <p className="text-ink-2 text-xl mb-8">Category: {category.name}</p>
+        <p className="text-8xl font-black text-ink">{countdown}</p>
       </div>
     );
   }
@@ -301,22 +301,22 @@ export default function WordAssociationTest() {
     <div className="space-y-6">
       <div className="flex justify-between items-center px-1">
         <div className="text-left">
-          <p className="text-sm text-gray-500">Category</p>
-          <p className="text-lg font-bold text-white">{category.name}</p>
-          <p className="text-xs text-gray-600">{category.examples}</p>
+          <p className="text-sm text-ink-3">Category</p>
+          <p className="text-lg font-bold text-ink">{category.name}</p>
+          <p className="text-xs text-ink-3">{category.examples}</p>
         </div>
         <div className="text-right">
-          <p className="text-sm text-gray-500">Time Left</p>
+          <p className="text-sm text-ink-3">Time Left</p>
           <p className={`text-3xl font-black ${timeLeft <= 10 ? 'text-red-400 animate-pulse' : 'text-blue-400'}`}>
             {timeLeft}s
           </p>
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+      <div className="bg-paper-2 rounded-xl p-6 border border-line">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-white font-bold">Score: {score}</p>
-          <p className="text-gray-500 text-sm">{submittedWords.length} word{submittedWords.length !== 1 ? 's' : ''}</p>
+          <p className="text-ink font-bold">Score: {score}</p>
+          <p className="text-ink-3 text-sm">{submittedWords.length} word{submittedWords.length !== 1 ? 's' : ''}</p>
         </div>
 
         <div className="max-w-xl mx-auto">
@@ -325,7 +325,7 @@ export default function WordAssociationTest() {
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white text-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-4 py-3 bg-paper-2 border border-line rounded-xl text-ink text-lg focus:outline-none focus:border-blue-500"
             placeholder="Type a word and press Enter..."
             autoCapitalize="off"
             autoCorrect="off"
@@ -341,8 +341,8 @@ export default function WordAssociationTest() {
       </div>
 
       {submittedWords.length > 0 && (
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-          <p className="text-gray-500 text-sm mb-2">Submitted Words</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line">
+          <p className="text-ink-3 text-sm mb-2">Submitted Words</p>
           <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
             {submittedWords.map((word, i) => (
               <span key={i} className="px-2 py-1 bg-green-900/30 text-green-400 rounded text-sm border border-green-800">

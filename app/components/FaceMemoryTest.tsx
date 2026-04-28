@@ -154,18 +154,18 @@ export default function FaceMemoryTest() {
     const rating = getRating(maxLevel);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Level Reached</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Level Reached</p>
           <p className="text-6xl font-black text-purple-400">{maxLevel}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">Your Answer</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">Your Answer</p>
           <div className={`grid gap-2`} style={{ gridTemplateColumns: `repeat(${LEVELS[Math.min(level, LEVELS.length - 1)].gridSize}, minmax(0, 1fr))` }}>
             {currentGrid.map((emoji, idx) => {
               const wasChanged = changedIndices.has(idx);
@@ -183,7 +183,7 @@ export default function FaceMemoryTest() {
                       ? "border-red-500 bg-red-950"
                       : isMissed
                       ? "border-yellow-500 bg-yellow-950"
-                      : "border-gray-700 bg-gray-800"
+                      : "border-line bg-paper-2"
                   }`}
                 >
                   {emoji}
@@ -201,7 +201,7 @@ export default function FaceMemoryTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -214,7 +214,7 @@ export default function FaceMemoryTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+            className="px-6 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
           >
             Share Score
           </button>
@@ -227,15 +227,15 @@ export default function FaceMemoryTest() {
   if (phase === "result" && isCorrect === true) {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-5xl mb-3">✅</p>
           <p className="text-2xl font-bold text-green-400">Perfect!</p>
-          <p className="text-gray-400 text-sm mt-2">Level {level} Complete</p>
+          <p className="text-ink-2 text-sm mt-2">Level {level} Complete</p>
         </div>
 
         <button
           onClick={handleContinue}
-          className="px-8 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors text-lg"
+          className="px-8 py-4 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors text-lg"
         >
           Next Level →
         </button>
@@ -249,19 +249,19 @@ export default function FaceMemoryTest() {
   if (phase === "waiting") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-4xl mb-4">🧠</p>
-          <p className="text-gray-300 mb-4">
+          <p className="text-ink-2 mb-4">
             Study the grid of faces, then identify which ones changed.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-ink-3">
             Each level gets harder: more faces, less time, more changes.
           </p>
         </div>
 
         <button
           onClick={startLevel}
-          className="px-8 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors text-lg"
+          className="px-8 py-4 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors text-lg"
         >
           Start Test
         </button>
@@ -274,8 +274,8 @@ export default function FaceMemoryTest() {
     return (
       <div className="space-y-4">
         <div className="text-center space-y-2">
-          <p className="text-sm text-gray-500">Level {level + 1}</p>
-          <p className="text-2xl font-bold text-white">Memorize These Faces</p>
+          <p className="text-sm text-ink-3">Level {level + 1}</p>
+          <p className="text-2xl font-bold text-ink">Memorize These Faces</p>
           <p className="text-4xl font-black text-purple-400">{countdown}s</p>
         </div>
 
@@ -283,7 +283,7 @@ export default function FaceMemoryTest() {
           {currentGrid.map((emoji, idx) => (
             <div
               key={idx}
-              className="text-4xl md:text-5xl p-4 bg-gray-900 rounded-xl border border-gray-800 flex items-center justify-center"
+              className="text-4xl md:text-5xl p-4 bg-paper-2 rounded-xl border border-line flex items-center justify-center"
             >
               {emoji}
             </div>
@@ -299,9 +299,9 @@ export default function FaceMemoryTest() {
     return (
       <div className="space-y-4">
         <div className="text-center space-y-2">
-          <p className="text-sm text-gray-500">Level {level + 1}</p>
-          <p className="text-xl font-bold text-white">Which Faces Changed?</p>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-ink-3">Level {level + 1}</p>
+          <p className="text-xl font-bold text-ink">Which Faces Changed?</p>
+          <p className="text-sm text-ink-2">
             Tap {changesNeeded} face{changesNeeded > 1 ? "s" : ""} that changed
           </p>
           <p className="text-sm text-purple-400 font-bold">
@@ -319,7 +319,7 @@ export default function FaceMemoryTest() {
                 className={`text-4xl md:text-5xl p-4 rounded-xl border-2 transition-all ${
                   isSelected
                     ? "border-purple-500 bg-purple-950 scale-95"
-                    : "border-gray-800 bg-gray-900 hover:border-gray-700"
+                    : "border-line bg-paper-2 hover:border-line"
                 }`}
               >
                 {emoji}
@@ -332,7 +332,7 @@ export default function FaceMemoryTest() {
           <button
             onClick={handleSubmit}
             disabled={selectedIndices.size !== changesNeeded}
-            className="px-8 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-8 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Submit
           </button>

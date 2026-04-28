@@ -69,36 +69,36 @@ export default function AimTrainer() {
     const rating = getRating(average);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Average Time per Target</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Average Time per Target</p>
           <p className="text-6xl font-black text-red-400">{average}ms</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}ms</p>}
-          <p className="text-gray-500 text-sm mt-1">
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}ms</p>}
+          <p className="text-ink-3 text-sm mt-1">
             {totalTargets} targets hit
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-xs text-gray-500">Fastest</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-xs text-ink-3">Fastest</p>
             <p className="text-xl font-bold text-emerald-400">
               {Math.round(Math.min(...times))}ms
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-xs text-gray-500">Slowest</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-xs text-ink-3">Slowest</p>
             <p className="text-xl font-bold text-red-400">
               {Math.round(Math.max(...times))}ms
             </p>
           </div>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Pro: &lt;300ms</span>
             <span>Good: &lt;450ms</span>
@@ -110,7 +110,7 @@ export default function AimTrainer() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startGame}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -123,7 +123,7 @@ export default function AimTrainer() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-colors"
+            className="px-6 py-3 bg-red-600 text-ink font-bold rounded-xl hover:bg-red-700 transition-colors"
           >
             Share Score
           </button>
@@ -137,11 +137,11 @@ export default function AimTrainer() {
       <div className="text-center">
         <button
           onClick={startGame}
-          className="px-8 py-4 bg-red-600 text-white font-bold text-xl rounded-2xl hover:bg-red-700 transition-colors"
+          className="px-8 py-4 bg-red-600 text-ink font-bold text-xl rounded-2xl hover:bg-red-700 transition-colors"
         >
           Start Aim Trainer
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Click {totalTargets} targets as fast as you can. We measure your
           average time per target.
         </p>
@@ -151,14 +151,14 @@ export default function AimTrainer() {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Targets: {hits} / {totalTargets}</span>
         {times.length > 0 && <span>Avg: {average}ms</span>}
       </div>
 
       <div
         ref={areaRef}
-        className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden cursor-crosshair"
+        className="relative w-full h-80 md:h-96 bg-paper-2 rounded-2xl border border-line overflow-hidden cursor-crosshair"
       >
         {target && (
           <button

@@ -150,19 +150,19 @@ export default function DualTaskTest() {
 
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Dual Task Accuracy</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Dual Task Accuracy</p>
           <p className="text-6xl font-black text-cyan-400">{accuracy}%</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
-          <p className="text-gray-400 text-sm mt-3">
+          <p className="text-ink-2 text-sm mt-3">
             Actual beeps: {beepCount} • Your answer: {userAnswer}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}%</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}%</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">About Divided Attention</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">About Divided Attention</p>
           <p>
             This test measures your ability to track visual and auditory information simultaneously.
             It's crucial for multitasking and is often impaired by distractions or fatigue.
@@ -172,7 +172,7 @@ export default function DualTaskTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -185,7 +185,7 @@ export default function DualTaskTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors"
+            className="px-6 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors"
           >
             Share Score
           </button>
@@ -198,9 +198,9 @@ export default function DualTaskTest() {
   if (phase === "ready") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-left text-gray-400 space-y-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-left text-ink-2 space-y-2">
             <p>• Keep your eyes on the moving red dot</p>
             <p>• At the same time, COUNT how many beeps you hear</p>
             <p>• After 30 seconds, report the number of beeps</p>
@@ -210,7 +210,7 @@ export default function DualTaskTest() {
         </div>
         <button
           onClick={startTest}
-          className="px-8 py-4 bg-cyan-600 text-white font-bold text-xl rounded-xl hover:bg-cyan-700 transition-colors"
+          className="px-8 py-4 bg-cyan-600 text-ink font-bold text-xl rounded-xl hover:bg-cyan-700 transition-colors"
         >
           Start Test
         </button>
@@ -222,8 +222,8 @@ export default function DualTaskTest() {
   if (phase === "answer") {
     return (
       <div className="space-y-4">
-        <form onSubmit={handleSubmit} className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-center text-white text-xl mb-6">
+        <form onSubmit={handleSubmit} className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-center text-ink text-xl mb-6">
             How many beeps did you hear?
           </p>
           <input
@@ -233,12 +233,12 @@ export default function DualTaskTest() {
             autoFocus
             min="0"
             placeholder="Enter number"
-            className="w-full px-4 py-3 bg-gray-800 text-white text-center text-2xl rounded-xl border border-gray-700 focus:border-cyan-500 focus:outline-none"
+            className="w-full px-4 py-3 bg-paper-2 text-ink text-center text-2xl rounded-xl border border-line focus:border-cyan-500 focus:outline-none"
           />
           <button
             type="submit"
             disabled={userAnswer === ""}
-            className="w-full mt-4 px-6 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors"
+            className="w-full mt-4 px-6 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 disabled:bg-paper-2 disabled:cursor-not-allowed transition-colors"
           >
             Submit Answer
           </button>
@@ -250,14 +250,14 @@ export default function DualTaskTest() {
   // Running test
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400 px-1">
+      <div className="flex justify-between text-sm text-ink-2 px-1">
         <span>Track the dot • Count the beeps</span>
-        <span className="text-white font-bold">{timeLeft}s</span>
+        <span className="text-ink font-bold">{timeLeft}s</span>
       </div>
 
-      <div className="relative bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden" style={{ paddingBottom: "75%" }}>
+      <div className="relative bg-paper-2 rounded-2xl border border-line overflow-hidden" style={{ paddingBottom: "75%" }}>
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-gray-700 text-sm">Keep your eyes on the red dot</p>
+          <p className="text-ink-3 text-sm">Keep your eyes on the red dot</p>
         </div>
         <div
           className="absolute w-6 h-6 rounded-full bg-red-500 shadow-lg shadow-red-500/50 transition-all duration-75"
@@ -269,8 +269,8 @@ export default function DualTaskTest() {
         />
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-center">
-        <p className="text-gray-400 text-sm">
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-center">
+        <p className="text-ink-2 text-sm">
           🔊 Counting beeps while tracking the dot...
         </p>
       </div>

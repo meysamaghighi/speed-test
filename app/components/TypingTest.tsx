@@ -84,11 +84,11 @@ export default function TypingTest() {
       <div className="text-center">
         <button
           onClick={startTest}
-          className="px-8 py-4 bg-blue-600 text-white font-bold text-xl rounded-2xl hover:bg-blue-700 transition-colors"
+          className="px-8 py-4 bg-blue-600 text-ink font-bold text-xl rounded-2xl hover:bg-blue-700 transition-colors"
         >
           Start Typing Test
         </button>
-        <p className="text-gray-500 text-sm mt-3">
+        <p className="text-ink-3 text-sm mt-3">
           Type the paragraph as fast and accurately as you can.
         </p>
       </div>
@@ -99,33 +99,33 @@ export default function TypingTest() {
     const rating = getRating(wpm);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Your Typing Speed</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Your Typing Speed</p>
           <p className="text-6xl font-black text-blue-400">{wpm} WPM</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} WPM</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} WPM</p>}
         </div>
 
         <div className="grid grid-cols-3 gap-3">
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-xs text-gray-500">Accuracy</p>
-            <p className="text-2xl font-bold text-white">{accuracy}%</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-xs text-ink-3">Accuracy</p>
+            <p className="text-2xl font-bold text-ink">{accuracy}%</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-xs text-gray-500">Time</p>
-            <p className="text-2xl font-bold text-white">{elapsed.toFixed(1)}s</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-xs text-ink-3">Time</p>
+            <p className="text-2xl font-bold text-ink">{elapsed.toFixed(1)}s</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-            <p className="text-xs text-gray-500">Characters</p>
-            <p className="text-2xl font-bold text-white">{text.length}</p>
+          <div className="bg-paper-2 rounded-xl p-4 border border-line">
+            <p className="text-xs text-ink-3">Characters</p>
+            <p className="text-2xl font-bold text-ink">{text.length}</p>
           </div>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Top 1%: 80+ WPM</span>
             <span>Fast: 60+</span>
@@ -137,7 +137,7 @@ export default function TypingTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startTest}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -150,7 +150,7 @@ export default function TypingTest() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors"
           >
             Share Score
           </button>
@@ -162,13 +162,13 @@ export default function TypingTest() {
   // Typing phase
   return (
     <div className="space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800 font-mono text-lg leading-relaxed">
+      <div className="bg-paper-2 rounded-2xl p-6 border border-line font-mono text-lg leading-relaxed">
         {text.split("").map((char, i) => {
-          let color = "text-gray-500";
+          let color = "text-ink-3";
           if (i < typed.length) {
             color = typed[i] === char ? "text-emerald-400" : "text-red-400 bg-red-400/20";
           } else if (i === typed.length) {
-            color = "text-white bg-white/20";
+            color = "text-ink bg-white/20";
           }
           return (
             <span key={i} className={color}>
@@ -183,7 +183,7 @@ export default function TypingTest() {
         type="text"
         value={typed}
         onChange={handleInput}
-        className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-lg focus:outline-none focus:border-blue-500"
+        className="w-full bg-paper-2 border border-line rounded-xl px-4 py-3 text-ink font-mono text-lg focus:outline-none focus:border-blue-500"
         placeholder="Start typing here..."
         autoComplete="off"
         autoCapitalize="off"
@@ -191,7 +191,7 @@ export default function TypingTest() {
         spellCheck={false}
       />
 
-      <div className="flex justify-between text-sm text-gray-500">
+      <div className="flex justify-between text-sm text-ink-3">
         <span>{typed.length} / {text.length} characters</span>
         <span>{accuracy}% accuracy</span>
       </div>

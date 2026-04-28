@@ -151,17 +151,17 @@ export default function MathSpeed() {
     if (score >= 500) return { label: "Math Genius", color: "text-yellow-400" };
     if (score >= 350) return { label: "Lightning Fast", color: "text-green-400" };
     if (score >= 200) return { label: "Quick Thinker", color: "text-blue-400" };
-    if (score >= 100) return { label: "Solid", color: "text-gray-300" };
-    return { label: "Keep Practicing", color: "text-gray-400" };
+    if (score >= 100) return { label: "Solid", color: "text-ink-2" };
+    return { label: "Keep Practicing", color: "text-ink-2" };
   };
 
   if (phase === "ready") {
     return (
       <div className="text-center">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-lg text-gray-300 mb-4">Solve as many math problems as you can in <strong className="text-white">60 seconds</strong>.</p>
-          <p className="text-sm text-gray-500 mb-6">Difficulty increases as you get more right. Wrong answers lower the level.</p>
-          <button onClick={startGame} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-bold text-lg hover:from-amber-400 hover:to-orange-400 transition-all">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-lg text-ink-2 mb-4">Solve as many math problems as you can in <strong className="text-ink">60 seconds</strong>.</p>
+          <p className="text-sm text-ink-3 mb-6">Difficulty increases as you get more right. Wrong answers lower the level.</p>
+          <button onClick={startGame} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-ink rounded-xl font-bold text-lg hover:from-amber-400 hover:to-orange-400 transition-all">
             Start
           </button>
         </div>
@@ -174,24 +174,24 @@ export default function MathSpeed() {
     const accuracy = totalAnswered > 0 ? Math.round((correct / totalAnswered) * 100) : 0;
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Score</p>
-          <p className="text-5xl font-black text-white">{score}</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Score</p>
+          <p className="text-5xl font-black text-ink">{score}</p>
           <p className={`text-xl font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>}
           <div className="grid grid-cols-3 gap-4 mt-6">
             <div>
-              <p className="text-2xl font-bold text-white">{correct}</p>
-              <p className="text-xs text-gray-500">Correct</p>
+              <p className="text-2xl font-bold text-ink">{correct}</p>
+              <p className="text-xs text-ink-3">Correct</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">{accuracy}%</p>
-              <p className="text-xs text-gray-500">Accuracy</p>
+              <p className="text-2xl font-bold text-ink">{accuracy}%</p>
+              <p className="text-xs text-ink-3">Accuracy</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">{bestStreak}</p>
-              <p className="text-xs text-gray-500">Best Streak</p>
+              <p className="text-2xl font-bold text-ink">{bestStreak}</p>
+              <p className="text-xs text-ink-3">Best Streak</p>
             </div>
           </div>
         </div>
@@ -205,7 +205,7 @@ export default function MathSpeed() {
               if (navigator.share) navigator.share({ title: "Math Speed Test", text });
               else navigator.clipboard.writeText(text);
             }}
-            className="px-6 py-3 bg-gray-800 text-white rounded-xl font-bold hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink rounded-xl font-bold hover:bg-paper-2 transition-colors"
           >
             Share
           </button>
@@ -217,24 +217,24 @@ export default function MathSpeed() {
   return (
     <div className="text-center space-y-6">
       <div className="flex justify-between items-center text-sm">
-        <span className="text-gray-400">Score: <strong className="text-white">{score}</strong></span>
-        <span className={`font-mono text-2xl font-black ${timeLeft <= 10 ? "text-red-400" : "text-white"}`}>
+        <span className="text-ink-2">Score: <strong className="text-ink">{score}</strong></span>
+        <span className={`font-mono text-2xl font-black ${timeLeft <= 10 ? "text-red-400" : "text-ink"}`}>
           {timeLeft}s
         </span>
-        <span className="text-gray-400">Streak: <strong className="text-amber-400">{streak}</strong></span>
+        <span className="text-ink-2">Streak: <strong className="text-amber-400">{streak}</strong></span>
       </div>
 
       {/* Timer bar */}
-      <div className="w-full bg-gray-800 rounded-full h-2">
+      <div className="w-full bg-paper-2 rounded-full h-2">
         <div
           className={`h-2 rounded-full transition-all duration-1000 ${timeLeft <= 10 ? "bg-red-500" : "bg-gradient-to-r from-amber-500 to-orange-500"}`}
           style={{ width: `${(timeLeft / 60) * 100}%` }}
         />
       </div>
 
-      <div className={`bg-gray-900 rounded-2xl p-8 border transition-colors ${flash === "correct" ? "border-green-500" : flash === "wrong" ? "border-red-500" : "border-gray-800"}`}>
-        <p className="text-xs text-gray-500 mb-2">Level {level}</p>
-        <p className="text-5xl font-black text-white mb-6">{problem?.question}</p>
+      <div className={`bg-paper-2 rounded-2xl p-8 border transition-colors ${flash === "correct" ? "border-green-500" : flash === "wrong" ? "border-red-500" : "border-line"}`}>
+        <p className="text-xs text-ink-3 mb-2">Level {level}</p>
+        <p className="text-5xl font-black text-ink mb-6">{problem?.question}</p>
         <div className="flex gap-3 justify-center">
           <input
             ref={inputRef}
@@ -244,7 +244,7 @@ export default function MathSpeed() {
             onChange={(e) => setAnswer(e.target.value.replace(/[^0-9-]/g, ""))}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             placeholder="?"
-            className="bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white text-center text-2xl w-32 focus:outline-none focus:border-gray-500"
+            className="bg-paper-2 border border-line rounded-xl px-4 py-3 text-ink text-center text-2xl w-32 focus:outline-none focus:border-gray-500"
             autoFocus
           />
           <button

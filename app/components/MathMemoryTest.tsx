@@ -96,16 +96,16 @@ export default function MathMemoryTest() {
   if (phase === "finished") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Consecutive Correct Answers</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Consecutive Correct Answers</p>
           <p className="text-6xl font-black text-blue-400">{streak}</p>
-          <p className="text-gray-400 text-sm mt-2">Level {level} difficulty</p>
+          <p className="text-ink-2 text-sm mt-2">Level {level} difficulty</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} correct</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} correct</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">Math Memory Rating</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">Math Memory Rating</p>
           <div className="flex justify-between">
             <span>Beginner: 1-5</span>
             <span>Good: 6-10</span>
@@ -117,7 +117,7 @@ export default function MathMemoryTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -130,7 +130,7 @@ export default function MathMemoryTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors"
           >
             Share Score
           </button>
@@ -143,9 +143,9 @@ export default function MathMemoryTest() {
   if (phase === "ready") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-left text-gray-400 space-y-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-left text-ink-2 space-y-2">
             <p>• A math equation will flash briefly</p>
             <p>• Memorize it before it disappears</p>
             <p>• Type the answer</p>
@@ -155,7 +155,7 @@ export default function MathMemoryTest() {
         </div>
         <button
           onClick={startRound}
-          className="px-8 py-4 bg-blue-600 text-white font-bold text-xl rounded-xl hover:bg-blue-700 transition-colors"
+          className="px-8 py-4 bg-blue-600 text-ink font-bold text-xl rounded-xl hover:bg-blue-700 transition-colors"
         >
           Start Test
         </button>
@@ -166,12 +166,12 @@ export default function MathMemoryTest() {
   // Show equation
   if (phase === "show" && equation) {
     return (
-      <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 text-center">
-        <p className="text-gray-400 text-sm mb-4">Memorize this equation</p>
-        <p className="text-5xl font-black text-white">
+      <div className="bg-paper-2 rounded-2xl p-12 border border-line text-center">
+        <p className="text-ink-2 text-sm mb-4">Memorize this equation</p>
+        <p className="text-5xl font-black text-ink">
           {equation.num1} {equation.operator} {equation.num2} = ?
         </p>
-        <p className="text-gray-500 text-sm mt-6">Level {level} • Streak: {streak}</p>
+        <p className="text-ink-3 text-sm mt-6">Level {level} • Streak: {streak}</p>
       </div>
     );
   }
@@ -179,12 +179,12 @@ export default function MathMemoryTest() {
   // Result screen
   if (phase === "result" && equation) {
     return (
-      <div className="bg-gray-900 rounded-2xl p-12 border border-gray-800 text-center">
+      <div className="bg-paper-2 rounded-2xl p-12 border border-line text-center">
         <p className="text-green-400 font-bold text-2xl mb-4">Correct!</p>
-        <p className="text-3xl text-white">
+        <p className="text-3xl text-ink">
           {equation.num1} {equation.operator} {equation.num2} = {equation.answer}
         </p>
-        <p className="text-gray-400 text-sm mt-4">Streak: {streak}</p>
+        <p className="text-ink-2 text-sm mt-4">Streak: {streak}</p>
       </div>
     );
   }
@@ -192,14 +192,14 @@ export default function MathMemoryTest() {
   // Answer input
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400 px-1">
+      <div className="flex justify-between text-sm text-ink-2 px-1">
         <span>Level {level}</span>
         <span>Streak: {streak}</span>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-        <p className="text-center text-gray-400 mb-4">What was the answer?</p>
-        <p className="text-center text-2xl text-gray-500 mb-6">
+      <form onSubmit={handleSubmit} className="bg-paper-2 rounded-2xl p-8 border border-line">
+        <p className="text-center text-ink-2 mb-4">What was the answer?</p>
+        <p className="text-center text-2xl text-ink-3 mb-6">
           {equation?.num1} {equation?.operator} {equation?.num2} = ?
         </p>
         <input
@@ -208,12 +208,12 @@ export default function MathMemoryTest() {
           onChange={(e) => setUserAnswer(e.target.value)}
           autoFocus
           placeholder="Type answer"
-          className="w-full px-4 py-3 bg-gray-800 text-white text-center text-2xl rounded-xl border border-gray-700 focus:border-blue-500 focus:outline-none"
+          className="w-full px-4 py-3 bg-paper-2 text-ink text-center text-2xl rounded-xl border border-line focus:border-blue-500 focus:outline-none"
         />
         <button
           type="submit"
           disabled={userAnswer === ""}
-          className="w-full mt-4 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors"
+          className="w-full mt-4 px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 disabled:bg-paper-2 disabled:cursor-not-allowed transition-colors"
         >
           Submit
         </button>

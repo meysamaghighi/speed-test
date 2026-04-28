@@ -113,16 +113,16 @@ export default function RapidEstimationTest() {
   if (phase === "finished") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Final Score</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Final Score</p>
           <p className="text-6xl font-black text-blue-400">{score}</p>
-          <p className="text-gray-400 text-sm mt-2">15 rounds completed</p>
+          <p className="text-ink-2 text-sm mt-2">15 rounds completed</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">Estimation Rating</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">Estimation Rating</p>
           <div className="grid grid-cols-2 gap-2">
             <span>Beginner: 0-800</span>
             <span>Average: 800-1200</span>
@@ -134,7 +134,7 @@ export default function RapidEstimationTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -147,7 +147,7 @@ export default function RapidEstimationTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors"
           >
             Share Score
           </button>
@@ -160,9 +160,9 @@ export default function RapidEstimationTest() {
   if (phase === "ready") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-left text-gray-400 space-y-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-left text-ink-2 space-y-2">
             <p>- 15 rounds of rapid estimation challenges</p>
             <p>- Count dots, estimate multiplication, compare quantities</p>
             <p>- Answer as quickly and accurately as you can</p>
@@ -171,7 +171,7 @@ export default function RapidEstimationTest() {
         </div>
         <button
           onClick={startRound}
-          className="px-8 py-4 bg-blue-600 text-white font-bold text-xl rounded-xl hover:bg-blue-700 transition-colors"
+          className="px-8 py-4 bg-blue-600 text-ink font-bold text-xl rounded-xl hover:bg-blue-700 transition-colors"
         >
           Start Test
         </button>
@@ -190,12 +190,12 @@ export default function RapidEstimationTest() {
       }));
       return (
         <div className="space-y-4">
-          <div className="text-center text-sm text-gray-400">
+          <div className="text-center text-sm text-ink-2">
             Round {round}/15 - Score: {score}
           </div>
-          <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
-            <p className="text-center text-white font-bold mb-4">Count the dots!</p>
-            <div className="relative w-full aspect-square max-w-md mx-auto bg-gray-800 rounded-xl">
+          <div className="bg-paper-2 rounded-2xl p-6 border border-line">
+            <p className="text-center text-ink font-bold mb-4">Count the dots!</p>
+            <div className="relative w-full aspect-square max-w-md mx-auto bg-paper-2 rounded-xl">
               {dots.map((dot, i) => (
                 <div
                   key={i}
@@ -210,12 +210,12 @@ export default function RapidEstimationTest() {
     } else if (currentRound.type === "multiplication") {
       return (
         <div className="space-y-4">
-          <div className="text-center text-sm text-gray-400">
+          <div className="text-center text-sm text-ink-2">
             Round {round}/15 - Score: {score}
           </div>
-          <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
-            <p className="text-center text-white font-bold mb-4">Quick estimation!</p>
-            <div className="text-center text-5xl font-black text-white">
+          <div className="bg-paper-2 rounded-2xl p-6 border border-line">
+            <p className="text-center text-ink font-bold mb-4">Quick estimation!</p>
+            <div className="text-center text-5xl font-black text-ink">
               {currentRound.mult1} x {currentRound.mult2}
             </div>
           </div>
@@ -232,15 +232,15 @@ export default function RapidEstimationTest() {
       }));
       return (
         <div className="space-y-4">
-          <div className="text-center text-sm text-gray-400">
+          <div className="text-center text-sm text-ink-2">
             Round {round}/15 - Score: {score}
           </div>
-          <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
-            <p className="text-center text-white font-bold mb-4">Which side has more?</p>
-            <div className="relative w-full aspect-square max-w-md mx-auto bg-gray-800 rounded-xl">
+          <div className="bg-paper-2 rounded-2xl p-6 border border-line">
+            <p className="text-center text-ink font-bold mb-4">Which side has more?</p>
+            <div className="relative w-full aspect-square max-w-md mx-auto bg-paper-2 rounded-xl">
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-600" />
-              <div className="absolute top-4 left-1/4 text-white font-bold">1</div>
-              <div className="absolute top-4 right-1/4 text-white font-bold">2</div>
+              <div className="absolute top-4 left-1/4 text-ink font-bold">1</div>
+              <div className="absolute top-4 right-1/4 text-ink font-bold">2</div>
               {dots1.map((dot, i) => (
                 <div
                   key={`1-${i}`}
@@ -276,10 +276,10 @@ export default function RapidEstimationTest() {
 
   return (
     <div className="space-y-4">
-      <div className="text-center text-sm text-gray-400">
+      <div className="text-center text-sm text-ink-2">
         Round {round}/15 - Score: {score}
       </div>
-      <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+      <div className="bg-paper-2 rounded-2xl p-6 border border-line">
         {phase === "result" && (
           <p className={`text-center font-bold mb-4 ${isCorrect ? "text-green-400" : "text-red-400"}`}>
             {isCorrect ? "Correct!" : "Wrong!"}
@@ -287,7 +287,7 @@ export default function RapidEstimationTest() {
           </p>
         )}
         {phase === "answer" && (
-          <p className="text-center text-gray-400 mb-4">Your answer?</p>
+          <p className="text-center text-ink-2 mb-4">Your answer?</p>
         )}
 
         {currentRound.type === "dots" && (
@@ -295,7 +295,7 @@ export default function RapidEstimationTest() {
             <input
               type="number"
               placeholder="How many dots?"
-              className="w-full px-4 py-3 bg-gray-800 text-white rounded-xl border border-gray-700 text-center text-xl"
+              className="w-full px-4 py-3 bg-paper-2 text-ink rounded-xl border border-line text-center text-xl"
               autoFocus
               disabled={phase === "result"}
               onKeyDown={(e) => {
@@ -310,7 +310,7 @@ export default function RapidEstimationTest() {
                   const input = e.currentTarget.previousElementSibling as HTMLInputElement;
                   if (input.value) handleAnswer(parseInt(input.value));
                 }}
-                className="w-full px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
+                className="w-full px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors"
               >
                 Submit
               </button>
@@ -327,10 +327,10 @@ export default function RapidEstimationTest() {
                 disabled={phase === "result"}
                 className={`px-6 py-4 text-xl font-bold rounded-xl transition-colors ${
                   phase === "result" && choice === currentRound.correctAnswer
-                    ? "bg-green-600 text-white"
+                    ? "bg-green-600 text-ink"
                     : phase === "result" && choice === userAnswer
-                    ? "bg-red-600 text-white"
-                    : "bg-gray-800 text-white hover:bg-gray-700"
+                    ? "bg-red-600 text-ink"
+                    : "bg-paper-2 text-ink hover:bg-paper-2"
                 }`}
               >
                 {choice.toLocaleString()}
@@ -346,10 +346,10 @@ export default function RapidEstimationTest() {
               disabled={phase === "result"}
               className={`px-6 py-4 text-xl font-bold rounded-xl transition-colors ${
                 phase === "result" && 1 === currentRound.correctAnswer
-                  ? "bg-green-600 text-white"
+                  ? "bg-green-600 text-ink"
                   : phase === "result" && 1 === userAnswer
-                  ? "bg-red-600 text-white"
-                  : "bg-gray-800 text-white hover:bg-gray-700"
+                  ? "bg-red-600 text-ink"
+                  : "bg-paper-2 text-ink hover:bg-paper-2"
               }`}
             >
               Left (1)
@@ -359,10 +359,10 @@ export default function RapidEstimationTest() {
               disabled={phase === "result"}
               className={`px-6 py-4 text-xl font-bold rounded-xl transition-colors ${
                 phase === "result" && 2 === currentRound.correctAnswer
-                  ? "bg-green-600 text-white"
+                  ? "bg-green-600 text-ink"
                   : phase === "result" && 2 === userAnswer
-                  ? "bg-red-600 text-white"
-                  : "bg-gray-800 text-white hover:bg-gray-700"
+                  ? "bg-red-600 text-ink"
+                  : "bg-paper-2 text-ink hover:bg-paper-2"
               }`}
             >
               Right (2)

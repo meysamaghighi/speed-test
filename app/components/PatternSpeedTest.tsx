@@ -79,18 +79,18 @@ export default function PatternSpeedTest() {
   if (phase === "finished") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Highest Level Reached</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Highest Level Reached</p>
           <p className="text-6xl font-black text-purple-400">Level {highestLevel}</p>
-          <p className="text-gray-400 text-sm mt-2">
+          <p className="text-ink-2 text-sm mt-2">
             ({highestLevel + 1} cells in the pattern)
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">Pattern Speed Rating</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">Pattern Speed Rating</p>
           <div className="flex justify-between">
             <span>Beginner: 1-3</span>
             <span>Average: 4-6</span>
@@ -102,7 +102,7 @@ export default function PatternSpeedTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -115,7 +115,7 @@ export default function PatternSpeedTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-colors"
+            className="px-6 py-3 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors"
           >
             Share Score
           </button>
@@ -128,9 +128,9 @@ export default function PatternSpeedTest() {
   if (phase === "ready") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-left text-gray-400 space-y-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-left text-ink-2 space-y-2">
             <p>• A pattern will flash on the grid</p>
             <p>• Memorize which cells are highlighted</p>
             <p>• Click the same cells to recreate the pattern</p>
@@ -139,7 +139,7 @@ export default function PatternSpeedTest() {
         </div>
         <button
           onClick={startLevel}
-          className="px-8 py-4 bg-purple-600 text-white font-bold text-xl rounded-xl hover:bg-purple-700 transition-colors"
+          className="px-8 py-4 bg-purple-600 text-ink font-bold text-xl rounded-xl hover:bg-purple-700 transition-colors"
         >
           Start Test
         </button>
@@ -150,17 +150,17 @@ export default function PatternSpeedTest() {
   // Game grid
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400 px-1">
+      <div className="flex justify-between text-sm text-ink-2 px-1">
         <span>Level {level}</span>
         <span>{pattern.length} cells to remember</span>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
+      <div className="bg-paper-2 rounded-2xl p-6 border border-line">
         {phase === "memorize" && (
-          <p className="text-center text-white font-bold mb-4">Memorize!</p>
+          <p className="text-center text-ink font-bold mb-4">Memorize!</p>
         )}
         {phase === "recall" && (
-          <p className="text-center text-gray-400 mb-4">
+          <p className="text-center text-ink-2 mb-4">
             Click the highlighted cells ({selected.length}/{pattern.length})
           </p>
         )}
@@ -184,7 +184,7 @@ export default function PatternSpeedTest() {
                     ? "bg-purple-500"
                     : isSelected
                     ? "bg-blue-500"
-                    : "bg-gray-800 hover:bg-gray-700"
+                    : "bg-paper-2 hover:bg-paper-2"
                 } ${phase === "recall" ? "cursor-pointer" : "cursor-default"}`}
               />
             );

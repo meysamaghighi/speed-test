@@ -104,17 +104,17 @@ export default function PeripheralVision() {
     if (avgTime < 400) return { label: "Eagle Eyes", color: "text-yellow-400" };
     if (avgTime < 600) return { label: "Sharp Vision", color: "text-green-400" };
     if (avgTime < 800) return { label: "Good Awareness", color: "text-blue-400" };
-    if (avgTime < 1100) return { label: "Average", color: "text-gray-300" };
-    return { label: "Tunnel Vision", color: "text-gray-400" };
+    if (avgTime < 1100) return { label: "Average", color: "text-ink-2" };
+    return { label: "Tunnel Vision", color: "text-ink-2" };
   };
 
   if (phase === "ready") {
     return (
       <div className="text-center">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-lg text-gray-300 mb-4">Stare at the center dot. Click targets that appear in your <strong className="text-white">peripheral vision</strong>.</p>
-          <p className="text-sm text-gray-500 mb-6">{TOTAL_ROUNDS} rounds. Targets appear at the edges -- don't look away from center!</p>
-          <button onClick={startGame} className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-bold text-lg hover:from-cyan-400 hover:to-blue-400 transition-all">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-lg text-ink-2 mb-4">Stare at the center dot. Click targets that appear in your <strong className="text-ink">peripheral vision</strong>.</p>
+          <p className="text-sm text-ink-3 mb-6">{TOTAL_ROUNDS} rounds. Targets appear at the edges -- don't look away from center!</p>
+          <button onClick={startGame} className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-ink rounded-xl font-bold text-lg hover:from-cyan-400 hover:to-blue-400 transition-all">
             Start
           </button>
         </div>
@@ -126,24 +126,24 @@ export default function PeripheralVision() {
     const rating = getRating();
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Average Detection Time</p>
-          <p className="text-5xl font-black text-white">{avgTime}<span className="text-2xl text-gray-400">ms</span></p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Average Detection Time</p>
+          <p className="text-5xl font-black text-ink">{avgTime}<span className="text-2xl text-ink-2">ms</span></p>
           <p className={`text-xl font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}ms</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}ms</p>}
           <div className="grid grid-cols-3 gap-4 mt-6">
             <div>
-              <p className="text-2xl font-bold text-white">{times.length}</p>
-              <p className="text-xs text-gray-500">Detected</p>
+              <p className="text-2xl font-bold text-ink">{times.length}</p>
+              <p className="text-xs text-ink-3">Detected</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">{misses}</p>
-              <p className="text-xs text-gray-500">Missed</p>
+              <p className="text-2xl font-bold text-ink">{misses}</p>
+              <p className="text-xs text-ink-3">Missed</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">{times.length > 0 ? Math.min(...times) : 0}ms</p>
-              <p className="text-xs text-gray-500">Fastest</p>
+              <p className="text-2xl font-bold text-ink">{times.length > 0 ? Math.min(...times) : 0}ms</p>
+              <p className="text-xs text-ink-3">Fastest</p>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function PeripheralVision() {
               if (navigator.share) navigator.share({ title: "Peripheral Vision Test", text });
               else navigator.clipboard.writeText(text);
             }}
-            className="px-6 py-3 bg-gray-800 text-white rounded-xl font-bold hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink rounded-xl font-bold hover:bg-paper-2 transition-colors"
           >
             Share
           </button>
@@ -168,14 +168,14 @@ export default function PeripheralVision() {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Round {Math.min(round + 1, TOTAL_ROUNDS)} / {TOTAL_ROUNDS}</span>
         <span>Detected: {times.length} | Missed: {misses}</span>
       </div>
 
       <div
         ref={containerRef}
-        className="relative bg-gray-900 rounded-2xl border border-gray-800 cursor-crosshair select-none"
+        className="relative bg-paper-2 rounded-2xl border border-line cursor-crosshair select-none"
         style={{ height: "400px" }}
         onClick={handleFieldClick}
       >
@@ -185,8 +185,8 @@ export default function PeripheralVision() {
         </div>
 
         {/* Crosshair lines */}
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-gray-800" />
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-800" />
+        <div className="absolute top-1/2 left-0 right-0 h-px bg-paper-2" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-paper-2" />
 
         {/* Target */}
         {targetPos && (
@@ -198,7 +198,7 @@ export default function PeripheralVision() {
         )}
       </div>
 
-      <p className="text-center text-xs text-gray-500">Keep your eyes on the center dot. Click targets in your peripheral vision.</p>
+      <p className="text-center text-xs text-ink-3">Keep your eyes on the center dot. Click targets in your peripheral vision.</p>
     </div>
   );
 }

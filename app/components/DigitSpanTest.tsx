@@ -114,8 +114,8 @@ export default function DigitSpanTest() {
     const rating = getRating(maxLevel, mode);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">
             {mode === "forward" ? "Forward" : "Backward"} Digit Span
           </p>
           <p className="text-6xl font-black text-blue-400">{maxLevel}</p>
@@ -128,23 +128,23 @@ export default function DigitSpanTest() {
             </p>
           )}
           {pb.best !== null && !pb.isNewBest && (
-            <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} digits</p>
+            <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} digits</p>
           )}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm">
-          <p className="font-bold text-white mb-2">Expected</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm">
+          <p className="font-bold text-ink mb-2">Expected</p>
           <p className="text-2xl font-mono text-green-400 mb-3">
             {mode === "forward" ? digits.join("") : [...digits].reverse().join("")}
           </p>
-          <p className="font-bold text-white mb-2">Your Answer</p>
+          <p className="font-bold text-ink mb-2">Your Answer</p>
           <p className="text-2xl font-mono text-red-400">{userInput || "(empty)"}</p>
         </div>
 
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -160,7 +160,7 @@ export default function DigitSpanTest() {
                   .catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors"
           >
             Share Score
           </button>
@@ -173,15 +173,15 @@ export default function DigitSpanTest() {
   if (phase === "result" && isCorrect === true) {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-5xl mb-3">✅</p>
           <p className="text-2xl font-bold text-green-400">Correct!</p>
-          <p className="text-gray-400 text-sm mt-2">{level} digits complete</p>
+          <p className="text-ink-2 text-sm mt-2">{level} digits complete</p>
         </div>
 
         <button
           onClick={handleContinue}
-          className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors text-lg"
+          className="px-8 py-4 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors text-lg"
         >
           Next Level ({level + 1} digits) →
         </button>
@@ -193,19 +193,19 @@ export default function DigitSpanTest() {
   if (phase === "waiting") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-4xl mb-4">🧠</p>
-          <p className="text-gray-300 mb-4">
+          <p className="text-ink-2 mb-4">
             Digits will appear one at a time. Memorize them, then type them back.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-ink-3">
             Choose your mode: Forward (as shown) or Backward (reversed order).
           </p>
         </div>
 
         <button
           onClick={() => setPhase("mode-select")}
-          className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors text-lg"
+          className="px-8 py-4 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors text-lg"
         >
           Start Test
         </button>
@@ -217,15 +217,15 @@ export default function DigitSpanTest() {
   if (phase === "mode-select") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-2xl font-bold text-white mb-4">Choose Mode</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-2xl font-bold text-ink mb-4">Choose Mode</p>
           <div className="grid md:grid-cols-2 gap-4">
             <button
               onClick={() => {
                 setMode("forward");
                 startLevel();
               }}
-              className="p-6 bg-gradient-to-br from-blue-600 to-cyan-600 text-white rounded-xl hover:from-blue-500 hover:to-cyan-500 transition-all"
+              className="p-6 bg-gradient-to-br from-blue-600 to-cyan-600 text-ink rounded-xl hover:from-blue-500 hover:to-cyan-500 transition-all"
             >
               <p className="text-xl font-bold mb-2">Forward</p>
               <p className="text-sm opacity-90">Type digits in the same order</p>
@@ -236,7 +236,7 @@ export default function DigitSpanTest() {
                 setMode("backward");
                 startLevel();
               }}
-              className="p-6 bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all"
+              className="p-6 bg-gradient-to-br from-purple-600 to-pink-600 text-ink rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all"
             >
               <p className="text-xl font-bold mb-2">Backward</p>
               <p className="text-sm opacity-90">Type digits in REVERSE order</p>
@@ -254,17 +254,17 @@ export default function DigitSpanTest() {
 
     return (
       <div className="text-center space-y-6">
-        <div className="text-sm text-gray-500 mb-2">
+        <div className="text-sm text-ink-3 mb-2">
           {mode === "forward" ? "Forward" : "Backward"} · {level} digits
         </div>
-        <div className="bg-gray-900 rounded-2xl p-16 border border-gray-800">
+        <div className="bg-paper-2 rounded-2xl p-16 border border-line">
           {currentDigit !== null ? (
             <p className="text-8xl font-black text-blue-400">{currentDigit}</p>
           ) : (
-            <p className="text-4xl text-gray-600">Ready...</p>
+            <p className="text-4xl text-ink-3">Ready...</p>
           )}
         </div>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-ink-3">
           Memorizing {currentIndex}/{digits.length}
         </p>
       </div>
@@ -275,11 +275,11 @@ export default function DigitSpanTest() {
   if (phase === "recall") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-sm text-gray-500 mb-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-sm text-ink-3 mb-2">
             {mode === "forward" ? "Type in same order" : "Type in REVERSE order"}
           </p>
-          <p className="text-xl font-bold text-white mb-4">
+          <p className="text-xl font-bold text-ink mb-4">
             {level} digits · {mode === "forward" ? "Forward" : "Backward"}
           </p>
           <input
@@ -291,10 +291,10 @@ export default function DigitSpanTest() {
             }}
             placeholder="Type digits..."
             autoFocus
-            className="w-full max-w-xs px-6 py-4 bg-gray-800 text-white text-2xl font-mono text-center rounded-xl border-2 border-gray-700 focus:border-blue-500 outline-none"
+            className="w-full max-w-xs px-6 py-4 bg-paper-2 text-ink text-2xl font-mono text-center rounded-xl border-2 border-line focus:border-blue-500 outline-none"
             maxLength={level}
           />
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-ink-3 mt-2">
             {userInput.length}/{level} digits
           </p>
         </div>
@@ -302,7 +302,7 @@ export default function DigitSpanTest() {
         <button
           onClick={handleSubmit}
           disabled={userInput.length !== level}
-          className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-8 py-3 bg-blue-600 text-ink font-bold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Submit
         </button>

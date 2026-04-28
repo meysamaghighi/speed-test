@@ -109,22 +109,22 @@ export default function EstimationTest() {
 
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Average Estimation Accuracy</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Average Estimation Accuracy</p>
           <p className="text-6xl font-black text-amber-400">{avgAccuracy}%</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}%</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}%</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
-          <p className="font-bold text-white mb-2 text-sm">Round-by-Round Accuracy</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line">
+          <p className="font-bold text-ink mb-2 text-sm">Round-by-Round Accuracy</p>
           <div className="grid grid-cols-5 gap-2 text-xs">
             {errors.map((err, i) => {
               const acc = Math.round(100 - err);
               return (
-                <div key={i} className="bg-gray-800 rounded p-2">
-                  <span className="text-gray-500">#{i + 1}</span>
+                <div key={i} className="bg-paper-2 rounded p-2">
+                  <span className="text-ink-3">#{i + 1}</span>
                   <div className={`font-bold ${acc >= 85 ? "text-green-400" : acc >= 70 ? "text-yellow-400" : "text-red-400"}`}>
                     {acc}%
                   </div>
@@ -134,8 +134,8 @@ export default function EstimationTest() {
           </div>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">About Number Sense</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">About Number Sense</p>
           <p>
             This tests "subitizing" (instantly recognizing small quantities) and estimation.
             Research shows humans can instantly count up to 4-5 items, beyond that we estimate.
@@ -145,7 +145,7 @@ export default function EstimationTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -158,7 +158,7 @@ export default function EstimationTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-amber-700 transition-colors"
+            className="px-6 py-3 bg-amber-600 text-ink font-bold rounded-xl hover:bg-amber-700 transition-colors"
           >
             Share Score
           </button>
@@ -171,9 +171,9 @@ export default function EstimationTest() {
   if (phase === "ready") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">How to Play</h2>
-          <div className="text-left text-gray-400 space-y-2">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">How to Play</h2>
+          <div className="text-left text-ink-2 space-y-2">
             <p>• Dots appear for 1 second</p>
             <p>• Estimate how many you saw</p>
             <p>• 10 rounds, from 5 to 85 dots</p>
@@ -182,7 +182,7 @@ export default function EstimationTest() {
         </div>
         <button
           onClick={startRound}
-          className="px-8 py-4 bg-amber-600 text-white font-bold text-xl rounded-xl hover:bg-amber-700 transition-colors"
+          className="px-8 py-4 bg-amber-600 text-ink font-bold text-xl rounded-xl hover:bg-amber-700 transition-colors"
         >
           Start Test
         </button>
@@ -197,9 +197,9 @@ export default function EstimationTest() {
     const accuracy = Math.round(100 - (error / actualCount) * 100);
 
     return (
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 text-center">
-        <p className="text-gray-400 text-sm mb-2">Round {round} of {totalRounds}</p>
-        <p className="text-xl text-white mb-4">
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line text-center">
+        <p className="text-ink-2 text-sm mb-2">Round {round} of {totalRounds}</p>
+        <p className="text-xl text-ink mb-4">
           Actual: <span className="font-black text-2xl">{actualCount}</span> •
           Your guess: <span className="font-black text-2xl">{guess}</span>
         </p>
@@ -214,12 +214,12 @@ export default function EstimationTest() {
   if (phase === "answer") {
     return (
       <div className="space-y-4">
-        <div className="flex justify-between text-sm text-gray-400 px-1">
+        <div className="flex justify-between text-sm text-ink-2 px-1">
           <span>Round {round} of {totalRounds}</span>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-center text-white text-xl mb-6">
+        <form onSubmit={handleSubmit} className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-center text-ink text-xl mb-6">
             How many dots did you see?
           </p>
           <input
@@ -229,12 +229,12 @@ export default function EstimationTest() {
             autoFocus
             min="0"
             placeholder="Enter your guess"
-            className="w-full px-4 py-3 bg-gray-800 text-white text-center text-2xl rounded-xl border border-gray-700 focus:border-amber-500 focus:outline-none"
+            className="w-full px-4 py-3 bg-paper-2 text-ink text-center text-2xl rounded-xl border border-line focus:border-amber-500 focus:outline-none"
           />
           <button
             type="submit"
             disabled={userAnswer === ""}
-            className="w-full mt-4 px-6 py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-amber-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors"
+            className="w-full mt-4 px-6 py-3 bg-amber-600 text-ink font-bold rounded-xl hover:bg-amber-700 disabled:bg-paper-2 disabled:cursor-not-allowed transition-colors"
           >
             Submit
           </button>
@@ -246,12 +246,12 @@ export default function EstimationTest() {
   // Show dots
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400 px-1">
+      <div className="flex justify-between text-sm text-ink-2 px-1">
         <span>Round {round} of {totalRounds}</span>
         <span>Memorize!</span>
       </div>
 
-      <div className="relative bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden" style={{ paddingBottom: "75%" }}>
+      <div className="relative bg-paper-2 rounded-2xl border border-line overflow-hidden" style={{ paddingBottom: "75%" }}>
         <div className="absolute inset-0">
           {dotPositions.map((pos, i) => (
             <div

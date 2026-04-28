@@ -136,19 +136,19 @@ export default function AudioMemory() {
     const rating = getRating(level);
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Highest Level</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Highest Level</p>
           <p className="text-6xl font-black text-violet-400">Level {level}</p>
-          <p className="text-gray-400 text-sm mt-2">{level + 2} tones</p>
+          <p className="text-ink-2 text-sm mt-2">{level + 2} tones</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: Level {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">How You Compare</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">How You Compare</p>
           <div className="flex justify-between">
             <span>Good: Level 6</span>
             <span>Average: Level 5</span>
@@ -159,7 +159,7 @@ export default function AudioMemory() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={startGame}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -172,7 +172,7 @@ export default function AudioMemory() {
                 navigator.clipboard.writeText(t).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 transition-colors"
+            className="px-6 py-3 bg-violet-600 text-ink font-bold rounded-xl hover:bg-violet-700 transition-colors"
           >
             Share Score
           </button>
@@ -186,11 +186,11 @@ export default function AudioMemory() {
       <div className="text-center">
         <button
           onClick={startPractice}
-          className="px-8 py-4 bg-violet-600 text-white font-bold text-xl rounded-2xl hover:bg-violet-700 transition-colors"
+          className="px-8 py-4 bg-violet-600 text-ink font-bold text-xl rounded-2xl hover:bg-violet-700 transition-colors"
         >
           Start Audio Memory
         </button>
-        <p className="text-gray-500 text-sm mt-3 max-w-md mx-auto">
+        <p className="text-ink-3 text-sm mt-3 max-w-md mx-auto">
           Learn piano tones, then repeat sequences from memory. Like Simon but with musical notes. Turn on sound!
         </p>
       </div>
@@ -201,19 +201,19 @@ export default function AudioMemory() {
     return (
       <div className="space-y-6">
         <div className="text-center">
-          <h3 className="text-xl font-bold text-white mb-2">Practice the Keys</h3>
-          <p className="text-gray-400 text-sm max-w-md mx-auto">
+          <h3 className="text-xl font-bold text-ink mb-2">Practice the Keys</h3>
+          <p className="text-ink-2 text-sm max-w-md mx-auto">
             Click each key to hear its tone. When you're ready, start the test!
           </p>
         </div>
 
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 flex items-center justify-center">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line flex items-center justify-center">
           <div className="flex gap-2 w-full max-w-lg">
             {frequencies.map((freq, idx) => (
               <button
                 key={idx}
                 onClick={() => handleToneClick(idx)}
-                className={`flex-1 h-40 ${keyColors[idx]} rounded-lg font-bold text-white text-2xl transition-all active:scale-95 shadow-lg flex flex-col items-center justify-end pb-4`}
+                className={`flex-1 h-40 ${keyColors[idx]} rounded-lg font-bold text-ink text-2xl transition-all active:scale-95 shadow-lg flex flex-col items-center justify-end pb-4`}
               >
                 {keyLabels[idx]}
               </button>
@@ -224,7 +224,7 @@ export default function AudioMemory() {
         <div className="text-center">
           <button
             onClick={startGame}
-            className="px-8 py-3 bg-emerald-600 text-white font-bold text-lg rounded-xl hover:bg-emerald-700 transition-colors"
+            className="px-8 py-3 bg-emerald-600 text-ink font-bold text-lg rounded-xl hover:bg-emerald-700 transition-colors"
           >
             Start Test
           </button>
@@ -235,21 +235,21 @@ export default function AudioMemory() {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between text-sm text-gray-400">
+      <div className="flex justify-between text-sm text-ink-2">
         <span>Level {level} • {sequence.length} tones</span>
         <span>Lives: {"❤️".repeat(lives)}</span>
       </div>
 
-      <div className="relative w-full h-80 md:h-96 bg-gray-900 rounded-2xl border border-gray-800 flex items-center justify-center">
+      <div className="relative w-full h-80 md:h-96 bg-paper-2 rounded-2xl border border-line flex items-center justify-center">
         {phase === "listening" && (
           <div className="text-center">
             <div className="text-4xl mb-4">🔊</div>
-            <p className="text-gray-400 text-lg">Listen...</p>
+            <p className="text-ink-2 text-lg">Listen...</p>
           </div>
         )}
         {phase === "playing" && (
           <div className="flex flex-col gap-3 w-full max-w-2xl px-4">
-            <p className="text-gray-400 text-sm text-center mb-2">
+            <p className="text-ink-2 text-sm text-center mb-2">
               Repeat: {userSequence.length}/{sequence.length}
             </p>
             <div className="flex gap-2">
@@ -260,7 +260,7 @@ export default function AudioMemory() {
                   disabled={isPlayingSequence}
                   className={`flex-1 h-32 ${keyColors[idx]} ${
                     highlightedKey === idx ? "scale-110 brightness-150" : ""
-                  } rounded-lg font-bold text-white text-xl transition-all active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-center justify-end pb-3`}
+                  } rounded-lg font-bold text-ink text-xl transition-all active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-center justify-end pb-3`}
                 >
                   {keyLabels[idx]}
                 </button>
@@ -270,7 +270,7 @@ export default function AudioMemory() {
         )}
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400 text-center">
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2 text-center">
         {phase === "listening" ? "Memorize the sequence of tones" : "Click the piano keys to repeat the sequence"}
       </div>
     </div>

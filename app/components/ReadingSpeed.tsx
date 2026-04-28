@@ -140,17 +140,17 @@ export default function ReadingSpeed() {
     if (adjustedWpm >= 400) return { label: "Speed Reader", color: "text-yellow-400" };
     if (adjustedWpm >= 300) return { label: "Fast Reader", color: "text-green-400" };
     if (adjustedWpm >= 200) return { label: "Above Average", color: "text-blue-400" };
-    if (adjustedWpm >= 150) return { label: "Average Reader", color: "text-gray-300" };
-    return { label: "Careful Reader", color: "text-gray-400" };
+    if (adjustedWpm >= 150) return { label: "Average Reader", color: "text-ink-2" };
+    return { label: "Careful Reader", color: "text-ink-2" };
   };
 
   if (phase === "ready") {
     return (
       <div className="text-center">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-lg text-gray-300 mb-4">Read a passage as fast as you can, then answer <strong className="text-white">comprehension questions</strong>.</p>
-          <p className="text-sm text-gray-500 mb-6">Your score combines speed AND understanding. Skimming won't help!</p>
-          <button onClick={startReading} className="px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-xl font-bold text-lg hover:from-violet-400 hover:to-purple-400 transition-all">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-lg text-ink-2 mb-4">Read a passage as fast as you can, then answer <strong className="text-ink">comprehension questions</strong>.</p>
+          <p className="text-sm text-ink-3 mb-6">Your score combines speed AND understanding. Skimming won't help!</p>
+          <button onClick={startReading} className="px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-ink rounded-xl font-bold text-lg hover:from-violet-400 hover:to-purple-400 transition-all">
             Start Reading
           </button>
         </div>
@@ -161,12 +161,12 @@ export default function ReadingSpeed() {
   if (phase === "reading") {
     return (
       <div className="space-y-6">
-        <div className="flex justify-between items-center text-sm text-gray-400">
+        <div className="flex justify-between items-center text-sm text-ink-2">
           <span>Reading...</span>
           <Timer startTime={startTime} />
         </div>
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-lg leading-relaxed text-gray-200">{passage.text}</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-lg leading-relaxed text-ink">{passage.text}</p>
         </div>
         <div className="text-center">
           <button onClick={finishReading} className="px-8 py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-gray-200 transition-colors">
@@ -181,15 +181,15 @@ export default function ReadingSpeed() {
     const q = passage.questions[currentQuestion];
     return (
       <div className="space-y-6">
-        <div className="flex justify-between items-center text-sm text-gray-400">
+        <div className="flex justify-between items-center text-sm text-ink-2">
           <span>Question {currentQuestion + 1} of {passage.questions.length}</span>
           <span>{wpm} WPM</span>
         </div>
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-lg font-bold text-white mb-6">{q.q}</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-lg font-bold text-ink mb-6">{q.q}</p>
           <div className="space-y-3">
             {q.options.map((opt, i) => {
-              let btnClass = "bg-gray-800 border-gray-700 hover:bg-gray-700";
+              let btnClass = "bg-paper-2 border-line hover:bg-paper-2";
               if (selectedAnswer !== null) {
                 if (i === q.correct) btnClass = "bg-green-900 border-green-600";
                 else if (i === selectedAnswer) btnClass = "bg-red-900 border-red-600";
@@ -199,7 +199,7 @@ export default function ReadingSpeed() {
                   key={i}
                   onClick={() => handleAnswer(i)}
                   disabled={selectedAnswer !== null}
-                  className={`w-full text-left px-5 py-4 rounded-xl border text-white font-medium transition-colors ${btnClass}`}
+                  className={`w-full text-left px-5 py-4 rounded-xl border text-ink font-medium transition-colors ${btnClass}`}
                 >
                   {opt}
                 </button>
@@ -216,24 +216,24 @@ export default function ReadingSpeed() {
   const comprehension = Math.round((quizCorrect / passage.questions.length) * 100);
   return (
     <div className="text-center space-y-6">
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-        <p className="text-gray-400 text-sm mb-2">Reading Speed</p>
-        <p className="text-5xl font-black text-white">{wpm}<span className="text-2xl text-gray-400"> WPM</span></p>
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+        <p className="text-ink-2 text-sm mb-2">Reading Speed</p>
+        <p className="text-5xl font-black text-ink">{wpm}<span className="text-2xl text-ink-2"> WPM</span></p>
         <p className={`text-xl font-bold mt-2 ${rating.color}`}>{rating.label}</p>
         {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
-        {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best} WPM</p>}
+        {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} WPM</p>}
         <div className="grid grid-cols-3 gap-4 mt-6">
           <div>
-            <p className="text-2xl font-bold text-white">{Math.round(readingTime / 1000)}s</p>
-            <p className="text-xs text-gray-500">Time</p>
+            <p className="text-2xl font-bold text-ink">{Math.round(readingTime / 1000)}s</p>
+            <p className="text-xs text-ink-3">Time</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-white">{comprehension}%</p>
-            <p className="text-xs text-gray-500">Comprehension</p>
+            <p className="text-2xl font-bold text-ink">{comprehension}%</p>
+            <p className="text-xs text-ink-3">Comprehension</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-white">{quizCorrect}/{passage.questions.length}</p>
-            <p className="text-xs text-gray-500">Correct</p>
+            <p className="text-2xl font-bold text-ink">{quizCorrect}/{passage.questions.length}</p>
+            <p className="text-xs text-ink-3">Correct</p>
           </div>
         </div>
       </div>
@@ -247,7 +247,7 @@ export default function ReadingSpeed() {
             if (navigator.share) navigator.share({ title: "Reading Speed Test", text });
             else navigator.clipboard.writeText(text);
           }}
-          className="px-6 py-3 bg-gray-800 text-white rounded-xl font-bold hover:bg-gray-700 transition-colors"
+          className="px-6 py-3 bg-paper-2 text-ink rounded-xl font-bold hover:bg-paper-2 transition-colors"
         >
           Share
         </button>
@@ -262,5 +262,5 @@ function Timer({ startTime }: { startTime: number }) {
     const iv = setInterval(() => setElapsed(Math.round((performance.now() - startTime) / 1000)), 100);
     return () => clearInterval(iv);
   }, [startTime]);
-  return <span className="font-mono text-white">{elapsed}s</span>;
+  return <span className="font-mono text-ink">{elapsed}s</span>;
 }

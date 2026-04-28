@@ -138,12 +138,12 @@ export default function PeripheralTest() {
   if (phase === "instructions") {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-4">UFOV Test</h2>
-          <p className="text-sm text-gray-400 mb-4">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <h2 className="text-2xl font-bold text-ink mb-4">UFOV Test</h2>
+          <p className="text-sm text-ink-2 mb-4">
             Useful Field of View - measures divided attention and peripheral awareness
           </p>
-          <div className="text-gray-400 space-y-3 text-left max-w-md mx-auto">
+          <div className="text-ink-2 space-y-3 text-left max-w-md mx-auto">
             <p>1. A letter (A/B/C/D) appears in the CENTER</p>
             <p>2. At the SAME time, a dot appears in your periphery</p>
             <p>3. Both disappear after 200-500ms</p>
@@ -157,7 +157,7 @@ export default function PeripheralTest() {
 
         <button
           onClick={startTest}
-          className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-xl font-bold rounded-xl hover:from-cyan-700 hover:to-blue-700 transition-colors"
+          className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-ink text-xl font-bold rounded-xl hover:from-cyan-700 hover:to-blue-700 transition-colors"
         >
           Start Test
         </button>
@@ -170,35 +170,35 @@ export default function PeripheralTest() {
       if (combinedScore >= 80) return { label: "Exceptional", color: "text-yellow-400" };
       if (combinedScore >= 65) return { label: "Excellent", color: "text-green-400" };
       if (combinedScore >= 50) return { label: "Good", color: "text-blue-400" };
-      if (combinedScore >= 35) return { label: "Average", color: "text-gray-300" };
-      return { label: "Needs Practice", color: "text-gray-400" };
+      if (combinedScore >= 35) return { label: "Average", color: "text-ink-2" };
+      return { label: "Needs Practice", color: "text-ink-2" };
     };
 
     const rating = getRating();
 
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">UFOV Score</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">UFOV Score</p>
           <p className="text-6xl font-black text-cyan-400">{combinedScore}</p>
           <p className={`text-xl font-bold mt-2 ${rating.color}`}>{rating.label}</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-3 animate-pulse">New Personal Best!</p>}
-          {pb.best !== null && !pb.isNewBest && <p className="text-gray-500 text-sm mt-2">Personal Best: {pb.best}</p>}
+          {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>}
 
           <div className="grid grid-cols-2 gap-4 mt-6">
-            <div className="bg-gray-950 rounded-lg p-4">
-              <p className="text-3xl font-bold text-white">{centerCorrect}/{TOTAL_TRIALS}</p>
-              <p className="text-xs text-gray-500">Center Task</p>
+            <div className="bg-paper rounded-lg p-4">
+              <p className="text-3xl font-bold text-ink">{centerCorrect}/{TOTAL_TRIALS}</p>
+              <p className="text-xs text-ink-3">Center Task</p>
             </div>
-            <div className="bg-gray-950 rounded-lg p-4">
-              <p className="text-3xl font-bold text-white">{avgPeripheralAccuracy}%</p>
-              <p className="text-xs text-gray-500">Peripheral Accuracy</p>
+            <div className="bg-paper rounded-lg p-4">
+              <p className="text-3xl font-bold text-ink">{avgPeripheralAccuracy}%</p>
+              <p className="text-xs text-ink-3">Peripheral Accuracy</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-sm text-gray-400">
-          <p className="font-bold text-white mb-2">About Your Score</p>
+        <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
+          <p className="font-bold text-ink mb-2">About Your Score</p>
           <div className="space-y-1 text-left">
             <p>
               <span className="font-bold text-yellow-400">80+</span> Exceptional dual-task performance
@@ -210,10 +210,10 @@ export default function PeripheralTest() {
               <span className="font-bold text-blue-400">50-64</span> Good peripheral awareness
             </p>
             <p>
-              <span className="font-bold text-gray-300">35-49</span> Average performance
+              <span className="font-bold text-ink-2">35-49</span> Average performance
             </p>
             <p>
-              <span className="font-bold text-gray-400">&lt;35</span> Practice improves scores
+              <span className="font-bold text-ink-2">&lt;35</span> Practice improves scores
             </p>
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function PeripheralTest() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
           >
             Try Again
           </button>
@@ -234,7 +234,7 @@ export default function PeripheralTest() {
                 navigator.clipboard.writeText(text).then(() => alert("Copied!")).catch(() => {});
               }
             }}
-            className="px-6 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors"
+            className="px-6 py-3 bg-cyan-600 text-ink font-bold rounded-xl hover:bg-cyan-700 transition-colors"
           >
             Share Score
           </button>
@@ -246,20 +246,20 @@ export default function PeripheralTest() {
   if (phase === "center-question") {
     return (
       <div className="space-y-6">
-        <div className="flex justify-between text-sm text-gray-500 px-1">
+        <div className="flex justify-between text-sm text-ink-3 px-1">
           <span>Trial {trial + 1} of {TOTAL_TRIALS}</span>
           <span>Score: {combinedScore}</span>
         </div>
 
         <div className="text-center space-y-4">
-          <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-            <p className="text-xl text-gray-300 mb-6">What letter was in the center?</p>
+          <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+            <p className="text-xl text-ink-2 mb-6">What letter was in the center?</p>
             <div className="grid grid-cols-4 gap-3 max-w-md mx-auto">
               {LETTERS.map((letter) => (
                 <button
                   key={letter}
                   onClick={() => handleCenterAnswer(letter)}
-                  className="p-6 bg-gray-800 hover:bg-gray-700 text-white text-2xl font-bold rounded-xl transition-colors border border-gray-700 hover:border-cyan-500"
+                  className="p-6 bg-paper-2 hover:bg-paper-2 text-ink text-2xl font-bold rounded-xl transition-colors border border-line hover:border-cyan-500"
                 >
                   {letter}
                 </button>
@@ -274,19 +274,19 @@ export default function PeripheralTest() {
   if (phase === "location-question") {
     return (
       <div className="space-y-6">
-        <div className="flex justify-between text-sm text-gray-500 px-1">
+        <div className="flex justify-between text-sm text-ink-3 px-1">
           <span>Trial {trial + 1} of {TOTAL_TRIALS}</span>
           <span>Score: {combinedScore}</span>
         </div>
 
         <div className="text-center space-y-4">
-          <p className="text-xl text-gray-300">Now click where you saw the peripheral dot</p>
+          <p className="text-xl text-ink-2">Now click where you saw the peripheral dot</p>
           <div
-            className="relative w-full h-96 bg-gray-900 rounded-2xl border border-gray-800 flex items-center justify-center cursor-crosshair"
+            className="relative w-full h-96 bg-paper-2 rounded-2xl border border-line flex items-center justify-center cursor-crosshair"
             onClick={handleLocationClick}
           >
             <div className="w-3 h-3 bg-white rounded-full opacity-30" />
-            <p className="absolute bottom-4 text-xs text-gray-500">Click the location</p>
+            <p className="absolute bottom-4 text-xs text-ink-3">Click the location</p>
           </div>
         </div>
       </div>
@@ -296,14 +296,14 @@ export default function PeripheralTest() {
   // Stimulus phase
   return (
     <div className="space-y-6">
-      <div className="flex justify-between text-sm text-gray-500 px-1">
+      <div className="flex justify-between text-sm text-ink-3 px-1">
         <span>Trial {trial + 1} of {TOTAL_TRIALS}</span>
         <span>Score: {combinedScore}</span>
       </div>
 
-      <div className="relative w-full h-96 bg-gray-900 rounded-2xl border border-gray-800 flex items-center justify-center overflow-hidden">
+      <div className="relative w-full h-96 bg-paper-2 rounded-2xl border border-line flex items-center justify-center overflow-hidden">
         {/* Center letter */}
-        <div className="text-6xl font-black text-white select-none">{centerLetter}</div>
+        <div className="text-6xl font-black text-ink select-none">{centerLetter}</div>
 
         {/* Peripheral target */}
         <div

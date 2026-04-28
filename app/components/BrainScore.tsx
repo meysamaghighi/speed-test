@@ -401,18 +401,18 @@ export default function BrainScore() {
   if (completedCount === 0) {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-6xl font-black text-gray-600 mb-4">?/1000</p>
-          <p className="text-gray-400">
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-6xl font-black text-ink-3 mb-4">?/1000</p>
+          <p className="text-ink-2">
             Take some tests first! Your personal bests are saved automatically.
           </p>
-          <p className="text-gray-500 text-sm mt-2">
+          <p className="text-ink-3 text-sm mt-2">
             Complete at least 3 tests to generate your Brain Score.
           </p>
         </div>
         <Link
           href="/"
-          className="inline-block px-8 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors"
+          className="inline-block px-8 py-3 bg-indigo-600 text-ink font-bold rounded-xl hover:bg-indigo-700 transition-colors"
         >
           Browse All Tests
         </Link>
@@ -425,18 +425,18 @@ export default function BrainScore() {
   return (
     <div className="space-y-8">
       {/* Main score display */}
-      <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 text-center">
-        <p className="text-gray-400 text-sm mb-2">Your Brain Score</p>
-        <p className="text-7xl font-black text-white mb-1">{brainPoints}</p>
-        <p className="text-gray-500 text-lg">/1000</p>
+      <div className="bg-paper-2 rounded-2xl p-8 border border-line text-center">
+        <p className="text-ink-2 text-sm mb-2">Your Brain Score</p>
+        <p className="text-7xl font-black text-ink mb-1">{brainPoints}</p>
+        <p className="text-ink-3 text-lg">/1000</p>
         <p className={`text-2xl font-bold mt-3 ${rating.color}`}>{rating.label}</p>
-        <p className="text-gray-500 text-sm mt-2">
+        <p className="text-ink-3 text-sm mt-2">
           Based on {completedCount} of {totalTests} tests
         </p>
 
         {/* Progress ring */}
         <div className="mt-6 flex justify-center">
-          <div className="w-48 h-4 bg-gray-800 rounded-full overflow-hidden">
+          <div className="w-48 h-4 bg-paper-2 rounded-full overflow-hidden">
             <div
               className={`h-full ${rating.bg} rounded-full transition-all duration-1000`}
               style={{ width: `${overallScore}%` }}
@@ -449,40 +449,40 @@ export default function BrainScore() {
       <div className="flex gap-3 justify-center">
         <button
           onClick={handleShare}
-          className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors"
+          className="px-6 py-3 bg-indigo-600 text-ink font-bold rounded-xl hover:bg-indigo-700 transition-colors"
         >
           Share Brain Score
         </button>
         <Link
           href="/"
-          className="px-6 py-3 bg-gray-800 text-white font-bold rounded-xl hover:bg-gray-700 transition-colors"
+          className="px-6 py-3 bg-paper-2 text-ink font-bold rounded-xl hover:bg-paper-2 transition-colors"
         >
           Retake Tests
         </Link>
       </div>
 
       {/* Individual test breakdown */}
-      <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
-        <h2 className="text-lg font-bold text-white mb-4">Test Breakdown</h2>
+      <div className="bg-paper-2 rounded-2xl p-6 border border-line">
+        <h2 className="text-lg font-bold text-ink mb-4">Test Breakdown</h2>
         <div className="space-y-3">
           {testScores
             .sort((a, b) => b.normalized - a.normalized)
             .map((t) => (
               <Link key={t.key} href={t.href} className="block group">
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-gray-400 w-40 truncate group-hover:text-white transition-colors">
+                  <span className="text-sm text-ink-2 w-40 truncate group-hover:text-ink transition-colors">
                     {t.label}
                   </span>
-                  <div className="flex-1 h-3 bg-gray-800 rounded-full overflow-hidden">
+                  <div className="flex-1 h-3 bg-paper-2 rounded-full overflow-hidden">
                     <div
                       className={`h-full ${getBarColor(t.normalized)} rounded-full transition-all`}
                       style={{ width: `${t.normalized}%` }}
                     />
                   </div>
-                  <span className="text-sm font-mono text-gray-500 w-12 text-right">
+                  <span className="text-sm font-mono text-ink-3 w-12 text-right">
                     {t.normalized}
                   </span>
-                  <span className="text-xs text-gray-600 w-20 text-right">
+                  <span className="text-xs text-ink-3 w-20 text-right">
                     {t.raw}
                     {t.unit}
                   </span>
@@ -494,11 +494,11 @@ export default function BrainScore() {
 
       {/* Missing tests */}
       {missingTests.length > 0 && (
-        <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
-          <h2 className="text-lg font-bold text-white mb-2">
+        <div className="bg-paper-2 rounded-2xl p-6 border border-line">
+          <h2 className="text-lg font-bold text-ink mb-2">
             Tests Remaining ({missingTests.length})
           </h2>
-          <p className="text-gray-500 text-sm mb-4">
+          <p className="text-ink-3 text-sm mb-4">
             Complete all tests for a more accurate Brain Score.
           </p>
           <div className="flex flex-wrap gap-2">
@@ -506,7 +506,7 @@ export default function BrainScore() {
               <Link
                 key={t.key}
                 href={t.href}
-                className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white text-sm rounded-lg transition-colors"
+                className="px-3 py-1.5 bg-paper-2 hover:bg-paper-2 text-ink-2 hover:text-ink text-sm rounded-lg transition-colors"
               >
                 {t.label}
               </Link>

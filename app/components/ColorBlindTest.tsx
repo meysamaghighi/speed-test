@@ -155,13 +155,13 @@ export default function ColorBlindTest() {
     const rating = getRating();
     return (
       <div className="text-center space-y-6">
-        <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
-          <p className="text-gray-400 text-sm mb-2">Result</p>
+        <div className="bg-paper-2 rounded-2xl p-8 border border-line">
+          <p className="text-ink-2 text-sm mb-2">Result</p>
           <p className={`text-3xl font-black ${rating.color}`}>{rating.label}</p>
-          <p className="text-5xl font-black text-white mt-4">{correctCount}/{plates.length}</p>
-          <p className="text-gray-400 mt-1">plates identified correctly</p>
-          <p className="text-sm text-gray-500 mt-4 max-w-md mx-auto">{rating.desc}</p>
-          <p className="text-xs text-gray-600 mt-4">This is a screening tool, not a medical diagnosis. See an eye care professional for definitive testing.</p>
+          <p className="text-5xl font-black text-ink mt-4">{correctCount}/{plates.length}</p>
+          <p className="text-ink-2 mt-1">plates identified correctly</p>
+          <p className="text-sm text-ink-3 mt-4 max-w-md mx-auto">{rating.desc}</p>
+          <p className="text-xs text-ink-3 mt-4">This is a screening tool, not a medical diagnosis. See an eye care professional for definitive testing.</p>
         </div>
         <div className="flex gap-3 justify-center">
           <button onClick={reset} className="px-6 py-3 bg-white text-black rounded-xl font-bold hover:bg-gray-200 transition-colors">
@@ -176,7 +176,7 @@ export default function ColorBlindTest() {
                 navigator.clipboard.writeText(text);
               }
             }}
-            className="px-6 py-3 bg-gray-800 text-white rounded-xl font-bold hover:bg-gray-700 transition-colors"
+            className="px-6 py-3 bg-paper-2 text-ink rounded-xl font-bold hover:bg-paper-2 transition-colors"
           >
             Share
           </button>
@@ -187,12 +187,12 @@ export default function ColorBlindTest() {
 
   return (
     <div className="text-center space-y-6">
-      <div className="flex justify-between items-center text-sm text-gray-400 mb-4">
+      <div className="flex justify-between items-center text-sm text-ink-2 mb-4">
         <span>Plate {currentPlate + 1} of {plates.length}</span>
         <span>{correctCount} correct so far</span>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800 inline-block">
+      <div className="bg-paper-2 rounded-2xl p-6 border border-line inline-block">
         <svg width="280" height="280" viewBox="0 0 280 280" className="rounded-full">
           <circle cx="140" cy="140" r="138" fill="#e8e4d8" />
           {dots.map((d, i) => (
@@ -202,7 +202,7 @@ export default function ColorBlindTest() {
       </div>
 
       <div className="space-y-3">
-        <p className="text-gray-300">What number do you see?</p>
+        <p className="text-ink-2">What number do you see?</p>
         <div className="flex gap-3 justify-center">
           <input
             type="text"
@@ -211,7 +211,7 @@ export default function ColorBlindTest() {
             onChange={(e) => setAnswer(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && answer.trim() && handleSubmit()}
             placeholder="Type number..."
-            className="bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white text-center text-lg w-40 focus:outline-none focus:border-gray-500"
+            className="bg-paper-2 border border-line rounded-xl px-4 py-3 text-ink text-center text-lg w-40 focus:outline-none focus:border-gray-500"
             autoFocus
           />
           <button
@@ -224,14 +224,14 @@ export default function ColorBlindTest() {
         </div>
         <button
           onClick={() => { setAnswer("0"); handleSubmit(); }}
-          className="text-sm text-gray-500 hover:text-gray-300"
+          className="text-sm text-ink-3 hover:text-ink-2"
         >
           I can't see a number
         </button>
       </div>
 
       {/* Progress bar */}
-      <div className="w-full bg-gray-800 rounded-full h-2">
+      <div className="w-full bg-paper-2 rounded-full h-2">
         <div
           className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all"
           style={{ width: `${((currentPlate) / plates.length) * 100}%` }}
