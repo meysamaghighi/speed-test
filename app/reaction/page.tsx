@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ReactionTest from "../components/ReactionTest";
+import ReactionPlay from "./ReactionPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
@@ -27,33 +27,28 @@ export const metadata: Metadata = {
 
 export default function ReactionPage() {
   return (
-    <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
-          Reaction Time Test
-        </h1>
-        <p className="text-gray-400">
-          Wait for the screen to turn green, then click as fast as you can. 5
-          rounds, we take your average.
-        </p>
-      </div>
+    <main className="bg-paper text-ink">
+      <ReactionPlay />
 
-      <ReactionTest />
-
-      <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Reaction Time</h2>
+      <section className="max-w-2xl mx-auto px-4 mt-12 space-y-6">
+        <h2
+          className="font-display text-xl text-ink"
+          style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
+        >
+          About Reaction Time
+        </h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">What Affects It?</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">What Affects It?</h3>
+            <p className="text-sm text-ink-2">
               Sleep, caffeine, age, attention, and practice all affect reaction
               time. Most people react faster in the afternoon than morning.
               Gamers typically have faster reactions than non-gamers.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Average Times</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Average Times</h3>
+            <p className="text-sm text-ink-2">
               The average human reaction time to visual stimulus is about 250ms.
               Professional esports players average 150-200ms. The absolute human
               limit is around 100ms due to nerve signal travel time.
@@ -62,7 +57,9 @@ export default function ReactionPage() {
         </div>
       </section>
 
-      <RelatedTests current="/reaction" />
+      <div className="max-w-2xl mx-auto px-4">
+        <RelatedTests current="/reaction" />
+      </div>
 
       <script
         type="application/ld+json"

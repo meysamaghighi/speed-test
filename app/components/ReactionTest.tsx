@@ -1,11 +1,18 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
 type Phase = "waiting" | "ready" | "go" | "result" | "too-early";
 
-export default function ReactionTest() {
+export type ReactionTestProps = {
+  /** Fires once when the user completes all 5 rounds. avgMs is the
+   * final average reaction time (lower-is-better). Lets a parent shell
+   * record progress and trigger a share. */
+  onComplete?: (avgMs: number) => void;
+};
+
+export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
   const [phase, setPhase] = useState<Phase>("waiting");
   const [times, setTimes] = useState<number[]>([]);
   const [currentTime, setCurrentTime] = useState(0);
@@ -21,6 +28,15 @@ export default function ReactionTest() {
 
   const isFinished = times.length === totalRounds && phase === "result";
   const pb = usePersonalBest("pb-reaction", "lower", isFinished ? average : null);
+  const reportedRef = useRef(false);
+
+  useEffect(() => {
+    if (isFinished && !reportedRef.current) {
+      reportedRef.current = true;
+      onComplete?.(average);
+    }
+    if (!isFinished) reportedRef.current = false;
+  }, [isFinished, average, onComplete]);
 
   const startRound = useCallback(() => {
     setPhase("ready");
