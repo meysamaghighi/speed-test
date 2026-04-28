@@ -22,25 +22,25 @@ export default function AimPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">Aim Trainer</h1>
-        <p className="text-gray-400">
+        <h1 className="text-4xl font-black text-ink mb-3">Aim Trainer</h1>
+        <p className="text-ink-2">
           Click 30 targets as fast and accurately as you can. We measure your
           average reaction time per target.
         </p>
       </div>
       <AimTrainer />
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">Improve Your Aim</h2>
+        <h2 className="text-xl font-bold text-ink">Improve Your Aim</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">For Gaming</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">For Gaming</h3>
+            <p className="text-sm text-ink-2">
               Aim trainers help develop muscle memory for FPS games (Valorant, CS2, Apex Legends, Overwatch). Pro players practice aim training 15-30 minutes daily. Focus on consistency over speed — accuracy first, then speed.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Mouse Sensitivity</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Mouse Sensitivity</h3>
+            <p className="text-sm text-ink-2">
               Lower mouse sensitivity generally improves accuracy (most pros use 400-800 DPI). Use a large mouse pad for big arm movements. Your wrist handles fine adjustments, your arm handles large movements.
             </p>
           </div>

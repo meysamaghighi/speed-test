@@ -29,10 +29,10 @@ export default function RhythmPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Rhythm Timing Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Listen to the beat pattern, then tap it back as accurately as you can.
           Each level adds one beat and tightens the timing tolerance.
         </p>
@@ -41,20 +41,20 @@ export default function RhythmPage() {
       <RhythmTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Rhythm & Timing</h2>
+        <h2 className="text-xl font-bold text-ink">About Rhythm & Timing</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Why Rhythm Matters</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Why Rhythm Matters</h3>
+            <p className="text-sm text-ink-2">
               Rhythm timing is crucial for musicians, dancers, and athletes. It
               involves coordination between auditory processing, motor planning,
               and precise execution. Good rhythm timing indicates strong neural
               synchronization and motor control.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Can You Improve?</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Can You Improve?</h3>
+            <p className="text-sm text-ink-2">
               Yes! Rhythm timing improves with practice. Musicians train this
               skill constantly. Playing rhythm games, practicing with a
               metronome, or learning an instrument all enhance your ability to

@@ -28,10 +28,10 @@ export default function VisualSearchPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Visual Search Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Find the odd one out in a grid of similar shapes. Tests visual attention and search speed.
         </p>
       </div>
@@ -39,18 +39,18 @@ export default function VisualSearchPage() {
       <VisualSearchTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Visual Search</h2>
+        <h2 className="text-xl font-bold text-ink">About Visual Search</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Selective Attention</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Selective Attention</h3>
+            <p className="text-sm text-ink-2">
               Visual search tests measure selective attention -- your ability to find a target
               among distractors. Used in cognitive psychology and airport security training.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Pop-Out vs Serial</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Pop-Out vs Serial</h3>
+            <p className="text-sm text-ink-2">
               Easy searches (very different target) show pop-out effect where search time
               doesn't increase with grid size. Hard searches require serial scanning.
             </p>

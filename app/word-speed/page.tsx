@@ -29,10 +29,10 @@ export default function WordSpeedPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Word Speed Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Type each word as fast and accurately as you can. 20 words per round,
           progressing from short to long.
         </p>
@@ -41,19 +41,19 @@ export default function WordSpeedPage() {
       <WordSpeedTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Word Speed</h2>
+        <h2 className="text-xl font-bold text-ink">About Word Speed</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Speed vs Accuracy</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Speed vs Accuracy</h3>
+            <p className="text-sm text-ink-2">
               This test measures both speed and accuracy. Going fast with many
               errors will lower your WPM score. Focus on typing correctly
               without looking at the keyboard for best results.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Progressive Difficulty</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Progressive Difficulty</h3>
+            <p className="text-sm text-ink-2">
               Words start with 3-4 letters and gradually increase to 8-10
               letters. This tests your ability to maintain speed with longer,
               more complex words.

@@ -29,10 +29,10 @@ export default function MathMemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Math Memory Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           A math equation flashes briefly. Memorize it, then solve from memory.
           One wrong answer ends the test.
         </p>
@@ -41,19 +41,19 @@ export default function MathMemoryPage() {
       <MathMemoryTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Math Working Memory</h2>
+        <h2 className="text-xl font-bold text-ink">About Math Working Memory</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Dual Processing</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Dual Processing</h3>
+            <p className="text-sm text-ink-2">
               This test requires both memory (holding the equation) and computation
               (solving it). Your working memory must juggle both tasks simultaneously,
               making it harder than pure memory or pure math alone.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Mental Math Skills</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Mental Math Skills</h3>
+            <p className="text-sm text-ink-2">
               Strong mental math correlates with better problem-solving and
               logical reasoning. Practice improves both speed and working memory
               capacity. Kids who do mental math regularly score higher on IQ tests.

@@ -29,10 +29,10 @@ export default function FocusTimerPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Focus Timer Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Estimate exact durations without a visible clock. Test your internal sense of time.
         </p>
       </div>
@@ -40,52 +40,52 @@ export default function FocusTimerPage() {
       <FocusTimerTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">How It Works</h2>
-        <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-          <p className="text-sm text-gray-400 mb-3">
+        <h2 className="text-xl font-bold text-ink">How It Works</h2>
+        <div className="bg-paper-2 rounded-xl p-5 border border-line">
+          <p className="text-sm text-ink-2 mb-3">
             You'll see a target duration (e.g., 10 seconds). Press START, then wait and press
             STOP when you think that much time has passed. No clock is visible during timing.
           </p>
-          <p className="text-sm text-gray-400 mb-3">
+          <p className="text-sm text-ink-2 mb-3">
             You'll complete 4 rounds with progressively longer durations: 5, 10, 15, and 30 seconds.
             Your score is based on accuracy (% error from the target time).
           </p>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-ink-2">
             Score = 100 - average error percentage. Lower error = higher score (max 100).
           </p>
         </div>
       </section>
 
       <section className="mt-8 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Time Perception</h2>
+        <h2 className="text-xl font-bold text-ink">About Time Perception</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Chronoception</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Chronoception</h3>
+            <p className="text-sm text-ink-2">
               Chronoception (time perception) is the sense of time passing. Unlike vision or hearing,
               there's no single "time receptor." The brain's suprachiasmatic nucleus (SCN) helps
               regulate circadian rhythms and time estimation.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Why Time Feels Different</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Why Time Feels Different</h3>
+            <p className="text-sm text-ink-2">
               Attention affects time perception. Boring tasks feel longer; engaging activities
               feel shorter. Anxiety and fear slow perceived time. Age also matters—time feels
               faster as you get older due to proportional memory formation.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Brain Regions Involved</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Brain Regions Involved</h3>
+            <p className="text-sm text-ink-2">
               The cerebellum and basal ganglia are key for time estimation. The prefrontal cortex
               helps with longer durations (seconds to minutes). Dopamine levels affect time
               perception—higher dopamine makes time feel slower.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Improving Time Sense</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Improving Time Sense</h3>
+            <p className="text-sm text-ink-2">
               Musicians and athletes often have better time perception due to rhythmic training.
               Meditation and mindfulness improve awareness of time passing. Counting (not recommended
               here) can help, but true internal sense comes from practice and attention.

@@ -29,10 +29,10 @@ export default function EstimationPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Estimation Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Dots appear for 1 second. Estimate how many you saw.
           10 rounds, from 5 to 85 dots. Tests your number sense.
         </p>
@@ -41,19 +41,19 @@ export default function EstimationPage() {
       <EstimationTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Number Sense</h2>
+        <h2 className="text-xl font-bold text-ink">About Number Sense</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Subitizing</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Subitizing</h3>
+            <p className="text-sm text-ink-2">
               Subitizing is the ability to instantly recognize small quantities (1-4)
               without counting. Beyond 5 items, we switch to estimation or counting.
               This is an innate ability shared with many animals.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Estimation Strategies</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Estimation Strategies</h3>
+            <p className="text-sm text-ink-2">
               For larger quantities, experts use clustering (count one cluster,
               multiply) or reference points (compare to known quantities).
               Estimation accuracy improves with practice and math skills.

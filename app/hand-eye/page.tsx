@@ -22,24 +22,24 @@ export default function HandEyePage() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">Hand-Eye Coordination</h1>
-        <p className="text-gray-400">
+        <h1 className="text-4xl font-black text-ink mb-3">Hand-Eye Coordination</h1>
+        <p className="text-ink-2">
           Click the moving target as many times as you can in 30 seconds. It gets smaller and faster!
         </p>
       </div>
       <HandEye />
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Hand-Eye Coordination</h2>
+        <h2 className="text-xl font-bold text-ink">About Hand-Eye Coordination</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">What It Measures</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">What It Measures</h3>
+            <p className="text-sm text-ink-2">
               Hand-eye coordination is the ability to process visual input and execute precise motor responses. This test measures visual tracking, predictive timing, reaction time, and fine motor control. It's essential for sports, gaming, and everyday tasks.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Improving Coordination</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Improving Coordination</h3>
+            <p className="text-sm text-ink-2">
               Hand-eye coordination improves with practice. Activities like playing sports (tennis, baseball), video games (especially FPS and rhythm games), juggling, and even typing can enhance coordination. Regular practice shows measurable improvement within weeks.
             </p>
           </div>

@@ -29,10 +29,10 @@ export default function DualTaskPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Dual Task Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Track a moving red dot with your eyes while counting beeps.
           Tests your ability to process visual and audio information simultaneously.
         </p>
@@ -41,19 +41,19 @@ export default function DualTaskPage() {
       <DualTaskTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Divided Attention</h2>
+        <h2 className="text-xl font-bold text-ink">About Divided Attention</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Multitasking Myth</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Multitasking Myth</h3>
+            <p className="text-sm text-ink-2">
               True simultaneous multitasking is impossible - your brain rapidly
               switches between tasks. However, automatic tasks (like tracking) can
               run alongside conscious tasks (like counting) with practice.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Real-World Uses</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Real-World Uses</h3>
+            <p className="text-sm text-ink-2">
               Divided attention is crucial for driving (watching road + monitoring
               mirrors), conversations in noisy environments, and cooking multiple
               dishes. Deficits appear in ADHD, concussions, and sleep deprivation.

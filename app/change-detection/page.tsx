@@ -29,10 +29,10 @@ export default function ChangeDetectionPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Change Detection Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           A grid of colored circles appears, briefly disappears, then reappears with ONE color changed.
           Click the circle that changed.
         </p>
@@ -41,19 +41,19 @@ export default function ChangeDetectionPage() {
       <ChangeDetectionTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Change Blindness</h2>
+        <h2 className="text-xl font-bold text-ink">About Change Blindness</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Change Blindness</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Change Blindness</h3>
+            <p className="text-sm text-ink-2">
               Change blindness is the phenomenon where large changes to a visual
               scene go unnoticed, especially during brief disruptions. Even
               obvious changes can be missed if attention isn't focused there.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Visual Working Memory</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Visual Working Memory</h3>
+            <p className="text-sm text-ink-2">
               Research shows we can hold about 3-4 complex visual objects in
               working memory at once. This test challenges your ability to
               encode and compare visual information across time.

@@ -29,10 +29,10 @@ export default function FaceMemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Face Memory Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Memorize the grid of faces, then identify which ones changed. Each level increases difficulty.
         </p>
       </div>
@@ -40,14 +40,14 @@ export default function FaceMemoryPage() {
       <FaceMemoryTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">How It Works</h2>
-        <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-          <p className="text-sm text-gray-400 mb-3">
+        <h2 className="text-xl font-bold text-ink">How It Works</h2>
+        <div className="bg-paper-2 rounded-xl p-5 border border-line">
+          <p className="text-sm text-ink-2 mb-3">
             You'll see a grid of emoji faces for a few seconds. Study them carefully.
             Then the grid will reappear with 1-4 faces changed. Your job is to identify
             which faces are different from the original.
           </p>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-ink-2">
             Each level increases difficulty: larger grids (up to 5×5), shorter viewing time,
             and more simultaneous changes. How far can you get?
           </p>
@@ -55,32 +55,32 @@ export default function FaceMemoryPage() {
       </section>
 
       <section className="mt-8 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Face Recognition</h2>
+        <h2 className="text-xl font-bold text-ink">About Face Recognition</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Special Brain Region</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Special Brain Region</h3>
+            <p className="text-sm text-ink-2">
               The fusiform face area (FFA) in your brain specializes in recognizing faces.
               It's so specialized that humans can recognize thousands of faces, even after years.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Improving Recognition</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Improving Recognition</h3>
+            <p className="text-sm text-ink-2">
               Face memory improves with practice and attention. Looking at distinctive features
               (eyes, nose, expression) helps encoding. Sleep consolidates face memories.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Prosopagnosia</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Prosopagnosia</h3>
+            <p className="text-sm text-ink-2">
               About 2% of people have prosopagnosia (face blindness), difficulty recognizing
               faces. This test measures visual change detection, not clinical face recognition.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Age Effects</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Age Effects</h3>
+            <p className="text-sm text-ink-2">
               Face memory peaks in your 30s. Young children and older adults tend to score
               lower. Regular social interaction may help maintain face recognition skills.
             </p>

@@ -20,8 +20,8 @@ export default function StroopPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">Stroop Color Test</h1>
-        <p className="text-gray-400">
+        <h1 className="text-4xl font-black text-ink mb-3">Stroop Color Test</h1>
+        <p className="text-ink-2">
           A color name appears in a different ink color. The twist: questions alternate between
           <strong className="text-blue-400"> "What COLOR is the ink?"</strong> and
           <strong className="text-emerald-400"> "What does the text SAY?"</strong>
@@ -30,15 +30,15 @@ export default function StroopPage() {
       </div>
       <ColorTest />
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">The Stroop Effect</h2>
+        <h2 className="text-xl font-bold text-ink">The Stroop Effect</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">What Is It?</h3>
-            <p className="text-sm text-gray-400">The Stroop effect (discovered by John Ridley Stroop in 1935) demonstrates that reading is so automatic that your brain struggles to ignore the word and focus on the ink color. This interference reveals how your brain processes conflicting information.</p>
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">What Is It?</h3>
+            <p className="text-sm text-ink-2">The Stroop effect (discovered by John Ridley Stroop in 1935) demonstrates that reading is so automatic that your brain struggles to ignore the word and focus on the ink color. This interference reveals how your brain processes conflicting information.</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Why It Matters</h3>
-            <p className="text-sm text-gray-400">The Stroop test measures cognitive flexibility, selective attention, and processing speed. It is widely used in psychology and neuroscience research, and even in clinical assessments for conditions like ADHD, dementia, and brain injuries.</p>
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Why It Matters</h3>
+            <p className="text-sm text-ink-2">The Stroop test measures cognitive flexibility, selective attention, and processing speed. It is widely used in psychology and neuroscience research, and even in clinical assessments for conditions like ADHD, dementia, and brain injuries.</p>
           </div>
         </div>
       </section>

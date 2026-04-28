@@ -29,10 +29,10 @@ export default function EmotionPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Emotion Recognition Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Emoji faces appear. Identify the emotion as quickly and accurately as possible.
         </p>
       </div>
@@ -40,14 +40,14 @@ export default function EmotionPage() {
       <EmotionTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">How It Works</h2>
-        <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-          <p className="text-sm text-gray-400 mb-3">
+        <h2 className="text-xl font-bold text-ink">How It Works</h2>
+        <div className="bg-paper-2 rounded-xl p-5 border border-line">
+          <p className="text-sm text-ink-2 mb-3">
             An emoji face appears showing one of seven emotions: happy, sad, angry,
             surprised, disgusted, fearful, or neutral. Click the correct emotion as
             fast as you can.
           </p>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-ink-2">
             20 rounds total. Your score is based on accuracy and speed. Fast correct
             answers score higher. Reactions over 1 second incur a time penalty.
           </p>
@@ -55,35 +55,35 @@ export default function EmotionPage() {
       </section>
 
       <section className="mt-8 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Emotion Recognition</h2>
+        <h2 className="text-xl font-bold text-ink">About Emotion Recognition</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Universal Emotions</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Universal Emotions</h3>
+            <p className="text-sm text-ink-2">
               Psychologist Paul Ekman identified 6 universal emotions recognized across
               cultures: happiness, sadness, anger, surprise, disgust, and fear. We added
               neutral as a 7th category.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Emotional Intelligence</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Emotional Intelligence</h3>
+            <p className="text-sm text-ink-2">
               Emotion recognition is a key component of emotional intelligence (EQ).
               People with high EQ can quickly and accurately read facial expressions,
               improving social interactions.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Brain Mechanisms</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Brain Mechanisms</h3>
+            <p className="text-sm text-ink-2">
               The amygdala processes emotional facial expressions, especially fear and
               anger. The fusiform face area recognizes faces. Damage to these regions
               impairs emotion recognition.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Practice Improves Accuracy</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Practice Improves Accuracy</h3>
+            <p className="text-sm text-ink-2">
               Emotion recognition can be trained. Therapists, poker players, and law
               enforcement often develop superior emotion reading skills through practice
               and feedback.

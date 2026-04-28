@@ -28,10 +28,10 @@ export default function ColorMemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Color Memory Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Watch colored circles appear in sequence, then click them back in the same order.
         </p>
       </div>
@@ -39,18 +39,18 @@ export default function ColorMemoryPage() {
       <ColorMemoryTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Color Memory</h2>
+        <h2 className="text-xl font-bold text-ink">About Color Memory</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Working Memory</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Working Memory</h3>
+            <p className="text-sm text-ink-2">
               This test measures your working memory capacity for visual sequences.
               Most people can remember 5-7 items in short-term memory (Miller's Law).
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Tips to Improve</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Tips to Improve</h3>
+            <p className="text-sm text-ink-2">
               Use chunking strategies (group colors into patterns), verbalize the sequence,
               or use mnemonic techniques. Practice improves both speed and capacity.
             </p>

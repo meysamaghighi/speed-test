@@ -29,10 +29,10 @@ export default function ReadingPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Reading Speed Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Read a passage at your normal pace, then answer comprehension
           questions. Speed without understanding doesn't count!
         </p>
@@ -41,20 +41,20 @@ export default function ReadingPage() {
       <ReadingSpeed />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Reading Speed</h2>
+        <h2 className="text-xl font-bold text-ink">About Reading Speed</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Average Speeds</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Average Speeds</h3>
+            <p className="text-sm text-ink-2">
               The average adult reads at 200-250 WPM. College students average
               300 WPM. Speed readers can reach 700+ WPM, though comprehension
               typically drops above 500 WPM. The world speed reading record is
               over 4,700 WPM.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">How to Read Faster</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">How to Read Faster</h3>
+            <p className="text-sm text-ink-2">
               Reduce subvocalization (saying words in your head). Use a finger
               or pointer to guide your eyes. Practice reading in chunks rather
               than word by word. Expand your vocabulary so you spend less time

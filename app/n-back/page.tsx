@@ -22,24 +22,24 @@ export default function NBackPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">N-Back Test</h1>
-        <p className="text-gray-400">
+        <h1 className="text-4xl font-black text-ink mb-3">N-Back Test</h1>
+        <p className="text-ink-2">
           See letters one at a time. Click "Match" if current letter = letter from N positions back. Levels up.
         </p>
       </div>
       <NBack />
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About N-Back</h2>
+        <h2 className="text-xl font-bold text-ink">About N-Back</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Working Memory</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Working Memory</h3>
+            <p className="text-sm text-ink-2">
               The N-Back task is one of the most well-researched working memory tests. It requires you to continuously update and maintain information in your working memory while comparing new stimuli to old ones. This is a core cognitive skill.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Brain Training</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Brain Training</h3>
+            <p className="text-sm text-ink-2">
               Research suggests that regular N-Back training may improve fluid intelligence (problem-solving ability). Some studies show gains in working memory capacity and attention control. The dual N-Back variant (tracking two sequences) is particularly challenging.
             </p>
           </div>

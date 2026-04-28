@@ -28,10 +28,10 @@ export default function NumberComparisonPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Number Comparison Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Click the larger number as fast as you can. Tests numerical processing speed.
         </p>
       </div>
@@ -39,18 +39,18 @@ export default function NumberComparisonPage() {
       <NumberComparisonTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Number Comparison</h2>
+        <h2 className="text-xl font-bold text-ink">About Number Comparison</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Number Sense</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Number Sense</h3>
+            <p className="text-sm text-ink-2">
               This test measures your numerical cognition -- how quickly your brain processes
               and compares quantities. Faster comparisons indicate stronger number sense.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Distance Effect</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Distance Effect</h3>
+            <p className="text-sm text-ink-2">
               Numbers that are far apart (23 vs 87) are compared faster than close numbers
               (847 vs 851). This is called the distance effect in cognitive psychology.
             </p>

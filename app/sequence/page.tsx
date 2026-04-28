@@ -20,23 +20,23 @@ export default function SequencePage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">Sequence Memory</h1>
-        <p className="text-gray-400">
+        <h1 className="text-4xl font-black text-ink mb-3">Sequence Memory</h1>
+        <p className="text-ink-2">
           Watch the tiles light up in order, then repeat the sequence. Each level
           adds one more step. How long a sequence can you remember?
         </p>
       </div>
       <SequenceMemory />
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Sequence Memory</h2>
+        <h2 className="text-xl font-bold text-ink">About Sequence Memory</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">The Simon Effect</h3>
-            <p className="text-sm text-gray-400">This test is based on the classic Simon electronic game from the 1970s. It measures your ability to encode and recall ordered sequences, a key component of working memory used in everything from following directions to learning music.</p>
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">The Simon Effect</h3>
+            <p className="text-sm text-ink-2">This test is based on the classic Simon electronic game from the 1970s. It measures your ability to encode and recall ordered sequences, a key component of working memory used in everything from following directions to learning music.</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Tips</h3>
-            <p className="text-sm text-gray-400">Try creating a mental &quot;path&quot; between the tiles rather than memorizing individual positions. Some people find it helpful to assign each position a number or direction. Practice improves sequence memory significantly.</p>
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Tips</h3>
+            <p className="text-sm text-ink-2">Try creating a mental &quot;path&quot; between the tiles rather than memorizing individual positions. Some people find it helpful to assign each position a number or direction. Practice improves sequence memory significantly.</p>
           </div>
         </div>
       </section>

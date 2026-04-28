@@ -29,10 +29,10 @@ export default function ReverseMemoryPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Digit Span Backward Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Digits will flash one at a time. Memorize them, then type them back in REVERSE order.
         </p>
       </div>
@@ -40,19 +40,19 @@ export default function ReverseMemoryPage() {
       <ReverseMemory />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Working Memory</h2>
+        <h2 className="text-xl font-bold text-ink">About Working Memory</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">What is Working Memory?</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">What is Working Memory?</h3>
+            <p className="text-sm text-ink-2">
               Working memory is your brain's ability to temporarily hold and manipulate information.
               The digit span backward test specifically measures your ability to mentally reverse sequences,
               a key component of working memory that's crucial for problem-solving and learning.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">How to Improve</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">How to Improve</h3>
+            <p className="text-sm text-ink-2">
               Practice backward counting, mental math, and memory games. Playing strategy games,
               learning new skills, and regular cognitive training can strengthen working memory.
               Adequate sleep and physical exercise also significantly boost cognitive function.

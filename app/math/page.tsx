@@ -29,10 +29,10 @@ export default function MathPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Math Speed Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           60 seconds. Solve as many problems as you can. Difficulty adapts to
           your level -- streak bonuses for consecutive correct answers.
         </p>
@@ -41,20 +41,20 @@ export default function MathPage() {
       <MathSpeed />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Mental Math</h2>
+        <h2 className="text-xl font-bold text-ink">About Mental Math</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Why Practice Mental Math?</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Why Practice Mental Math?</h3>
+            <p className="text-sm text-ink-2">
               Mental math strengthens working memory, improves concentration,
               and builds number sense. Studies show that regular mental
               arithmetic practice can improve cognitive function and even slow
               age-related cognitive decline.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Tips to Improve</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Tips to Improve</h3>
+            <p className="text-sm text-ink-2">
               Break problems into parts (e.g., 15x12 = 15x10 + 15x2). Practice
               times tables until automatic. Use rounding (298+147 = 300+145).
               Regular practice for just 5 minutes a day can dramatically improve

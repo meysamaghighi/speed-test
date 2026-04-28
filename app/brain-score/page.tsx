@@ -30,8 +30,8 @@ export default function BrainScorePage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">Brain Score</h1>
-        <p className="text-gray-400">
+        <h1 className="text-4xl font-black text-ink mb-3">Brain Score</h1>
+        <p className="text-ink-2">
           Your overall cognitive score out of 1000, calculated from your
           personal bests across all tests. The more tests you take, the more
           accurate your score.
@@ -41,20 +41,20 @@ export default function BrainScorePage() {
       <BrainScore />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Brain Score</h2>
+        <h2 className="text-xl font-bold text-ink">About Brain Score</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">How It Works</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">How It Works</h3>
+            <p className="text-sm text-ink-2">
               Each of the 40 tests measures a different cognitive ability. Your
               personal best on each test is normalized to a 0-100 scale, then
               averaged to produce your Brain Score (0-1000). The more tests you
               complete, the more comprehensive your score.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Improve Your Score</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Improve Your Score</h3>
+            <p className="text-sm text-ink-2">
               Your brain is trainable. Regular practice on specific tests can
               improve your scores over time. Focus on your weakest areas for the
               biggest gains. Sleep, exercise, and nutrition also significantly

@@ -30,10 +30,10 @@ export default function TypingPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Typing Speed Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Type the paragraph as fast and accurately as you can. Your speed is
           measured in words per minute (WPM).
         </p>
@@ -42,28 +42,28 @@ export default function TypingPage() {
       <TypingTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">Typing Speed Guide</h2>
+        <h2 className="text-xl font-bold text-ink">Typing Speed Guide</h2>
         <div className="overflow-x-auto">
-          <table className="w-full bg-gray-900 rounded-xl text-sm border border-gray-800">
+          <table className="w-full bg-paper-2 rounded-xl text-sm border border-line">
             <thead>
-              <tr className="border-b border-gray-800 text-gray-400">
+              <tr className="border-b border-line text-ink-2">
                 <th className="p-4 text-left">Speed</th>
                 <th className="p-4 text-left">WPM</th>
                 <th className="p-4 text-left">Description</th>
               </tr>
             </thead>
-            <tbody className="text-gray-300">
-              <tr className="border-b border-gray-800/50">
+            <tbody className="text-ink-2">
+              <tr className="border-b border-line/50">
                 <td className="p-4 text-red-400 font-bold">Slow</td>
                 <td className="p-4">&lt;25</td>
                 <td className="p-4">Hunt-and-peck typing, looking at keyboard</td>
               </tr>
-              <tr className="border-b border-gray-800/50">
+              <tr className="border-b border-line/50">
                 <td className="p-4 text-yellow-400 font-bold">Average</td>
                 <td className="p-4">40</td>
                 <td className="p-4">Casual typist, adequate for most tasks</td>
               </tr>
-              <tr className="border-b border-gray-800/50">
+              <tr className="border-b border-line/50">
                 <td className="p-4 text-green-400 font-bold">Fast</td>
                 <td className="p-4">60-80</td>
                 <td className="p-4">Touch typist, professional level</td>

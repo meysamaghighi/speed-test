@@ -29,10 +29,10 @@ export default function WordAssociationPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Word Fluency Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Name as many words as you can in a category within 60 seconds. Tests verbal fluency and vocabulary.
         </p>
       </div>
@@ -40,18 +40,18 @@ export default function WordAssociationPage() {
       <WordAssociationTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Word Fluency</h2>
+        <h2 className="text-xl font-bold text-ink">About Word Fluency</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Verbal Fluency</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Verbal Fluency</h3>
+            <p className="text-sm text-ink-2">
               This test measures your ability to rapidly retrieve words from semantic memory.
               It's a classic neuropsychological test used to assess language ability and executive function.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Cognitive Assessment</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Cognitive Assessment</h3>
+            <p className="text-sm text-ink-2">
               Word fluency tests are used in clinical settings to assess cognitive health.
               They measure vocabulary, processing speed, and mental flexibility.
             </p>

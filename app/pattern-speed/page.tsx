@@ -29,10 +29,10 @@ export default function PatternSpeedPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-black text-white mb-3">
+        <h1 className="text-4xl font-black text-ink mb-3">
           Rapid Estimation Test
         </h1>
-        <p className="text-gray-400">
+        <p className="text-ink-2">
           Count dots, estimate multiplication, compare quantities. 15 rounds of fast-paced
           estimation challenges. Speed and accuracy both matter!
         </p>
@@ -41,19 +41,19 @@ export default function PatternSpeedPage() {
       <RapidEstimationTest />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-white">About Rapid Estimation</h2>
+        <h2 className="text-xl font-bold text-ink">About Rapid Estimation</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Mental Math Speed</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Mental Math Speed</h3>
+            <p className="text-sm text-ink-2">
               Rapid estimation combines number sense, visual processing, and mental
               arithmetic. It tests your ability to quickly approximate quantities and
               calculate under time pressure - skills useful in daily life.
             </p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-            <h3 className="font-bold text-white mb-2">Estimation Strategies</h3>
-            <p className="text-sm text-gray-400">
+          <div className="bg-paper-2 rounded-xl p-5 border border-line">
+            <h3 className="font-bold text-ink mb-2">Estimation Strategies</h3>
+            <p className="text-sm text-ink-2">
               For dot counting: group clusters and multiply. For multiplication:
               round to nearest 10 (23x17 = 20x20 = 400). For comparisons: focus
               on density differences rather than exact counts.
