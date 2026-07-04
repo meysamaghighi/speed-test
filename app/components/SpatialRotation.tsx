@@ -69,6 +69,15 @@ export default function SpatialRotation() {
     return shape.map((c) => ({ x: c.x - minX, y: c.y - minY }));
   };
 
+  const shapeKey = (shape: Coord[]): string =>
+    normalizeShape(shape)
+      .map((c) => `${c.x},${c.y}`)
+      .sort()
+      .join("|");
+
+  const isRotationOf = (a: Coord[], b: Coord[]): boolean =>
+    [0, 90, 180, 270].some((angle) => shapeKey(rotateShape(a, angle)) === shapeKey(b));
+
   // Generate all trials for the game
   const generateTrials = (): Trial[] => {
     const newTrials: Trial[] = [];
@@ -89,7 +98,12 @@ export default function SpatialRotation() {
     for (let i = 0; i < numDifferent; i++) {
       const numBlocks = 5 + Math.floor(Math.random() * 3);
       const shape1 = normalizeShape(generateShape(numBlocks));
-      const shape2 = normalizeShape(generateShape(numBlocks));
+      // A random shape can coincidentally be a rotation of shape1 — that would
+      // make the "correct" answer wrong, so reroll until genuinely different
+      let shape2 = normalizeShape(generateShape(numBlocks));
+      while (isRotationOf(shape1, shape2)) {
+        shape2 = normalizeShape(generateShape(numBlocks));
+      }
       newTrials.push({ shape1, shape2, isSame: false });
     }
 
@@ -203,7 +217,7 @@ export default function SpatialRotation() {
           <p className="text-ink-2 text-sm text-center mb-4">
             Are these the same shape?
           </p>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:min-h-[240px]">
             {renderShape(trial.shape1, "shape1")}
             {renderShape(trial.shape2, "shape2")}
           </div>

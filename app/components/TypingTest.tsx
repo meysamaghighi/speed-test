@@ -26,7 +26,9 @@ export default function TypingTest() {
   const words = text.split(" ").length;
   const wpm = elapsed > 0 ? Math.round((words / elapsed) * 60) : 0;
 
-  const pb = usePersonalBest("pb-typing", "higher", phase === "done" ? wpm : null);
+  // World record is ~216 WPM — anything above 250 is paste/automation, don't save it
+  const isPlausible = wpm > 0 && wpm <= 250;
+  const pb = usePersonalBest("pb-typing", "higher", phase === "done" && isPlausible ? wpm : null);
 
   const startTest = useCallback(() => {
     const p = paragraphs[Math.floor(Math.random() * paragraphs.length)];
@@ -105,6 +107,7 @@ export default function TypingTest() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          {!isPlausible && <p className="text-ink-3 text-sm mt-2">Too fast to be human typing — result not saved.</p>}
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
           {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} WPM</p>}
         </div>
@@ -183,6 +186,8 @@ export default function TypingTest() {
         type="text"
         value={typed}
         onChange={handleInput}
+        onPaste={(e) => e.preventDefault()}
+        onDrop={(e) => e.preventDefault()}
         className="w-full bg-paper-2 border border-line rounded-xl px-4 py-3 text-ink font-mono text-lg focus:outline-none focus:border-blue-500"
         placeholder="Start typing here..."
         autoComplete="off"

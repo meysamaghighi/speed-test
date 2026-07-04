@@ -136,8 +136,8 @@ export default function ChimpTest() {
     return (
       <div className="text-center">
         {challengerScore !== null && (
-          <div className="mb-4 bg-orange-950/40 border border-orange-800 rounded-xl p-4">
-            <p className="text-orange-300 text-sm font-bold">
+          <div className="mb-4 bg-orange-100 border border-orange-300 rounded-xl p-4">
+            <p className="text-orange-700 text-sm font-bold">
               Challenger scored {challengerScore} numbers — can you beat them?
             </p>
           </div>
@@ -164,8 +164,8 @@ export default function ChimpTest() {
   if (phase === "correct") {
     return (
       <div className="text-center space-y-4">
-        <div className="bg-emerald-900/30 rounded-2xl p-8 border border-emerald-800">
-          <p className="text-emerald-400 text-2xl font-bold mb-2">Correct!</p>
+        <div className="bg-emerald-100 rounded-2xl p-8 border border-emerald-300">
+          <p className="text-emerald-600 text-2xl font-bold mb-2">Correct!</p>
           <p className="text-ink-2">
             Level {level} — {level} numbers
           </p>
@@ -212,7 +212,7 @@ export default function ChimpTest() {
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
           {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}</p>}
           {vsChallenger && (
-            <p className="text-orange-300 text-sm font-bold mt-3 border-t border-line pt-3">
+            <p className="text-orange-700 text-sm font-bold mt-3 border-t border-line pt-3">
               {vsChallenger}
             </p>
           )}
@@ -278,7 +278,7 @@ export default function ChimpTest() {
             return (
               <div
                 key={idx}
-                className="aspect-square rounded-lg bg-emerald-900/30 border border-emerald-800/30"
+                className="aspect-square rounded-lg bg-emerald-200 border border-emerald-300"
               />
             );
           }

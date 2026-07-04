@@ -40,9 +40,18 @@ function seededRandom(seed: number): () => number {
   };
 }
 
-function getTodayKey(): string {
-  const d = new Date();
+function dateKeyOf(d: Date): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+function getTodayKey(): string {
+  return dateKeyOf(new Date());
+}
+
+function getYesterdayKey(): string {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return dateKeyOf(d);
 }
 
 function getDaySeed(dateKey: string): number {
@@ -112,7 +121,10 @@ export default function DailyChallenge() {
       // Reset completed if it's a new day
       const prevCompleted = saved.dateKey === todayKey ? saved.completed : {};
       setCompleted(prevCompleted);
-      setStreak(saved.streak);
+      // A streak is only alive if the last full completion was today or yesterday
+      const streakAlive =
+        saved.lastCompletedDate === todayKey || saved.lastCompletedDate === getYesterdayKey();
+      setStreak(streakAlive ? saved.streak : 0);
     }
   }, [todayKey]);
 
@@ -130,10 +142,7 @@ export default function DailyChallenge() {
       let newStreak = streak;
       if (nowAllDone && saved?.lastCompletedDate !== todayKey) {
         // First completion today
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yKey = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, "0")}-${String(yesterday.getDate()).padStart(2, "0")}`;
-        newStreak = saved?.lastCompletedDate === yKey ? (saved.streak ?? 0) + 1 : 1;
+        newStreak = saved?.lastCompletedDate === getYesterdayKey() ? (saved.streak ?? 0) + 1 : 1;
         setStreak(newStreak);
       }
 
@@ -178,16 +187,16 @@ export default function DailyChallenge() {
     <div className="max-w-2xl mx-auto px-4 py-12">
       {/* Header */}
       <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
+        <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
           <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse" />
           Day {dayNum}
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black text-white mb-3">Daily Challenge</h1>
-        <p className="text-gray-400 text-sm max-w-md mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-black text-ink mb-3">Daily Challenge</h1>
+        <p className="text-ink-2 text-sm max-w-md mx-auto">
           5 tests, same for everyone, refreshes at midnight. Complete all 5 to keep your streak.
         </p>
         {streak > 0 && (
-          <div className="mt-4 inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm font-bold px-5 py-2 rounded-full">
+          <div className="mt-4 inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-600 text-sm font-bold px-5 py-2 rounded-full">
             🔥 {streak} day streak
           </div>
         )}
@@ -195,11 +204,11 @@ export default function DailyChallenge() {
 
       {/* Progress bar */}
       <div className="mb-8">
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
+        <div className="flex items-center justify-between text-xs text-ink-3 mb-2">
           <span>{doneCount} / {dailyTests.length} done</span>
           <span>{Math.round((doneCount / dailyTests.length) * 100)}%</span>
         </div>
-        <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+        <div className="h-2 bg-paper-2 border border-line rounded-full overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
             style={{ width: `${(doneCount / dailyTests.length) * 100}%` }}
@@ -216,14 +225,14 @@ export default function DailyChallenge() {
               key={test.href}
               className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${
                 done
-                  ? "bg-indigo-900/30 border-indigo-700/50"
-                  : "bg-gray-900 border-gray-800 hover:border-gray-700"
+                  ? "bg-indigo-500/10 border-indigo-300"
+                  : "bg-paper-2 border-line hover:border-ink-3"
               }`}
             >
               {/* Number / check */}
               <div
                 className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 ${
-                  done ? "bg-indigo-500 text-white" : "bg-gray-800 text-gray-400"
+                  done ? "bg-indigo-500 text-white" : "bg-paper border border-line text-ink-3"
                 }`}
               >
                 {done ? "✓" : i + 1}
@@ -231,10 +240,10 @@ export default function DailyChallenge() {
 
               {/* Info */}
               <div className="flex-1 min-w-0">
-                <div className={`font-bold text-sm ${done ? "text-indigo-200 line-through decoration-indigo-400" : "text-white"}`}>
+                <div className={`font-bold text-sm ${done ? "text-indigo-700 line-through decoration-indigo-400" : "text-ink"}`}>
                   {test.label}
                 </div>
-                <div className="text-xs text-gray-500 truncate">{test.desc}</div>
+                <div className="text-xs text-ink-3 truncate">{test.desc}</div>
               </div>
 
               {/* Actions */}
@@ -253,8 +262,8 @@ export default function DailyChallenge() {
                   onClick={() => toggleDone(test.href)}
                   className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
                     done
-                      ? "bg-gray-800 text-gray-400 hover:bg-red-900/40 hover:text-red-400"
-                      : "bg-gray-800 text-gray-400 hover:bg-green-900/40 hover:text-green-400"
+                      ? "bg-paper border border-line text-ink-3 hover:bg-red-100 hover:text-red-600"
+                      : "bg-paper border border-line text-ink-3 hover:bg-green-100 hover:text-green-700"
                   }`}
                   title={done ? "Undo" : "Mark done"}
                 >
@@ -268,16 +277,16 @@ export default function DailyChallenge() {
 
       {/* Completion card */}
       {allDone && (
-        <div className="rounded-2xl border border-indigo-500/40 bg-gradient-to-br from-indigo-900/40 to-purple-900/40 p-8 text-center">
+        <div className="rounded-2xl border border-indigo-300 bg-gradient-to-br from-indigo-100 to-purple-100 p-8 text-center">
           <div className="text-5xl mb-3">🏆</div>
-          <h2 className="text-2xl font-black text-white mb-1">All done!</h2>
-          <p className="text-indigo-300 text-sm mb-2">
+          <h2 className="text-2xl font-black text-ink mb-1">All done!</h2>
+          <p className="text-indigo-700 text-sm mb-2">
             {streak > 1 ? `${streak} day streak — keep it going!` : "First day completed!"}
           </p>
-          <p className="text-gray-500 text-xs mb-6">Come back tomorrow for a new set of 5 tests.</p>
+          <p className="text-ink-3 text-xs mb-6">Come back tomorrow for a new set of 5 tests.</p>
           <button
             onClick={handleShare}
-            className="inline-flex items-center gap-2 bg-white text-gray-900 font-black text-sm px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center gap-2 bg-ink text-paper font-black text-sm px-6 py-3 rounded-xl hover:bg-ink-2 transition-colors"
           >
             {copied ? "✓ Copied!" : "Share result"}
           </button>
@@ -285,22 +294,22 @@ export default function DailyChallenge() {
       )}
 
       {/* How it works */}
-      <div className="mt-14 border-t border-gray-800 pt-10">
-        <h2 className="text-lg font-bold text-white mb-4">How it works</h2>
-        <div className="grid sm:grid-cols-3 gap-4 text-sm text-gray-400">
-          <div className="bg-gray-900 rounded-xl p-4">
+      <div className="mt-14 border-t border-line pt-10">
+        <h2 className="text-lg font-bold text-ink mb-4">How it works</h2>
+        <div className="grid sm:grid-cols-3 gap-4 text-sm text-ink-2">
+          <div className="bg-paper-2 border border-line rounded-xl p-4">
             <div className="text-2xl mb-2">🎲</div>
-            <div className="font-semibold text-white mb-1">Same for everyone</div>
+            <div className="font-semibold text-ink mb-1">Same for everyone</div>
             Each day&apos;s 5 tests are the same worldwide. Seeded by the date — no randomness per person.
           </div>
-          <div className="bg-gray-900 rounded-xl p-4">
+          <div className="bg-paper-2 border border-line rounded-xl p-4">
             <div className="text-2xl mb-2">🔥</div>
-            <div className="font-semibold text-white mb-1">Build a streak</div>
+            <div className="font-semibold text-ink mb-1">Build a streak</div>
             Complete all 5 tests each day to extend your streak. Miss a day and it resets.
           </div>
-          <div className="bg-gray-900 rounded-xl p-4">
+          <div className="bg-paper-2 border border-line rounded-xl p-4">
             <div className="text-2xl mb-2">📤</div>
-            <div className="font-semibold text-white mb-1">Share your result</div>
+            <div className="font-semibold text-ink mb-1">Share your result</div>
             After finishing, share your result card to challenge friends to beat you.
           </div>
         </div>
@@ -308,7 +317,7 @@ export default function DailyChallenge() {
 
       {/* Back link */}
       <div className="mt-10 text-center">
-        <Link href="/" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">
+        <Link href="/" className="text-sm text-ink-3 hover:text-ink transition-colors">
           ← All tests
         </Link>
       </div>

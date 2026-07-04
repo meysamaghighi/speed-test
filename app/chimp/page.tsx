@@ -23,8 +23,8 @@ export default function ChimpPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
-        <div className="bg-orange-950/40 border border-orange-800 rounded-xl p-4 mb-4">
-          <p className="text-orange-300 font-bold text-lg">Can you beat a chimp?</p>
+        <div className="bg-orange-100 border border-orange-300 rounded-xl p-4 mb-4">
+          <p className="text-orange-700 font-bold text-lg">Can you beat a chimp?</p>
           <p className="text-ink-2 text-sm mt-1">Ayumu consistently recalled 9 numbers. Most humans max out at 5–7.</p>
         </div>
       </div>

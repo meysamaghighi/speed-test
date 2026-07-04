@@ -150,8 +150,8 @@ export default function NumberMemory() {
   if (phase === "correct") {
     return (
       <div className="text-center space-y-4">
-        <div className="bg-emerald-900/30 rounded-2xl p-8 border border-emerald-800">
-          <p className="text-emerald-400 text-2xl font-bold mb-2">Correct!</p>
+        <div className="bg-emerald-100 rounded-2xl p-8 border border-emerald-300">
+          <p className="text-emerald-600 text-2xl font-bold mb-2">Correct!</p>
           <p className="text-4xl font-mono font-black text-ink tracking-widest">
             {number}
           </p>
@@ -189,9 +189,9 @@ export default function NumberMemory() {
 
       <div className="bg-paper-2 rounded-xl p-4 border border-line">
         <p className="text-sm text-ink-3 mb-2">The number was:</p>
-        <p className="font-mono text-xl text-emerald-400 tracking-widest">{number}</p>
+        <p className="font-mono text-xl text-emerald-600 tracking-widest">{number}</p>
         <p className="text-sm text-ink-3 mt-2">You typed:</p>
-        <p className="font-mono text-xl text-red-400 tracking-widest">{guess}</p>
+        <p className="font-mono text-xl text-red-600 tracking-widest">{guess}</p>
       </div>
 
       <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">

@@ -161,6 +161,7 @@ export default function BrainScore() {
                   </span>
                   <span className="text-xs text-ink-3 w-20 text-right">
                     {t.raw}
+                    {/^[a-z]/i.test(t.unit) ? " " : ""}
                     {t.unit}
                   </span>
                 </div>
