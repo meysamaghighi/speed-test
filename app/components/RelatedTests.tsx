@@ -88,7 +88,7 @@ export default function RelatedTests({ current }: { current: string }) {
 
   return (
     <section className="mt-12">
-      <h2 className="text-lg font-bold text-white mb-4">Related Tests</h2>
+      <h2 className="text-lg font-bold text-ink mb-4">Related Tests</h2>
       <div className="flex flex-wrap gap-3">
         {items.map((test) => (
           <Link
@@ -101,7 +101,7 @@ export default function RelatedTests({ current }: { current: string }) {
         ))}
         <Link
           href="/"
-          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors"
+          className="px-4 py-2 bg-ink hover:bg-ink-2 text-paper text-sm font-medium rounded-lg transition-colors"
         >
           All Tests
         </Link>

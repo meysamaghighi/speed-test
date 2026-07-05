@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 
-type Phase = "instructions" | "ready" | "searching" | "result";
+type Phase = "instructions" | "ready" | "searching" | "transition" | "result";
 
 const GRID_SIZES = [3, 4, 5, 6, 8];
 
@@ -65,6 +65,9 @@ export default function VisualSearchTest() {
       if (nextLevelNum >= GRID_SIZES.length) {
         setPhase("result");
       } else {
+        // Leave "searching" immediately so extra clicks in the gap don't
+        // register as additional rounds
+        setPhase("transition");
         setTimeout(() => nextLevel(nextLevelNum), 800);
       }
     }
@@ -162,6 +165,12 @@ export default function VisualSearchTest() {
       {phase === "ready" && (
         <div className="text-center py-20">
           <p className="text-2xl text-ink-2">Get ready...</p>
+        </div>
+      )}
+
+      {phase === "transition" && (
+        <div className="text-center py-20">
+          <p className="text-2xl font-bold text-emerald-600">Found!</p>
         </div>
       )}
 

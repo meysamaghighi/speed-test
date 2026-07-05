@@ -33,17 +33,20 @@ export default function TrailMaking() {
       }
     }
 
-    // Randomly position 25 circles
-    const used = new Set<string>();
+    // Randomly position 25 circles. Enforce a real minimum distance — the old
+    // 10%-grid dedup let circles in adjacent cells overlap and bury each other
+    // (48px circles ≈ 6% x 9% of the board).
+    const placed: { x: number; y: number }[] = [];
     for (let i = 0; i < 25; i++) {
-      let x, y, key;
-      do {
-        x = 10 + Math.random() * 80;
-        y = 10 + Math.random() * 80;
-        key = `${Math.floor(x / 10)}-${Math.floor(y / 10)}`;
-      } while (used.has(key));
-      used.add(key);
-
+      let x = 0;
+      let y = 0;
+      let ok = false;
+      for (let attempt = 0; attempt < 300 && !ok; attempt++) {
+        x = 5 + Math.random() * 90;
+        y = 5 + Math.random() * 90;
+        ok = placed.every((p) => Math.abs(p.x - x) > 7 || Math.abs(p.y - y) > 11);
+      }
+      placed.push({ x, y });
       seq.push({ id: i, label: labels[i], x, y });
     }
 

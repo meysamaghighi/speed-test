@@ -13,7 +13,9 @@ export default function NumberSpeedTest() {
   const [round, setRound] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const maxDigitSpan = round > 0 ? digitSpan : 0;
+  // You fail on `digitSpan`, so the last completed span is digitSpan - 1
+  // (nothing completed if you fail the starting 3-digit round)
+  const maxDigitSpan = digitSpan > 3 ? digitSpan - 1 : 0;
   const isFinished = phase === "result" || phase === "failed";
   const pb = usePersonalBest("pb-number-speed", "higher", isFinished ? maxDigitSpan : null);
 

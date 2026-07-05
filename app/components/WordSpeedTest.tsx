@@ -20,13 +20,19 @@ export default function WordSpeedTest() {
   const [input, setInput] = useState("");
   const [startTime, setStartTime] = useState(0);
   const [results, setResults] = useState<{ word: string; correct: boolean; time: number }[]>([]);
+  const [endTime, setEndTime] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const wpm = results.length > 0 ? Math.round((results.filter(r => r.correct).length / ((Date.now() - startTime) / 60000))) : 0;
+  // Freeze the clock at finish — computing from Date.now() made the score
+  // decay with every render of the result screen
+  const elapsedMs = endTime > 0 ? endTime - startTime : Date.now() - startTime;
+  const wpm = results.length > 0 ? Math.round(results.filter(r => r.correct).length / (elapsedMs / 60000)) : 0;
   const accuracy = results.length > 0 ? Math.round((results.filter(r => r.correct).length / results.length) * 100) : 0;
 
   const isFinished = phase === "result";
-  const pb = usePersonalBest("pb-word-speed", "higher", isFinished ? wpm : null);
+  // Beyond ~250 WPM on single words is paste/automation — don't save it
+  const isPlausible = wpm > 0 && wpm <= 250;
+  const pb = usePersonalBest("pb-word-speed", "higher", isFinished && isPlausible ? wpm : null);
 
   const generateWords = useCallback(() => {
     const selected: string[] = [];
@@ -47,6 +53,7 @@ export default function WordSpeedTest() {
     setResults([]);
     setInput("");
     setStartTime(Date.now());
+    setEndTime(0);
     setPhase("playing");
     setTimeout(() => inputRef.current?.focus(), 100);
   }, [generateWords]);
@@ -67,6 +74,7 @@ export default function WordSpeedTest() {
     setInput("");
 
     if (currentWordIndex + 1 >= TOTAL_WORDS) {
+      setEndTime(Date.now());
       setPhase("result");
     } else {
       setCurrentWordIndex(prev => prev + 1);
@@ -75,7 +83,7 @@ export default function WordSpeedTest() {
 
   // Result screen
   if (phase === "result") {
-    const totalTime = (Date.now() - startTime) / 1000;
+    const totalTime = elapsedMs / 1000;
     const correctWords = results.filter(r => r.correct).length;
     const incorrectResults = results.filter(r => !r.correct);
 

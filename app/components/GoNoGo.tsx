@@ -23,7 +23,10 @@ export default function GoNoGo() {
   const averageRT = goTimes.length > 0 ? Math.round(goTimes.reduce((s, t) => s + t, 0) / goTimes.length) : 0;
   const accuracy = trialNumber > 0 ? Math.round(((hits + (trialNumber - hits - misses - falseAlarms)) / trialNumber) * 100) : 0;
 
-  const pb = usePersonalBest("pb-go-no-go", "lower", phase === "done" ? averageRT : null);
+  // Only save runs with real inhibitory control (the point of the test) and a
+  // humanly plausible RT — spam-clicking every circle gave ~50ms averages
+  const isValidRun = accuracy >= 80 && averageRT >= 120;
+  const pb = usePersonalBest("pb-go-no-go", "lower", phase === "done" && isValidRun ? averageRT : null);
 
   const startGame = () => {
     setTrialNumber(0);
@@ -118,6 +121,11 @@ export default function GoNoGo() {
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
+          {!isValidRun && (
+            <p className="text-ink-3 text-sm mt-2">
+              {averageRT < 120 ? "Too fast to be human — result not saved." : "Accuracy below 80% — result not saved."}
+            </p>
+          )}
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
           {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {Math.round(pb.best)}ms</p>}
         </div>

@@ -262,9 +262,9 @@ export const TESTS: TestDef[] = [
     key: "pb-number-comparison",
     label: "Number Comparison",
     href: "/number-comparison",
-    mode: "higher",
-    unit: "score",
-    toScore: (s) => clamp((s / 50) * 100), // 50=100
+    mode: "lower",
+    unit: "ms",
+    toScore: (ms) => clamp(100 - ((ms - 400) / 600) * 100), // 400ms=100, 1000ms=0
   },
   {
     key: "pb-visual-search",
