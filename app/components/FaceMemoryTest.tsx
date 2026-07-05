@@ -46,8 +46,8 @@ export default function FaceMemoryTest() {
     return copy;
   };
 
-  const startLevel = useCallback(() => {
-    const config = LEVELS[Math.min(level, LEVELS.length - 1)];
+  const startLevel = useCallback((lvl: number) => {
+    const config = LEVELS[Math.min(lvl, LEVELS.length - 1)];
     const totalFaces = config.gridSize * config.gridSize;
     const availableEmojis = shuffle(EMOJI_POOL);
 
@@ -92,7 +92,7 @@ export default function FaceMemoryTest() {
       setChangedIndices(changedSet);
       setPhase("recall");
     }, config.memorizeTime);
-  }, [level]);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -125,8 +125,9 @@ export default function FaceMemoryTest() {
 
   const handleContinue = () => {
     if (isCorrect) {
-      setLevel(level + 1);
-      startLevel();
+      const next = level + 1;
+      setLevel(next);
+      startLevel(next);
     }
   };
 
@@ -230,7 +231,7 @@ export default function FaceMemoryTest() {
         <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-5xl mb-3">✅</p>
           <p className="text-2xl font-bold text-green-400">Perfect!</p>
-          <p className="text-ink-2 text-sm mt-2">Level {level} Complete</p>
+          <p className="text-ink-2 text-sm mt-2">Level {level + 1} Complete</p>
         </div>
 
         <button
@@ -260,7 +261,7 @@ export default function FaceMemoryTest() {
         </div>
 
         <button
-          onClick={startLevel}
+          onClick={() => startLevel(level)}
           className="px-8 py-4 bg-purple-600 text-ink font-bold rounded-xl hover:bg-purple-700 transition-colors text-lg"
         >
           Start Test

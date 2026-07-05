@@ -25,7 +25,9 @@ export default function ColorMemoryTest() {
   const [lives, setLives] = useState(3);
 
   const isFinished = phase === "result";
-  const score = level - 3; // starts at 3, so score is level - 3
+  // Longest completed sequence length; you die on `level`, so the last one
+  // completed had length level - 1 (nothing completed at the starting level 3)
+  const score = level > 3 ? level - 1 : 0;
   const pb = usePersonalBest("pb-color-memory", "higher", isFinished ? score : null);
 
   const generateSequence = useCallback((length: number) => {
@@ -36,13 +38,13 @@ export default function ColorMemoryTest() {
     return seq;
   }, []);
 
-  const startRound = useCallback(() => {
-    const seq = generateSequence(level);
+  const startRound = useCallback((lvl: number) => {
+    const seq = generateSequence(lvl);
     setSequence(seq);
     setUserSequence([]);
     setCurrentIndex(0);
     setPhase("showing");
-  }, [level, generateSequence]);
+  }, [generateSequence]);
 
   useEffect(() => {
     if (phase === "showing") {
@@ -85,16 +87,17 @@ export default function ColorMemoryTest() {
       } else {
         // Retry same level
         setTimeout(() => {
-          if (phase === "recall") startRound();
+          startRound(level);
         }, 1000);
       }
     } else if (newUserSequence.length === sequence.length) {
       // Completed level
+      const next = level + 1;
       setTimeout(() => {
-        setLevel((prev) => prev + 1);
+        setLevel(next);
       }, 500);
       setTimeout(() => {
-        if (phase === "recall") startRound();
+        startRound(next);
       }, 1200);
     }
   };
@@ -122,7 +125,7 @@ export default function ColorMemoryTest() {
         </div>
 
         <button
-          onClick={startRound}
+          onClick={() => startRound(level)}
           className="px-8 py-4 bg-gradient-to-r from-purple-600 to-violet-600 text-ink text-xl font-bold rounded-xl hover:from-purple-700 hover:to-violet-700 transition-colors"
         >
           Start Test
@@ -136,7 +139,7 @@ export default function ColorMemoryTest() {
       <div className="text-center space-y-6">
         <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-ink-2 text-sm mb-2">Longest Sequence Completed</p>
-          <p className="text-6xl font-black text-purple-400">{level - 1}</p>
+          <p className="text-6xl font-black text-purple-400">{score}</p>
           <p className="text-lg text-ink-2 mt-2">colors</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-3 animate-pulse">New Personal Best!</p>}
           {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best} colors</p>}

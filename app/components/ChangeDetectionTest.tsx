@@ -25,7 +25,8 @@ export default function ChangeDetectionTest() {
   const avgResponseTime = responseTimes.length > 0
     ? Math.round(responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length)
     : 0;
-  const score = isFinished ? level : 0;
+  // You die on `level`, so the highest completed level is level - 1
+  const score = isFinished ? level - 1 : 0;
   const pb = usePersonalBest("pb-change-detection", "higher", isFinished ? score : null);
 
   const generateGrid = useCallback((lvl: number): GridState => {
@@ -42,8 +43,8 @@ export default function ChangeDetectionTest() {
     return { size, colors: gridColors, changedIndex };
   }, []);
 
-  const startLevel = useCallback(() => {
-    const newGrid = generateGrid(level);
+  const startLevel = useCallback((lvl: number) => {
+    const newGrid = generateGrid(lvl);
     setGrid(newGrid);
     setPhase("show1");
 
@@ -55,8 +56,8 @@ export default function ChangeDetectionTest() {
         setShowTime(performance.now());
         setPhase("show2");
       }, 300);
-    }, 2000 + level * 200);
-  }, [level, generateGrid]);
+    }, 2000 + lvl * 200);
+  }, [generateGrid]);
 
   const handleCellClick = useCallback((index: number) => {
     if (phase !== "show2" || !grid) return;
@@ -67,9 +68,10 @@ export default function ChangeDetectionTest() {
       // Correct!
       setResponseTimes([...responseTimes, responseTime]);
       setPhase("result");
+      const next = level + 1;
       setTimeout(() => {
-        setLevel(level + 1);
-        startLevel();
+        setLevel(next);
+        startLevel(next);
       }, 800);
     } else {
       // Wrong!
@@ -80,7 +82,7 @@ export default function ChangeDetectionTest() {
       } else {
         setPhase("result");
         setTimeout(() => {
-          startLevel();
+          startLevel(level);
         }, 1000);
       }
     }
@@ -101,7 +103,7 @@ export default function ChangeDetectionTest() {
       <div className="text-center space-y-6">
         <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-ink-2 text-sm mb-2">Highest Level + Avg Response Time</p>
-          <p className="text-5xl font-black text-pink-400">Level {level}</p>
+          <p className="text-5xl font-black text-pink-400">Level {score}</p>
           <p className="text-2xl text-ink-2 mt-2">{avgResponseTime}ms avg</p>
           {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
           {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: Level {pb.best}</p>}
@@ -158,7 +160,7 @@ export default function ChangeDetectionTest() {
           </div>
         </div>
         <button
-          onClick={startLevel}
+          onClick={() => startLevel(level)}
           className="px-8 py-4 bg-pink-600 text-ink font-bold text-xl rounded-xl hover:bg-pink-700 transition-colors"
         >
           Start Test
@@ -189,8 +191,8 @@ export default function ChangeDetectionTest() {
       </div>
 
       <div className={`rounded-2xl p-6 border transition-colors ${
-        phase === "show1" ? "bg-blue-950/30 border-blue-800" :
-        phase === "show2" ? "bg-pink-950/30 border-pink-800" :
+        phase === "show1" ? "bg-blue-100 border-blue-300" :
+        phase === "show2" ? "bg-pink-100 border-pink-300" :
         "bg-paper-2 border-line"
       }`}>
         {phase === "show1" && (

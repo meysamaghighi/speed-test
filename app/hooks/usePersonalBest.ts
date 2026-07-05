@@ -24,7 +24,9 @@ export function usePersonalBest(key: string, mode: "lower" | "higher", score: nu
 
   // Check score when it changes (non-null = result phase)
   useEffect(() => {
-    if (score === null || !initialized.current) {
+    // A zero score in higher-is-better mode is "no achievement" — never store
+    // it as a PB (a stored 0 counts as a completed test on Brain Score)
+    if (score === null || !initialized.current || (mode === "higher" && score <= 0)) {
       setIsNewBest(false);
       return;
     }

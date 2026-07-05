@@ -119,8 +119,8 @@ export default function VisualMemory() {
   if (phase === "correct") {
     return (
       <div className="text-center space-y-4">
-        <div className="bg-emerald-900/30 rounded-2xl p-8 border border-emerald-800">
-          <p className="text-emerald-400 text-2xl font-bold mb-2">Correct!</p>
+        <div className="bg-emerald-100 rounded-2xl p-8 border border-emerald-300">
+          <p className="text-emerald-600 text-2xl font-bold mb-2">Correct!</p>
           <p className="text-ink-2">
             Level {level} — {tilesForLevel(level)} tiles
           </p>

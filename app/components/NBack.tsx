@@ -11,10 +11,13 @@ export default function NBack() {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
+  const [completedLevel, setCompletedLevel] = useState(0);
   const trialsPerLevel = 20;
   const timeoutRef = useRef<number | null>(null);
+  // Ref mirror of lives: the trial chain runs in timeouts where state reads go stale
+  const livesRef = useRef(3);
 
-  const pb = usePersonalBest("pb-n-back", "higher", phase === "done" ? level : null);
+  const pb = usePersonalBest("pb-n-back", "higher", phase === "done" ? completedLevel : null);
 
   const letters = "ABCDEFGHKLMNPQRSTUVWXYZ".split("");
 
@@ -45,21 +48,25 @@ export default function NBack() {
     setLevel(2);
     setScore(0);
     setLives(3);
+    livesRef.current = 3;
+    setCompletedLevel(0);
     setPhase("playing");
     startLevel(2);
   };
 
   const startLevel = (n: number) => {
-    setSequence(generateSequence(n));
+    const seq = generateSequence(n);
+    setSequence(seq);
     setCurrentIndex(0);
-    nextTrial(generateSequence(n), 0, n);
+    nextTrial(seq, 0, n);
   };
 
   const nextTrial = (seq: string[], idx: number, n: number) => {
     if (idx >= seq.length) {
-      // Level complete
-      if (level < 10) {
-        const newLevel = level + 1;
+      // Level complete — n is passed explicitly so this never reads stale state
+      setCompletedLevel(n);
+      if (n < 10) {
+        const newLevel = n + 1;
         setLevel(newLevel);
         setTimeout(() => startLevel(newLevel), 1000);
       } else {
@@ -73,8 +80,19 @@ export default function NBack() {
 
     // Show letter for 1500ms, then blank for 2000ms
     timeoutRef.current = window.setTimeout(() => {
+      // Missing a real match costs a life, otherwise never clicking wins the game
+      const missedMatch = idx >= n && seq[idx] === seq[idx - n];
+      if (missedMatch) {
+        setFeedback("wrong");
+        livesRef.current -= 1;
+        setLives(livesRef.current);
+        if (livesRef.current <= 0) {
+          setPhase("done");
+          return;
+        }
+      }
       setCurrentIndex(idx + 1);
-      // Auto-advance as "no match" if no click
+      // Auto-advance if no click
       setTimeout(() => {
         nextTrial(seq, idx + 1, n);
       }, 2000);
@@ -90,9 +108,10 @@ export default function NBack() {
       setScore(prev => prev + 1);
       setFeedback("correct");
     } else {
-      setLives(prev => prev - 1);
       setFeedback("wrong");
-      if (lives <= 1) {
+      livesRef.current -= 1;
+      setLives(livesRef.current);
+      if (livesRef.current <= 0) {
         setPhase("done");
         return;
       }
@@ -118,12 +137,12 @@ export default function NBack() {
   };
 
   if (phase === "done") {
-    const rating = getRating(level);
+    const rating = getRating(completedLevel);
     return (
       <div className="text-center space-y-6">
         <div className="bg-paper-2 rounded-2xl p-8 border border-line">
-          <p className="text-ink-2 text-sm mb-2">Highest Level Reached</p>
-          <p className="text-6xl font-black text-purple-400">{level}-back</p>
+          <p className="text-ink-2 text-sm mb-2">Highest Level Completed</p>
+          <p className="text-6xl font-black text-purple-400">{completedLevel}-back</p>
           <p className="text-ink-2 text-sm mt-2">Score: {score}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
@@ -150,7 +169,7 @@ export default function NBack() {
           </button>
           <button
             onClick={() => {
-              const t = `N-Back Test: Level ${level} (${rating.label})! Can you beat this working memory score?`;
+              const t = `N-Back Test: ${completedLevel}-back (${rating.label})! Can you beat this working memory score?`;
               if (navigator.share) {
                 navigator.share({ text: t }).catch(() => {});
               } else {

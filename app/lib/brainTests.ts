@@ -187,11 +187,11 @@ export const TESTS: TestDef[] = [
     toScore: (acc) => clamp(((acc - 50) / 50) * 100), // 50%=0, 100%=100
   },
   {
-    key: "pb-digit-span",
+    key: "pb-digit-span-forward",
     label: "Digit Span",
     href: "/digit-span",
     mode: "higher",
-    unit: "level",
+    unit: "digits",
     toScore: (lvl) => clamp((lvl / 10) * 100), // 10=100
   },
   {
@@ -295,7 +295,7 @@ export const TESTS: TestDef[] = [
     label: "Math Memory",
     href: "/math-memory",
     mode: "higher",
-    unit: "level",
+    unit: "streak",
     toScore: (lvl) => clamp((lvl / 10) * 100), // 10=100
   },
   {

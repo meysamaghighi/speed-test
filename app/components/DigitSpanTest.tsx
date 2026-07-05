@@ -14,7 +14,7 @@ export default function DigitSpanTest() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userInput, setUserInput] = useState("");
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [maxLevel, setMaxLevel] = useState(3);
+  const [maxLevel, setMaxLevel] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const isFinished = phase === "result" && isCorrect === false;
@@ -32,8 +32,8 @@ export default function DigitSpanTest() {
     return arr;
   }, []);
 
-  const startLevel = useCallback(() => {
-    const newDigits = generateDigits(level);
+  const startLevel = useCallback((lvl: number) => {
+    const newDigits = generateDigits(lvl);
     setDigits(newDigits);
     setCurrentIndex(0);
     setUserInput("");
@@ -54,7 +54,7 @@ export default function DigitSpanTest() {
     }, 500);
 
     return () => clearInterval(interval);
-  }, [level, generateDigits]);
+  }, [generateDigits]);
 
   useEffect(() => {
     return () => {
@@ -65,7 +65,7 @@ export default function DigitSpanTest() {
   const handleSubmit = () => {
     if (phase !== "recall") return;
 
-    const expected = mode === "forward" ? digits.join("") : digits.reverse().join("");
+    const expected = mode === "forward" ? digits.join("") : [...digits].reverse().join("");
     const correct = userInput.trim() === expected;
 
     setIsCorrect(correct);
@@ -78,8 +78,9 @@ export default function DigitSpanTest() {
 
   const handleContinue = () => {
     if (isCorrect) {
-      setLevel(level + 1);
-      startLevel();
+      const next = level + 1;
+      setLevel(next);
+      startLevel(next);
     }
   };
 
@@ -90,7 +91,7 @@ export default function DigitSpanTest() {
     setCurrentIndex(0);
     setUserInput("");
     setIsCorrect(null);
-    setMaxLevel(3);
+    setMaxLevel(0);
   };
 
   const getRating = (lvl: number, m: Mode) => {
@@ -223,7 +224,7 @@ export default function DigitSpanTest() {
             <button
               onClick={() => {
                 setMode("forward");
-                startLevel();
+                startLevel(level);
               }}
               className="p-6 bg-gradient-to-br from-blue-600 to-cyan-600 text-ink rounded-xl hover:from-blue-500 hover:to-cyan-500 transition-all"
             >
@@ -234,7 +235,7 @@ export default function DigitSpanTest() {
             <button
               onClick={() => {
                 setMode("backward");
-                startLevel();
+                startLevel(level);
               }}
               className="p-6 bg-gradient-to-br from-purple-600 to-pink-600 text-ink rounded-xl hover:from-purple-500 hover:to-pink-500 transition-all"
             >

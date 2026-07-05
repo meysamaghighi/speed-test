@@ -13,7 +13,9 @@ export default function AudioMemory() {
   const [isPlayingSequence, setIsPlayingSequence] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
 
-  const pb = usePersonalBest("pb-audio-memory", "higher", phase === "done" ? level : null);
+  // At "done" the player is stuck on `level`, so the highest completed is level - 1
+  // (also true when finishing level 10: level has already advanced to 11)
+  const pb = usePersonalBest("pb-audio-memory", "higher", phase === "done" ? level - 1 : null);
 
   // Piano frequencies: C4, D4, E4, F4, G4
   const frequencies = [261.63, 293.66, 329.63, 349.23, 392.00];
@@ -133,13 +135,16 @@ export default function AudioMemory() {
   };
 
   if (phase === "done") {
-    const rating = getRating(level);
+    const completed = level - 1;
+    const rating = getRating(completed);
     return (
       <div className="text-center space-y-6">
         <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-ink-2 text-sm mb-2">Highest Level</p>
-          <p className="text-6xl font-black text-violet-400">Level {level}</p>
-          <p className="text-ink-2 text-sm mt-2">{level + 2} tones</p>
+          <p className="text-6xl font-black text-violet-400">Level {completed}</p>
+          <p className="text-ink-2 text-sm mt-2">
+            {completed > 0 ? `${completed + 2} tones` : "No levels completed"}
+          </p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
           </p>
@@ -241,33 +246,28 @@ export default function AudioMemory() {
       </div>
 
       <div className="relative w-full h-80 md:h-96 bg-paper-2 rounded-2xl border border-line flex items-center justify-center">
-        {phase === "listening" && (
-          <div className="text-center">
-            <div className="text-4xl mb-4">🔊</div>
-            <p className="text-ink-2 text-lg">Listen...</p>
+        {/* Keys render in both phases so the playback highlight is visible while listening */}
+        <div className="flex flex-col gap-3 w-full max-w-2xl px-4">
+          <p className="text-ink-2 text-sm text-center mb-2">
+            {phase === "listening"
+              ? "🔊 Listen..."
+              : `Repeat: ${userSequence.length}/${sequence.length}`}
+          </p>
+          <div className="flex gap-2">
+            {frequencies.map((freq, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleToneClick(idx)}
+                disabled={isPlayingSequence}
+                className={`flex-1 h-32 ${keyColors[idx]} ${
+                  highlightedKey === idx ? "scale-110 brightness-150" : ""
+                } rounded-lg font-bold text-ink text-xl transition-all active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-center justify-end pb-3`}
+              >
+                {keyLabels[idx]}
+              </button>
+            ))}
           </div>
-        )}
-        {phase === "playing" && (
-          <div className="flex flex-col gap-3 w-full max-w-2xl px-4">
-            <p className="text-ink-2 text-sm text-center mb-2">
-              Repeat: {userSequence.length}/{sequence.length}
-            </p>
-            <div className="flex gap-2">
-              {frequencies.map((freq, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleToneClick(idx)}
-                  disabled={isPlayingSequence}
-                  className={`flex-1 h-32 ${keyColors[idx]} ${
-                    highlightedKey === idx ? "scale-110 brightness-150" : ""
-                  } rounded-lg font-bold text-ink text-xl transition-all active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-center justify-end pb-3`}
-                >
-                  {keyLabels[idx]}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
 
       <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2 text-center">

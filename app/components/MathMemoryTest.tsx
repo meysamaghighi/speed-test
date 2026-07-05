@@ -198,10 +198,7 @@ export default function MathMemoryTest() {
       </div>
 
       <form onSubmit={handleSubmit} className="bg-paper-2 rounded-2xl p-8 border border-line">
-        <p className="text-center text-ink-2 mb-4">What was the answer?</p>
-        <p className="text-center text-2xl text-ink-3 mb-6">
-          {equation?.num1} {equation?.operator} {equation?.num2} = ?
-        </p>
+        <p className="text-center text-ink-2 mb-6">What was the answer?</p>
         <input
           type="number"
           value={userAnswer}
