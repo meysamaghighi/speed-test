@@ -236,8 +236,7 @@ export default function CognitiveReport() {
               <div className="bg-paper/95 border border-line rounded-2xl p-6 shadow-xl text-center max-w-sm mx-4">
                 <p className="font-bold text-ink text-lg mb-1">Your report is ready</p>
                 <p className="text-sm text-ink-2 mb-4">
-                  Built from the {done} test{done === 1 ? "" : "s"} you&apos;ve already completed —
-                  and it keeps updating as you play.
+                  {`Built from the ${done} test${done === 1 ? "" : "s"} you've already completed — and it keeps updating as you play.`}
                 </p>
                 {unlockCta}
                 <p className="text-xs text-ink-3 mt-3">One-time payment · yours forever</p>
