@@ -103,49 +103,6 @@ export default function EmotionPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What emotions are tested?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The test covers 7 emotions: happy, sad, angry, surprised, disgusted, fearful, and neutral. These are based on Ekman's universal emotions, recognized across all cultures.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a good emotion recognition score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "95+ is elite (near-perfect recognition), 85+ is excellent, 70+ is good, 50+ is average. Speed matters too - faster recognition with high accuracy scores higher.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can emotion recognition be improved?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes. Practice, feedback, and attention to facial cues improve emotion recognition. Studies show training can increase accuracy, especially for subtle or mixed emotions.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Why is emotion recognition important?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Emotion recognition is crucial for social interaction, empathy, and communication. It's a key component of emotional intelligence (EQ) and predicts relationship quality and workplace success.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

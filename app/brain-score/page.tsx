@@ -82,41 +82,6 @@ export default function BrainScorePage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is Brain Score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: `Brain Score is a composite cognitive score from 0-1000 based on your performance across ${TEST_COUNT} different brain tests including reaction time, memory, typing speed, pattern recognition, and more.`,
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How is Brain Score calculated?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: `Each test score is normalized to a 0-100 scale based on human performance ranges. These normalized scores are averaged and multiplied by 10 to give a score out of 1000. Complete all ${TEST_COUNT} tests for the most accurate result.`,
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can I improve my Brain Score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes! Cognitive abilities are trainable. Regular practice, good sleep (7-9 hours), exercise, and proper nutrition all help. Focus on your weakest test areas for the biggest improvements to your overall score.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

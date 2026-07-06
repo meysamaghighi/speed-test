@@ -105,49 +105,6 @@ export default function DigitSpanPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is digit span?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Digit span is a measure of working memory capacity - how many digits you can hold in your mind at once. The average forward digit span is about 7±2 digits (Miller's Law).",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a good digit span score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Average forward digit span is 7 digits. 9+ is excellent, 12+ is elite. Backward digit span is typically 2-3 digits less than forward (5 average, 7+ excellent).",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my digit span?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice with chunking (grouping digits into pairs or triplets), rehearsal, and repetition. Working memory training exercises may help, though benefits vary by individual.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does backward digit span measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Backward digit span measures working memory manipulation - not just holding information, but mentally reversing it. It's harder than forward span and tests executive function.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

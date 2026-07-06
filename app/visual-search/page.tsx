@@ -68,33 +68,6 @@ export default function VisualSearchPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good visual search time?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Fast average times are under 1500ms. Average is 2000-3000ms. Times over 3500ms suggest slower visual attention or scanning. Professional proofreaders and inspectors are typically faster.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does visual search measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Visual search measures selective attention, visual scanning efficiency, and the ability to distinguish targets from distractors. Used in psychology, security training, and quality control assessments.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

@@ -74,41 +74,6 @@ export default function NumberSpeedPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good digit span score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The average adult can remember 5-7 digits. A score of 7-8 is above average, and 9+ is exceptional. Professional memory athletes can exceed 20+ digits with specialized training.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does digit span measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Digit span measures working memory capacity — the amount of information you can hold in your mind at once. It's used in IQ tests and cognitive assessments to evaluate short-term memory and attention.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my digit span?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice chunking (grouping digits), use visualization techniques, practice regularly with tests like this, get enough sleep, and try memory training games. Working memory can improve with consistent practice.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

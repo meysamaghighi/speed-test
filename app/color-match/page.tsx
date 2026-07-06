@@ -89,41 +89,6 @@ export default function ColorMatchPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What does the Odd Color Out test measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "It measures your color discrimination ability -- how well you can distinguish subtle differences in hue and lightness. It tests the sensitivity of your cone cells and visual processing speed.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a good score on this test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Reaching level 15+ with high accuracy indicates excellent color perception. Most people with normal color vision can reach level 10-15. Scores above 2400 are considered excellent.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Is this test related to the Stroop test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "No. The Stroop test measures cognitive interference (reading vs. color naming). This test measures pure color perception -- your ability to detect subtle shade differences, which is a visual rather than cognitive skill.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

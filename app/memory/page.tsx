@@ -72,41 +72,6 @@ export default function MemoryPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "How many numbers can the average person remember?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The average short-term memory span is 7 digits (plus or minus 2), known as Miller's Law. Most people can reliably remember 5-9 digits after a brief exposure.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my number memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Use chunking (group digits like phone numbers: 555-123-4567), create associations or stories with numbers, practice regularly, and try the memory palace technique.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is working memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Working memory is the ability to hold and manipulate information briefly. It's closely related to IQ and is used constantly — from mental math to following conversations.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

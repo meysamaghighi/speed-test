@@ -72,41 +72,6 @@ export default function ColorBlindPage() {
           }),
         }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "How common is color blindness?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "About 8% of men and 0.5% of women have some form of color vision deficiency. Red-green color blindness is the most common type, affecting about 1 in 12 men.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can this test diagnose color blindness?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "This is a screening test similar to the Ishihara plates used by eye doctors. It can indicate potential color vision issues, but a professional eye exam is needed for a formal diagnosis.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can color blindness be cured?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "There is currently no cure for inherited color blindness. However, special glasses (like EnChroma) can enhance color perception for some types. Gene therapy research shows promising early results.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

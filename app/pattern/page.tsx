@@ -71,41 +71,6 @@ export default function PatternPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is pattern recognition?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Pattern recognition is the ability to identify relationships, sequences, and regularities in data. It's a key component of logical reasoning and is commonly tested in IQ assessments. Patterns can be numerical, visual, or conceptual.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How is pattern recognition related to IQ?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Pattern recognition is strongly correlated with fluid intelligence, which is the ability to think logically and solve new problems. Many IQ tests include pattern recognition sections because it measures abstract reasoning without relying on prior knowledge.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can you improve pattern recognition skills?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes! Pattern recognition improves with practice. Work on puzzles, logic games, math sequences, and visual pattern challenges. The more patterns you're exposed to, the faster you'll recognize similar ones in the future.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

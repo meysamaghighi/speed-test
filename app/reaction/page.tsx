@@ -76,41 +76,6 @@ export default function ReactionPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good reaction time?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Under 200ms is considered fast. The average human reaction time is about 250ms. Professional gamers typically score 150-180ms. The absolute human limit is around 100ms.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my reaction time?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Get enough sleep (7-9 hours), reduce caffeine jitters, practice regularly with tests like this, play fast-paced video games, and test when alert (afternoon is typically best).",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Does age affect reaction time?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes. Reaction time peaks in your mid-20s and gradually slows. A 60-year-old averages about 50ms slower than a 20-year-old. Regular practice can offset some of this decline.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

@@ -71,41 +71,6 @@ export default function PatternSpeedPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is rapid estimation?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Rapid estimation is the ability to quickly approximate quantities, calculate mental math, and compare numbers under time pressure. It combines visual processing, number sense, and mental arithmetic.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve estimation speed?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice regularly with timed exercises. Learn mental math shortcuts like rounding. For dot counting, practice grouping clusters. Build number sense through daily estimation games.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What's a good score on rapid estimation test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "800-1200 is average, 1200-1600 is good, and 1600+ is expert level. The test rewards both accuracy and speed, with time bonuses for quick answers.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

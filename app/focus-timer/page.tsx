@@ -104,49 +104,6 @@ export default function FocusTimerPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is chronoception?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Chronoception is the sense of time passing. Unlike other senses, there's no single receptor. The brain's suprachiasmatic nucleus (SCN) and other regions work together to estimate time.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Why does time feel different in different situations?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Attention affects time perception. Boring or anxious moments feel longer; engaging activities feel shorter. Dopamine levels also matter—higher dopamine makes time feel slower. Age affects perception too.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Which brain regions control time perception?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The cerebellum and basal ganglia handle short-interval timing (milliseconds to seconds). The prefrontal cortex manages longer durations. Dopamine pathways modulate time perception speed.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can I improve my internal clock?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes. Musicians and athletes often have superior time sense from rhythmic training. Meditation improves awareness of time passing. Practice and focused attention help refine your internal clock.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

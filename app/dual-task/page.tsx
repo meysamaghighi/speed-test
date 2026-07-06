@@ -71,41 +71,6 @@ export default function DualTaskPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is divided attention?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Divided attention is the ability to process multiple sources of information or perform multiple tasks simultaneously. It's a key executive function controlled by the prefrontal cortex.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can multitasking be improved?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes, with practice. Video games, juggling, and dual-task exercises improve multitasking. However, removing distractions is often more effective than improving multitasking ability.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What's a good score on dual task test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "90%+ accuracy is excellent, 70-89% is good, 50-69% is fair, and below 50% suggests difficulty with divided attention. Most people score 70-85%.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

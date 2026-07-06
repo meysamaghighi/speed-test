@@ -46,41 +46,6 @@ export default function ClickSpeedPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Click Speed Test (CPS)", description: "Free CPS test. Measure your clicks per second.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good CPS (clicks per second)?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The average is about 6.5 CPS. 8-10 CPS is fast. Over 12 CPS typically requires special clicking techniques like jitter clicking or butterfly clicking.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What are the different clicking techniques?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Regular clicking (4-7 CPS), jitter clicking (8-14 CPS, vibrating your hand), butterfly clicking (15-20+ CPS, alternating two fingers), and drag clicking (20-100+ CPS, dragging finger across button).",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Does CPS matter in Minecraft PvP?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes, higher CPS gives an advantage in Minecraft PvP combat. Most competitive players aim for 8-12 CPS. However, aim and timing matter more than raw click speed.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

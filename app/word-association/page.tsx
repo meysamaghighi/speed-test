@@ -69,33 +69,6 @@ export default function WordAssociationPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good score on the word fluency test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Excellent performance is 20+ words in 60 seconds. Good is 15-19 words, average is 10-14 words, and below average is under 10 words. Native speakers typically score higher than non-native speakers.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does word fluency measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Word fluency tests measure verbal ability, vocabulary size, processing speed, and executive function. They're used in neuropsychological assessments to evaluate language skills and cognitive health.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

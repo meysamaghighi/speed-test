@@ -71,41 +71,6 @@ export default function MathMemoryPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is math working memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Math working memory is your brain's ability to hold and manipulate numerical information. It's crucial for mental arithmetic, problem-solving, and following multi-step instructions.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve mental math?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice regularly with tests like this. Learn mental math tricks (doubling, halving, using friendly numbers). Play number games. Do calculations without a calculator whenever possible.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What's a good score on math memory test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "1-5 correct is beginner, 6-10 is good, 11-15 is great, and 16+ is expert level. The test gets progressively harder with multiplication and larger numbers.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

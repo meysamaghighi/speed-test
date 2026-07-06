@@ -46,41 +46,6 @@ export default function GoNoGoPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Go/No-Go Test", description: "Free Go/No-Go Test. Test reaction time and impulse control.", applicationCategory: "HealthApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good Go/No-Go test score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Good performance combines fast reaction time (under 350ms) with high accuracy (over 90%). The key is balancing speed with impulse control - clicking fast on green but successfully inhibiting clicks on red.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does the Go/No-Go test measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The Go/No-Go test measures inhibitory control (impulse suppression), sustained attention, and reaction time. It assesses your ability to quickly respond to one stimulus while withholding response to another.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How is Go/No-Go used to diagnose ADHD?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "People with ADHD often show more false alarms (clicking when they shouldn't) and higher reaction time variability on Go/No-Go tasks. However, this test alone cannot diagnose ADHD - it's one tool among many in clinical assessment.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

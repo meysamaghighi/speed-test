@@ -71,41 +71,6 @@ export default function ChangeDetectionPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is change detection?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Change detection is the ability to notice differences between two visual scenes. It requires visual working memory to encode the first scene and compare it to the second.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Why do we miss obvious changes?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Change blindness occurs because our visual system doesn't store complete scene representations. We only encode what we attend to, so changes outside our focus often go unnoticed.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What's a good score on change detection test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Level 1-2 is beginner (2x2 grid), 3-4 is average (3x3 and 4x4), 5-6 is good (5x5), and 7+ is excellent. Most people struggle beyond 4x4 grids.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

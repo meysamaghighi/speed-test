@@ -68,33 +68,6 @@ export default function NumberComparisonPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good number comparison time?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Fast times are under 500ms with 95%+ accuracy. Average is 600-800ms with 90%+ accuracy. Times over 1000ms or accuracy below 85% suggest slower numerical processing.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is the distance effect?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The distance effect is a cognitive phenomenon where numbers far apart (e.g. 23 vs 87) are compared faster than close numbers (e.g. 847 vs 851). Larger differences are easier to process.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

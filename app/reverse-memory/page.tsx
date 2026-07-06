@@ -71,41 +71,6 @@ export default function ReverseMemoryPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is the digit span backward test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "The digit span backward test measures working memory by presenting a sequence of digits that you must recall in reverse order. It's more challenging than forward recall because it requires both memory and mental manipulation of information.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a good score on the backward digit span test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Average adults can typically recall 4-5 digits backward (levels 2-3). Scores of 7+ digits backward (level 5+) are considered above average, while 10+ digits backward (level 8+) indicates exceptional working memory.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How does working memory differ from regular memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Working memory is temporary storage for information you're actively using, like remembering a phone number while dialing. Regular (long-term) memory stores information for extended periods. Working memory has limited capacity but is crucial for reasoning, learning, and problem-solving.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

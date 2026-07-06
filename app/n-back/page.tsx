@@ -46,41 +46,6 @@ export default function NBackPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "N-Back Test", description: "Free N-Back working memory test. Match letters from N positions back.", applicationCategory: "HealthApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good N-Back score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Most people can do 2-back comfortably. 3-back is average, 4-back is good, and 5+ back is excellent. Trained participants can reach 6-8 back, though accuracy typically drops at higher levels.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Does N-Back training increase IQ?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Some studies suggest that N-Back training can improve fluid intelligence (Gf), but the evidence is mixed. It definitely improves working memory capacity and may transfer to other cognitive tasks. Consistent training (20+ sessions) shows the best results.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does N-Back measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "N-Back measures working memory capacity, attention control, and the ability to update and maintain information. It correlates with fluid intelligence and executive function. It's widely used in cognitive neuroscience research.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

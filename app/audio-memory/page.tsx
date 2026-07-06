@@ -46,41 +46,6 @@ export default function AudioMemoryPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Audio Memory Test", description: "Free audio memory test. Hear tones and repeat the sequence.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good audio memory score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Level 6 is considered good for most people. Level 5 is average. Musicians and people with musical training often reach Level 8 or higher. The sequence length increases with each level (Level 6 = 8 tones).",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my auditory memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice makes perfect. Musical training (learning an instrument), active listening exercises, repeating phone numbers out loud, and games like this test all improve auditory working memory. Improvement is typically visible within weeks of regular practice.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does audio memory measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Audio memory measures auditory working memory - the ability to encode, store, and recall sound sequences. It's distinct from visual memory and correlates with language skills, musical ability, and the capacity to follow complex spoken instructions.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

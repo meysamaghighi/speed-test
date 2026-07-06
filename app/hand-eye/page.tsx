@@ -46,41 +46,6 @@ export default function HandEyePage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Hand-Eye Coordination Test", description: "Free hand-eye coordination test. Click moving targets.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good hand-eye coordination score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "25+ catches in 30 seconds is very good. The average is around 20-25 catches. The target gets smaller and faster with each level, so maintaining accuracy becomes increasingly difficult.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my hand-eye coordination?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice activities that require precise visual-motor integration: sports (tennis, table tennis, baseball), video games (FPS, rhythm games), juggling, or even this test repeatedly. Improvement is typically visible within 2-3 weeks of daily practice.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What affects hand-eye coordination?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Hand-eye coordination depends on visual processing speed, reaction time, motor control, and predictive timing. Age, fatigue, screen refresh rate, input lag, and mouse/touchscreen sensitivity all affect performance.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

@@ -46,41 +46,6 @@ export default function AimPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Aim Trainer", description: "Free aim trainer. Practice your mouse accuracy and speed.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good aim trainer score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Under 500ms per target is good. Under 400ms is very fast. Professional FPS gamers average 300-400ms per target with near-perfect accuracy.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Does aim training actually help in games?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes, research shows that regular aim training improves mouse accuracy and speed in FPS games. Even 10-15 minutes daily can show measurable improvement within a week.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What DPI should I use for aiming?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Most competitive FPS players use 400-800 DPI with low in-game sensitivity. Lower sensitivity allows more precise micro-adjustments. Find what feels comfortable and stick with it.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

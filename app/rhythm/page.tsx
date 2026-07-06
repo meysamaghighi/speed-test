@@ -73,41 +73,6 @@ export default function RhythmPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is rhythm timing?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Rhythm timing is the ability to perceive and reproduce time intervals accurately. It involves listening to a pattern of beats and recreating it with precise timing. This skill is essential for musicians, dancers, and anyone working with timed sequences.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my sense of rhythm?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice with a metronome, play rhythm-based video games, learn a musical instrument, or take dance classes. Regular practice with timed patterns helps train your brain to internalize and reproduce rhythms more accurately.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Is rhythm timing innate or learned?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Both. Humans have a natural ability to perceive rhythm, but precision timing is largely learned through practice. Musicians and dancers develop exceptional timing through years of training. Anyone can improve with consistent practice.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

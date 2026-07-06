@@ -71,41 +71,6 @@ export default function WordSpeedPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good word typing speed?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "40-60 WPM is average for casual typists. 60-80 WPM is professional level. Over 80 WPM is considered fast. Top typists can exceed 100 WPM with high accuracy.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How is WPM calculated in this test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "WPM (Words Per Minute) is calculated by counting the number of correctly typed words divided by the time taken in minutes. Only correctly typed words count toward your WPM score.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my word typing speed?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice touch typing without looking at the keyboard, focus on accuracy first then speed, use proper finger placement on home row keys, and take this test regularly to track progress.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

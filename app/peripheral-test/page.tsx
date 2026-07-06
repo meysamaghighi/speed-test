@@ -75,41 +75,6 @@ export default function PeripheralTestPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is the UFOV test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "UFOV (Useful Field of View) is a cognitive test that measures divided attention and peripheral awareness. You must identify a central target while simultaneously detecting and locating a peripheral stimulus. It's used to assess driving safety, fall risk, and cognitive function.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a good UFOV score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Scores above 80 indicate exceptional divided attention abilities. 65-79 is excellent, 50-64 is good, 35-49 is average. Athletes, pilots, and experienced gamers typically score higher due to training in divided attention tasks.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can you improve UFOV performance?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes! UFOV can be improved through practice. Activities that train divided attention (sports, action video games, dual-task exercises) have been shown to improve UFOV scores. Regular practice with tests like this can enhance peripheral awareness and attentional control.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

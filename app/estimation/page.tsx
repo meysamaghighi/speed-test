@@ -71,41 +71,6 @@ export default function EstimationPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is number sense?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Number sense is an intuitive understanding of quantities, their relationships, and magnitude. It includes subitizing (instant recognition of small quantities) and estimation of larger quantities.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can estimation be improved?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes! Practice estimation regularly. Play guessing games (jellybeans in jar). Use clustering strategies. Strong math skills correlate with better estimation ability.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What's a good score on estimation test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "90%+ accuracy is excellent, 80-89% is very good, 70-79% is good, 60-69% is fair. Most people score 70-80% accuracy. Lower quantities are easier to estimate accurately.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

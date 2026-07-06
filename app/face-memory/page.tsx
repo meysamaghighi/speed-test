@@ -98,49 +98,6 @@ export default function FaceMemoryPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is face memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Face memory is the ability to recognize and recall faces. The fusiform face area (FFA) in the brain specializes in face recognition, allowing humans to remember thousands of faces.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve face recognition?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice looking at distinctive facial features (eyes, nose, expression) rather than the face as a whole. Regular social interaction, adequate sleep, and memory exercises like this test can help improve face recognition.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is prosopagnosia?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Prosopagnosia, or face blindness, is a condition affecting about 2% of people where recognizing faces is difficult or impossible. People with prosopagnosia often rely on voice, clothing, or context to identify others.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Does age affect face memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes. Face recognition ability peaks in your 30s. Young children's face recognition is still developing, and older adults tend to have slightly reduced face memory. Regular social interaction may help maintain skills.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

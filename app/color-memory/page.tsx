@@ -68,33 +68,6 @@ export default function ColorMemoryPage() {
         }}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "How many colors can the average person remember?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Most people can remember 5-7 items in working memory. Color sequences of 3-4 are easy, while 7+ requires focused attention and memory strategies.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I improve my color memory?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Practice regularly, use chunking (group items), verbalize sequences aloud, create mental stories, and ensure you're well-rested. Working memory can be trained.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }

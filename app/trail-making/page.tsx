@@ -46,41 +46,6 @@ export default function TrailMakingPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Trail Making Test", description: "Free Trail Making Test. Connect circles in alternating number-letter order.", applicationCategory: "HealthApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a good Trail Making Test score?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Under 30 seconds is considered good for healthy adults. The average is around 30-45 seconds. Scores over 60 seconds may indicate cognitive impairment, but many factors affect performance including age and education.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does Trail Making Test B measure?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Trail Making Test Part B measures executive function, particularly cognitive flexibility and the ability to switch between mental sets. It requires visual scanning, number sequencing, letter sequencing, and the ability to alternate between them.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How is Trail Making used clinically?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Clinically, the Trail Making Test is used to screen for cognitive impairment in conditions like dementia, traumatic brain injury, ADHD, and other neurological disorders. It's part of many neuropsychological test batteries.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }
