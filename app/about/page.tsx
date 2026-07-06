@@ -33,7 +33,7 @@ export default function AboutPage() {
         <div className="bg-paper-2 rounded-xl p-6 border border-line">
           <h2 className="text-xl font-bold text-ink mb-3">What Is This?</h2>
           <p className="text-ink-2 mb-3">
-            BenchMyBrain is a free brain testing site with 40 interactive cognitive tests. Test your reaction time, memory, focus, spatial reasoning, typing speed, and more.
+            BenchMyBrain is a free brain testing site with 40 interactive cognitive tests &mdash; 39 that feed your overall Brain Score, plus a color vision screening. Test your reaction time, memory, focus, spatial reasoning, typing speed, and more.
           </p>
           <p className="text-ink-2">
             All tests are original and custom-built for this site. Nothing is embedded from other platforms. Each test runs entirely in your browser with no server-side processing of your performance data.
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <strong className="text-ink">No tracking cookies:</strong> Beyond Google Analytics, we don&apos;t use tracking pixels, third-party cookies, or behavioral tracking.
           </p>
           <p className="text-ink-2 mb-3">
-            <strong className="text-ink">Ads:</strong> We may show non-intrusive ads via Google AdSense to support hosting costs. No popups, no interstitials, no video ads.
+            <strong className="text-ink">Payments:</strong> The optional Cognitive Report is processed by Stripe. We never see your card details, and buying is never required to use the tests.
           </p>
           <p className="text-ink-2">
             <strong className="text-ink">Your test data:</strong> All test scores and personal bests stay in your browser. We never see or store your individual performance.
@@ -95,9 +95,9 @@ export default function AboutPage() {
         </div>
 
         <div className="bg-paper-2 rounded-xl p-6 border border-line">
-          <h2 className="text-xl font-bold text-ink mb-3">Free Forever</h2>
+          <h2 className="text-xl font-bold text-ink mb-3">Free to Play, Forever</h2>
           <p className="text-ink-2">
-            BenchMyBrain is free and will always be free. No premium tiers, no paywalls, no &ldquo;unlock full results&rdquo; upsells. We believe everyone should have access to brain training and cognitive testing tools.
+            Every test on BenchMyBrain is free and always will be &mdash; no accounts, no test paywalls, no limits on plays. Your scores, personal bests, and Brain Score are free too. The one optional extra is the <strong className="text-ink">Full Cognitive Report</strong>, a one-time purchase that turns your existing scores into a detailed breakdown. Skipping it locks you out of nothing.
           </p>
         </div>
       </section>

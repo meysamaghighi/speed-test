@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TESTS } from "./lib/brainTests";
 
 export const metadata: Metadata = {
   title: "BenchMyBrain - 40 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
@@ -777,7 +778,7 @@ export default function Home() {
               Brain Score
             </h2>
             <p className="text-ink-2 text-sm">
-              Take all 40 tests and get your overall cognitive score out of 1000. How smart are you?
+              Take all {TESTS.length} tests and get your overall cognitive score out of 1000. How smart are you?
             </p>
           </div>
           <div className="text-3xl font-black text-ink-3 group-hover:text-ink-2 transition-colors">
