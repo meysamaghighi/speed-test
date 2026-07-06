@@ -3,9 +3,9 @@ import PeripheralTest from "../components/PeripheralTest";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Peripheral Vision Test - UFOV Divided Attention Test | BenchMyBrain",
+  title: "UFOV Divided Attention Test - Peripheral Vision Challenge | BenchMyBrain",
   description:
-    "Test your peripheral vision with the UFOV (Useful Field of View) test. Identify center targets while detecting peripheral stimuli. Measures divided attention and visual awareness.",
+    "Test your divided attention with the UFOV (Useful Field of View) test. Identify center targets while detecting peripheral stimuli. Measures divided attention and visual awareness.",
   keywords: [
     "peripheral vision test",
     "UFOV test",
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     "peripheral awareness",
   ],
   openGraph: {
-    title: "Peripheral Vision Test - UFOV Divided Attention Test | BenchMyBrain",
+    title: "UFOV Divided Attention Test - Peripheral Vision Challenge | BenchMyBrain",
     description:
-      "Test your peripheral vision with the UFOV test. Identify center targets while detecting peripheral stimuli simultaneously.",
+      "Test your divided attention with the UFOV test. Identify center targets while detecting peripheral stimuli simultaneously.",
     type: "website",
   },
   alternates: {
@@ -30,10 +30,11 @@ export default function PeripheralTestPage() {
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-black text-ink mb-3">
-          Peripheral Vision Test
+          UFOV Divided Attention Test
         </h1>
         <p className="text-ink-2">
-          The UFOV (Useful Field of View) test. Identify center letters while detecting peripheral targets simultaneously.
+          The UFOV (Useful Field of View) test. Identify center letters while detecting peripheral targets simultaneously &mdash; unlike the{" "}
+          <a href="/peripheral" className="underline">Peripheral Reaction Test</a>, this measures accuracy under split attention, not reaction speed.
         </p>
       </div>
 
@@ -65,7 +66,7 @@ export default function PeripheralTestPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Peripheral Vision Test - UFOV",
+            name: "UFOV Divided Attention Test",
             description: "Free online UFOV (Useful Field of View) test. Measure divided attention and peripheral awareness.",
             applicationCategory: "HealthApplication",
             operatingSystem: "Any",

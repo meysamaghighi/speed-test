@@ -153,8 +153,8 @@ export default function PeripheralVision() {
           </button>
           <button
             onClick={() => {
-              const text = `Peripheral Vision: ${avgTime}ms avg (${times.length}/${TOTAL_ROUNDS} detected) - ${rating.label} | benchmybrain.com/peripheral`;
-              if (navigator.share) navigator.share({ title: "Peripheral Vision Test", text });
+              const text = `Peripheral Reaction: ${avgTime}ms avg (${times.length}/${TOTAL_ROUNDS} detected) - ${rating.label} | benchmybrain.com/peripheral`;
+              if (navigator.share) navigator.share({ title: "Peripheral Reaction Test", text });
               else navigator.clipboard.writeText(text);
             }}
             className="px-6 py-3 bg-paper-2 text-ink rounded-xl font-bold hover:bg-paper-2 transition-colors"

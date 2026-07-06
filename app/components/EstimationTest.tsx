@@ -152,7 +152,7 @@ export default function EstimationTest() {
           </button>
           <button
             onClick={() => {
-              const text = `I scored ${avgAccuracy}% accuracy on the Estimation Test! Can you beat me?`;
+              const text = `I scored ${avgAccuracy}% accuracy on the Dot Estimation Test! Can you beat me?`;
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {});
               } else {

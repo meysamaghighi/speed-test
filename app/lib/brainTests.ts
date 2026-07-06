@@ -100,7 +100,7 @@ export const TESTS: TestDef[] = [
   },
   {
     key: "pb-peripheral",
-    label: "Peripheral Vision",
+    label: "Peripheral Reaction",
     href: "/peripheral",
     mode: "lower",
     unit: "ms",
@@ -276,7 +276,7 @@ export const TESTS: TestDef[] = [
   },
   {
     key: "pb-peripheral-test",
-    label: "Peripheral Test",
+    label: "Divided Attention",
     href: "/peripheral-test",
     mode: "higher",
     unit: "%",
@@ -284,7 +284,7 @@ export const TESTS: TestDef[] = [
   },
   {
     key: "pb-pattern-speed",
-    label: "Rapid Estimation",
+    label: "Mental Math Sprint",
     href: "/pattern-speed",
     mode: "higher",
     unit: "score",
@@ -316,7 +316,7 @@ export const TESTS: TestDef[] = [
   },
   {
     key: "pb-estimation",
-    label: "Estimation Test",
+    label: "Dot Estimation",
     href: "/estimation",
     mode: "higher",
     unit: "acc%",

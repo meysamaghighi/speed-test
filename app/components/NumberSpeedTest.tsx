@@ -11,7 +11,14 @@ export default function NumberSpeedTest() {
   const [currentSequence, setCurrentSequence] = useState<number[]>([]);
   const [input, setInput] = useState("");
   const [round, setRound] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(0);
+  const deadlineRef = useRef(0);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Speed pressure: brief flash + timed recall is what separates this test
+  // from the classic (untimed) Digit Span
+  const flashMs = (span: number) => span * 350;
+  const recallMs = (span: number) => 2000 + span * 800;
 
   // You fail on `digitSpan`, so the last completed span is digitSpan - 1
   // (nothing completed if you fail the starting 3-digit round)
@@ -30,11 +37,12 @@ export default function NumberSpeedTest() {
     setPhase("showing");
     setRound(prev => prev + 1);
 
-    // Show sequence for 1 second per digit
     setTimeout(() => {
+      deadlineRef.current = Date.now() + recallMs(span);
+      setTimeLeft(recallMs(span));
       setPhase("input");
       setTimeout(() => inputRef.current?.focus(), 100);
-    }, span * 1000);
+    }, flashMs(span));
   }, [generateSequence]);
 
   const start = useCallback(() => {
@@ -49,9 +57,29 @@ export default function NumberSpeedTest() {
     }
   }, [phase]);
 
+  // Wall-clock recall deadline: background-tab throttling can delay the tick
+  // but can't extend the time limit
+  useEffect(() => {
+    if (phase !== "input") return;
+    const id = setInterval(() => {
+      const remaining = deadlineRef.current - Date.now();
+      if (remaining <= 0) {
+        clearInterval(id);
+        setPhase("failed");
+      } else {
+        setTimeLeft(remaining);
+      }
+    }, 100);
+    return () => clearInterval(id);
+  }, [phase]);
+
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (phase !== "input") return;
+    if (Date.now() > deadlineRef.current) {
+      setPhase("failed");
+      return;
+    }
 
     const userSequence = input.split("").map(c => parseInt(c, 10)).filter(n => !isNaN(n));
     const correct = userSequence.length === currentSequence.length &&
@@ -80,7 +108,7 @@ export default function NumberSpeedTest() {
     return (
       <div className="text-center space-y-6">
         <div className="bg-paper-2 rounded-2xl p-8 border border-line">
-          <p className="text-ink-2 text-sm mb-2">Your Digit Span</p>
+          <p className="text-ink-2 text-sm mb-2">Your Speed Span</p>
           <p className="text-6xl font-black text-emerald-400">{maxDigitSpan}</p>
           <p className={`text-lg font-bold mt-2 ${rating.color}`}>
             {rating.label}
@@ -108,11 +136,13 @@ export default function NumberSpeedTest() {
         </div>
 
         <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
-          <p className="font-bold text-ink mb-2">About Digit Span</p>
+          <p className="font-bold text-ink mb-2">About Number Speed</p>
           <p>
-            Digit span measures your working memory capacity — how many items you
-            can hold in your mind at once. Average adults can remember 5-7 digits.
-            This test is commonly used in cognitive assessments.
+            This is a speeded digit span: the sequence flashes at roughly three
+            digits per second and recall runs against a deadline. It measures how
+            fast your working memory can encode — most people score 1-2 digits
+            below their relaxed span. For the classic untimed protocol, try the
+            Digit Span test.
           </p>
         </div>
 
@@ -125,7 +155,7 @@ export default function NumberSpeedTest() {
           </button>
           <button
             onClick={() => {
-              const text = `My digit span is ${maxDigitSpan} (${rating.label})! Can you beat me?`;
+              const text = `My Number Speed span is ${maxDigitSpan} (${rating.label})! Can you beat me?`;
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {});
               } else {
@@ -146,7 +176,7 @@ export default function NumberSpeedTest() {
     return (
       <div className="space-y-6">
         <div className="text-center text-sm text-ink-3">
-          Memorize this sequence...
+          Memorize it — fast!
         </div>
         <div className="bg-paper-2 rounded-2xl p-12 md:p-16 border border-line text-center">
           <p className="text-5xl md:text-7xl font-black text-ink tracking-wider">
@@ -168,6 +198,14 @@ export default function NumberSpeedTest() {
       <div className="space-y-6">
         <div className="text-center text-sm text-ink-3">
           Type the numbers you saw (no spaces)
+        </div>
+        <div className="max-w-md mx-auto">
+          <div className="bg-paper rounded-full h-1.5 overflow-hidden border border-line">
+            <div
+              className="h-full bg-emerald-500 transition-[width] duration-100 ease-linear"
+              style={{ width: `${Math.max(0, (timeLeft / recallMs(digitSpan)) * 100)}%` }}
+            />
+          </div>
         </div>
         <div className="bg-paper-2 rounded-2xl p-12 border border-line">
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
@@ -205,12 +243,12 @@ export default function NumberSpeedTest() {
     <div className="text-center space-y-6">
       <div className="bg-paper-2 rounded-2xl p-12 border border-line">
         <p className="text-ink-2 mb-4">
-          You'll see a sequence of numbers flash on the screen. After they
-          disappear, type them back in the correct order.
+          A number sequence flashes on screen — much faster than a normal memory
+          test. Type it back before the timer runs out.
         </p>
         <p className="text-ink-3 text-sm mb-6">
-          Start with 3 digits. Each correct answer adds 1 digit. The test ends
-          when you make a mistake.
+          Start with 3 digits. Each correct answer adds 1 digit. One wrong
+          answer — or a blown deadline — ends the test.
         </p>
         {pb.best !== null && (
           <p className="text-emerald-400 font-bold mb-6">

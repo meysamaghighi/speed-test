@@ -6,7 +6,8 @@ import NumberSpeedTest from "../components/NumberSpeedTest";
 const HOW_TO = (
   <div>
     <p className="mb-3">
-      Number Speed Test — full instructions in the guide below.
+      A number sequence flashes briefly — type it back before the timer runs out.
+      Each correct answer adds a digit and raises the pressure.
     </p>
   </div>
 );

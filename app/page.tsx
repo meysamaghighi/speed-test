@@ -323,7 +323,7 @@ const tests = [
   },
   {
     href: "/peripheral",
-    title: "Peripheral Vision",
+    title: "Peripheral Reaction",
     desc: "Stare at the center dot and click targets in your side vision. Don't look away!",
     color: "from-cyan-500 to-blue-600",
     avg: "Average: 700ms",
@@ -417,7 +417,7 @@ const tests = [
   {
     href: "/number-speed",
     title: "Number Speed",
-    desc: "Remember and type back growing number sequences.",
+    desc: "Numbers flash briefly — type them back before the clock runs out.",
     color: "from-emerald-500 to-green-600",
     avg: "Average: 7 digits",
     icon: (
@@ -616,8 +616,8 @@ const tests = [
   },
   {
     href: "/peripheral-test",
-    title: "Peripheral Test",
-    desc: "Focus on center, detect targets in your side vision. Tests visual field.",
+    title: "Divided Attention",
+    desc: "Identify the center letter while locating a target in your side vision. UFOV-style.",
     color: "from-cyan-500 to-blue-600",
     avg: "Average: 180px",
     icon: (
@@ -631,7 +631,7 @@ const tests = [
   },
   {
     href: "/pattern-speed",
-    title: "Rapid Estimation",
+    title: "Mental Math Sprint",
     desc: "Count dots, estimate multiplication, compare quantities. Fast-paced mental math speed test.",
     color: "from-blue-500 to-cyan-600",
     avg: "Average: 1000",
@@ -695,7 +695,7 @@ const tests = [
   },
   {
     href: "/estimation",
-    title: "Estimation Test",
+    title: "Dot Estimation",
     desc: "Dots flash for 1 second. How many were there? Tests number sense and subitizing.",
     color: "from-amber-500 to-orange-600",
     avg: "Average: 75%",

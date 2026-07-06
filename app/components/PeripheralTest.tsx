@@ -227,7 +227,7 @@ export default function PeripheralTest() {
           </button>
           <button
             onClick={() => {
-              const text = `UFOV Score: ${combinedScore} (${rating.label}) - Peripheral Vision Test | benchmybrain.com/peripheral-test`;
+              const text = `UFOV Score: ${combinedScore} (${rating.label}) - UFOV Divided Attention Test | benchmybrain.com/peripheral-test`;
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {});
               } else {

@@ -141,7 +141,7 @@ export default function RapidEstimationTest() {
           </button>
           <button
             onClick={() => {
-              const text = `I scored ${score} on Rapid Estimation Test! Can you beat me?`;
+              const text = `I scored ${score} on the Mental Math Sprint! Can you beat me?`;
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {});
               } else {

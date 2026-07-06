@@ -3,9 +3,9 @@ import PatternSpeedPlay from "./PatternSpeedPlay";
 import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Rapid Estimation Test - Mental Math Speed & Number Sense | BenchMyBrain",
+  title: "Mental Math Sprint - Rapid Estimation & Number Sense Test | BenchMyBrain",
   description:
-    "Test your rapid estimation skills. Count dots quickly, estimate math results, compare quantities. 15 rounds of fast-paced number challenges.",
+    "A fast-paced mental math sprint: count dots quickly, estimate math results, compare quantities. 15 rounds of rapid estimation challenges.",
   keywords: [
     "rapid estimation test",
     "mental math speed",
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     "estimation skills",
   ],
   openGraph: {
-    title: "Rapid Estimation Test - Mental Math Speed & Number Sense | BenchMyBrain",
+    title: "Mental Math Sprint - Rapid Estimation & Number Sense Test | BenchMyBrain",
     description:
-      "Test your rapid estimation skills. Count dots quickly, estimate math results, compare quantities. 15 rounds of fast-paced number challenges.",
+      "A fast-paced mental math sprint: count dots quickly, estimate math results, compare quantities. 15 rounds of rapid estimation challenges.",
     type: "website",
   },
   alternates: {
@@ -33,7 +33,7 @@ export default function PatternSpeedPage() {
         <PatternSpeedPlay />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-ink">About Rapid Estimation</h2>
+        <h2 className="text-xl font-bold text-ink">About the Mental Math Sprint</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-paper-2 rounded-xl p-5 border border-line">
             <h3 className="font-bold text-ink mb-2">Mental Math Speed</h3>
@@ -62,8 +62,8 @@ export default function PatternSpeedPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Rapid Estimation Test",
-            description: "Test your rapid estimation skills with dots, multiplication, and quantity comparison.",
+            name: "Mental Math Sprint",
+            description: "A fast-paced mental math sprint with dots, multiplication, and quantity comparison.",
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },

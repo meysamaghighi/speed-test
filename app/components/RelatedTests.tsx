@@ -13,7 +13,7 @@ const allTests = [
   { href: "/stroop", label: "Stroop Test", color: "from-fuchsia-500 to-pink-600" },
   { href: "/color-blind", label: "Color Blind", color: "from-lime-500 to-green-600" },
   { href: "/math", label: "Math Speed", color: "from-amber-500 to-red-500" },
-  { href: "/peripheral", label: "Peripheral Vision", color: "from-cyan-500 to-blue-600" },
+  { href: "/peripheral", label: "Peripheral Reaction", color: "from-cyan-500 to-blue-600" },
   { href: "/reading", label: "Reading Speed", color: "from-violet-500 to-purple-600" },
   { href: "/reverse-memory", label: "Reverse Memory", color: "from-cyan-500 to-teal-600" },
   { href: "/rotation", label: "Spatial Rotation", color: "from-orange-500 to-red-600" },
@@ -35,7 +35,7 @@ const allTests = [
   { href: "/word-association", label: "Word Association", color: "from-blue-500 to-indigo-600" },
   { href: "/number-comparison", label: "Number Comparison", color: "from-emerald-500 to-green-600" },
   { href: "/visual-search", label: "Visual Search", color: "from-orange-500 to-red-600" },
-  { href: "/peripheral-test", label: "Peripheral Test", color: "from-cyan-500 to-blue-600" },
+  { href: "/peripheral-test", label: "Divided Attention", color: "from-cyan-500 to-blue-600" },
   { href: "/brain-score", label: "Brain Score", color: "from-indigo-500 to-purple-600" },
 ];
 
