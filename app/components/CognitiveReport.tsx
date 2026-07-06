@@ -34,7 +34,7 @@ function ratingFor(score: number) {
   return { label: "Train this", color: "text-red-400" };
 }
 
-function RadarChart({ scores }: { scores: FacultyScore[] }) {
+function RadarChart({ scores, hideValues = false }: { scores: FacultyScore[]; hideValues?: boolean }) {
   const size = 300;
   const cx = size / 2;
   const cy = size / 2;
@@ -87,7 +87,7 @@ function RadarChart({ scores }: { scores: FacultyScore[] }) {
             fontWeight="700"
           >
             {FACULTY_LABEL[s.faculty]}
-            {s.score !== null ? ` ${s.score}` : ""}
+            {!hideValues && s.score !== null ? ` ${s.score}` : ""}
           </text>
         );
       })}
@@ -168,31 +168,97 @@ export default function CognitiveReport() {
   if (status === "checking") return null;
 
   if (status === "locked") {
+    const done = testScores.length;
+    const previewRows = [...testScores].sort((a, b) => b.normalized - a.normalized).slice(0, 6);
+    const unlockCta = PAYMENT_LINK ? (
+      <a
+        href={PAYMENT_LINK}
+        onClick={() => track("report_upsell_click", { source: "report_page" })}
+        className="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl px-8 py-4 text-lg transition-colors"
+      >
+        Unlock your report — $4.99
+      </a>
+    ) : (
+      <p className="text-ink-3">The full report is launching soon. Check back shortly!</p>
+    );
+
     return (
-      <div className="text-center space-y-6">
-        <h1 className="text-4xl font-black text-ink">Full Cognitive Report</h1>
-        <p className="text-ink-2 max-w-md mx-auto">
-          A detailed breakdown of your cognitive profile: faculty radar chart, per-test analysis,
-          strengths, and a personalized training plan — built from your own results.
-        </p>
-        {verifyError && (
-          <p className="text-sm text-orange-400">
-            We couldn&apos;t confirm the payment. If you were charged, reopen this page from the
-            receipt link in your email — or try again in a minute.
+      <div className="space-y-8">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-black text-ink">Full Cognitive Report</h1>
+          <p className="text-ink-2 max-w-md mx-auto">
+            A detailed breakdown of your cognitive profile: faculty radar chart, per-test analysis,
+            strengths, and a personalized training plan — built from your own results.
           </p>
-        )}
-        {PAYMENT_LINK ? (
-          <a
-            href={PAYMENT_LINK}
-            onClick={() => track("report_upsell_click", { source: "report_page" })}
-            className="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl px-8 py-4 text-lg transition-colors"
-          >
-            Unlock your report — $4.99
-          </a>
+          {verifyError && (
+            <p className="text-sm text-orange-400">
+              We couldn&apos;t confirm the payment. If you were charged, reopen this page from the
+              receipt link in your email — or try again in a minute.
+            </p>
+          )}
+        </div>
+
+        {done > 0 ? (
+          <div className="relative">
+            <div aria-hidden className="space-y-4 select-none pointer-events-none">
+              <section className="bg-paper-2 rounded-2xl p-6 border border-line">
+                <h2 className="text-xl font-bold text-ink mb-4 text-center">
+                  Your cognitive profile
+                </h2>
+                <div className="blur-[5px]">
+                  <RadarChart scores={facultyScores} hideValues />
+                </div>
+              </section>
+              <section className="bg-paper-2 rounded-2xl p-6 border border-line">
+                <h2 className="text-lg font-bold text-ink mb-4">Every test, scored</h2>
+                <div className="space-y-2">
+                  {previewRows.map((t) => (
+                    <div key={t.key} className="flex items-center gap-3">
+                      <span className="text-sm text-ink-2 w-40 truncate">{t.label}</span>
+                      <div className="flex-1 blur-[5px]">
+                        <div className="bg-paper rounded-full h-2 overflow-hidden border border-line">
+                          <div className="h-full bg-emerald-500" style={{ width: `${t.normalized}%` }} />
+                        </div>
+                      </div>
+                      <svg
+                        viewBox="0 0 24 24"
+                        className="w-4 h-4 text-ink-3 shrink-0"
+                        fill="currentColor"
+                      >
+                        <path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 1 1 6 0v3H9z" />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-paper/95 border border-line rounded-2xl p-6 shadow-xl text-center max-w-sm mx-4">
+                <p className="font-bold text-ink text-lg mb-1">Your report is ready</p>
+                <p className="text-sm text-ink-2 mb-4">
+                  Built from the {done} test{done === 1 ? "" : "s"} you&apos;ve already completed —
+                  and it keeps updating as you play.
+                </p>
+                {unlockCta}
+                <p className="text-xs text-ink-3 mt-3">One-time payment · yours forever</p>
+              </div>
+            </div>
+          </div>
         ) : (
-          <p className="text-ink-3">The full report is launching soon. Check back shortly!</p>
+          <div className="text-center space-y-6">
+            <div className="bg-paper-2 border border-line rounded-xl p-5 text-sm text-ink-2 max-w-md mx-auto">
+              The report is generated from your own scores, and you haven&apos;t taken any tests on
+              this device yet. Try a few first —{" "}
+              <Link href="/reaction" className="underline font-bold text-ink">
+                Reaction Time
+              </Link>{" "}
+              is a good place to start.
+            </div>
+            {unlockCta}
+          </div>
         )}
-        <p>
+
+        <p className="text-center">
           <Link href="/brain-score" className="text-ink-3 underline text-sm">
             Back to Brain Score
           </Link>
