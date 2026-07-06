@@ -17,6 +17,7 @@ import {
 } from "../lib/report";
 
 type Status = "checking" | "locked" | "unlocked";
+type RestoreState = "idle" | "submitting" | "success" | "not_found" | "error" | "rate_limited";
 
 interface FacultyScore {
   faculty: Faculty;
@@ -99,6 +100,10 @@ export default function CognitiveReport() {
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<Status>("checking");
   const [verifyError, setVerifyError] = useState(false);
+  const [justUnlocked, setJustUnlocked] = useState(false);
+  const [restoreOpen, setRestoreOpen] = useState(false);
+  const [restoreEmail, setRestoreEmail] = useState("");
+  const [restoreState, setRestoreState] = useState<RestoreState>("idle");
   const [scores, setScores] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
@@ -121,6 +126,7 @@ export default function CognitiveReport() {
         .then((r) => r.json())
         .then((d) => {
           if (d.paid) {
+            setJustUnlocked(true);
             setUnlocked();
             setStatus("unlocked");
             track("report_purchase", { value: 4.99, currency: "USD" });
@@ -164,6 +170,31 @@ export default function CognitiveReport() {
       }),
     [testScores]
   );
+
+  async function handleRestore(e: React.FormEvent) {
+    e.preventDefault();
+    setRestoreState("submitting");
+    try {
+      const res = await fetch("/api/restore-purchase", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: restoreEmail }),
+      });
+      const d = await res.json();
+      if (res.status === 429) {
+        setRestoreState("rate_limited");
+      } else if (d.ok) {
+        setRestoreState("success");
+        setUnlocked();
+        track("report_restore", { source: "restore_form" });
+        setTimeout(() => setStatus("unlocked"), 800);
+      } else {
+        setRestoreState("not_found");
+      }
+    } catch {
+      setRestoreState("error");
+    }
+  }
 
   if (status === "checking") return null;
 
@@ -239,7 +270,59 @@ export default function CognitiveReport() {
                   {`Built from the ${done} test${done === 1 ? "" : "s"} you've already completed — and it keeps updating as you play.`}
                 </p>
                 {unlockCta}
-                <p className="text-xs text-ink-3 mt-3">One-time payment · yours forever</p>
+                <p className="text-xs text-ink-3 mt-3">One-time payment · receipt email restores access on any device</p>
+                <div className="mt-3 pt-3 border-t border-line">
+                  {!restoreOpen ? (
+                    <button
+                      onClick={() => setRestoreOpen(true)}
+                      className="text-xs text-ink-3 underline hover:text-ink-2 transition-colors"
+                    >
+                      Already bought? Restore access →
+                    </button>
+                  ) : (
+                    <form onSubmit={handleRestore} className="space-y-2">
+                      <input
+                        type="email"
+                        placeholder="Email used at checkout"
+                        value={restoreEmail}
+                        onChange={(e) => setRestoreEmail(e.target.value)}
+                        required
+                        disabled={restoreState === "submitting" || restoreState === "success"}
+                        className="w-full text-xs bg-paper border border-line rounded-lg px-3 py-2 text-ink placeholder-ink-3 focus:outline-none focus:border-ink-3"
+                      />
+                      {restoreState === "not_found" && (
+                        <p className="text-xs text-orange-400">No purchase found. Use the exact email from your Stripe receipt.</p>
+                      )}
+                      {restoreState === "rate_limited" && (
+                        <p className="text-xs text-orange-400">Too many attempts. Try again later.</p>
+                      )}
+                      {restoreState === "error" && (
+                        <p className="text-xs text-orange-400">Something went wrong. Try reopening the receipt email directly.</p>
+                      )}
+                      {restoreState === "success" && (
+                        <p className="text-xs text-emerald-400">Access restored! Loading your report…</p>
+                      )}
+                      {restoreState !== "success" && (
+                        <div className="flex gap-2">
+                          <button
+                            type="submit"
+                            disabled={restoreState === "submitting"}
+                            className="flex-1 text-xs bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-black font-bold rounded-lg px-3 py-2 transition-colors"
+                          >
+                            {restoreState === "submitting" ? "Checking…" : "Restore"}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => { setRestoreOpen(false); setRestoreState("idle"); setRestoreEmail(""); }}
+                            className="text-xs text-ink-3 hover:text-ink-2 px-2 transition-colors"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      )}
+                    </form>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -254,6 +337,7 @@ export default function CognitiveReport() {
               is a good place to start.
             </div>
             {unlockCta}
+            <p className="text-xs text-ink-3">One-time payment · receipt email restores access on any device</p>
           </div>
         )}
 
@@ -276,6 +360,11 @@ export default function CognitiveReport() {
 
   return (
     <div className="space-y-10 print:text-black">
+      {justUnlocked && (
+        <div className="bg-emerald-900/30 border border-emerald-500/30 rounded-xl p-4 text-sm text-emerald-300 text-center print:hidden">
+          Report unlocked! Save your Stripe receipt email — it restores access on any device.
+        </div>
+      )}
       <div className="text-center">
         <h1 className="text-4xl font-black text-ink mb-2">Your Cognitive Report</h1>
         <p className="text-ink-3 text-sm">
