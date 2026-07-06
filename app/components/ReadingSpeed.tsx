@@ -92,11 +92,15 @@ export default function ReadingSpeed() {
   const [startTime, setStartTime] = useState(0);
   const [readingTime, setReadingTime] = useState(0);
   const [wpm, setWpm] = useState(0);
-  const pb = usePersonalBest("pb-reading", "higher", phase === "result" ? wpm : null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [quizCorrect, setQuizCorrect] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const passage = passages[passageIdx];
+
+  // Save the comprehension-adjusted WPM — raw WPM rewards skimming, which the
+  // test explicitly promises won't help
+  const adjustedWpm = passage ? Math.round(wpm * (quizCorrect / passage.questions.length)) : 0;
+  const pb = usePersonalBest("pb-reading", "higher", phase === "result" ? adjustedWpm : null);
 
   const startReading = () => {
     setPassageIdx(Math.floor(Math.random() * passages.length));

@@ -49,10 +49,10 @@ export default function EstimationTest() {
     return dots;
   }, []);
 
-  const startRound = useCallback(() => {
+  const startRound = useCallback((roundNum: number) => {
     // Progressive difficulty: 5, 8, 12, 17, 23, 30, 40, 52, 67, 85
     const counts = [5, 8, 12, 17, 23, 30, 40, 52, 67, 85];
-    const count = counts[round - 1] || 50;
+    const count = counts[roundNum - 1] || 50;
 
     setActualCount(count);
     const dots = generateDots(count);
@@ -64,7 +64,7 @@ export default function EstimationTest() {
     setTimeout(() => {
       setPhase("answer");
     }, 1000);
-  }, [round, generateDots]);
+  }, [generateDots]);
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -79,8 +79,9 @@ export default function EstimationTest() {
 
     setTimeout(() => {
       if (round < totalRounds) {
-        setRound(round + 1);
-        startRound();
+        const next = round + 1;
+        setRound(next);
+        startRound(next);
       } else {
         setPhase("finished");
       }
@@ -181,7 +182,7 @@ export default function EstimationTest() {
           </div>
         </div>
         <button
-          onClick={startRound}
+          onClick={() => startRound(round)}
           className="px-8 py-4 bg-amber-600 text-ink font-bold text-xl rounded-xl hover:bg-amber-700 transition-colors"
         >
           Start Test

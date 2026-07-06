@@ -227,13 +227,13 @@ export default function RhythmTest() {
         <div
           className={`rounded-2xl p-8 border ${
             passed
-              ? "bg-emerald-900/30 border-emerald-800"
-              : "bg-red-900/30 border-red-800"
+              ? "bg-emerald-100 border-emerald-300"
+              : "bg-red-100 border-red-300"
           }`}
         >
           <p
             className={`text-2xl font-bold mb-2 ${
-              passed ? "text-emerald-400" : "text-red-400"
+              passed ? "text-emerald-600" : "text-red-600"
             }`}
           >
             {passed ? "Good!" : "Miss"}

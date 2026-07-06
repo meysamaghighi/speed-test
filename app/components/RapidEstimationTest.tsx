@@ -54,8 +54,8 @@ export default function RapidEstimationTest() {
     }
   }, []);
 
-  const startRound = useCallback(() => {
-    const newRound = generateRound(round);
+  const startRound = useCallback((roundNum: number) => {
+    const newRound = generateRound(roundNum);
     setCurrentRound(newRound);
     setUserAnswer(null);
     setPhase("show");
@@ -66,7 +66,7 @@ export default function RapidEstimationTest() {
     setTimeout(() => {
       setPhase("answer");
     }, displayTime);
-  }, [round, generateRound]);
+  }, [generateRound]);
 
   const handleAnswer = (answer: number) => {
     if (phase !== "answer" || !currentRound) return;
@@ -95,8 +95,9 @@ export default function RapidEstimationTest() {
       if (round >= 15) {
         setPhase("finished");
       } else {
-        setRound(round + 1);
-        startRound();
+        const next = round + 1;
+        setRound(next);
+        startRound(next);
       }
     }, 1000);
   };
@@ -170,7 +171,7 @@ export default function RapidEstimationTest() {
           </div>
         </div>
         <button
-          onClick={startRound}
+          onClick={() => startRound(round)}
           className="px-8 py-4 bg-blue-600 text-ink font-bold text-xl rounded-xl hover:bg-blue-700 transition-colors"
         >
           Start Test

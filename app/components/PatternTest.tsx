@@ -320,13 +320,15 @@ function generateColorPattern(difficulty: number): Pattern {
     const wrongOptions = colors.filter(c => c !== answer).slice(0, 3);
     return { type: "color", sequence, correctAnswer: answer, wrongOptions };
   } else {
-    // Advancing pattern: shifts by one each time
-    const shuffled = [...colors].sort(() => Math.random() - 0.5);
-    const start = Math.floor(Math.random() * (shuffled.length - 4));
-    sequence.push(shuffled[start], shuffled[start + 1], shuffled[start + 2], shuffled[start + 3]);
-    const answer = shuffled[start + 4] || shuffled[0];
+    // A A B repeating: A A B A → next is A. (The old "advancing" variant
+    // showed 4 colors from a hidden random shuffle — the answer was unknowable.)
+    const c1 = colors[Math.floor(Math.random() * colors.length)];
+    let c2 = colors[Math.floor(Math.random() * colors.length)];
+    while (c2 === c1) c2 = colors[Math.floor(Math.random() * colors.length)];
+    sequence.push(c1, c1, c2, c1);
+    const answer = c1;
 
-    const wrongOptions = shuffled.filter(c => c !== answer).slice(0, 3);
+    const wrongOptions = colors.filter(c => c !== answer).slice(0, 3);
     return { type: "color", sequence, correctAnswer: answer, wrongOptions };
   }
 }

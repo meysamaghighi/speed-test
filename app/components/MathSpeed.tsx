@@ -86,6 +86,7 @@ export default function MathSpeed() {
   const [flash, setFlash] = useState<"correct" | "wrong" | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<ReturnType<typeof setInterval>>(undefined);
+  const deadlineRef = useRef(0);
 
   const startGame = () => {
     setPhase("playing");
@@ -96,22 +97,23 @@ export default function MathSpeed() {
     setTotalAnswered(0);
     setCorrect(0);
     setTimeLeft(60);
+    deadlineRef.current = Date.now() + 60000;
     setProblem(generateProblem(1));
     setAnswer("");
   };
 
   useEffect(() => {
     if (phase === "playing") {
+      // Wall-clock deadline: interval callbacks are throttled in background
+      // tabs, so decrementing a counter lets the clock pause when unfocused
       timerRef.current = setInterval(() => {
-        setTimeLeft((t) => {
-          if (t <= 1) {
-            clearInterval(timerRef.current);
-            setPhase("result");
-            return 0;
-          }
-          return t - 1;
-        });
-      }, 1000);
+        const left = Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000));
+        setTimeLeft(left);
+        if (left <= 0) {
+          clearInterval(timerRef.current);
+          setPhase("result");
+        }
+      }, 250);
       inputRef.current?.focus();
       return () => clearInterval(timerRef.current);
     }

@@ -175,8 +175,8 @@ export const TESTS: TestDef[] = [
     label: "Color Match",
     href: "/color-match",
     mode: "higher",
-    unit: "%",
-    toScore: (pct) => clamp(((pct - 50) / 50) * 100), // 50%=0, 100%=100
+    unit: "pts",
+    toScore: (s) => clamp((s / 3000) * 100), // composite score, 3000 = top rating
   },
   {
     key: "pb-focus-timer",
@@ -200,7 +200,7 @@ export const TESTS: TestDef[] = [
     href: "/emotion",
     mode: "higher",
     unit: "score",
-    toScore: (s) => clamp((s / 20) * 100), // 20=100
+    toScore: (s) => clamp(s), // component saves a 0-100 score (accuracy - time penalty)
   },
   {
     key: "pb-trail-making",
@@ -311,8 +311,8 @@ export const TESTS: TestDef[] = [
     label: "Change Detection",
     href: "/change-detection",
     mode: "higher",
-    unit: "score",
-    toScore: (s) => clamp((s / 30) * 100), // 30=100
+    unit: "level",
+    toScore: (lvl) => clamp((lvl / 10) * 100), // component saves highest completed level
   },
   {
     key: "pb-estimation",

@@ -246,7 +246,7 @@ export default function WordAssociationTest() {
           <p className="text-ink font-bold mb-3">Your Words</p>
           <div className="flex flex-wrap gap-2 justify-center max-h-48 overflow-y-auto">
             {submittedWords.map((word, i) => (
-              <span key={i} className="px-3 py-1 bg-green-900/30 text-green-400 rounded-lg text-sm border border-green-800">
+              <span key={i} className="px-3 py-1 bg-green-100 text-green-700 rounded-lg text-sm border border-green-300">
                 {word}
               </span>
             ))}
@@ -345,7 +345,7 @@ export default function WordAssociationTest() {
           <p className="text-ink-3 text-sm mb-2">Submitted Words</p>
           <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
             {submittedWords.map((word, i) => (
-              <span key={i} className="px-2 py-1 bg-green-900/30 text-green-400 rounded text-sm border border-green-800">
+              <span key={i} className="px-2 py-1 bg-green-100 text-green-700 rounded text-sm border border-green-300">
                 {word}
               </span>
             ))}

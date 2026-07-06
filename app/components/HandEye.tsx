@@ -21,6 +21,7 @@ export default function HandEye() {
   const targetRef = useRef<Target | null>(null);
   const rafRef = useRef<number | null>(null);
   const scoreRef = useRef(0);
+  const deadlineRef = useRef(0);
   const levelRef = useRef(1);
 
   const pb = usePersonalBest("pb-hand-eye", "higher", phase === "done" ? score : null);
@@ -63,6 +64,7 @@ export default function HandEye() {
     setScore(0);
     setLevel(1);
     setTimeLeft(30);
+    deadlineRef.current = Date.now() + 30000;
     setPhase("playing");
   };
 
@@ -130,16 +132,16 @@ export default function HandEye() {
   useEffect(() => {
     if (phase !== "playing") return;
 
+    // Wall-clock deadline: a decrementing counter pauses when the tab is
+    // backgrounded, letting a player stop the clock (and inflate their score)
+    // by tabbing away mid-test
     const interval = setInterval(() => {
-      setTimeLeft(prev => {
-        const newTime = prev - 0.1;
-        if (newTime <= 0) {
-          setPhase("done");
-          if (rafRef.current) cancelAnimationFrame(rafRef.current);
-          return 0;
-        }
-        return newTime;
-      });
+      const left = Math.max(0, (deadlineRef.current - Date.now()) / 1000);
+      setTimeLeft(left);
+      if (left <= 0) {
+        setPhase("done");
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      }
     }, 100);
 
     return () => clearInterval(interval);
