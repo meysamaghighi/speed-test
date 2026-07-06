@@ -37,9 +37,9 @@ export default function RotationPage() {
         <RotationPlay />
 
       <section className="mt-12 space-y-6">
-        <h2 className="text-2xl font-bold text-ink">What is a Mental Rotation Test Online?</h2>
+        <h2 className="text-2xl font-bold text-ink">What is a Mental Rotation Test?</h2>
         <p className="text-ink-2 leading-relaxed">
-          A mental rotation test online (also called a spatial rotation test or 3D rotation test) measures your ability to mentally manipulate and rotate 3D objects in your mind. In this mental rotation test online, you compare two 3D block shapes shown from different angles and determine if they are the same shape (just rotated) or completely different shapes. Mental rotation tests are a core measure of spatial intelligence and visual-spatial reasoning, widely used in cognitive research and professional assessments for STEM careers. Taking a mental rotation test online lets you practice this skill from anywhere.
+          A mental rotation test measures your ability to turn a shape in your mind&apos;s eye. In this version, you compare two flat block shapes and decide whether the second is the same shape rotated (by 90&deg;, 180&deg;, or 270&deg;) or a different shape entirely. Mental rotation is a core measure of spatial intelligence and visual-spatial reasoning, widely used in cognitive research and professional assessments for STEM careers.
         </p>
 
         <h2 className="text-2xl font-bold text-ink mt-8">What is Mental Rotation?</h2>
@@ -52,7 +52,7 @@ export default function RotationPage() {
           <ol className="space-y-3 text-ink-2">
             <li className="flex gap-3">
               <span className="font-bold text-ink shrink-0">1.</span>
-              <span>Two 3D block shapes appear on your screen in different orientations</span>
+              <span>Two flat block shapes appear on your screen in different orientations</span>
             </li>
             <li className="flex gap-3">
               <span className="font-bold text-ink shrink-0">2.</span>
@@ -68,7 +68,7 @@ export default function RotationPage() {
             </li>
             <li className="flex gap-3">
               <span className="font-bold text-ink shrink-0">5.</span>
-              <span>The 3D rotation test measures both accuracy and response time</span>
+              <span>The test measures both accuracy and response time</span>
             </li>
           </ol>
         </div>
@@ -78,13 +78,13 @@ export default function RotationPage() {
           <div className="bg-paper-2 rounded-xl p-5 border border-line">
             <h3 className="font-bold text-ink mb-2">Predicts Success in STEM Fields</h3>
             <p className="text-sm text-ink-2">
-              Spatial rotation ability is one of the strongest predictors of success in STEM careers. Research shows that performance on mental rotation tests correlates with achievement in engineering, architecture, mathematics, physics, and computer science. Many technical employers use spatial rotation tests and 3D rotation tests during hiring to screen candidates. Professional engineers and architects typically score 80-90% on mental rotation assessments, significantly higher than the general population average of 60-70%.
+              Spatial rotation ability is one of the strongest predictors of success in STEM careers. Research shows that performance on mental rotation tests correlates with achievement in engineering, architecture, mathematics, physics, and computer science. Many technical employers use spatial rotation tests during hiring to screen candidates. Professional engineers and architects typically score 80-90% on mental rotation assessments, significantly higher than the general population average of 60-70%.
             </p>
           </div>
           <div className="bg-paper-2 rounded-xl p-5 border border-line">
             <h3 className="font-bold text-ink mb-2">Essential for Navigation and 3D Thinking</h3>
             <p className="text-sm text-ink-2">
-              Spatial rotation skills are crucial for real-world navigation, reading maps, understanding architectural blueprints, and any task requiring 3D visualization. Pilots, surgeons, mechanics, and air traffic controllers all rely heavily on mental rotation abilities. Video game players, especially those who play first-person 3D games, develop stronger spatial rotation and mental rotation skills through practice. Studies show that regular practice with 3D rotation tests and spatial rotation games can improve performance by 20-30%.
+              Spatial rotation skills are crucial for real-world navigation, reading maps, understanding architectural blueprints, and any task requiring 3D visualization. Pilots, surgeons, mechanics, and air traffic controllers all rely heavily on mental rotation abilities. Video game players, especially those who play first-person 3D games, develop stronger spatial rotation skills through practice. Studies show that regular practice with rotation tests can improve performance by 20-30%.
             </p>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function RotationPage() {
           <ul className="space-y-3 text-ink-2">
             <li className="flex gap-3">
               <span className="text-ink shrink-0">•</span>
-              <span><strong>Practice regularly:</strong> Take spatial rotation tests and 3D rotation tests multiple times per week</span>
+              <span><strong>Practice regularly:</strong> Take spatial rotation tests multiple times per week</span>
             </li>
             <li className="flex gap-3">
               <span className="text-ink shrink-0">•</span>
@@ -139,107 +139,6 @@ export default function RotationPage() {
         }}
       />
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold text-ink mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          <div className="bg-paper-2 rounded-xl p-6 border border-line">
-            <h3 className="font-bold text-ink mb-2">What is a spatial rotation test?</h3>
-            <p className="text-ink-2">
-              A spatial rotation test (also called a mental rotation test or 3D rotation test) measures your ability to mentally manipulate and rotate 3D objects in your mind. In a spatial rotation test, you compare two 3D shapes shown from different angles and determine if they are the same object rotated or different objects. This cognitive assessment has been used since the 1970s to measure spatial intelligence and is commonly used in STEM career screening.
-            </p>
-          </div>
-          <div className="bg-paper-2 rounded-xl p-6 border border-line">
-            <h3 className="font-bold text-ink mb-2">What is a mental rotation test?</h3>
-            <p className="text-ink-2">
-              A mental rotation test measures how quickly and accurately you can imagine rotating 3D objects in your mind. First developed by psychologists Shepard and Metzler in 1971, mental rotation tests present pairs of 3D shapes in different orientations. You must mentally rotate one shape to determine if it matches the other. Research shows response time increases with rotation angle, proving we actually &quot;rotate&quot; objects mentally rather than pattern matching.
-            </p>
-          </div>
-          <div className="bg-paper-2 rounded-xl p-6 border border-line">
-            <h3 className="font-bold text-ink mb-2">What is a 3D rotation test?</h3>
-            <p className="text-ink-2">
-              A 3D rotation test is another name for a spatial rotation test or mental rotation test. It specifically measures your ability to visualize and compare 3D objects shown from different angles. 3D rotation tests are used by employers in technical fields, cognitive researchers studying spatial intelligence, and educational assessments for STEM programs. Professional engineers and architects typically score 80-90% on 3D rotation tests.
-            </p>
-          </div>
-          <div className="bg-paper-2 rounded-xl p-6 border border-line">
-            <h3 className="font-bold text-ink mb-2">Can you improve mental rotation and spatial rotation skills?</h3>
-            <p className="text-ink-2">
-              Yes! Studies show that mental rotation abilities can be significantly improved through practice. Taking spatial rotation tests regularly, playing 3D video games, doing physical puzzles like Rubik&apos;s cube, learning origami, and practicing with 3D rotation tests can all strengthen your abilities. Research consistently shows improvements of 20-30% after 10-15 hours of targeted practice. Unlike many cognitive skills, spatial rotation is highly trainable.
-            </p>
-          </div>
-          <div className="bg-paper-2 rounded-xl p-6 border border-line">
-            <h3 className="font-bold text-ink mb-2">Why is spatial rotation important?</h3>
-            <p className="text-ink-2">
-              Spatial rotation ability is one of the strongest predictors of success in STEM careers. Performance on mental rotation tests and spatial rotation tests correlates with achievement in engineering, architecture, mathematics, physics, and computer science. These skills are essential for architects, engineers, surgeons, pilots, and anyone working with 3D visualization. Many technical employers use 3D rotation tests during hiring to screen candidates.
-            </p>
-          </div>
-          <div className="bg-paper-2 rounded-xl p-6 border border-line">
-            <h3 className="font-bold text-ink mb-2">What is a good score on a spatial rotation test?</h3>
-            <p className="text-ink-2">
-              Scoring 12+ out of 15 (80%+) on a spatial rotation test is considered excellent and indicates strong mental rotation abilities. Most people score between 9-12 (60-80%). Professional architects and engineers typically score in the 80-90% range on mental rotation tests. With practice using 3D rotation tests and spatial rotation games, most people can improve their scores by 20-30%.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is a spatial rotation test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "A spatial rotation test (also called a mental rotation test or 3D rotation test) measures your ability to mentally manipulate and rotate 3D objects in your mind. In a spatial rotation test, you compare two 3D shapes shown from different angles and determine if they are the same object rotated or different objects. This cognitive assessment has been used since the 1970s to measure spatial intelligence and is commonly used in STEM career screening.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a mental rotation test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "A mental rotation test measures how quickly and accurately you can imagine rotating 3D objects in your mind. First developed by psychologists Shepard and Metzler in 1971, mental rotation tests present pairs of 3D shapes in different orientations. You must mentally rotate one shape to determine if it matches the other. Research shows response time increases with rotation angle, proving we actually rotate objects mentally rather than pattern matching.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a 3D rotation test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "A 3D rotation test is another name for a spatial rotation test or mental rotation test. It specifically measures your ability to visualize and compare 3D objects shown from different angles. 3D rotation tests are used by employers in technical fields, cognitive researchers studying spatial intelligence, and educational assessments for STEM programs. Professional engineers and architects typically score 80-90% on 3D rotation tests.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can you improve mental rotation and spatial rotation skills?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes! Studies show that mental rotation abilities can be significantly improved through practice. Taking spatial rotation tests regularly, playing 3D video games, doing physical puzzles like Rubik's cube, learning origami, and practicing with 3D rotation tests can all strengthen your abilities. Research consistently shows improvements of 20-30% after 10-15 hours of targeted practice. Unlike many cognitive skills, spatial rotation is highly trainable.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Why is spatial rotation important?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Spatial rotation ability is one of the strongest predictors of success in STEM careers. Performance on mental rotation tests and spatial rotation tests correlates with achievement in engineering, architecture, mathematics, physics, and computer science. These skills are essential for architects, engineers, surgeons, pilots, and anyone working with 3D visualization. Many technical employers use 3D rotation tests during hiring to screen candidates.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What is a good score on a spatial rotation test?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Scoring 12+ out of 15 (80%+) on a spatial rotation test is considered excellent and indicates strong mental rotation abilities. Most people score between 9-12 (60-80%). Professional architects and engineers typically score in the 80-90% range on mental rotation tests. With practice using 3D rotation tests and spatial rotation games, most people can improve their scores by 20-30%.",
-                },
-              },
-            ],
-          }),
-        }}
-      />
     </main>
   );
 }
