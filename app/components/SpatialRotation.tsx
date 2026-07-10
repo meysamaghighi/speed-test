@@ -1,7 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import { encodeChallenge, decodeChallenge, type ChallengeData } from "../lib/challenge";
+import { track } from "../lib/report";
 
 interface Coord {
   x: number;
@@ -22,6 +25,23 @@ export default function SpatialRotation() {
   const [startTime, setStartTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const pb = usePersonalBest("pb-spatial", "higher", phase === "result" ? correctCount : null);
+
+  const searchParams = useSearchParams();
+  const [challenge, setChallenge] = useState<ChallengeData | null>(null);
+  const [challengerName, setChallengerName] = useState("");
+  const [showChallengeForm, setShowChallengeForm] = useState(false);
+  const [challengeCopied, setChallengeCopied] = useState(false);
+  const trackedAccepted = useRef(false);
+
+  useEffect(() => {
+    const decoded = decodeChallenge(searchParams?.get("c"));
+    setChallenge(decoded);
+    if (decoded && !trackedAccepted.current) {
+      trackedAccepted.current = true;
+      track("rotation_challenge_accepted");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const totalRounds = 15;
 
@@ -186,9 +206,34 @@ export default function SpatialRotation() {
     return { label: "Keep Practicing", color: "text-orange-400" };
   };
 
+  const handleChallengeShare = () => {
+    const name = challengerName.trim() || "A friend";
+    const url = `${window.location.origin}/rotation?c=${encodeChallenge({ name, score: correctCount })}`;
+    const text = `${name} scored ${correctCount}/${totalRounds} on the Mental Rotation Test — can you beat it?`;
+    track("rotation_challenge_created");
+    if (typeof navigator !== "undefined" && navigator.share) {
+      navigator.share({ title: "Mental Rotation Test", text, url }).catch(() => {});
+    } else if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          setChallengeCopied(true);
+          setTimeout(() => setChallengeCopied(false), 2500);
+        })
+        .catch(() => {});
+    }
+  };
+
   if (phase === "ready") {
     return (
       <div className="text-center">
+        {challenge && (
+          <div className="mb-4 bg-orange-100 border border-orange-300 rounded-xl p-4">
+            <p className="text-orange-700 text-sm font-bold">
+              🧠 {challenge.name} scored {challenge.score} on the Mental Rotation Test — can you beat it?
+            </p>
+          </div>
+        )}
         <button
           onClick={startGame}
           className="px-8 py-4 bg-orange-600 text-ink font-bold text-xl rounded-2xl hover:bg-orange-700 transition-colors"
@@ -244,6 +289,13 @@ export default function SpatialRotation() {
   // Result phase
   const avgTime = totalRounds > 0 ? (totalTime / totalRounds / 1000).toFixed(1) : "0.0";
   const rating = getRating(correctCount);
+  const vsChallenge = challenge
+    ? correctCount > challenge.score
+      ? `You scored ${correctCount} — you beat ${challenge.name} by ${correctCount - challenge.score}!`
+      : correctCount === challenge.score
+      ? `You tied ${challenge.name} at ${correctCount}!`
+      : `You scored ${correctCount} — ${challenge.name} wins by ${challenge.score - correctCount}`
+    : null;
 
   return (
     <div className="text-center space-y-6">
@@ -258,6 +310,12 @@ export default function SpatialRotation() {
         </p>
         {pb.isNewBest && <p className="text-yellow-400 font-bold mt-2 animate-pulse">New Personal Best!</p>}
         {pb.best !== null && !pb.isNewBest && <p className="text-ink-3 text-sm mt-2">Personal Best: {pb.best}/{totalRounds}</p>}
+        {vsChallenge && (
+          <div className="mt-3 border-t border-line pt-3">
+            <p className="text-ink-3 text-xs uppercase tracking-wide font-bold">You vs {challenge!.name}</p>
+            <p className="text-orange-700 text-sm font-bold mt-1">{vsChallenge}</p>
+          </div>
+        )}
       </div>
 
       <div className="bg-paper-2 rounded-xl p-4 border border-line text-sm text-ink-2">
@@ -290,6 +348,41 @@ export default function SpatialRotation() {
         >
           Share Score
         </button>
+      </div>
+
+      <div className="bg-paper-2 rounded-xl p-4 border border-line">
+        {!showChallengeForm ? (
+          <button
+            onClick={() => setShowChallengeForm(true)}
+            className="px-6 py-3 bg-paper text-ink font-bold rounded-xl border border-line hover:bg-paper-2 transition-colors"
+          >
+            Challenge a Friend
+          </button>
+        ) : (
+          <div className="flex flex-col sm:flex-row gap-2 items-center justify-center">
+            <input
+              type="text"
+              value={challengerName}
+              onChange={(e) => setChallengerName(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleChallengeShare();
+              }}
+              placeholder="Your name (optional)"
+              maxLength={20}
+              autoComplete="off"
+              className="w-full sm:w-48 px-3 py-2 text-sm bg-paper border border-line rounded-lg text-ink text-center focus:outline-none focus:border-orange-500"
+            />
+            <button
+              onClick={handleChallengeShare}
+              className="px-5 py-2 bg-orange-600 text-ink font-bold text-sm rounded-lg hover:bg-orange-700 transition-colors whitespace-nowrap"
+            >
+              Send Challenge
+            </button>
+          </div>
+        )}
+        {challengeCopied && (
+          <p className="text-emerald-500 text-xs font-bold mt-2">Link copied!</p>
+        )}
       </div>
     </div>
   );
