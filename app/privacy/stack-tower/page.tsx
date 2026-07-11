@@ -113,10 +113,10 @@ export default function StackTowerPrivacy() {
           <p className="text-ink-2 leading-relaxed">
             If you have any questions about this privacy policy, contact us at{" "}
             <a
-              href="mailto:meydevapps@gmail.com"
+              href="mailto:meydev.studio@gmail.com"
               className="text-emerald-500 underline hover:text-emerald-400"
             >
-              meydevapps@gmail.com
+              meydev.studio@gmail.com
             </a>
             .
           </p>
