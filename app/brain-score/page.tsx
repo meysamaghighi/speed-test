@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import BrainScore from "../components/BrainScore";
 import RelatedTests from "../components/RelatedTests";
 import { TESTS } from "../lib/brainTests";
@@ -39,7 +40,9 @@ export default function BrainScorePage() {
         </p>
       </div>
 
-      <BrainScore />
+      <Suspense>
+        <BrainScore />
+      </Suspense>
 
       <section className="mt-12 space-y-6">
         <h2 className="text-xl font-bold text-ink">About Brain Score</h2>
