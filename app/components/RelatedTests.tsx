@@ -37,6 +37,11 @@ const allTests = [
   { href: "/visual-search", label: "Visual Search", color: "from-orange-500 to-red-600" },
   { href: "/peripheral-test", label: "Divided Attention", color: "from-cyan-500 to-blue-600" },
   { href: "/brain-score", label: "Brain Score", color: "from-indigo-500 to-purple-600" },
+  { href: "/change-detection", label: "Change Detection", color: "from-teal-500 to-cyan-600" },
+  { href: "/dual-task", label: "Dual Task", color: "from-green-500 to-red-600" },
+  { href: "/estimation", label: "Estimation", color: "from-amber-500 to-red-500" },
+  { href: "/math-memory", label: "Math Memory", color: "from-purple-500 to-violet-600" },
+  { href: "/pattern-speed", label: "Mental Math Sprint", color: "from-amber-500 to-yellow-600" },
 ];
 
 const relatedMap: Record<string, string[]> = {
@@ -76,6 +81,11 @@ const relatedMap: Record<string, string[]> = {
   "/visual-search": ["/visual-memory", "/aim", "/peripheral"],
   "/peripheral-test": ["/peripheral", "/aim", "/visual-memory"],
   "/brain-score": ["/reaction", "/memory", "/typing"],
+  "/change-detection": ["/visual-search", "/visual-memory", "/dual-task"],
+  "/dual-task": ["/n-back", "/go-no-go", "/trail-making"],
+  "/estimation": ["/math", "/number-comparison", "/pattern-speed"],
+  "/math-memory": ["/math", "/memory", "/n-back"],
+  "/pattern-speed": ["/estimation", "/math", "/number-comparison"],
 };
 
 export default function RelatedTests({ current }: { current: string }) {
