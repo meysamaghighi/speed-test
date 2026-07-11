@@ -39,14 +39,13 @@ function TowerMotif() {
   ];
 
   return (
-    <div className="flex flex-col items-center gap-1.5 py-2" aria-hidden="true">
+    <div className="w-full max-w-[240px] flex flex-col items-center gap-1.5 py-2" aria-hidden="true">
       {blocks.map((b, i) => (
         <div
           key={i}
           className="h-6 rounded-lg shadow-sm"
           style={{
             width: `${b.w}%`,
-            maxWidth: "220px",
             transform: `translateX(${b.offset}px)`,
             background: b.color,
             opacity: 0.55 + (blocks.length - i) * 0.07,
