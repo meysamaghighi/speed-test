@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && (node scripts/indexnow-ping.mjs || true)",
     "start": "next start"
   },
   "keywords": [],
