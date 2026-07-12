@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import RotationPlay from "./RotationPlay";
 import RelatedTests from "../components/RelatedTests";
 
@@ -34,7 +35,9 @@ export default function RotationPage() {
     <main className="max-w-2xl mx-auto px-4 pt-12 pb-12">
       <div className="text-center mb-8">
       </div>
+      <Suspense>
         <RotationPlay />
+      </Suspense>
 
       <section className="mt-12 space-y-6">
         <h2 className="text-2xl font-bold text-ink">What is a Mental Rotation Test?</h2>
