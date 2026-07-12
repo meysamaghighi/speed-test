@@ -5,10 +5,20 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { TESTS } from "../lib/brainTests";
 import ReportUpsell from "./ReportUpsell";
+import { recordSnapshot, type ScoreSnapshot } from "../lib/brainProgress";
 import { encodeBrainChallenge, decodeBrainChallenge, type BrainChallengeData } from "../lib/brainChallenge";
 import { track } from "../lib/report";
 
-
+function formatDate(iso: string) {
+  try {
+    return new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    return iso;
+  }
+}
 
 function getOverallRating(score: number) {
   if (score >= 90) return { label: "Genius Brain", color: "text-emerald-400", bg: "bg-emerald-500" };
@@ -30,6 +40,7 @@ function getBarColor(score: number) {
 export default function BrainScore() {
   const [scores, setScores] = useState<Map<string, number>>(new Map());
   const [loaded, setLoaded] = useState(false);
+  const [history, setHistory] = useState<ScoreSnapshot[]>([]);
 
   const searchParams = useSearchParams();
   const [challenge, setChallenge] = useState<BrainChallengeData | null>(null);
@@ -60,7 +71,6 @@ export default function BrainScore() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  if (!loaded) return null;
 
   const completedTests = TESTS.filter((t) => scores.has(t.key));
   const totalTests = TESTS.length;
@@ -79,6 +89,13 @@ export default function BrainScore() {
 
   const brainPoints = Math.round(overallScore * 10);
   const rating = getOverallRating(overallScore);
+
+  useEffect(() => {
+    if (!loaded || completedCount === 0) return;
+    setHistory(recordSnapshot(brainPoints));
+  }, [loaded, completedCount, brainPoints]);
+
+  if (!loaded) return null;
 
   const handleShare = () => {
     const text = `My Brain Score: ${brainPoints}/1000 (${rating.label}) on ${completedCount}/${totalTests} tests! How smart are you?`;
@@ -205,6 +222,37 @@ export default function BrainScore() {
           Retake Tests
         </Link>
       </div>
+
+      {/* Progress over time (local-only history, no accounts) */}
+      {history.length >= 2 && (
+        <div className="bg-paper-2 rounded-2xl p-6 border border-line">
+          <h2 className="text-lg font-bold text-ink mb-1">Your Progress</h2>
+          <p className="text-ink-3 text-sm mb-4">
+            {history[0].score} → {history[history.length - 1].score}{" "}
+            <span
+              className={
+                history[history.length - 1].score >= history[0].score
+                  ? "text-emerald-400"
+                  : "text-orange-400"
+              }
+            >
+              ({history[history.length - 1].score - history[0].score >= 0 ? "+" : ""}
+              {history[history.length - 1].score - history[0].score})
+            </span>{" "}
+            since {formatDate(history[0].date)}
+          </p>
+          <div className="flex items-end gap-1 h-16">
+            {history.slice(-14).map((h) => (
+              <div
+                key={h.date}
+                className={`flex-1 rounded-t ${rating.bg} opacity-70`}
+                style={{ height: `${Math.max(4, h.score / 10)}%` }}
+                title={`${formatDate(h.date)}: ${h.score}`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Challenge a Friend */}
       <div className="bg-paper-2 rounded-xl p-4 border border-line text-center">
