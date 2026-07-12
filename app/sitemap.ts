@@ -53,6 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/estimation`, lastModified, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified, priority: 0.8 },
     { url: `${BASE}/daily`, lastModified, priority: 0.9 },
+    { url: `${BASE}/stack-tower`, lastModified, priority: 0.7 },
     { url: `${BASE}/about`, lastModified, priority: 0.3 },
   ];
 }

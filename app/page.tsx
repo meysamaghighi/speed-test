@@ -787,6 +787,36 @@ export default function Home() {
         </div>
       </Link>
 
+      {/* Stack Tower cross-link CTA */}
+      <Link
+        href="/stack-tower"
+        className="block mb-8 group relative overflow-hidden rounded-2xl border border-line p-4 hover:bg-paper-2 transition-all bg-paper"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-lg">🧱</span>
+              <h2
+                className="font-display text-lg text-ink"
+                style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
+              >
+                Stack Tower
+              </h2>
+              <span
+                className="text-xs font-bold px-2 py-0.5 rounded-full text-paper"
+                style={{ background: "var(--accent)" }}
+              >
+                FREE
+              </span>
+            </div>
+            <p className="text-ink-2 text-sm">
+              Our free block-stacking game for Android &mdash; how high can you build?
+            </p>
+          </div>
+          <div className="text-ink text-2xl group-hover:translate-x-1 transition-transform">→</div>
+        </div>
+      </Link>
+
       {FACULTY_ORDER.map((faculty) => {
         const facultyTests = tests.filter((t) => FACULTY_OF[t.href] === faculty);
         if (facultyTests.length === 0) return null;
