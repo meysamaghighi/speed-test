@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
+import { track } from "../lib/report";
 
 export type ActivityStatus = "idle" | "playing" | "ended";
 
@@ -182,6 +183,15 @@ export default function TestShell({
               </button>
             )}
           </div>
+          <p className="mt-3">
+            <Link
+              href="/brain-score"
+              onClick={() => track("result_brainscore_click", { test: id })}
+              className="font-mono text-xs text-ink-3 underline hover:text-ink"
+            >
+              See your Brain Score & full report →
+            </Link>
+          </p>
         </div>
       )}
 
