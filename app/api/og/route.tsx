@@ -67,7 +67,9 @@ export async function GET(req: Request) {
   const max = testId ? TEST_MAX[testId] ?? DEFAULT_MAX : DEFAULT_MAX;
   const score = testId ? safeScore(searchParams.get("score"), max) : null;
   const name = testId ? safeName(searchParams.get("name")) : null;
-  const testLabel = testId ? TEST_LABELS[testId] : null;
+  const rawLabel = testId ? TEST_LABELS[testId] : null;
+  const testLabel =
+    rawLabel && !/test$/i.test(rawLabel) ? `${rawLabel} Test` : rawLabel;
 
   try {
     return new ImageResponse(
