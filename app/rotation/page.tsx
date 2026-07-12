@@ -2,33 +2,100 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import RotationPlay from "./RotationPlay";
 import RelatedTests from "../components/RelatedTests";
+import { decodeChallenge } from "../lib/challenge";
 
-export const metadata: Metadata = {
-  title: "Mental Rotation Test Online - Free 3D Spatial Rotation Test",
-  description:
-    "Take the mental rotation test online for free. Compare rotated 3D shapes and measure your spatial intelligence. Used by engineers and architects. Test your mental rotation skills now.",
-  keywords: [
-    "mental rotation test online",
-    "mental rotation test",
-    "mental rotation tests",
-    "3D rotation test",
-    "spatial rotation test",
-    "brain rotation test",
-    "spatial reasoning test",
-    "3d spatial rotation recognition game",
-    "visual spatial test",
-    "spatial intelligence test",
-  ],
-  openGraph: {
-    title: "Mental Rotation Test Online - Free 3D Spatial Rotation Test",
-    description:
-      "Take the mental rotation test online for free. Compare rotated 3D shapes and measure your spatial intelligence. Used by engineers and architects.",
-    type: "website",
-  },
-  alternates: {
-    canonical: "/rotation",
-  },
+const TITLE = "Mental Rotation Test Online - Free 3D Spatial Rotation Test";
+const DESCRIPTION =
+  "Take the mental rotation test online for free. Compare rotated 3D shapes and measure your spatial intelligence. Used by engineers and architects. Test your mental rotation skills now.";
+const OG_DESCRIPTION =
+  "Take the mental rotation test online for free. Compare rotated 3D shapes and measure your spatial intelligence. Used by engineers and architects.";
+const KEYWORDS = [
+  "mental rotation test online",
+  "mental rotation test",
+  "mental rotation tests",
+  "3D rotation test",
+  "spatial rotation test",
+  "brain rotation test",
+  "spatial reasoning test",
+  "3d spatial rotation recognition game",
+  "visual spatial test",
+  "spatial intelligence test",
+];
+
+type Props = {
+  searchParams: Promise<{ c?: string | string[] }>;
 };
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const params = await searchParams;
+  const raw = Array.isArray(params.c) ? params.c[0] : params.c;
+  const challenge = decodeChallenge(raw);
+
+  const base: Metadata = {
+    title: TITLE,
+    description: DESCRIPTION,
+    keywords: KEYWORDS,
+    alternates: { canonical: "/rotation" },
+  };
+
+  if (!challenge) {
+    // No challenge param: default OG image for this test.
+    // Note: this page (like every test page) already sets its own literal
+    // `openGraph` object for title/description, which — per Next.js metadata
+    // composition — replaces the root layout's openGraph entirely rather
+    // than deep-merging. That means the root's app/opengraph-image.tsx file
+    // convention never actually reaches this page (verified: /brain-score,
+    // untouched by this change, has the same pre-existing gap — it emits
+    // twitter:image but no og:image at all). Rather than leave og:image
+    // silently missing on /rotation, point it at the new dynamic route in
+    // its no-score "test" state, which renders the same dark-card family as
+    // the site default. This is a one-page fix scoped to the page this task
+    // touches; the same gap likely exists on other test pages and is a
+    // separate cleanup.
+    const defaultImageUrl = "/api/og?test=rotation";
+    return {
+      ...base,
+      openGraph: {
+        title: TITLE,
+        description: OG_DESCRIPTION,
+        type: "website",
+        images: [{ url: defaultImageUrl, width: 1200, height: 630, alt: TITLE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: TITLE,
+        description: OG_DESCRIPTION,
+        images: [defaultImageUrl],
+      },
+    };
+  }
+
+  // A "Challenge a Friend" link (?c=) is present: point og:image / twitter:image
+  // at the personalized score card so it unfurls with the challenger's score.
+  const ogImageUrl = `/api/og?test=rotation&score=${encodeURIComponent(
+    String(Math.round(challenge.score))
+  )}&name=${encodeURIComponent(challenge.name)}`;
+  const shareTitle = `${challenge.name} scored ${challenge.score} on the Mental Rotation Test`;
+  const shareDescription = "Can you beat it? Take the free mental rotation test on BenchMyBrain.";
+
+  return {
+    ...base,
+    title: shareTitle,
+    description: shareDescription,
+    openGraph: {
+      title: shareTitle,
+      description: shareDescription,
+      type: "website",
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: shareTitle }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: shareTitle,
+      description: shareDescription,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 export default function RotationPage() {
   return (
