@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Mental Math Sprint - Rapid Estimation & Number Sense Test | BenchMyBrain",
-    description:
-      "A fast-paced mental math sprint: count dots quickly, estimate math results, compare quantities. 15 rounds of rapid estimation challenges.",
+    description: "A fast-paced mental math sprint: count dots quickly, estimate math results, compare quantities. 15 rounds of rapid estimation challenges.",
     type: "website",
+    images: [{ url: "/api/og?test=pattern-speed", width: 1200, height: 630, alt: "Mental Math Sprint - Rapid Estimation & Number Sense Test | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mental Math Sprint - Rapid Estimation & Number Sense Test | BenchMyBrain",
+    description: "A fast-paced mental math sprint: count dots quickly, estimate math results, compare quantities. 15 rounds of rapid estimation challenges.",
+    images: ["/api/og?test=pattern-speed"],
   },
   alternates: {
     canonical: "/pattern-speed",

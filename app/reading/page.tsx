@@ -19,6 +19,13 @@ export const metadata: Metadata = {
     title: "Reading Speed Test - How Fast Do You Read? | BenchMyBrain",
     description: "Measure your reading speed in words per minute (WPM) with comprehension quiz. The average adult reads 200-250 WPM. How fast are you?",
     type: "website",
+    images: [{ url: "/api/og?test=reading", width: 1200, height: 630, alt: "Reading Speed Test - How Fast Do You Read? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Reading Speed Test - How Fast Do You Read? | BenchMyBrain",
+    description: "Measure your reading speed in words per minute (WPM) with comprehension quiz. The average adult reads 200-250 WPM. How fast are you?",
+    images: ["/api/og?test=reading"],
   },
   alternates: {
     canonical: "/reading",

@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Dual Task Test - Divided Attention & Multitasking | BenchMyBrain",
-    description:
-      "Test your divided attention. Track a moving dot visually while counting audio beeps. How well can you multitask?",
+    description: "Test your divided attention. Track a moving dot visually while counting audio beeps. How well can you multitask?",
     type: "website",
+    images: [{ url: "/api/og?test=dual-task", width: 1200, height: 630, alt: "Dual Task Test - Divided Attention & Multitasking | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dual Task Test - Divided Attention & Multitasking | BenchMyBrain",
+    description: "Test your divided attention. Track a moving dot visually while counting audio beeps. How well can you multitask?",
+    images: ["/api/og?test=dual-task"],
   },
   alternates: {
     canonical: "/dual-task",

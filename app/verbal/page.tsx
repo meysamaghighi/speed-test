@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     title: "Verbal Memory Test - How Many Words Can You Remember? | BenchMyBrain",
     description: "Free verbal memory test. Words appear one at a time. Click SEEN if you saw it before, or NEW if it is new. 3 lives. How high can you score?",
     type: "website",
+    images: [{ url: "/api/og?test=verbal", width: 1200, height: 630, alt: "Verbal Memory Test - How Many Words Can You Remember? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Verbal Memory Test - How Many Words Can You Remember? | BenchMyBrain",
+    description: "Free verbal memory test. Words appear one at a time. Click SEEN if you saw it before, or NEW if it is new. 3 lives. How high can you score?",
+    images: ["/api/og?test=verbal"],
   },
   alternates: {
     canonical: "/verbal",

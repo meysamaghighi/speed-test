@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["visual memory test", "memory test", "pattern memory", "grid memory test", "brain memory test", "short term memory"],
   openGraph: {
     title: "Visual Memory Test - How Many Tiles Can You Remember? | BenchMyBrain",
-    description:
-      "Free visual memory test. A pattern of tiles flashes on a grid — remember and click them. Each level adds more tiles. 3 lives. How far can you go?",
+    description: "Free visual memory test. A pattern of tiles flashes on a grid — remember and click them. Each level adds more tiles. 3 lives. How far can you go?",
     type: "website",
+    images: [{ url: "/api/og?test=visual-memory", width: 1200, height: 630, alt: "Visual Memory Test - How Many Tiles Can You Remember? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Visual Memory Test - How Many Tiles Can You Remember? | BenchMyBrain",
+    description: "Free visual memory test. A pattern of tiles flashes on a grid — remember and click them. Each level adds more tiles. 3 lives. How far can you go?",
+    images: ["/api/og?test=visual-memory"],
   },
   alternates: {
     canonical: "/visual-memory",

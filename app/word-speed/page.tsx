@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Word Speed Test - How Fast Can You Type Words? | BenchMyBrain",
-    description:
-      "Test your word typing speed. Type words as fast as you can, measured in WPM. Free online test with accuracy tracking.",
+    description: "Test your word typing speed. Type words as fast as you can, measured in WPM. Free online test with accuracy tracking.",
     type: "website",
+    images: [{ url: "/api/og?test=word-speed", width: 1200, height: 630, alt: "Word Speed Test - How Fast Can You Type Words? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Word Speed Test - How Fast Can You Type Words? | BenchMyBrain",
+    description: "Test your word typing speed. Type words as fast as you can, measured in WPM. Free online test with accuracy tracking.",
+    images: ["/api/og?test=word-speed"],
   },
   alternates: {
     canonical: "/word-speed",

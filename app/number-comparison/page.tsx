@@ -15,9 +15,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Number Comparison Test - Which Is Larger? | BenchMyBrain",
-    description:
-      "Test your number comparison speed. See two numbers and click the larger one as fast as you can. Measures numerical processing and reaction time.",
+    description: "Test your number comparison speed. See two numbers and click the larger one as fast as you can. Measures numerical processing and reaction time.",
     type: "website",
+    images: [{ url: "/api/og?test=number-comparison", width: 1200, height: 630, alt: "Number Comparison Test - Which Is Larger? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Number Comparison Test - Which Is Larger? | BenchMyBrain",
+    description: "Test your number comparison speed. See two numbers and click the larger one as fast as you can. Measures numerical processing and reaction time.",
+    images: ["/api/og?test=number-comparison"],
   },
   alternates: {
     canonical: "/number-comparison",

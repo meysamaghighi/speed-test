@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     title: "Stroop Color Test - Test Your Brain's Processing Speed | BenchMyBrain",
     description: "Free Stroop effect test. A color name appears in a different ink color. Pick the ink color, not the word. Tests cognitive flexibility and attention.",
     type: "website",
+    images: [{ url: "/api/og?test=stroop", width: 1200, height: 630, alt: "Stroop Color Test - Test Your Brain's Processing Speed | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stroop Color Test - Test Your Brain's Processing Speed | BenchMyBrain",
+    description: "Free Stroop effect test. A color name appears in a different ink color. Pick the ink color, not the word. Tests cognitive flexibility and attention.",
+    images: ["/api/og?test=stroop"],
   },
   alternates: {
     canonical: "/stroop",

@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Face Memory Test - How Good Is Your Face Recognition? | BenchMyBrain",
-    description:
-      "Test your face memory and recognition skills. Study emoji faces, then identify which ones changed. Progressively harder levels with more faces and less time.",
+    description: "Test your face memory and recognition skills. Study emoji faces, then identify which ones changed. Progressively harder levels with more faces and less time.",
     type: "website",
+    images: [{ url: "/api/og?test=face-memory", width: 1200, height: 630, alt: "Face Memory Test - How Good Is Your Face Recognition? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Face Memory Test - How Good Is Your Face Recognition? | BenchMyBrain",
+    description: "Test your face memory and recognition skills. Study emoji faces, then identify which ones changed. Progressively harder levels with more faces and less time.",
+    images: ["/api/og?test=face-memory"],
   },
   alternates: {
     canonical: "/face-memory",

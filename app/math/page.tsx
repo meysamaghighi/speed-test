@@ -19,6 +19,13 @@ export const metadata: Metadata = {
     title: "Math Speed Test - 60-Second Mental Math Challenge | BenchMyBrain",
     description: "Test your mental math speed with this free 60-second challenge. Addition, subtraction, multiplication and division with increasing difficulty. Beat the clock!",
     type: "website",
+    images: [{ url: "/api/og?test=math", width: 1200, height: 630, alt: "Math Speed Test - 60-Second Mental Math Challenge | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Math Speed Test - 60-Second Mental Math Challenge | BenchMyBrain",
+    description: "Test your mental math speed with this free 60-second challenge. Addition, subtraction, multiplication and division with increasing difficulty. Beat the clock!",
+    images: ["/api/og?test=math"],
   },
   alternates: {
     canonical: "/math",

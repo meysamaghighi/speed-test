@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Reaction Time Test - How Fast Are Your Reflexes? | BenchMyBrain",
-    description:
-      "Test your reaction time with this free online tool. Click when the screen turns green and see your speed in milliseconds. Average is 250ms.",
+    description: "Test your reaction time with this free online tool. Click when the screen turns green and see your speed in milliseconds. Average is 250ms.",
     type: "website",
+    images: [{ url: "/api/og?test=reaction", width: 1200, height: 630, alt: "Reaction Time Test - How Fast Are Your Reflexes? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Reaction Time Test - How Fast Are Your Reflexes? | BenchMyBrain",
+    description: "Test your reaction time with this free online tool. Click when the screen turns green and see your speed in milliseconds. Average is 250ms.",
+    images: ["/api/og?test=reaction"],
   },
   alternates: {
     canonical: "/reaction",

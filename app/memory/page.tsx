@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Number Memory Test - How Many Digits Can You Remember? | BenchMyBrain",
-    description:
-      "Test your number memory. A number flashes on screen, then you type it back. How many digits can you remember? Average is 7.",
+    description: "Test your number memory. A number flashes on screen, then you type it back. How many digits can you remember? Average is 7.",
     type: "website",
+    images: [{ url: "/api/og?test=memory", width: 1200, height: 630, alt: "Number Memory Test - How Many Digits Can You Remember? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Number Memory Test - How Many Digits Can You Remember? | BenchMyBrain",
+    description: "Test your number memory. A number flashes on screen, then you type it back. How many digits can you remember? Average is 7.",
+    images: ["/api/og?test=memory"],
   },
   alternates: {
     canonical: "/memory",

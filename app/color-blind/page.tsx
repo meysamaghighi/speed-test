@@ -19,6 +19,13 @@ export const metadata: Metadata = {
     title: "Color Blind Test - Ishihara-Style Color Vision Screening | BenchMyBrain",
     description: "Free online color blindness test with 12 Ishihara-style plates. Screen for red-green and blue-yellow color vision deficiency in under 2 minutes.",
     type: "website",
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "Color Blind Test - Ishihara-Style Color Vision Screening | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Color Blind Test - Ishihara-Style Color Vision Screening | BenchMyBrain",
+    description: "Free online color blindness test with 12 Ishihara-style plates. Screen for red-green and blue-yellow color vision deficiency in under 2 minutes.",
+    images: ["/api/og"],
   },
   alternates: {
     canonical: "/color-blind",

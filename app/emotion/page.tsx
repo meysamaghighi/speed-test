@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Emotion Recognition Test - Can You Read Faces? | BenchMyBrain",
-    description:
-      "Test your emotion recognition skills. Identify emoji emotions (happy, sad, angry, surprised, disgusted, fearful, neutral) as fast and accurately as possible.",
+    description: "Test your emotion recognition skills. Identify emoji emotions (happy, sad, angry, surprised, disgusted, fearful, neutral) as fast and accurately as possible.",
     type: "website",
+    images: [{ url: "/api/og?test=emotion", width: 1200, height: 630, alt: "Emotion Recognition Test - Can You Read Faces? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Emotion Recognition Test - Can You Read Faces? | BenchMyBrain",
+    description: "Test your emotion recognition skills. Identify emoji emotions (happy, sad, angry, surprised, disgusted, fearful, neutral) as fast and accurately as possible.",
+    images: ["/api/og?test=emotion"],
   },
   alternates: {
     canonical: "/emotion",

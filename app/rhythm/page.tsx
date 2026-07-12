@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Rhythm Timing Test - Test Your Sense of Rhythm | BenchMyBrain",
-    description:
-      "Test your rhythm and timing accuracy with this free online tool. Listen to beat patterns and tap them back. Challenge your musical timing and coordination.",
+    description: "Test your rhythm and timing accuracy with this free online tool. Listen to beat patterns and tap them back. Challenge your musical timing and coordination.",
     type: "website",
+    images: [{ url: "/api/og?test=rhythm", width: 1200, height: 630, alt: "Rhythm Timing Test - Test Your Sense of Rhythm | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rhythm Timing Test - Test Your Sense of Rhythm | BenchMyBrain",
+    description: "Test your rhythm and timing accuracy with this free online tool. Listen to beat patterns and tap them back. Challenge your musical timing and coordination.",
+    images: ["/api/og?test=rhythm"],
   },
   alternates: {
     canonical: "/rhythm",

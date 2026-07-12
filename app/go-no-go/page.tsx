@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["go no-go test", "impulse control test", "inhibition test", "reaction time test", "attention test", "ADHD test", "cognitive control"],
   openGraph: {
     title: "Go/No-Go Test - Test Impulse Control | BenchMyBrain",
-    description:
-      "Free Go/No-Go Test. Click on green circles, don't click on red ones. 40 trials testing reaction time AND impulse control.",
+    description: "Free Go/No-Go Test. Click on green circles, don't click on red ones. 40 trials testing reaction time AND impulse control.",
     type: "website",
+    images: [{ url: "/api/og?test=go-no-go", width: 1200, height: 630, alt: "Go/No-Go Test - Test Impulse Control | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Go/No-Go Test - Test Impulse Control | BenchMyBrain",
+    description: "Free Go/No-Go Test. Click on green circles, don't click on red ones. 40 trials testing reaction time AND impulse control.",
+    images: ["/api/og?test=go-no-go"],
   },
   alternates: {
     canonical: "/go-no-go",
