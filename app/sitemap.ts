@@ -4,7 +4,7 @@ const BASE = "https://benchmybrain.com";
 
 // Stable lastmod. Only bump this when real content changes (new test, copy update).
 // GSC down-ranks sitemaps whose lastmod churns on every deploy.
-const SITE_LAST_MODIFIED = "2026-04-21";
+const SITE_LAST_MODIFIED = "2026-07-13";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = SITE_LAST_MODIFIED;
@@ -51,6 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/dual-task`, lastModified, priority: 0.9 },
     { url: `${BASE}/change-detection`, lastModified, priority: 0.9 },
     { url: `${BASE}/estimation`, lastModified, priority: 0.9 },
+    { url: `${BASE}/anticipation`, lastModified, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified, priority: 0.8 },
     { url: `${BASE}/daily`, lastModified, priority: 0.9 },
     { url: `${BASE}/stack-tower`, lastModified, priority: 0.7 },
