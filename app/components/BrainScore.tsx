@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { TESTS } from "../lib/brainTests";
 import ReportUpsell from "./ReportUpsell";
 import { recordSnapshot, type ScoreSnapshot } from "../lib/brainProgress";
+import { encodeBrainChallenge, decodeBrainChallenge, type BrainChallengeData } from "../lib/brainChallenge";
+import { track } from "../lib/report";
 
 function formatDate(iso: string) {
   try {
@@ -39,6 +42,13 @@ export default function BrainScore() {
   const [loaded, setLoaded] = useState(false);
   const [history, setHistory] = useState<ScoreSnapshot[]>([]);
 
+  const searchParams = useSearchParams();
+  const [challenge, setChallenge] = useState<BrainChallengeData | null>(null);
+  const [challengerName, setChallengerName] = useState("");
+  const [showChallengeForm, setShowChallengeForm] = useState(false);
+  const [challengeCopied, setChallengeCopied] = useState(false);
+  const trackedAccepted = useRef(false);
+
   useEffect(() => {
     const map = new Map<string, number>();
     for (const test of TESTS) {
@@ -50,6 +60,17 @@ export default function BrainScore() {
     setScores(map);
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    const decoded = decodeBrainChallenge(searchParams?.get("c"));
+    setChallenge(decoded);
+    if (decoded && !trackedAccepted.current) {
+      trackedAccepted.current = true;
+      track("brainscore_challenge_accepted");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
 
   const completedTests = TESTS.filter((t) => scores.has(t.key));
   const totalTests = TESTS.length;
@@ -92,6 +113,13 @@ export default function BrainScore() {
   if (completedCount === 0) {
     return (
       <div className="text-center space-y-6">
+        {challenge && (
+          <div className="bg-orange-100 border border-orange-300 rounded-xl p-4 text-left">
+            <p className="text-orange-700 text-sm font-bold">
+              🧠 {challenge.name} scored {challenge.score}/1000 — can you beat it?
+            </p>
+          </div>
+        )}
         <div className="bg-paper-2 rounded-2xl p-8 border border-line">
           <p className="text-6xl font-black text-ink-3 mb-4">?/1000</p>
           <p className="text-ink-2">
@@ -113,8 +141,42 @@ export default function BrainScore() {
 
   const missingTests = TESTS.filter((t) => !scores.has(t.key));
 
+  const handleChallengeShare = () => {
+    const name = challengerName.trim() || "A friend";
+    const url = `${window.location.origin}/brain-score?c=${encodeBrainChallenge({ name, score: brainPoints })}`;
+    const text = `${name} scored ${brainPoints}/1000 on their Brain Score — can you beat it?`;
+    track("brainscore_challenge_created");
+    if (typeof navigator !== "undefined" && navigator.share) {
+      navigator.share({ title: "Brain Score", text, url }).catch(() => {});
+    } else if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          setChallengeCopied(true);
+          setTimeout(() => setChallengeCopied(false), 2500);
+        })
+        .catch(() => {});
+    }
+  };
+
+  const vsChallenge = challenge
+    ? brainPoints > challenge.score
+      ? `You scored ${brainPoints} — you beat ${challenge.name} by ${brainPoints - challenge.score}!`
+      : brainPoints === challenge.score
+      ? `You tied ${challenge.name} at ${brainPoints}!`
+      : `You scored ${brainPoints} — ${challenge.name} wins by ${challenge.score - brainPoints}`
+    : null;
+
   return (
     <div className="space-y-8">
+      {challenge && (
+        <div className="bg-orange-100 border border-orange-300 rounded-xl p-4">
+          <p className="text-orange-700 text-sm font-bold">
+            🧠 {challenge.name} scored {challenge.score}/1000 — can you beat it?
+          </p>
+        </div>
+      )}
+
       {/* Main score display */}
       <div className="bg-paper-2 rounded-2xl p-8 border border-line text-center">
         <p className="text-ink-2 text-sm mb-2">Your Brain Score</p>
@@ -134,6 +196,15 @@ export default function BrainScore() {
             />
           </div>
         </div>
+
+        {vsChallenge && (
+          <div className="mt-4 border-t border-line pt-3">
+            <p className="text-ink-3 text-xs uppercase tracking-wide font-bold">
+              You vs {challenge!.name}
+            </p>
+            <p className="text-orange-700 text-sm font-bold mt-1">{vsChallenge}</p>
+          </div>
+        )}
       </div>
 
       {/* Share + retry */}
@@ -182,6 +253,42 @@ export default function BrainScore() {
           </div>
         </div>
       )}
+
+      {/* Challenge a Friend */}
+      <div className="bg-paper-2 rounded-xl p-4 border border-line text-center">
+        {!showChallengeForm ? (
+          <button
+            onClick={() => setShowChallengeForm(true)}
+            className="px-6 py-3 bg-paper text-ink font-bold rounded-xl border border-line hover:bg-paper-2 transition-colors"
+          >
+            Challenge a Friend
+          </button>
+        ) : (
+          <div className="flex flex-col sm:flex-row gap-2 items-center justify-center">
+            <input
+              type="text"
+              value={challengerName}
+              onChange={(e) => setChallengerName(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleChallengeShare();
+              }}
+              placeholder="Your name (optional)"
+              maxLength={20}
+              autoComplete="off"
+              className="w-full sm:w-48 px-3 py-2 text-sm bg-paper border border-line rounded-lg text-ink text-center focus:outline-none focus:border-orange-500"
+            />
+            <button
+              onClick={handleChallengeShare}
+              className="px-5 py-2 bg-orange-600 text-ink font-bold text-sm rounded-lg hover:bg-orange-700 transition-colors whitespace-nowrap"
+            >
+              Send Challenge
+            </button>
+          </div>
+        )}
+        {challengeCopied && (
+          <p className="text-emerald-500 text-xs font-bold mt-2">Link copied!</p>
+        )}
+      </div>
 
       <ReportUpsell completedCount={completedCount} />
 
