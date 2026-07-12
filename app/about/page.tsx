@@ -59,7 +59,7 @@ export default function AboutPage() {
             <strong className="text-ink">No tracking cookies:</strong> Beyond Google Analytics, we don&apos;t use tracking pixels, third-party cookies, or behavioral tracking.
           </p>
           <p className="text-ink-2 mb-3">
-            <strong className="text-ink">Payments:</strong> The optional Cognitive Report is processed by Stripe. We never see your card details, and buying is never required to use the tests.
+            <strong className="text-ink">Payments:</strong> Everything is free. If you choose to support the site with an optional donation, it&apos;s processed by Stripe — we never see your card details, and it&apos;s never required to use anything.
           </p>
           <p className="text-ink-2">
             <strong className="text-ink">Your test data:</strong> All test scores and personal bests stay in your browser. We never see or store your individual performance.
@@ -97,7 +97,7 @@ export default function AboutPage() {
         <div className="bg-paper-2 rounded-xl p-6 border border-line">
           <h2 className="text-xl font-bold text-ink mb-3">Free to Play, Forever</h2>
           <p className="text-ink-2">
-            Every test on BenchMyBrain is free and always will be &mdash; no accounts, no test paywalls, no limits on plays. Your scores, personal bests, and Brain Score are free too. The one optional extra is the <strong className="text-ink">Full Cognitive Report</strong>, a one-time purchase that turns your existing scores into a detailed breakdown. Skipping it locks you out of nothing.
+            Every test on BenchMyBrain is free and always will be &mdash; no accounts, no test paywalls, no limits on plays. Your scores, personal bests, Brain Score, and the <strong className="text-ink">Full Cognitive Report</strong> (a detailed breakdown of your results) are all free too. If you find it useful, you can support the site with an optional donation &mdash; but nothing here is ever locked.
           </p>
         </div>
       </section>

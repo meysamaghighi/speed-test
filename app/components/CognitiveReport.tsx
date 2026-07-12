@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { TESTS } from "../lib/brainTests";
 import {
@@ -10,14 +9,9 @@ import {
   FACULTY_BLURB,
   FACULTY_OF,
   PAYMENT_LINK,
-  isUnlocked,
-  setUnlocked,
   track,
   type Faculty,
 } from "../lib/report";
-
-type Status = "checking" | "locked" | "unlocked";
-type RestoreState = "idle" | "submitting" | "success" | "not_found" | "error" | "rate_limited";
 
 interface FacultyScore {
   faculty: Faculty;
@@ -35,7 +29,7 @@ function ratingFor(score: number) {
   return { label: "Train this", color: "text-red-400" };
 }
 
-function RadarChart({ scores, hideValues = false }: { scores: FacultyScore[]; hideValues?: boolean }) {
+function RadarChart({ scores }: { scores: FacultyScore[] }) {
   const size = 300;
   const cx = size / 2;
   const cy = size / 2;
@@ -88,7 +82,7 @@ function RadarChart({ scores, hideValues = false }: { scores: FacultyScore[]; hi
             fontWeight="700"
           >
             {FACULTY_LABEL[s.faculty]}
-            {!hideValues && s.score !== null ? ` ${s.score}` : ""}
+            {s.score !== null ? ` ${s.score}` : ""}
           </text>
         );
       })}
@@ -97,13 +91,7 @@ function RadarChart({ scores, hideValues = false }: { scores: FacultyScore[]; hi
 }
 
 export default function CognitiveReport() {
-  const searchParams = useSearchParams();
-  const [status, setStatus] = useState<Status>("checking");
-  const [verifyError, setVerifyError] = useState(false);
-  const [justUnlocked, setJustUnlocked] = useState(false);
-  const [restoreOpen, setRestoreOpen] = useState(false);
-  const [restoreEmail, setRestoreEmail] = useState("");
-  const [restoreState, setRestoreState] = useState<RestoreState>("idle");
+  const [ready, setReady] = useState(false);
   const [scores, setScores] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
@@ -115,34 +103,8 @@ export default function CognitiveReport() {
       } catch {}
     }
     setScores(map);
-
-    if (isUnlocked()) {
-      setStatus("unlocked");
-      return;
-    }
-    const sessionId = searchParams.get("session_id");
-    if (sessionId) {
-      fetch(`/api/verify-payment?session_id=${encodeURIComponent(sessionId)}`)
-        .then((r) => r.json())
-        .then((d) => {
-          if (d.paid) {
-            setJustUnlocked(true);
-            setUnlocked();
-            setStatus("unlocked");
-            track("report_purchase", { value: 4.99, currency: "USD" });
-          } else {
-            setVerifyError(true);
-            setStatus("locked");
-          }
-        })
-        .catch(() => {
-          setVerifyError(true);
-          setStatus("locked");
-        });
-    } else {
-      setStatus("locked");
-    }
-  }, [searchParams]);
+    setReady(true);
+  }, []);
 
   const testScores = useMemo(
     () =>
@@ -171,176 +133,27 @@ export default function CognitiveReport() {
     [testScores]
   );
 
-  async function handleRestore(e: React.FormEvent) {
-    e.preventDefault();
-    setRestoreState("submitting");
-    try {
-      const res = await fetch("/api/restore-purchase", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: restoreEmail }),
-      });
-      const d = await res.json();
-      if (res.status === 429) {
-        setRestoreState("rate_limited");
-      } else if (d.ok) {
-        setRestoreState("success");
-        setUnlocked();
-        track("report_restore", { source: "restore_form" });
-        setTimeout(() => setStatus("unlocked"), 800);
-      } else {
-        setRestoreState("not_found");
-      }
-    } catch {
-      setRestoreState("error");
-    }
-  }
+  if (!ready) return null;
 
-  if (status === "checking") return null;
-
-  if (status === "locked") {
-    const done = testScores.length;
-    const previewRows = [...testScores].sort((a, b) => b.normalized - a.normalized).slice(0, 6);
-    const unlockCta = PAYMENT_LINK ? (
-      <a
-        href={PAYMENT_LINK}
-        onClick={() => track("report_upsell_click", { source: "report_page" })}
-        className="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl px-8 py-4 text-lg transition-colors"
-      >
-        Unlock your report — $4.99
-      </a>
-    ) : (
-      <p className="text-ink-3">The full report is launching soon. Check back shortly!</p>
-    );
-
+  // No tests completed yet on this device — nothing to report from.
+  if (testScores.length === 0) {
     return (
       <div className="space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-black text-ink">Full Cognitive Report</h1>
           <p className="text-ink-2 max-w-md mx-auto">
             A detailed breakdown of your cognitive profile: faculty radar chart, per-test analysis,
-            strengths, and a personalized training plan — built from your own results.
+            strengths, and a personalized training plan — built from your own results, free.
           </p>
-          {verifyError && (
-            <p className="text-sm text-orange-400">
-              We couldn&apos;t confirm the payment. If you were charged, reopen this page from the
-              receipt link in your email — or try again in a minute.
-            </p>
-          )}
         </div>
-
-        {done > 0 ? (
-          <div className="relative">
-            <div aria-hidden className="space-y-4 select-none pointer-events-none">
-              <section className="bg-paper-2 rounded-2xl p-6 border border-line">
-                <h2 className="text-xl font-bold text-ink mb-4 text-center">
-                  Your cognitive profile
-                </h2>
-                <div className="blur-[5px]">
-                  <RadarChart scores={facultyScores} hideValues />
-                </div>
-              </section>
-              <section className="bg-paper-2 rounded-2xl p-6 border border-line">
-                <h2 className="text-lg font-bold text-ink mb-4">Every test, scored</h2>
-                <div className="space-y-2">
-                  {previewRows.map((t) => (
-                    <div key={t.key} className="flex items-center gap-3">
-                      <span className="text-sm text-ink-2 w-40 truncate">{t.label}</span>
-                      <div className="flex-1 blur-[5px]">
-                        <div className="bg-paper rounded-full h-2 overflow-hidden border border-line">
-                          <div className="h-full bg-emerald-500" style={{ width: `${t.normalized}%` }} />
-                        </div>
-                      </div>
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="w-4 h-4 text-ink-3 shrink-0"
-                        fill="currentColor"
-                      >
-                        <path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 1 1 6 0v3H9z" />
-                      </svg>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-paper/95 border border-line rounded-2xl p-6 shadow-xl text-center max-w-sm mx-4">
-                <p className="font-bold text-ink text-lg mb-1">Your report is ready</p>
-                <p className="text-sm text-ink-2 mb-4">
-                  {`Built from the ${done} test${done === 1 ? "" : "s"} you've already completed — and it keeps updating as you play.`}
-                </p>
-                {unlockCta}
-                <p className="text-xs text-ink-3 mt-3">One-time payment · receipt email restores access on any device</p>
-                <div className="mt-3 pt-3 border-t border-line">
-                  {!restoreOpen ? (
-                    <button
-                      onClick={() => setRestoreOpen(true)}
-                      className="text-xs text-ink-3 underline hover:text-ink-2 transition-colors"
-                    >
-                      Already bought? Restore access →
-                    </button>
-                  ) : (
-                    <form onSubmit={handleRestore} className="space-y-2">
-                      <input
-                        type="email"
-                        placeholder="Email used at checkout"
-                        value={restoreEmail}
-                        onChange={(e) => setRestoreEmail(e.target.value)}
-                        required
-                        disabled={restoreState === "submitting" || restoreState === "success"}
-                        className="w-full text-xs bg-paper border border-line rounded-lg px-3 py-2 text-ink placeholder-ink-3 focus:outline-none focus:border-ink-3"
-                      />
-                      {restoreState === "not_found" && (
-                        <p className="text-xs text-orange-400">No purchase found. Use the exact email from your Stripe receipt.</p>
-                      )}
-                      {restoreState === "rate_limited" && (
-                        <p className="text-xs text-orange-400">Too many attempts. Try again later.</p>
-                      )}
-                      {restoreState === "error" && (
-                        <p className="text-xs text-orange-400">Something went wrong. Try reopening the receipt email directly.</p>
-                      )}
-                      {restoreState === "success" && (
-                        <p className="text-xs text-emerald-400">Access restored! Loading your report…</p>
-                      )}
-                      {restoreState !== "success" && (
-                        <div className="flex gap-2">
-                          <button
-                            type="submit"
-                            disabled={restoreState === "submitting"}
-                            className="flex-1 text-xs bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-black font-bold rounded-lg px-3 py-2 transition-colors"
-                          >
-                            {restoreState === "submitting" ? "Checking…" : "Restore"}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => { setRestoreOpen(false); setRestoreState("idle"); setRestoreEmail(""); }}
-                            className="text-xs text-ink-3 hover:text-ink-2 px-2 transition-colors"
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      )}
-                    </form>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="text-center space-y-6">
-            <div className="bg-paper-2 border border-line rounded-xl p-5 text-sm text-ink-2 max-w-md mx-auto">
-              The report is generated from your own scores, and you haven&apos;t taken any tests on
-              this device yet. Try a few first —{" "}
-              <Link href="/reaction" className="underline font-bold text-ink">
-                Reaction Time
-              </Link>{" "}
-              is a good place to start.
-            </div>
-            {unlockCta}
-            <p className="text-xs text-ink-3">One-time payment · receipt email restores access on any device</p>
-          </div>
-        )}
-
+        <div className="bg-paper-2 border border-line rounded-xl p-5 text-sm text-ink-2 max-w-md mx-auto text-center">
+          The report is generated from your own scores, and you haven&apos;t taken any tests on
+          this device yet. Try a few first —{" "}
+          <Link href="/reaction" className="underline font-bold text-ink">
+            Reaction Time
+          </Link>{" "}
+          is a good place to start.
+        </div>
         <p className="text-center">
           <Link href="/brain-score" className="text-ink-3 underline text-sm">
             Back to Brain Score
@@ -353,18 +166,12 @@ export default function CognitiveReport() {
   const sorted = [...testScores].sort((a, b) => b.normalized - a.normalized);
   const strengths = sorted.slice(0, 3);
   const weaknesses = sorted.slice(-3).reverse();
-  const overall =
-    testScores.length > 0
-      ? Math.round(testScores.reduce((s, t) => s + t.normalized, 0) / testScores.length)
-      : 0;
+  const overall = Math.round(
+    testScores.reduce((s, t) => s + t.normalized, 0) / testScores.length
+  );
 
   return (
     <div className="space-y-10 print:text-black">
-      {justUnlocked && (
-        <div className="bg-emerald-900/30 border border-emerald-500/30 rounded-xl p-4 text-sm text-emerald-300 text-center print:hidden">
-          Report unlocked! Save your Stripe receipt email — it restores access on any device.
-        </div>
-      )}
       <div className="text-center">
         <h1 className="text-4xl font-black text-ink mb-2">Your Cognitive Report</h1>
         <p className="text-ink-3 text-sm">
@@ -376,7 +183,7 @@ export default function CognitiveReport() {
       {testScores.length < 10 && (
         <div className="bg-paper-2 border border-line rounded-xl p-4 text-sm text-ink-2 text-center">
           You&apos;ve completed {testScores.length} of {TESTS.length} tests — your report grows more
-          accurate with each test. It updates automatically as you play; this page stays unlocked.
+          accurate with each test, and updates automatically as you play.
         </div>
       )}
 
@@ -457,6 +264,31 @@ export default function CognitiveReport() {
           Print / Save as PDF
         </button>
       </div>
+
+      {PAYMENT_LINK && (
+        <div className="text-center print:hidden bg-paper-2 border border-line rounded-2xl p-6">
+          <p className="font-bold text-ink mb-1">This report is free.</p>
+          <p className="text-sm text-ink-2 mb-4 max-w-md mx-auto">
+            BenchMyBrain has no ads or accounts. If it was useful and you&apos;d like to support it,
+            you can chip in — completely optional.
+          </p>
+          <a
+            href={PAYMENT_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("report_donate_click", { source: "report_page" })}
+            className="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl px-6 py-3 transition-colors"
+          >
+            Support BenchMyBrain ☕
+          </a>
+        </div>
+      )}
+
+      <p className="text-center print:hidden">
+        <Link href="/brain-score" className="text-ink-3 underline text-sm">
+          Back to Brain Score
+        </Link>
+      </p>
     </div>
   );
 }
