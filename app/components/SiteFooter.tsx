@@ -24,10 +24,12 @@ export default function SiteFooter() {
               PlayMini · Browser games
             </Link>
             <Link
-              href="https://doodlelab.fun"
+              href="https://doodlelab.fun?utm_source=benchmybrain&utm_medium=crosspromo&utm_content=footer"
+              target="_blank"
+              rel="noopener"
               className="px-4 py-1.5 border border-line rounded-full text-sm text-ink hover:bg-paper-2 transition-colors"
             >
-              DoodleLab · Drawing games
+              🎨 DoodleLab · Free drawing games
             </Link>
           </div>
         </div>
