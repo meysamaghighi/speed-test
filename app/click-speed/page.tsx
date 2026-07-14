@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["cps test", "click speed test", "clicks per second", "click test", "how fast can I click", "jitter click test"],
   openGraph: {
     title: "Click Speed Test (CPS) - How Fast Can You Click? | BenchMyBrain",
-    description:
-      "Free CPS test (clicks per second). Click as fast as you can for 5 seconds and measure your click speed. Average is 6.5 CPS.",
+    description: "Free CPS test (clicks per second). Click as fast as you can for 5 seconds and measure your click speed. Average is 6.5 CPS.",
     type: "website",
+    images: [{ url: "/api/og?test=click-speed", width: 1200, height: 630, alt: "Click Speed Test (CPS) - How Fast Can You Click? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Click Speed Test (CPS) - How Fast Can You Click? | BenchMyBrain",
+    description: "Free CPS test (clicks per second). Click as fast as you can for 5 seconds and measure your click speed. Average is 6.5 CPS.",
+    images: ["/api/og?test=click-speed"],
   },
   alternates: {
     canonical: "/click-speed",

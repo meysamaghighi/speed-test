@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["n-back test", "working memory test", "dual n-back", "cognitive training", "brain training", "IQ test", "fluid intelligence"],
   openGraph: {
     title: "N-Back Test - Test Working Memory | BenchMyBrain",
-    description:
-      "Free N-Back Test. See a sequence of letters. Click 'Match' if current = N back. Tests working memory and fluid intelligence.",
+    description: "Free N-Back Test. See a sequence of letters. Click 'Match' if current = N back. Tests working memory and fluid intelligence.",
     type: "website",
+    images: [{ url: "/api/og?test=n-back", width: 1200, height: 630, alt: "N-Back Test - Test Working Memory | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "N-Back Test - Test Working Memory | BenchMyBrain",
+    description: "Free N-Back Test. See a sequence of letters. Click 'Match' if current = N back. Tests working memory and fluid intelligence.",
+    images: ["/api/og?test=n-back"],
   },
   alternates: {
     canonical: "/n-back",

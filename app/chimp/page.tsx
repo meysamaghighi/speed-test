@@ -10,9 +10,15 @@ export const metadata: Metadata = {
   keywords: ["are you smarter than a chimpanzee", "chimp test", "chimpanzee memory test", "are you smarter than a chimp", "beat the chimp", "chimp memory test", "Ayumu chimp test", "number memory test", "chimp memory test online", "chimpanzee vs human memory", "ayumu chimpanzee test score", "primate institute kyoto memory test", "human benchmark chimp", "how does the chimpanzee memory test work"],
   openGraph: {
     title: "Chimp Memory Test — Are You Smarter Than a Chimpanzee?",
-    description:
-      "Take the Ayumu chimp memory test. Can you beat a chimpanzee at memory? Test your working memory against the world's most famous cognitive research.",
+    description: "Take the Ayumu chimp memory test. Can you beat a chimpanzee at memory? Test your working memory against the world's most famous cognitive research.",
     type: "website",
+    images: [{ url: "/api/og?test=chimp", width: 1200, height: 630, alt: "Chimp Memory Test — Are You Smarter Than a Chimpanzee?" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chimp Memory Test — Are You Smarter Than a Chimpanzee?",
+    description: "Take the Ayumu chimp memory test. Can you beat a chimpanzee at memory? Test your working memory against the world's most famous cognitive research.",
+    images: ["/api/og?test=chimp"],
   },
   alternates: {
     canonical: "/chimp",

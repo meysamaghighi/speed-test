@@ -17,9 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Typing Speed Test - How Fast Can You Type? | BenchMyBrain",
-    description:
-      "Free typing speed test. Measure your WPM (words per minute) and accuracy. Average typing speed is 40 WPM.",
+    description: "Free typing speed test. Measure your WPM (words per minute) and accuracy. Average typing speed is 40 WPM.",
     type: "website",
+    images: [{ url: "/api/og?test=typing", width: 1200, height: 630, alt: "Typing Speed Test - How Fast Can You Type? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Typing Speed Test - How Fast Can You Type? | BenchMyBrain",
+    description: "Free typing speed test. Measure your WPM (words per minute) and accuracy. Average typing speed is 40 WPM.",
+    images: ["/api/og?test=typing"],
   },
   alternates: {
     canonical: "/typing",

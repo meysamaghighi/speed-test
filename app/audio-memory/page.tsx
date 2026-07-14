@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["audio memory test", "auditory memory", "sound memory test", "simon game", "tone memory", "musical memory", "working memory"],
   openGraph: {
     title: "Audio Memory Test - Test Auditory Memory | BenchMyBrain",
-    description:
-      "Free Audio Memory Test. Hear a sequence of tones and repeat it. Like Simon with audio. Tests auditory working memory.",
+    description: "Free Audio Memory Test. Hear a sequence of tones and repeat it. Like Simon with audio. Tests auditory working memory.",
     type: "website",
+    images: [{ url: "/api/og?test=audio-memory", width: 1200, height: 630, alt: "Audio Memory Test - Test Auditory Memory | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Audio Memory Test - Test Auditory Memory | BenchMyBrain",
+    description: "Free Audio Memory Test. Hear a sequence of tones and repeat it. Like Simon with audio. Tests auditory working memory.",
+    images: ["/api/og?test=audio-memory"],
   },
   alternates: {
     canonical: "/audio-memory",

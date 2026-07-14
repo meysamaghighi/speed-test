@@ -10,9 +10,15 @@ export const metadata: Metadata = {
     "Stack Tower is a free one-tap block-stacking arcade game for Android. Time each drop, build your tower as high as you can, and chase a new high score every run.",
   openGraph: {
     title: "Stack Tower - Free Block-Stacking Game for Android",
-    description:
-      "One-tap, endless block-stacking arcade game. Time your drops, build as high as you can, beat your best.",
+    description: "One-tap, endless block-stacking arcade game. Time your drops, build as high as you can, beat your best.",
     type: "website",
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "Stack Tower - Free Block-Stacking Game for Android" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stack Tower - Free Block-Stacking Game for Android",
+    description: "One-tap, endless block-stacking arcade game. Time your drops, build as high as you can, beat your best.",
+    images: ["/api/og"],
   },
   alternates: {
     canonical: "/stack-tower",

@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Word Fluency Test - How Many Words Can You Name? | BenchMyBrain",
-    description:
-      "Test your word fluency! Name as many words as you can in a category within 60 seconds. Measures verbal fluency, vocabulary, and processing speed.",
+    description: "Test your word fluency! Name as many words as you can in a category within 60 seconds. Measures verbal fluency, vocabulary, and processing speed.",
     type: "website",
+    images: [{ url: "/api/og?test=word-association", width: 1200, height: 630, alt: "Word Fluency Test - How Many Words Can You Name? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Word Fluency Test - How Many Words Can You Name? | BenchMyBrain",
+    description: "Test your word fluency! Name as many words as you can in a category within 60 seconds. Measures verbal fluency, vocabulary, and processing speed.",
+    images: ["/api/og?test=word-association"],
   },
   alternates: {
     canonical: "/word-association",

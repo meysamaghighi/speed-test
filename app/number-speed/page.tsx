@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Number Speed Test - Test Your Digit Span & Working Memory | BenchMyBrain",
-    description:
-      "Numbers flash for a fraction of a second — type them back before the clock runs out. A speeded digit span test for working memory.",
+    description: "Numbers flash for a fraction of a second — type them back before the clock runs out. A speeded digit span test for working memory.",
     type: "website",
+    images: [{ url: "/api/og?test=number-speed", width: 1200, height: 630, alt: "Number Speed Test - Test Your Digit Span & Working Memory | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Number Speed Test - Test Your Digit Span & Working Memory | BenchMyBrain",
+    description: "Numbers flash for a fraction of a second — type them back before the clock runs out. A speeded digit span test for working memory.",
+    images: ["/api/og?test=number-speed"],
   },
   alternates: {
     canonical: "/number-speed",

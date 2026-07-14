@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     title: "Peripheral Vision Test - How Wide Is Your Visual Field? | BenchMyBrain",
     description: "Test your peripheral vision online. Stare at the center and detect targets appearing at the edges of your vision. Free, no sign-up required.",
     type: "website",
+    images: [{ url: "/api/og?test=peripheral", width: 1200, height: 630, alt: "Peripheral Vision Test - How Wide Is Your Visual Field? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Peripheral Vision Test - How Wide Is Your Visual Field? | BenchMyBrain",
+    description: "Test your peripheral vision online. Stare at the center and detect targets appearing at the edges of your vision. Free, no sign-up required.",
+    images: ["/api/og?test=peripheral"],
   },
   alternates: {
     canonical: "/peripheral",

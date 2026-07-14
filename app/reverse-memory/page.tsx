@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Digit Span Backward - Reverse Number Memory Test | BenchMyBrain",
-    description:
-      "Test your working memory with the digit span backward test. Remember sequences of digits and type them in reverse order. Free online brain test.",
+    description: "Test your working memory with the digit span backward test. Remember sequences of digits and type them in reverse order. Free online brain test.",
     type: "website",
+    images: [{ url: "/api/og?test=reverse-memory", width: 1200, height: 630, alt: "Digit Span Backward - Reverse Number Memory Test | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digit Span Backward - Reverse Number Memory Test | BenchMyBrain",
+    description: "Test your working memory with the digit span backward test. Remember sequences of digits and type them in reverse order. Free online brain test.",
+    images: ["/api/og?test=reverse-memory"],
   },
   alternates: {
     canonical: "/reverse-memory",

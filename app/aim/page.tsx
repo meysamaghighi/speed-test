@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["aim trainer", "aim test", "mouse accuracy test", "aim practice", "fps aim trainer", "click accuracy", "aim speed test"],
   openGraph: {
     title: "Aim Trainer - Test & Improve Your Mouse Accuracy | BenchMyBrain",
-    description:
-      "Free aim trainer. Click 30 targets as fast as you can. Measures your average time per target. Great practice for FPS games.",
+    description: "Free aim trainer. Click 30 targets as fast as you can. Measures your average time per target. Great practice for FPS games.",
     type: "website",
+    images: [{ url: "/api/og?test=aim", width: 1200, height: 630, alt: "Aim Trainer - Test & Improve Your Mouse Accuracy | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aim Trainer - Test & Improve Your Mouse Accuracy | BenchMyBrain",
+    description: "Free aim trainer. Click 30 targets as fast as you can. Measures your average time per target. Great practice for FPS games.",
+    images: ["/api/og?test=aim"],
   },
   alternates: {
     canonical: "/aim",
