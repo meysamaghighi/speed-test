@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Change Detection Test - Visual Attention & Memory | BenchMyBrain",
-    description:
-      "Test your change blindness. A grid of colored circles flashes twice - one color changes. Can you spot what changed?",
+    description: "Test your change blindness. A grid of colored circles flashes twice - one color changes. Can you spot what changed?",
     type: "website",
+    images: [{ url: "/api/og?test=change-detection", width: 1200, height: 630, alt: "Change Detection Test - Visual Attention & Memory | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Change Detection Test - Visual Attention & Memory | BenchMyBrain",
+    description: "Test your change blindness. A grid of colored circles flashes twice - one color changes. Can you spot what changed?",
+    images: ["/api/og?test=change-detection"],
   },
   alternates: {
     canonical: "/change-detection",

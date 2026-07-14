@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Daily Brain Challenge | BenchMyBrain",
-    description:
-      "5 tests per day. Same for everyone. Build a streak. Share your results.",
+    description: "5 tests per day. Same for everyone. Build a streak. Share your results.",
     type: "website",
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "Daily Brain Challenge | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daily Brain Challenge | BenchMyBrain",
+    description: "5 tests per day. Same for everyone. Build a streak. Share your results.",
+    images: ["/api/og"],
   },
   alternates: {
     canonical: "/daily",

@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "UFOV Divided Attention Test - Peripheral Vision Challenge | BenchMyBrain",
-    description:
-      "Test your divided attention with the UFOV test. Identify center targets while detecting peripheral stimuli simultaneously.",
+    description: "Test your divided attention with the UFOV test. Identify center targets while detecting peripheral stimuli simultaneously.",
     type: "website",
+    images: [{ url: "/api/og?test=peripheral-test", width: 1200, height: 630, alt: "UFOV Divided Attention Test - Peripheral Vision Challenge | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "UFOV Divided Attention Test - Peripheral Vision Challenge | BenchMyBrain",
+    description: "Test your divided attention with the UFOV test. Identify center targets while detecting peripheral stimuli simultaneously.",
+    images: ["/api/og?test=peripheral-test"],
   },
   alternates: {
     canonical: "/peripheral-test",

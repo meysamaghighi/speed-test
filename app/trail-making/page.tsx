@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["trail making test", "trail making", "executive function test", "cognitive flexibility", "brain test", "TMT", "neuropsychological test"],
   openGraph: {
     title: "Trail Making Test - Test Executive Function | BenchMyBrain",
-    description:
-      "Free Trail Making Test. Connect circles in alternating number-letter order (1-A-2-B-3-C...) as fast as you can. Tests executive function and mental flexibility.",
+    description: "Free Trail Making Test. Connect circles in alternating number-letter order (1-A-2-B-3-C...) as fast as you can. Tests executive function and mental flexibility.",
     type: "website",
+    images: [{ url: "/api/og?test=trail-making", width: 1200, height: 630, alt: "Trail Making Test - Test Executive Function | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trail Making Test - Test Executive Function | BenchMyBrain",
+    description: "Free Trail Making Test. Connect circles in alternating number-letter order (1-A-2-B-3-C...) as fast as you can. Tests executive function and mental flexibility.",
+    images: ["/api/og?test=trail-making"],
   },
   alternates: {
     canonical: "/trail-making",

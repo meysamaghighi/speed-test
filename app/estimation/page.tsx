@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Estimation Test - Number Sense & Subitizing | BenchMyBrain",
-    description:
-      "Test your number estimation and subitizing ability. Dots flash for 1 second - how many were there? From 5 to 85 dots across 10 rounds.",
+    description: "Test your number estimation and subitizing ability. Dots flash for 1 second - how many were there? From 5 to 85 dots across 10 rounds.",
     type: "website",
+    images: [{ url: "/api/og?test=estimation", width: 1200, height: 630, alt: "Estimation Test - Number Sense & Subitizing | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Estimation Test - Number Sense & Subitizing | BenchMyBrain",
+    description: "Test your number estimation and subitizing ability. Dots flash for 1 second - how many were there? From 5 to 85 dots across 10 rounds.",
+    images: ["/api/og?test=estimation"],
   },
   alternates: {
     canonical: "/estimation",

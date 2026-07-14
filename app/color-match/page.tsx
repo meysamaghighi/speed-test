@@ -17,9 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Odd Color Out - Color Perception Test | BenchMyBrain",
-    description:
-      "Test your color perception. Find the tile with a slightly different shade in an increasingly difficult grid.",
+    description: "Test your color perception. Find the tile with a slightly different shade in an increasingly difficult grid.",
     type: "website",
+    images: [{ url: "/api/og?test=color-match", width: 1200, height: 630, alt: "Odd Color Out - Color Perception Test | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Odd Color Out - Color Perception Test | BenchMyBrain",
+    description: "Test your color perception. Find the tile with a slightly different shade in an increasingly difficult grid.",
+    images: ["/api/og?test=color-match"],
   },
   alternates: {
     canonical: "/color-match",

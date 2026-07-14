@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     description:
       "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation, anticipation timing, and more. No sign-up required.",
     type: "website",
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "BenchMyBrain - 40 Free Brain & Speed Tests" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BenchMyBrain - 40 Free Brain & Speed Tests",
+    description: "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation, and more. No sign-up required.",
+    images: ["/api/og"],
   },
   alternates: {
     canonical: "/",

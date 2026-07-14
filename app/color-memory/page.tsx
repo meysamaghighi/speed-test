@@ -15,9 +15,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Color Memory Test - Remember the Sequence | BenchMyBrain",
-    description:
-      "Test your color memory. Watch colored circles flash in sequence and repeat the pattern. How many colors can you remember?",
+    description: "Test your color memory. Watch colored circles flash in sequence and repeat the pattern. How many colors can you remember?",
     type: "website",
+    images: [{ url: "/api/og?test=color-memory", width: 1200, height: 630, alt: "Color Memory Test - Remember the Sequence | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Color Memory Test - Remember the Sequence | BenchMyBrain",
+    description: "Test your color memory. Watch colored circles flash in sequence and repeat the pattern. How many colors can you remember?",
+    images: ["/api/og?test=color-memory"],
   },
   alternates: {
     canonical: "/color-memory",

@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Math Memory Test - Mental Math & Working Memory | BenchMyBrain",
-    description:
-      "Test your math working memory. Equations flash briefly, then disappear. Can you solve them from memory? Difficulty increases with each correct answer.",
+    description: "Test your math working memory. Equations flash briefly, then disappear. Can you solve them from memory? Difficulty increases with each correct answer.",
     type: "website",
+    images: [{ url: "/api/og?test=math-memory", width: 1200, height: 630, alt: "Math Memory Test - Mental Math & Working Memory | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Math Memory Test - Mental Math & Working Memory | BenchMyBrain",
+    description: "Test your math working memory. Equations flash briefly, then disappear. Can you solve them from memory? Difficulty increases with each correct answer.",
+    images: ["/api/og?test=math-memory"],
   },
   alternates: {
     canonical: "/math-memory",

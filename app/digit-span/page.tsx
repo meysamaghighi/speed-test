@@ -17,9 +17,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Digit Span Test - Working Memory Test | BenchMyBrain",
-    description:
-      "Test your working memory with the digit span test. Digits appear one at a time - type them back forward or backward. How many can you remember?",
+    description: "Test your working memory with the digit span test. Digits appear one at a time - type them back forward or backward. How many can you remember?",
     type: "website",
+    images: [{ url: "/api/og?test=digit-span", width: 1200, height: 630, alt: "Digit Span Test - Working Memory Test | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digit Span Test - Working Memory Test | BenchMyBrain",
+    description: "Test your working memory with the digit span test. Digits appear one at a time - type them back forward or backward. How many can you remember?",
+    images: ["/api/og?test=digit-span"],
   },
   alternates: {
     canonical: "/digit-span",

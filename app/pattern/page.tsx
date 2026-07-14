@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Pattern Recognition Test - Test Your Logical Reasoning | BenchMyBrain",
-    description:
-      "Test your pattern recognition and logical reasoning skills. Identify the next item in number sequences, color patterns, and shape patterns.",
+    description: "Test your pattern recognition and logical reasoning skills. Identify the next item in number sequences, color patterns, and shape patterns.",
     type: "website",
+    images: [{ url: "/api/og?test=pattern", width: 1200, height: 630, alt: "Pattern Recognition Test - Test Your Logical Reasoning | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pattern Recognition Test - Test Your Logical Reasoning | BenchMyBrain",
+    description: "Test your pattern recognition and logical reasoning skills. Identify the next item in number sequences, color patterns, and shape patterns.",
+    images: ["/api/og?test=pattern"],
   },
   alternates: {
     canonical: "/pattern",

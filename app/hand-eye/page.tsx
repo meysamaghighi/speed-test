@@ -9,9 +9,15 @@ export const metadata: Metadata = {
   keywords: ["hand-eye coordination test", "motor skills test", "coordination test", "reaction time", "tracking test", "aiming test"],
   openGraph: {
     title: "Hand-Eye Coordination Test - Test Motor Skills | BenchMyBrain",
-    description:
-      "Free Hand-Eye Coordination Test. Click/tap a moving target that gets smaller and faster. 30 seconds.",
+    description: "Free Hand-Eye Coordination Test. Click/tap a moving target that gets smaller and faster. 30 seconds.",
     type: "website",
+    images: [{ url: "/api/og?test=hand-eye", width: 1200, height: 630, alt: "Hand-Eye Coordination Test - Test Motor Skills | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hand-Eye Coordination Test - Test Motor Skills | BenchMyBrain",
+    description: "Free Hand-Eye Coordination Test. Click/tap a moving target that gets smaller and faster. 30 seconds.",
+    images: ["/api/og?test=hand-eye"],
   },
   alternates: {
     canonical: "/hand-eye",

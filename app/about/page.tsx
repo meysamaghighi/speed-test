@@ -8,6 +8,13 @@ export const metadata: Metadata = {
     title: "About BenchMyBrain - Free Brain Tests",
     description: "40 free, original cognitive tests. No accounts, no personal data, no downloads.",
     type: "website",
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "About BenchMyBrain - Free Brain Tests" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About BenchMyBrain - Free Brain Tests",
+    description: "40 free, original cognitive tests. No accounts, no personal data, no downloads.",
+    images: ["/api/og"],
   },
   alternates: {
     canonical: "/about",

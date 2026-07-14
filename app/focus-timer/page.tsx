@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Focus Timer Test - Test Your Internal Clock | BenchMyBrain",
-    description:
-      "Test your internal sense of time. Estimate exact durations (5s, 10s, 15s, 30s) without a visible clock. Measure your time perception accuracy.",
+    description: "Test your internal sense of time. Estimate exact durations (5s, 10s, 15s, 30s) without a visible clock. Measure your time perception accuracy.",
     type: "website",
+    images: [{ url: "/api/og?test=focus-timer", width: 1200, height: 630, alt: "Focus Timer Test - Test Your Internal Clock | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Focus Timer Test - Test Your Internal Clock | BenchMyBrain",
+    description: "Test your internal sense of time. Estimate exact durations (5s, 10s, 15s, 30s) without a visible clock. Measure your time perception accuracy.",
+    images: ["/api/og?test=focus-timer"],
   },
   alternates: {
     canonical: "/focus-timer",

@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     title: "Sequence Memory Test - How Long a Pattern Can You Remember? | BenchMyBrain",
     description: "Free sequence memory test (Simon says). Watch tiles light up in order, then repeat the pattern. Each level adds one more step.",
     type: "website",
+    images: [{ url: "/api/og?test=sequence", width: 1200, height: 630, alt: "Sequence Memory Test - How Long a Pattern Can You Remember? | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sequence Memory Test - How Long a Pattern Can You Remember? | BenchMyBrain",
+    description: "Free sequence memory test (Simon says). Watch tiles light up in order, then repeat the pattern. Each level adds one more step.",
+    images: ["/api/og?test=sequence"],
   },
   alternates: {
     canonical: "/sequence",

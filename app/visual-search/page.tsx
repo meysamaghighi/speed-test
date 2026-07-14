@@ -15,9 +15,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Visual Search Test - Find the Odd One Out | BenchMyBrain",
-    description:
-      "Test your visual search speed. Find the different shape in a grid as fast as you can. Measures attention and visual processing.",
+    description: "Test your visual search speed. Find the different shape in a grid as fast as you can. Measures attention and visual processing.",
     type: "website",
+    images: [{ url: "/api/og?test=visual-search", width: 1200, height: 630, alt: "Visual Search Test - Find the Odd One Out | BenchMyBrain" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Visual Search Test - Find the Odd One Out | BenchMyBrain",
+    description: "Test your visual search speed. Find the different shape in a grid as fast as you can. Measures attention and visual processing.",
+    images: ["/api/og?test=visual-search"],
   },
   alternates: {
     canonical: "/visual-search",
