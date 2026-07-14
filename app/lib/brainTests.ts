@@ -322,6 +322,14 @@ export const TESTS: TestDef[] = [
     unit: "acc%",
     toScore: (acc) => clamp(((acc - 50) / 50) * 100), // 50%=0, 100%=100
   },
+  {
+    key: "pb-anticipation",
+    label: "Anticipation Timing",
+    href: "/anticipation",
+    mode: "higher",
+    unit: "score",
+    toScore: (s) => clamp(s), // component saves a 0-100 score already
+  },
 ];
 
 export function clamp(v: number) {

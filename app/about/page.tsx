@@ -40,7 +40,7 @@ export default function AboutPage() {
         <div className="bg-paper-2 rounded-xl p-6 border border-line">
           <h2 className="text-xl font-bold text-ink mb-3">What Is This?</h2>
           <p className="text-ink-2 mb-3">
-            BenchMyBrain is a free brain testing site with 40 interactive cognitive tests &mdash; 39 that feed your overall Brain Score, plus a color vision screening. Test your reaction time, memory, focus, spatial reasoning, typing speed, and more.
+            BenchMyBrain is a free brain testing site with 41 interactive cognitive tests &mdash; 40 that feed your overall Brain Score, plus a color vision screening. Test your reaction time, memory, focus, spatial reasoning, typing speed, and more.
           </p>
           <p className="text-ink-2">
             All tests are original and custom-built for this site. Nothing is embedded from other platforms. Each test runs entirely in your browser with no server-side processing of your performance data.

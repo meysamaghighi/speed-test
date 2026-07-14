@@ -5,7 +5,7 @@ import { TESTS } from "./lib/brainTests";
 export const metadata: Metadata = {
   title: "BenchMyBrain - 40 Free Brain & Speed Tests | Reaction Time, Typing, Memory",
   description:
-    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, reading speed, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation. No sign-up required.",
+    "Free online brain tests: reaction time, typing speed, number memory, reverse memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye coordination, audio memory, aim trainer, click speed, chimp test, visual memory, sequence memory, verbal memory, Stroop, color blind, math speed, peripheral vision, reading speed, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation, anticipation timing. No sign-up required.",
   keywords: [
     "brain test",
     "reaction time test",
@@ -23,7 +23,8 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "BenchMyBrain - 40 Free Brain & Speed Tests",
-    description: "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation, and more. No sign-up required.",
+    description:
+      "Free online brain tests: reaction time, typing speed, memory, spatial rotation, rhythm timing, pattern recognition, digit span, emotion recognition, trail making, go/no-go, n-back, hand-eye, audio memory, aim, color blind, math, color memory, word association, number comparison, visual search, pattern speed, math memory, dual task, change detection, estimation, anticipation timing, and more. No sign-up required.",
     type: "website",
     images: [{ url: "/api/og", width: 1200, height: 630, alt: "BenchMyBrain - 40 Free Brain & Speed Tests" }],
   },
@@ -67,6 +68,7 @@ const FACULTY_OF: Record<string, Faculty> = {
   "/click-speed": "reflex",
   "/hand-eye": "reflex",
   "/rhythm": "reflex",
+  "/anticipation": "reflex",
 
   "/chimp": "memory",
   "/memory": "memory",
@@ -717,6 +719,20 @@ const tests = [
         <circle cx="14" cy="36" r="3" fill="white" opacity="0.9" />
         <circle cx="28" cy="38" r="3" fill="white" opacity="0.9" />
         <text x="18" y="44" fill="white" fontSize="12" fontWeight="900" opacity="0.6">?</text>
+      </svg>
+    ),
+  },
+  {
+    href: "/anticipation",
+    title: "Anticipation Timing",
+    desc: "A ball vanishes before the finish line. Tap the moment you think it arrives.",
+    color: "from-sky-500 to-blue-600",
+    avg: "Average: 150ms off",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <line x1="6" y1="24" x2="42" y2="24" stroke="white" strokeWidth="2" opacity="0.3" strokeDasharray="3 3" />
+        <line x1="38" y1="8" x2="38" y2="40" stroke="white" strokeWidth="3" opacity="0.7" />
+        <circle cx="16" cy="24" r="5" fill="white" opacity="0.9" />
       </svg>
     ),
   },

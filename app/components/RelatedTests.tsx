@@ -42,6 +42,7 @@ const allTests = [
   { href: "/estimation", label: "Estimation", color: "from-amber-500 to-red-500" },
   { href: "/math-memory", label: "Math Memory", color: "from-purple-500 to-violet-600" },
   { href: "/pattern-speed", label: "Mental Math Sprint", color: "from-amber-500 to-yellow-600" },
+  { href: "/anticipation", label: "Anticipation Timing", color: "from-sky-500 to-blue-600" },
 ];
 
 const relatedMap: Record<string, string[]> = {
@@ -86,6 +87,7 @@ const relatedMap: Record<string, string[]> = {
   "/estimation": ["/math", "/number-comparison", "/pattern-speed"],
   "/math-memory": ["/math", "/memory", "/n-back"],
   "/pattern-speed": ["/estimation", "/math", "/number-comparison"],
+  "/anticipation": ["/hand-eye", "/aim", "/reaction"],
 };
 
 export default function RelatedTests({ current }: { current: string }) {

@@ -30,6 +30,7 @@ export const FACULTY_OF: Record<string, Faculty> = {
   "/click-speed": "reflex",
   "/hand-eye": "reflex",
   "/rhythm": "reflex",
+  "/anticipation": "reflex",
 
   "/chimp": "memory",
   "/memory": "memory",
