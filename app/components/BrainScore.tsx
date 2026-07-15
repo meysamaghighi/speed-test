@@ -290,7 +290,7 @@ export default function BrainScore() {
         )}
       </div>
 
-      <ReportUpsell completedCount={completedCount} />
+      {completedCount >= 3 && <ReportUpsell source="brain_score" />}
 
       {/* Individual test breakdown */}
       <div className="bg-paper-2 rounded-2xl p-6 border border-line">
