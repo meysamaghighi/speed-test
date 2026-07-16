@@ -1,20 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { track } from "../lib/report";
 
-// Free Full Cognitive Report CTA — shown on Brain Score once a few tests are done.
-export default function ReportUpsell({ completedCount }: { completedCount: number }) {
-  const [visible, setVisible] = useState(false);
-
+// Free Full Cognitive Report CTA. Caller decides when to render it.
+export default function ReportUpsell({ source }: { source: string }) {
   useEffect(() => {
-    const show = completedCount >= 3;
-    setVisible(show);
-    if (show) track("report_cta_view", { source: "brain_score" });
-  }, [completedCount]);
-
-  if (!visible) return null;
+    track("report_cta_view", { source });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="bg-gradient-to-br from-emerald-500/10 to-indigo-500/10 border border-emerald-500/40 rounded-2xl p-6 text-center">
@@ -25,7 +20,7 @@ export default function ReportUpsell({ completedCount }: { completedCount: numbe
       </p>
       <Link
         href="/report"
-        onClick={() => track("report_cta_click", { source: "brain_score" })}
+        onClick={() => track("report_cta_click", { source })}
         className="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl px-6 py-3 transition-colors"
       >
         View your report →

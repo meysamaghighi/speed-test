@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 import { encodeChallenge, decodeChallenge, type ChallengeData } from "../lib/challenge";
 import { track } from "../lib/report";
+import ReportUpsell from "./ReportUpsell";
 
 interface Coord {
   x: number;
@@ -384,6 +385,8 @@ export default function SpatialRotation() {
           <p className="text-emerald-500 text-xs font-bold mt-2">Link copied!</p>
         )}
       </div>
+
+      <ReportUpsell source="rotation" />
     </div>
   );
 }
