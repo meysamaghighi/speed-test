@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function NumberMemory() {
   const [phase, setPhase] = useState<"ready" | "show" | "input" | "correct" | "wrong">("ready");
@@ -225,6 +226,8 @@ export default function NumberMemory() {
           Share Score
         </button>
       </div>
+
+      <ReportUpsell source="memory" />
     </div>
   );
 }
