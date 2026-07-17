@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "stimulus" | "center-question" | "location-question" | "result";
 
@@ -239,6 +240,8 @@ export default function PeripheralTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="peripheral-test" />
       </div>
     );
   }
