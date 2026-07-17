@@ -31,6 +31,12 @@ export default function SiteFooter() {
             >
               🎨 DoodleLab · Free drawing games
             </Link>
+            <Link
+              href="/stack-tower"
+              className="px-4 py-1.5 border border-line rounded-full text-sm text-ink hover:bg-paper-2 transition-colors"
+            >
+              🗼 Stack Tower · Free Android game
+            </Link>
           </div>
         </div>
         <p className="mt-6 text-xs text-ink-3 font-mono">© 2026 · made by Meysam</p>
