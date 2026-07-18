@@ -192,6 +192,9 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
           ))}
         </div>
       )}
+
+      {/* Always-visible board (view-only mid-game; submit unlocks on the results screen) */}
+      <LeaderboardPanel game="reaction" score={null} unit="ms" />
     </div>
   );
 }

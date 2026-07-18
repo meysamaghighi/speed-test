@@ -127,7 +127,10 @@ export default function LeaderboardPanel({
   }
 
   return (
-    <div className="mt-6 rounded-xl border border-line bg-paper-2 p-4 text-left">
+    // Explicit text-ink: the panel renders inside game areas that set
+    // text-white on a dark bg (e.g. ReactionPlay) — without it, un-classed
+    // descendants (row names/scores) inherit white onto our light card.
+    <div className="mt-6 rounded-xl border border-line bg-paper-2 p-4 text-left text-ink">
       <h3 className="font-display text-lg text-ink mb-3" style={{ fontWeight: 800 }}>
         🌍 Global Leaderboard
       </h3>
