@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build && (node scripts/indexnow-ping.mjs || true)",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test tests/**/*.test.ts"
   },
   "keywords": [],
   "author": "",
