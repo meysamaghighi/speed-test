@@ -32,5 +32,24 @@ export const metadata: Metadata = {
 };
 
 export default function DailyPage() {
-  return <DailyChallenge />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Daily Brain Challenge",
+            description:
+              "Five brain tests per day, the same for everyone, seeded by date. Build a streak and share your results.",
+            applicationCategory: "GameApplication",
+            operatingSystem: "Any",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
+      <DailyChallenge />
+    </>
+  );
 }
