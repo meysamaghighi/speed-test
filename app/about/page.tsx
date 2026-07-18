@@ -43,7 +43,7 @@ export default function AboutPage() {
             BenchMyBrain is a free brain testing site with 41 interactive cognitive tests &mdash; 40 that feed your overall Brain Score, plus a color vision screening. Test your reaction time, memory, focus, spatial reasoning, typing speed, and more.
           </p>
           <p className="text-ink-2">
-            All tests are original and custom-built for this site. Nothing is embedded from other platforms. Each test runs entirely in your browser with no server-side processing of your performance data.
+            All tests are original and custom-built for this site. Nothing is embedded from other platforms. Each test runs entirely in your browser with no server-side processing of your performance data (opt-in leaderboard submissions are the one exception).
           </p>
         </div>
 
@@ -68,8 +68,11 @@ export default function AboutPage() {
           <p className="text-ink-2 mb-3">
             <strong className="text-ink">Payments:</strong> Everything is free. If you choose to support the site with an optional donation, it&apos;s processed by Stripe — we never see your card details, and it&apos;s never required to use anything.
           </p>
+          <p className="text-ink-2 mb-3">
+            <strong className="text-ink">Your test data:</strong> All test scores and personal bests stay in your browser. Unless you submit a score to a leaderboard, we never see or store your individual performance.
+          </p>
           <p className="text-ink-2">
-            <strong className="text-ink">Your test data:</strong> All test scores and personal bests stay in your browser. We never see or store your individual performance.
+            <strong className="text-ink">Leaderboards:</strong> If you choose to submit a score, we store your chosen nickname, the score, and a two-letter country code derived from your IP address at submit time (the IP itself is never stored). Nickname, country flag, and score are shown publicly on that leaderboard.
           </p>
         </div>
 
