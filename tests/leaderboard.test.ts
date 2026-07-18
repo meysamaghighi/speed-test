@@ -12,6 +12,10 @@ test("sanitizeNickname strips control/zero-width chars", () => {
   assert.equal(sanitizeNickname("Bob ​‍cat"), "Bob cat");
 });
 
+test("sanitizeNickname strips real control bytes (NUL, C0)", () => {
+  assert.equal(sanitizeNickname("Bob\x00\x01\x1Fcat"), "Bobcat");
+});
+
 test("sanitizeNickname empty or profane becomes Player", () => {
   assert.equal(sanitizeNickname("   "), "Player");
   assert.equal(sanitizeNickname("fuck"), "Player");
@@ -55,8 +59,97 @@ test("lower-is-better ranking orders ascending; country rank filters by cc", asy
   assert.equal(board.top[0].rank, 1);
 });
 
+test("countryRank uses stored country on rejected resubmit", async () => {
+  __resetMemoryStore();
+  await submitScore({ game: "reaction", score: 300, nickname: "A", playerId: "p1", cc: "SE" });
+  const r = await submitScore({ game: "reaction", score: 400, nickname: "A", playerId: "p1", cc: "US" });
+  assert.equal(r.accepted, false);
+  assert.equal(r.countryRank, 1); // still ranked within SE (stored cc), not 0
+});
+
 test("rate limit allows 10 then blocks", async () => {
   __resetMemoryStore();
   for (let i = 0; i < 10; i++) assert.equal(await checkRateLimit(["k1"]), true);
   assert.equal(await checkRateLimit(["k1"]), false);
+});
+
+// ---------------------------------------------------------------------
+// Redis REST path — exercises the real Upstash code path via a mocked
+// fetch. store.ts reads UPSTASH_REDIS_REST_URL/TOKEN lazily (per-call),
+// so flipping them here at test time is enough to switch off the memory
+// fallback without restructuring the module. Kept LAST in the file, with
+// fetch/env fully restored in `finally`, so earlier (and any later)
+// memory-path tests are unaffected by run order.
+// ---------------------------------------------------------------------
+
+type FakeFetchCall = { cmd: unknown[] };
+
+function withFakeRedis(
+  responses: unknown[],
+  run: (calls: FakeFetchCall[]) => Promise<void>
+): Promise<void> {
+  const calls: FakeFetchCall[] = [];
+  const originalFetch = globalThis.fetch;
+  const originalUrl = process.env.UPSTASH_REDIS_REST_URL;
+  const originalToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  process.env.UPSTASH_REDIS_REST_URL = "https://fake-redis.example/";
+  process.env.UPSTASH_REDIS_REST_TOKEN = "fake-token";
+
+  globalThis.fetch = (async (_url: string | URL, init?: RequestInit) => {
+    const cmd = JSON.parse(String(init?.body)) as unknown[];
+    calls.push({ cmd });
+    const result = responses.shift();
+    return {
+      ok: true,
+      json: async () => ({ result }),
+    } as Response;
+  }) as typeof fetch;
+
+  return run(calls).finally(() => {
+    globalThis.fetch = originalFetch;
+    if (originalUrl === undefined) delete process.env.UPSTASH_REDIS_REST_URL;
+    else process.env.UPSTASH_REDIS_REST_URL = originalUrl;
+    if (originalToken === undefined) delete process.env.UPSTASH_REDIS_REST_TOKEN;
+    else process.env.UPSTASH_REDIS_REST_TOKEN = originalToken;
+  });
+}
+
+test("redis path: submitScore happy path issues correctly-shaped commands", async () => {
+  await withFakeRedis(
+    [
+      null, // ZSCORE lb:bmb:reaction p1 -> no prior score
+      1, // ZADD
+      1, // HSET
+      ["p1", "-300"], // ZRANGE (fullBoard, for computeRanks)
+      [JSON.stringify({ name: "A", cc: "SE", ts: 1 })], // HMGET (readMeta)
+    ],
+    async (calls) => {
+      const r = await submitScore({ game: "reaction", score: 300, nickname: "A", playerId: "p1", cc: "SE" });
+      assert.equal(r.accepted, true);
+      assert.equal(r.best, 300);
+      assert.equal(r.worldRank, 1);
+      assert.equal(r.countryRank, 1);
+
+      assert.deepEqual(calls[0].cmd, ["ZSCORE", "lb:bmb:reaction", "p1"]);
+      assert.deepEqual(calls[1].cmd, ["ZADD", "lb:bmb:reaction", -300, "p1"]);
+      assert.equal(calls[2].cmd[0], "HSET");
+      assert.equal(calls[2].cmd[1], "lb:bmb:reaction:meta");
+      assert.deepEqual(calls[3].cmd, ["ZRANGE", "lb:bmb:reaction", 0, -1, "REV", "WITHSCORES"]);
+      assert.equal(calls[4].cmd[0], "HMGET");
+    }
+  );
+});
+
+test("redis path: checkRateLimit issues INCR/EXPIRE and blocks over the cap", async () => {
+  await withFakeRedis([1, 1, 11], async (calls) => {
+    const first = await checkRateLimit(["rk1"]);
+    assert.equal(first, true);
+    const second = await checkRateLimit(["rk1"]);
+    assert.equal(second, false);
+
+    assert.deepEqual(calls[0].cmd, ["INCR", "lb:rl:rk1"]);
+    assert.deepEqual(calls[1].cmd, ["EXPIRE", "lb:rl:rk1", 60]);
+    assert.deepEqual(calls[2].cmd, ["INCR", "lb:rl:rk1"]);
+  });
 });

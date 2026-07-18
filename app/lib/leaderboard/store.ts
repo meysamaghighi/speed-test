@@ -6,21 +6,23 @@ import { GAMES, SITE } from "./config.ts";
 export type Row = { rank: number; name: string; cc: string; score: number };
 type Meta = { name: string; cc: string; ts: number };
 
-const URL_ENV = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || "";
-const TOKEN_ENV = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || "";
+// Read lazily (not into module-level constants) so tests can flip these env
+// vars at call time to exercise the real Redis code path.
+const urlEnv = () => process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || "";
+const tokenEnv = () => process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || "";
 const IS_PROD = process.env.NODE_ENV === "production";
 
 export function storeAvailable(): { ok: boolean; reason?: string } {
-  if (URL_ENV && TOKEN_ENV) return { ok: true };
+  if (urlEnv() && tokenEnv()) return { ok: true };
   if (!IS_PROD) return { ok: true }; // memory fallback for dev/tests
   return { ok: false, reason: "leaderboard storage not configured" };
 }
 
 // ---------- Redis command runner (REST) ----------
 async function redisCmd(cmd: (string | number)[]): Promise<unknown> {
-  const res = await fetch(URL_ENV, {
+  const res = await fetch(urlEnv(), {
     method: "POST",
-    headers: { Authorization: `Bearer ${TOKEN_ENV}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${tokenEnv()}`, "Content-Type": "application/json" },
     body: JSON.stringify(cmd),
     cache: "no-store",
   });
@@ -44,7 +46,7 @@ function memBoard(key: string): MemBoard {
   if (!b) { b = { scores: new Map(), meta: new Map() }; mem.boards.set(key, b); }
   return b;
 }
-const useMemory = () => !(URL_ENV && TOKEN_ENV);
+const useMemory = () => !(urlEnv() && tokenEnv());
 
 // Stored score is negated for lower-is-better so ZSET ascending order is
 // always "best first" with a single code path (spec).
@@ -98,7 +100,18 @@ export async function submitScore(args: {
     } else best = fromStored(game, prev);
   }
 
-  const ranks = await computeRanks(game, playerId, cc);
+  // On a rejected resubmit, the player's own board entry still carries the
+  // OLD cc (stored meta wasn't overwritten), so ranking by the current
+  // call's cc would filter the player's own row out of the country board
+  // (countryRank 0). Use the cc actually on record for this player instead.
+  let effectiveCc = cc;
+  if (!accepted) {
+    const storedMeta = await readMeta(game, [playerId]);
+    const m = storedMeta.get(playerId);
+    if (m) effectiveCc = m.cc;
+  }
+
+  const ranks = await computeRanks(game, playerId, effectiveCc);
   return { accepted, best, ...ranks };
 }
 

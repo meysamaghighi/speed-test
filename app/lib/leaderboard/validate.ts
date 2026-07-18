@@ -5,7 +5,9 @@ const PROFANITY = ["fuck", "shit", "cunt", "nigger", "faggot", "bitch", "asshole
 
 export function sanitizeNickname(raw: string): string {
   let s = String(raw ?? "")
-    .replace(/[​‌‍؜﻿­]/g, "")
+    // Strip C0/C1 control bytes (excluding \t\n\v\f\r, which \s+ below
+    // collapses to a single space) plus zero-width/formatting chars.
+    .replace(/[\x00-\x08\x0E-\x1F\x7F-\x9F​‌‍؜﻿­]/g, "")
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, 20)
