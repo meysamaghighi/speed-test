@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+import AiReferralTracker from "./components/AiReferralTracker";
 import "./globals.css";
 
 const inter = Inter({
@@ -60,6 +61,7 @@ gtag('js', new Date());
 gtag('config', 'G-LN22YK2CZT');` }} />
       </head>
       <body className="bg-paper text-ink min-h-screen font-body antialiased">
+        <AiReferralTracker />
         <SiteHeader />
         {children}
         <SiteFooter />
