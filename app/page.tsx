@@ -913,6 +913,26 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "BenchMyBrain Cognitive Tests",
+            description:
+              "A collection of free online brain and cognitive tests measuring reaction time, memory, attention, and more.",
+            numberOfItems: TESTS.length,
+            itemListElement: TESTS.map((t, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: t.label,
+              url: `https://benchmybrain.com${t.href}`,
+            })),
+          }),
+        }}
+      />
     </main>
   );
 }
