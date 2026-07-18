@@ -194,3 +194,12 @@ test("submit route: rejects garbage", async () => {
 test("board route: 400 on unknown game", async () => {
   assert.equal((await boardGET(new Request("http://x/api/leaderboard?game=nope"))).status, 400);
 });
+
+test("prototype property names are not valid games", async () => {
+  __resetMemoryStore();
+  for (const g of ["hasOwnProperty", "constructor", "toString", "__proto__"]) {
+    assert.equal((await boardGET(new Request(`http://x/api/leaderboard?game=${g}`))).status, 400);
+    assert.equal((await submitPOST(postReq({ game: g, score: 99999999, nickname: "x", playerId: "y" }))).status, 400);
+  }
+  assert.equal(validateScore("hasOwnProperty", 99999999).ok, false);
+});

@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   }
 
   const game = typeof body.game === "string" ? body.game : "";
-  if (!GAMES[game]) return Response.json({ error: "unknown game" }, { status: 400 });
+  if (!Object.hasOwn(GAMES, game)) return Response.json({ error: "unknown game" }, { status: 400 });
   const playerId = typeof body.playerId === "string" ? body.playerId.slice(0, 64) : "";
   if (!playerId) return Response.json({ error: "missing playerId" }, { status: 400 });
   const scoreCheck = validateScore(game, body.score);

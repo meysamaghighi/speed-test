@@ -21,8 +21,8 @@ export function validateScore(
   game: string,
   score: unknown
 ): { ok: true; value: number } | { ok: false; error: string } {
+  if (!Object.hasOwn(GAMES, game)) return { ok: false, error: "unknown game" };
   const cfg = GAMES[game];
-  if (!cfg) return { ok: false, error: "unknown game" };
   if (typeof score !== "number" || !Number.isFinite(score)) return { ok: false, error: "score must be a number" };
   if (score < cfg.min || score > cfg.max) return { ok: false, error: "score out of bounds" };
   return { ok: true, value: score };
