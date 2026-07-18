@@ -153,3 +153,44 @@ test("redis path: checkRateLimit issues INCR/EXPIRE and blocks over the cap", as
     assert.deepEqual(calls[2].cmd, ["INCR", "lb:rl:rk1"]);
   });
 });
+
+// --------- Route handlers ---------
+
+import { GET as boardGET } from "../app/api/leaderboard/route.ts";
+import { POST as submitPOST } from "../app/api/leaderboard/submit/route.ts";
+
+function postReq(body: unknown, headers: Record<string, string> = {}) {
+  return new Request("http://x/api/leaderboard/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...headers },
+    body: JSON.stringify(body),
+  });
+}
+
+test("submit route: happy path stores country from vercel header", async () => {
+  __resetMemoryStore();
+  const res = await submitPOST(postReq(
+    { game: "reaction", score: 222, nickname: "Zoe", playerId: "pz" },
+    { "x-vercel-ip-country": "SE" }
+  ));
+  assert.equal(res.status, 200);
+  const j = await res.json();
+  assert.equal(j.accepted, true);
+  assert.equal(j.worldRank, 1);
+  const b = await (await boardGET(new Request("http://x/api/leaderboard?game=reaction&playerId=pz"))).json();
+  assert.equal(b.top[0].cc, "SE");
+  assert.equal(b.you.rank, 1);
+});
+
+test("submit route: rejects garbage", async () => {
+  __resetMemoryStore();
+  assert.equal((await submitPOST(postReq({ game: "reaction", score: 5, nickname: "a", playerId: "p" }))).status, 400);
+  assert.equal((await submitPOST(postReq({ game: "nope", score: 200, nickname: "a", playerId: "p" }))).status, 400);
+  assert.equal((await submitPOST(postReq({ game: "reaction", score: 200, nickname: "a" }))).status, 400); // no playerId
+  const bad = new Request("http://x/api/leaderboard/submit", { method: "POST", body: "not json" });
+  assert.equal((await submitPOST(bad)).status, 400);
+});
+
+test("board route: 400 on unknown game", async () => {
+  assert.equal((await boardGET(new Request("http://x/api/leaderboard?game=nope"))).status, 400);
+});
