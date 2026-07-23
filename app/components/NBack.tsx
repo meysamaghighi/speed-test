@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function NBack() {
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
@@ -181,6 +182,8 @@ export default function NBack() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="n-back" />
       </div>
     );
   }

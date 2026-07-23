@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 interface Cell {
   id: number;
@@ -242,6 +243,8 @@ export default function ChimpTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="chimp" />
       </div>
     );
   }

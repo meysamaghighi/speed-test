@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 const paragraphs = [
   "The quick brown fox jumps over the lazy dog near the river bank where the children play every summer afternoon.",
@@ -158,6 +159,8 @@ export default function TypingTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="typing" />
       </div>
     );
   }
