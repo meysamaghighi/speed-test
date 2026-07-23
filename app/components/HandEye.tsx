@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 interface Target {
   x: number;
@@ -240,6 +241,8 @@ export default function HandEye() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="hand-eye" />
       </div>
     );
   }

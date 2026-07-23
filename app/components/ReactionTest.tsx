@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
 import LeaderboardPanel from "./LeaderboardPanel";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "ready" | "go" | "result" | "too-early";
 
@@ -140,6 +141,8 @@ export default function ReactionTest({ onComplete }: ReactionTestProps = {}) {
         </div>
 
         <LeaderboardPanel game="reaction" score={average} unit="ms" />
+
+        <ReportUpsell source="reaction" />
       </div>
     );
   }
