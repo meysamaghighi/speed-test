@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import ReportUpsell from "./ReportUpsell";
 
 interface Plate {
   number: number;
@@ -181,6 +182,8 @@ export default function ColorBlindTest() {
             Share
           </button>
         </div>
+
+        <ReportUpsell source="color-blind" />
       </div>
     );
   }

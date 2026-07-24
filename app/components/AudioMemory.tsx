@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function AudioMemory() {
   const [phase, setPhase] = useState<"ready" | "practice" | "listening" | "playing" | "done">("ready");
@@ -182,6 +183,8 @@ export default function AudioMemory() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="audio-memory" />
       </div>
     );
   }
