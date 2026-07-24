@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Trial = "go" | "nogo";
 
@@ -175,6 +176,8 @@ export default function GoNoGo() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="go-no-go" />
       </div>
     );
   }

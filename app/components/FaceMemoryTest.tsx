@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "memorize" | "recall" | "result";
 
@@ -220,6 +221,8 @@ export default function FaceMemoryTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="face-memory" />
       </div>
     );
   }
