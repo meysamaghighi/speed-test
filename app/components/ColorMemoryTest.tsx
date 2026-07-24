@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "showing" | "delay" | "recall" | "result";
 
@@ -175,6 +176,8 @@ export default function ColorMemoryTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="color-memory" />
       </div>
     );
   }
