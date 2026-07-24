@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 interface Problem {
   question: string;
@@ -212,6 +213,8 @@ export default function MathSpeed() {
             Share
           </button>
         </div>
+
+        <ReportUpsell source="math-speed" />
       </div>
     );
   }

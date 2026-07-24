@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "mode-select" | "memorize" | "recall" | "result";
 type Mode = "forward" | "backward";
@@ -166,6 +167,8 @@ export default function DigitSpanTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="digit-span" />
       </div>
     );
   }
