@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "ready" | "running" | "answer" | "finished";
 
@@ -190,6 +191,8 @@ export default function DualTaskTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="dual-task" />
       </div>
     );
   }
