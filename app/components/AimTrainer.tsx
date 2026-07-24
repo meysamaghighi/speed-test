@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 interface Target {
   x: number;
@@ -128,6 +129,8 @@ export default function AimTrainer() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="aim-trainer" />
       </div>
     );
   }

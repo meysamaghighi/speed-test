@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 const passages = [
   {
@@ -256,6 +257,8 @@ export default function ReadingSpeed() {
           Share
         </button>
       </div>
+
+      <ReportUpsell source="reading-speed" />
     </div>
   );
 }
