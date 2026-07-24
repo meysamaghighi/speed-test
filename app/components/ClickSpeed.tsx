@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function ClickSpeed() {
   const [phase, setPhase] = useState<"ready" | "clicking" | "done">("ready");
@@ -109,6 +110,8 @@ export default function ClickSpeed() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="click-speed" />
       </div>
     );
   }
