@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function VisualMemory() {
   const [phase, setPhase] = useState<"ready" | "show" | "input" | "correct" | "wrong">("ready");
@@ -185,6 +186,8 @@ export default function VisualMemory() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="visual-memory" />
       </div>
     );
   }
