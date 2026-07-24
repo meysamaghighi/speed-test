@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "ready" | "showing" | "result";
 
@@ -165,6 +166,8 @@ export default function NumberComparisonTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="number-comparison" />
       </div>
     );
   }

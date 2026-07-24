@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type PatternType = "number" | "color" | "size" | "shape" | "letter";
 
@@ -633,6 +634,8 @@ export default function PatternTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="pattern" />
       </div>
     );
   }
