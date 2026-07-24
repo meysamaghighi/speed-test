@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 const wordList = [
   "apple","bridge","castle","dragon","engine","forest","garden","harbor","island","jungle",
@@ -175,6 +176,8 @@ export default function VerbalMemory() {
             className="px-6 py-3 bg-indigo-600 text-ink font-bold rounded-xl hover:bg-indigo-700 transition-colors"
           >Share Score</button>
         </div>
+
+        <ReportUpsell source="verbal-memory" />
       </div>
     );
   }

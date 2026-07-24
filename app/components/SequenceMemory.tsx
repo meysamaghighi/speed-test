@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function SequenceMemory() {
   const [phase, setPhase] = useState<"ready" | "showing" | "input" | "correct" | "wrong">("ready");
@@ -151,6 +152,8 @@ export default function SequenceMemory() {
             className="px-6 py-3 bg-teal-600 text-ink font-bold rounded-xl hover:bg-teal-700 transition-colors"
           >Share Score</button>
         </div>
+
+        <ReportUpsell source="sequence-memory" />
       </div>
     );
   }
