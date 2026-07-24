@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "playing" | "result";
 
@@ -143,6 +144,8 @@ export default function WordSpeedTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="word-speed" />
       </div>
     );
   }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function ReverseMemory() {
   const [phase, setPhase] = useState<"ready" | "show" | "input" | "correct" | "wrong">("ready");
@@ -235,6 +236,8 @@ export default function ReverseMemory() {
           Share Score
         </button>
       </div>
+
+      <ReportUpsell source="reverse-memory" />
     </div>
   );
 }

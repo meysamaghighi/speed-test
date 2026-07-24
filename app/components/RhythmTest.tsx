@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 export default function RhythmTest() {
   const [phase, setPhase] = useState<"ready" | "listen" | "tap" | "feedback" | "result">("ready");
@@ -304,6 +305,8 @@ export default function RhythmTest() {
           Share Score
         </button>
       </div>
+
+      <ReportUpsell source="rhythm" />
     </div>
   );
 }
