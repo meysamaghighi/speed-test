@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "countdown" | "active" | "result";
 
@@ -284,6 +285,8 @@ export default function WordAssociationTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="word-association" />
       </div>
     );
   }

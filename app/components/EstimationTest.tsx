@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "ready" | "show" | "answer" | "result" | "finished";
 
@@ -164,6 +165,8 @@ export default function EstimationTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="estimation" />
       </div>
     );
   }
