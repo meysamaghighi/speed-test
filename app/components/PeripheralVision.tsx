@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 const TOTAL_ROUNDS = 15;
 
@@ -162,6 +163,8 @@ export default function PeripheralVision() {
             Share
           </button>
         </div>
+
+        <ReportUpsell source="peripheral-vision" />
       </div>
     );
   }

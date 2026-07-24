@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "ready" | "searching" | "transition" | "result";
 
@@ -151,6 +152,8 @@ export default function VisualSearchTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="visual-search" />
       </div>
     );
   }
