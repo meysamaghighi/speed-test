@@ -52,6 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/change-detection`, lastModified, priority: 0.9 },
     { url: `${BASE}/estimation`, lastModified, priority: 0.9 },
     { url: `${BASE}/anticipation`, lastModified, priority: 0.9 },
+    { url: `${BASE}/brain-age`, lastModified, priority: 0.9 },
     { url: `${BASE}/brain-score`, lastModified, priority: 0.8 },
     { url: `${BASE}/daily`, lastModified, priority: 0.9 },
     { url: `${BASE}/stack-tower`, lastModified, priority: 0.7 },
