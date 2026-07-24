@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 interface Circle {
   id: number;
@@ -136,6 +137,8 @@ export default function TrailMaking() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="trail-making" />
       </div>
     );
   }
