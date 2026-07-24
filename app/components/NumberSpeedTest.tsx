@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "showing" | "input" | "result" | "failed";
 
@@ -167,6 +168,8 @@ export default function NumberSpeedTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="number-speed" />
       </div>
     );
   }
