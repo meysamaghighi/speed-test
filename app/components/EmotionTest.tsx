@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "playing" | "result";
 type Emotion = "happy" | "sad" | "angry" | "surprised" | "disgusted" | "fearful" | "neutral";
@@ -219,6 +220,8 @@ export default function EmotionTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="emotion" />
       </div>
     );
   }
