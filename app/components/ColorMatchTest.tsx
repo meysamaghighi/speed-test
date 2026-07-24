@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "playing" | "result";
 
@@ -191,6 +192,8 @@ export default function ColorMatchTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="color-match" />
       </div>
     );
   }

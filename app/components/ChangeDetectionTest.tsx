@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import ReportUpsell from "./ReportUpsell";
 
 type Phase = "ready" | "show1" | "blank" | "show2" | "result" | "finished";
 
@@ -140,6 +141,8 @@ export default function ChangeDetectionTest() {
             Share Score
           </button>
         </div>
+
+        <ReportUpsell source="change-detection" />
       </div>
     );
   }
