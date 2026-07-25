@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import RelatedTests from "../components/RelatedTests";
 
 // Pool of daily-compatible tests
 const TEST_POOL = [
@@ -314,6 +315,8 @@ export default function DailyChallenge() {
           </div>
         </div>
       </div>
+
+      <RelatedTests current="/daily" />
 
       {/* Back link */}
       <div className="mt-10 text-center">

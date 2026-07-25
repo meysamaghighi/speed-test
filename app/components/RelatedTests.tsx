@@ -43,6 +43,8 @@ const allTests = [
   { href: "/math-memory", label: "Math Memory", color: "from-purple-500 to-violet-600" },
   { href: "/pattern-speed", label: "Mental Math Sprint", color: "from-amber-500 to-yellow-600" },
   { href: "/anticipation", label: "Anticipation Timing", color: "from-sky-500 to-blue-600" },
+  { href: "/brain-age", label: "Brain Age Test", color: "from-teal-500 to-emerald-600" },
+  { href: "/daily", label: "Daily Challenge", color: "from-rose-500 to-orange-600" },
 ];
 
 const relatedMap: Record<string, string[]> = {
@@ -81,13 +83,15 @@ const relatedMap: Record<string, string[]> = {
   "/number-comparison": ["/math", "/memory", "/reaction"],
   "/visual-search": ["/visual-memory", "/aim", "/peripheral"],
   "/peripheral-test": ["/peripheral", "/aim", "/visual-memory"],
-  "/brain-score": ["/reaction", "/memory", "/typing"],
+  "/brain-score": ["/brain-age", "/daily", "/reaction"],
   "/change-detection": ["/visual-search", "/visual-memory", "/dual-task"],
   "/dual-task": ["/n-back", "/go-no-go", "/trail-making"],
   "/estimation": ["/math", "/number-comparison", "/pattern-speed"],
   "/math-memory": ["/math", "/memory", "/n-back"],
   "/pattern-speed": ["/estimation", "/math", "/number-comparison"],
   "/anticipation": ["/hand-eye", "/aim", "/reaction"],
+  "/brain-age": ["/daily", "/brain-score", "/reaction"],
+  "/daily": ["/brain-age", "/brain-score", "/memory"],
 };
 
 export default function RelatedTests({ current }: { current: string }) {

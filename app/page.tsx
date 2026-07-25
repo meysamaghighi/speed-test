@@ -757,6 +757,35 @@ export default function Home() {
         </p>
       </div>
 
+      {/* Brain Age CTA — quick 90-second entry point */}
+      <Link
+        href="/brain-age"
+        className="block mb-4 group relative overflow-hidden rounded-2xl border border-line p-4 hover:bg-paper-2 transition-all"
+        style={{ background: "color-mix(in oklab, var(--accent) 8%, var(--paper))" }}
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-lg">⚡</span>
+              <h2
+                className="font-display text-lg text-ink"
+                style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
+              >
+                Brain Age Test
+              </h2>
+              <span
+                className="text-xs font-bold px-2 py-0.5 rounded-full text-paper"
+                style={{ background: "var(--accent)" }}
+              >
+                90 SEC
+              </span>
+            </div>
+            <p className="text-ink-2 text-sm">The quick brain test — 3 rounds, no sign-up needed.</p>
+          </div>
+          <div className="text-ink text-2xl group-hover:translate-x-1 transition-transform">→</div>
+        </div>
+      </Link>
+
       {/* Daily Challenge CTA */}
       <Link
         href="/daily"
