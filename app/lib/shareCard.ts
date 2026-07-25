@@ -2,7 +2,7 @@
 
 /**
  * Generate a 1200x630 PNG share card themed to BenchMyBrain tokens.
- * Returns a data URL. Used by Phase 2 share buttons on /daily, /brain-score
+ * Returns a data URL. Used by Phase 2 share buttons on /brain-score
  * and Phase 2 retrofitted test pages.
  *
  * Per design spec (Cross-Site System.html, concern 04): one OG-card

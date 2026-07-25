@@ -74,12 +74,6 @@ function daysApart(a: string, b: string): number {
   );
 }
 
-/**
- * NOTE: speed-test already has a working daily streak persisted at the
- * `bmb_daily` localStorage key by app/daily/DailyChallenge.tsx. Phase 1 leaves
- * that path intact. Phase 2 will add a one-time migrator copying
- * bmb_daily.streak → speedtest_progress.streak.count.
- */
 export function useProgress() {
   const [state, setState] = useState<ProgressV1>(EMPTY);
 
