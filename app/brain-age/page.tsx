@@ -43,18 +43,6 @@ export default function BrainAgePage() {
 
       <BrainAgeTest />
 
-      <section className="mt-12 space-y-6">
-        <h2 className="text-xl font-bold text-ink">About the Brain Age Test</h2>
-        <div className="bg-paper-2 rounded-xl p-5 border border-line">
-          <p className="text-sm text-ink-2">
-            Brain Age combines three short measurements — reaction time, a
-            number memory span, and a quick speed-comparison round — into one
-            fun number. It&apos;s a lighthearted composite, not a clinical or
-            scientific assessment.
-          </p>
-        </div>
-      </section>
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
