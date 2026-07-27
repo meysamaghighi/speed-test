@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
 import BrainAgeTest from "../components/BrainAgeTest";
+import RelatedTests from "../components/RelatedTests";
 
 export const metadata: Metadata = {
-  title: "Brain Age Test - What's Your Cognitive Age? | BenchMyBrain",
+  title: "Quick Brain Test — 90-Second Brain Age Test | BenchMyBrain",
   description:
-    "A free 90-second brain age test. Three quick rounds — reaction time, memory, and mental speed — combine into a fun, shareable brain age number.",
+    "The quick brain test: 90 seconds, 3 rounds — reaction time, memory, and mental speed — no sign-up, no prior scores needed. Get your Brain Age instantly.",
   keywords: [
+    "quick brain test",
     "brain age test",
+    "90 second brain test",
     "cognitive age test",
     "what is my brain age",
-    "mental age test",
     "free brain test",
   ],
   openGraph: {
-    title: "Brain Age Test - What's Your Cognitive Age? | BenchMyBrain",
+    title: "Quick Brain Test — 90-Second Brain Age Test | BenchMyBrain",
     description:
-      "A free 90-second brain age test. Three quick rounds — reaction time, memory, and mental speed — combine into a fun, shareable brain age number.",
+      "The quick brain test: 90 seconds, 3 rounds — reaction time, memory, and mental speed — no sign-up, no prior scores needed. Get your Brain Age instantly.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brain Age Test - What's Your Cognitive Age? | BenchMyBrain",
+    title: "Quick Brain Test — 90-Second Brain Age Test | BenchMyBrain",
     description:
-      "A free 90-second brain age test. Three quick rounds — reaction time, memory, and mental speed — combine into a fun, shareable brain age number.",
+      "The quick brain test: 90 seconds, 3 rounds — reaction time, memory, and mental speed — no sign-up, no prior scores needed. Get your Brain Age instantly.",
   },
   alternates: {
     canonical: "/brain-age",
@@ -43,6 +45,8 @@ export default function BrainAgePage() {
 
       <BrainAgeTest />
 
+      <RelatedTests current="/brain-age" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -54,6 +58,9 @@ export default function BrainAgePage() {
               "Free online brain age test combining reaction time, memory, and speed into a fun composite score.",
             applicationCategory: "GameApplication",
             operatingSystem: "Any",
+            timeRequired: "PT90S",
+            isAccessibleForFree: true,
+            educationalUse: "Self-assessment",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
           }),
         }}

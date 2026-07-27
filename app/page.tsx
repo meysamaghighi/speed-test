@@ -742,9 +742,6 @@ export default function Home() {
   return (
     <main className="max-w-4xl mx-auto px-4 pt-8 pb-8">
       <div className="text-center mb-8">
-        <p className="font-mono text-xs uppercase tracking-wider text-ink-3 mb-3">
-          Daily Challenge
-        </p>
         <h1
           className="font-display text-4xl md:text-6xl text-ink mb-4"
           style={{ fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 0.95 }}
@@ -757,30 +754,30 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Daily Challenge CTA */}
+      {/* Brain Age CTA — quick 90-second entry point */}
       <Link
-        href="/daily"
+        href="/brain-age"
         className="block mb-4 group relative overflow-hidden rounded-2xl border border-line p-4 hover:bg-paper-2 transition-all"
         style={{ background: "color-mix(in oklab, var(--accent) 8%, var(--paper))" }}
       >
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-lg">🔥</span>
+              <span className="text-lg">⚡</span>
               <h2
                 className="font-display text-lg text-ink"
                 style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
               >
-                Daily Challenge
+                Brain Age Test
               </h2>
               <span
                 className="text-xs font-bold px-2 py-0.5 rounded-full text-paper"
                 style={{ background: "var(--accent)" }}
               >
-                NEW
+                90 SEC
               </span>
             </div>
-            <p className="text-ink-2 text-sm">5 tests per day · Same for everyone · Build your streak</p>
+            <p className="text-ink-2 text-sm">The quick brain test — 3 rounds, no sign-up needed.</p>
           </div>
           <div className="text-ink text-2xl group-hover:translate-x-1 transition-transform">→</div>
         </div>
@@ -881,38 +878,6 @@ export default function Home() {
           </section>
         );
       })}
-
-      <section className="mt-16">
-        <h2
-          className="font-display text-2xl text-ink mb-6 text-center"
-          style={{ fontWeight: 800, letterSpacing: "-0.03em" }}
-        >
-          How It Works
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6 text-center">
-          <div>
-            <div className="text-3xl mb-2 text-ink">1</div>
-            <h3 className="font-bold text-ink mb-1">Choose a Test</h3>
-            <p className="text-sm text-ink-2">
-              Pick from 40 brain and reflex tests.
-            </p>
-          </div>
-          <div>
-            <div className="text-3xl mb-2 text-ink">2</div>
-            <h3 className="font-bold text-ink mb-1">Take the Test</h3>
-            <p className="text-sm text-ink-2">
-              Follow the instructions and try your best. Each test takes under 60 seconds.
-            </p>
-          </div>
-          <div>
-            <div className="text-3xl mb-2 text-ink">3</div>
-            <h3 className="font-bold text-ink mb-1">Share Your Score</h3>
-            <p className="text-sm text-ink-2">
-              See how you compare to averages and share with friends.
-            </p>
-          </div>
-        </div>
-      </section>
 
       <script
         type="application/ld+json"

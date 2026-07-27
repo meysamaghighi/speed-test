@@ -7,7 +7,6 @@ type Item = { label: string; href: string; group: string };
 
 const ITEMS: Item[] = [
   { label: "Home", href: "/", group: "Pages" },
-  { label: "Daily Challenge", href: "/daily", group: "Pages" },
   { label: "Brain Score", href: "/brain-score", group: "Pages" },
   { label: "About", href: "/about", group: "Pages" },
   { label: "Reaction Time", href: "/reaction", group: "Reflex" },
