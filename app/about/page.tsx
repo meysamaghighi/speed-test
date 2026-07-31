@@ -48,6 +48,16 @@ export default function AboutPage() {
         </div>
 
         <div className="bg-paper-2 rounded-xl p-6 border border-line">
+          <h2 className="text-xl font-bold text-ink mb-3">How Tests Are Measured</h2>
+          <p className="text-ink-2 mb-3">
+            Timing-based tests (reaction time, click speed, aim, and similar) measure elapsed time with the browser&apos;s <code className="text-sm">performance.now()</code> API &mdash; a high-resolution timer accurate to fractions of a millisecond, rather than the coarser <code className="text-sm">Date.now()</code>. Because every test runs entirely client-side, there&apos;s no server round-trip adding latency to a timed measurement.
+          </p>
+          <p className="text-ink-2">
+            Where a test references an external benchmark &mdash; for example, the Chimp Memory Test&apos;s comparison to Kyoto University&apos;s Ayumu study &mdash; that figure comes from the named public research, not an invented number.
+          </p>
+        </div>
+
+        <div className="bg-paper-2 rounded-xl p-6 border border-line">
           <h2 className="text-xl font-bold text-ink mb-3">No Accounts Required</h2>
           <p className="text-ink-2 mb-3">
             You don&apos;t need to create an account or log in. Your personal bests are saved locally in your browser (localStorage) so you can track progress over time.
