@@ -41,6 +41,11 @@ export default function SequencePage() {
             <p className="text-sm text-ink-2">Try creating a mental &quot;path&quot; between the tiles rather than memorizing individual positions. Some people find it helpful to assign each position a number or direction. Practice improves sequence memory significantly.</p>
           </div>
         </div>
+        <p className="text-sm text-ink-2">
+          Healthy adults typically reach a spatial sequence span of about 6 tiles on tasks like
+          this — the classic Corsi block-tapping test (Kessels et al., 2000,
+          <em> Applied Neuropsychology</em>).
+        </p>
       </section>
       <RelatedTests current="/sequence" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", name: "Sequence Memory Test", description: "Free sequence memory test. Repeat the pattern of tiles.", applicationCategory: "GameApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }) }} />

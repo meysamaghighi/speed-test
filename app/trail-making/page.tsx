@@ -46,6 +46,11 @@ export default function TrailMakingPage() {
             </p>
           </div>
         </div>
+        <p className="text-sm text-ink-2">
+          Healthy adults typically complete an alternating number-letter trail like this one — the
+          classic Trail Making Test Part B — in roughly 50&ndash;75 seconds (Tombaugh, 2004,
+          <em> Archives of Clinical Neuropsychology</em>).
+        </p>
       </section>
 
       <RelatedTests current="/trail-making" />
