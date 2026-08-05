@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "ready" | "show1" | "blank" | "show2" | "result" | "finished";
@@ -141,6 +142,8 @@ export default function ChangeDetectionTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="change-detection" score={isFinished ? score : null} unit="level" />
 
         <ReportUpsell source="change-detection" />
       </div>

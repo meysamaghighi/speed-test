@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "ready" | "showing" | "result";
@@ -166,6 +167,8 @@ export default function NumberComparisonTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="number-comparison" score={isFinished ? averageTime : null} unit="ms" />
 
         <ReportUpsell source="number-comparison" />
       </div>

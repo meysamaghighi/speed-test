@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "ready" | "searching" | "transition" | "result";
@@ -152,6 +153,8 @@ export default function VisualSearchTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="visual-search" score={isFinished ? averageTime : null} unit="ms" />
 
         <ReportUpsell source="visual-search" />
       </div>

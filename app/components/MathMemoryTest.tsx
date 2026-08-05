@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "ready" | "show" | "answer" | "result" | "finished";
@@ -136,6 +137,8 @@ export default function MathMemoryTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="math-memory" score={isFinished ? streak : null} unit="streak" />
 
         <ReportUpsell source="math-memory" />
       </div>

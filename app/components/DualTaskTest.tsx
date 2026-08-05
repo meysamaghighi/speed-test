@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "ready" | "running" | "answer" | "finished";
@@ -191,6 +192,8 @@ export default function DualTaskTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="dual-task" score={isFinished ? accuracy : null} unit="score" />
 
         <ReportUpsell source="dual-task" />
       </div>
