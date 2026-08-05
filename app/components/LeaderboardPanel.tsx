@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import FamilyBoard from "./FamilyBoard";
+import { loadFamily } from "../lib/family/storage";
 
 declare global {
   interface Window {
@@ -62,7 +64,11 @@ export default function LeaderboardPanel({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [scope, setScope] = useState<"world" | "country">("world");
-  const viewed = useRef(false);
+  const [tab, setTab] = useState<"family" | "world">("world");
+  const worldFetched = useRef(false);
+  const worldViewed = useRef(false);
+  const familyViewed = useRef(false);
+  const tabDefaulted = useRef(false);
 
   const load = useCallback(async () => {
     try {
@@ -73,18 +79,54 @@ export default function LeaderboardPanel({
     }
   }, [game]);
 
+  const activateTab = useCallback(
+    (t: "family" | "world") => {
+      if (t === "world") {
+        // Everything the World tab needs — nickname, the shared board fetch,
+        // and the view event — is gated on actually showing World, so a
+        // Family-only visitor never pays for any of it.
+        if (!worldFetched.current) {
+          worldFetched.current = true;
+          try {
+            setNick(localStorage.getItem("lb.nick") ?? "");
+          } catch {
+            /* ignore */
+          }
+          void load();
+        }
+        if (!worldViewed.current) {
+          worldViewed.current = true;
+          window.gtag?.("event", "leaderboard_view", { game });
+        }
+      } else if (!familyViewed.current) {
+        familyViewed.current = true;
+        window.gtag?.("event", "family_board_view", { game });
+      }
+    },
+    [game, load],
+  );
+
+  // Default to the Family tab once this device has players — that's the
+  // scoreboard those visitors actually care about — and activate whichever
+  // tab that resolves to. Both live in this one post-mount effect (rather
+  // than a lazy useState initializer, which would run during SSR and again
+  // on the client and cause a React 19 hydration mismatch) so a device that
+  // defaults to Family never fires the World fetch/view from the one-tick
+  // "world" value `tab` starts at before the default below is applied:
+  // `resolved` is computed synchronously here instead of being read back
+  // from `tab` state, which wouldn't reflect the setTab call below until a
+  // later render.
   useEffect(() => {
-    try {
-      setNick(localStorage.getItem("lb.nick") ?? "");
-    } catch {
-      /* ignore */
+    let resolved = tab;
+    if (!tabDefaulted.current) {
+      tabDefaulted.current = true;
+      if (loadFamily().profiles.length > 0) {
+        resolved = "family";
+        setTab("family");
+      }
     }
-    void load();
-    if (!viewed.current) {
-      viewed.current = true;
-      window.gtag?.("event", "leaderboard_view", { game });
-    }
-  }, [game, load]);
+    activateTab(resolved);
+  }, [tab, activateTab]);
 
   const rows = useMemo(() => board?.top ?? [], [board]);
 
@@ -131,99 +173,133 @@ export default function LeaderboardPanel({
     // text-white on a dark bg (e.g. ReactionPlay) — without it, un-classed
     // descendants (row names/scores) inherit white onto our light card.
     <div className="mt-6 rounded-xl border border-line bg-paper-2 p-4 text-left text-ink">
-      <h3 className="font-display text-lg text-ink mb-3" style={{ fontWeight: 800 }}>
-        🌍 Global Leaderboard
-      </h3>
-
-      {score !== null && !result && (
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          <label htmlFor="lb-nick" className="sr-only">
-            Your name
-          </label>
-          <input
-            id="lb-nick"
-            value={nick}
-            onChange={(e) => setNick(e.target.value)}
-            maxLength={20}
-            placeholder="Your name"
-            className="px-3 py-2 rounded-lg border border-line bg-paper text-ink text-sm w-40"
-          />
-          <button
-            onClick={submit}
-            disabled={busy}
-            className="px-4 py-2 rounded-lg text-sm font-bold text-paper disabled:opacity-50"
-            style={{ background: "var(--accent)" }}
-          >
-            {busy ? "Submitting…" : `Submit ${score}${unit}`}
-          </button>
-        </div>
-      )}
-
-      {result && (
-        <p className="text-sm text-ink mb-3">
-          You&apos;re <strong>#{result.worldRank}</strong> in the world
-          {result.countryRank > 0 && myCc ? (
-            <>
-              {" "}
-              · <strong>#{result.countryRank}</strong> in your country
-            </>
-          ) : null}
-          {!result.accepted ? (
-            <>
-              {" "}
-              (kept your best: {result.best}
-              {unit})
-            </>
-          ) : null}
-        </p>
-      )}
-      {error && (
-        <p role="alert" className="text-sm text-red-500 mb-3">
-          {error}
-        </p>
-      )}
-
-      <div className="flex gap-2 mb-2">
-        {(["world", "country"] as const).map((s) => (
-          <button
-            key={s}
-            onClick={() => setScope(s)}
-            aria-pressed={scope === s}
-            className={`px-3 py-1 rounded-full text-xs border border-line ${scope === s ? "font-bold" : "text-ink-3"}`}
-          >
-            {s === "world" ? "Global" : "My country"}
-          </button>
-        ))}
+      <div className="flex gap-1 mb-3" role="tablist">
+        <button
+          role="tab"
+          aria-selected={tab === "family"}
+          onClick={() => setTab("family")}
+          className={`rounded-lg px-3 py-1 text-sm border ${
+            tab === "family" ? "border-ink text-ink font-semibold" : "border-line text-ink-2"
+          }`}
+        >
+          Family
+        </button>
+        <button
+          role="tab"
+          aria-selected={tab === "world"}
+          onClick={() => setTab("world")}
+          className={`rounded-lg px-3 py-1 text-sm border ${
+            tab === "world" ? "border-ink text-ink font-semibold" : "border-line text-ink-2"
+          }`}
+        >
+          World
+        </button>
       </div>
 
-      {visible.length === 0 ? (
-        <p className="text-sm text-ink-3">No scores yet — be the first!</p>
-      ) : (
-        <ol className="max-h-64 overflow-y-auto text-sm">
-          {visible.map((r) => {
-            const isMe = board?.you?.rank === r.rank;
-            return (
-              <li
-                key={`${r.rank}-${r.name}`}
-                className={`flex items-center gap-2 py-1 px-2 rounded ${isMe ? "bg-paper font-bold" : ""}`}
+      {/* Always mounted (visibility toggled via class, not conditional
+          rendering) so switching to World and back never remounts it — a
+          remount would reset FamilyBoard's own hydration state. */}
+      <div className={tab === "family" ? "" : "hidden"}>
+        <FamilyBoard boardId="pb-reaction" lowerIsBetter={true} unit={unit} />
+      </div>
+
+      {tab === "world" && (
+        <>
+          <h3 className="font-display text-lg text-ink mb-3" style={{ fontWeight: 800 }}>
+            🌍 Global Leaderboard
+          </h3>
+
+          {score !== null && !result && (
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <label htmlFor="lb-nick" className="sr-only">
+                Your name
+              </label>
+              <input
+                id="lb-nick"
+                value={nick}
+                onChange={(e) => setNick(e.target.value)}
+                maxLength={20}
+                placeholder="Your name"
+                className="px-3 py-2 rounded-lg border border-line bg-paper text-ink text-sm w-40"
+              />
+              <button
+                onClick={submit}
+                disabled={busy}
+                className="px-4 py-2 rounded-lg text-sm font-bold text-paper disabled:opacity-50"
+                style={{ background: "var(--accent)" }}
               >
-                <span className="w-8 text-right text-ink-3">#{r.rank}</span>
-                <Flag cc={r.cc} />
-                <span className="flex-1 truncate">{r.name}</span>
-                <span>
-                  {r.score}
-                  {unit}
-                </span>
-              </li>
-            );
-          })}
-        </ol>
-      )}
-      {board && board.you && board.you.rank > 100 && (
-        <p className="text-sm text-ink-2 mt-1">
-          … your best: #{board.you.rank} ({board.you.score}
-          {unit})
-        </p>
+                {busy ? "Submitting…" : `Submit ${score}${unit}`}
+              </button>
+            </div>
+          )}
+
+          {result && (
+            <p className="text-sm text-ink mb-3">
+              You&apos;re <strong>#{result.worldRank}</strong> in the world
+              {result.countryRank > 0 && myCc ? (
+                <>
+                  {" "}
+                  · <strong>#{result.countryRank}</strong> in your country
+                </>
+              ) : null}
+              {!result.accepted ? (
+                <>
+                  {" "}
+                  (kept your best: {result.best}
+                  {unit})
+                </>
+              ) : null}
+            </p>
+          )}
+          {error && (
+            <p role="alert" className="text-sm text-red-500 mb-3">
+              {error}
+            </p>
+          )}
+
+          <div className="flex gap-2 mb-2">
+            {(["world", "country"] as const).map((s) => (
+              <button
+                key={s}
+                onClick={() => setScope(s)}
+                aria-pressed={scope === s}
+                className={`px-3 py-1 rounded-full text-xs border border-line ${scope === s ? "font-bold" : "text-ink-3"}`}
+              >
+                {s === "world" ? "Global" : "My country"}
+              </button>
+            ))}
+          </div>
+
+          {visible.length === 0 ? (
+            <p className="text-sm text-ink-3">No scores yet — be the first!</p>
+          ) : (
+            <ol className="max-h-64 overflow-y-auto text-sm">
+              {visible.map((r) => {
+                const isMe = board?.you?.rank === r.rank;
+                return (
+                  <li
+                    key={`${r.rank}-${r.name}`}
+                    className={`flex items-center gap-2 py-1 px-2 rounded ${isMe ? "bg-paper font-bold" : ""}`}
+                  >
+                    <span className="w-8 text-right text-ink-3">#{r.rank}</span>
+                    <Flag cc={r.cc} />
+                    <span className="flex-1 truncate">{r.name}</span>
+                    <span>
+                      {r.score}
+                      {unit}
+                    </span>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+          {board && board.you && board.you.rank > 100 && (
+            <p className="text-sm text-ink-2 mt-1">
+              … your best: #{board.you.rank} ({board.you.score}
+              {unit})
+            </p>
+          )}
+        </>
       )}
     </div>
   );

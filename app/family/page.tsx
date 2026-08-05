@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import FamilyOverview from "./FamilyOverview";
+import FamilyOverview from "../components/FamilyOverview";
 
 export const metadata: Metadata = {
   title: "Family Scoreboard - Compare Brain Test Scores | BenchMyBrain",

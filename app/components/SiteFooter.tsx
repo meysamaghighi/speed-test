@@ -7,9 +7,12 @@ export default function SiteFooter() {
         <p className="text-xs text-ink-3">
           Free online speed tests. No account required. Your data stays in your browser.
         </p>
-        <div className="mt-3">
+        <div className="mt-3 flex items-center justify-center gap-3">
           <Link href="/about" className="text-sm text-ink-2 hover:text-ink underline">
             About
+          </Link>
+          <Link href="/family" className="text-sm text-ink-2 hover:text-ink underline">
+            Family Scoreboard
           </Link>
         </div>
         <div className="mt-6">

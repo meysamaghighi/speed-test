@@ -34,6 +34,7 @@ const navLinks = [
   { href: "/hand-eye", label: "Hand-Eye" },
   { href: "/audio-memory", label: "Audio Memory" },
   { href: "/brain-score", label: "Brain Score" },
+  { href: "/family", label: "Family" },
 ];
 
 export default function SiteHeader() {
