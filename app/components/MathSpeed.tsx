@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 interface Problem {
@@ -213,6 +214,8 @@ export default function MathSpeed() {
             Share
           </button>
         </div>
+
+        <LeaderboardPanel game="math" score={phase === "result" ? score : null} unit="pts" />
 
         <ReportUpsell source="math-speed" />
       </div>

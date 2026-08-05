@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function SequenceMemory() {
@@ -152,6 +153,8 @@ export default function SequenceMemory() {
             className="px-6 py-3 bg-teal-600 text-ink font-bold rounded-xl hover:bg-teal-700 transition-colors"
           >Share Score</button>
         </div>
+
+        <LeaderboardPanel game="sequence" score={phase === "wrong" ? level - 1 : null} unit="level" />
 
         <ReportUpsell source="sequence-memory" />
       </div>

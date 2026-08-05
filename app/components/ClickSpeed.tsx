@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function ClickSpeed() {
@@ -110,6 +111,8 @@ export default function ClickSpeed() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="click-speed" score={phase === "done" ? cps : null} unit="CPS" />
 
         <ReportUpsell source="click-speed" />
       </div>

@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 const colors = [
@@ -180,6 +181,8 @@ export default function ColorTest() {
             className="px-6 py-3 bg-fuchsia-600 text-ink font-bold rounded-xl hover:bg-fuchsia-700 transition-colors"
           >Share Score</button>
         </div>
+
+        <LeaderboardPanel game="stroop" score={phase === "done" ? score : null} unit="score" />
 
         <ReportUpsell source="stroop" />
       </div>

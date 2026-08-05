@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function VisualMemory() {
@@ -186,6 +187,8 @@ export default function VisualMemory() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="visual-memory" score={phase === "wrong" && lives <= 0 ? level - 1 : null} unit="level" />
 
         <ReportUpsell source="visual-memory" />
       </div>
