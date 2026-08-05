@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "showing" | "input" | "result" | "failed";
@@ -168,6 +169,8 @@ export default function NumberSpeedTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="number-speed" score={isFinished ? maxDigitSpan : null} unit="level" />
 
         <ReportUpsell source="number-speed" />
       </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type PatternType = "number" | "color" | "size" | "shape" | "letter";
@@ -634,6 +635,8 @@ export default function PatternTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="pattern" score={phase === "result" ? score : null} unit="/12" />
 
         <ReportUpsell source="pattern" />
       </div>

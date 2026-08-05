@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 const TOTAL_ROUNDS = 15;
@@ -163,6 +164,8 @@ export default function PeripheralVision() {
             Share
           </button>
         </div>
+
+        <LeaderboardPanel game="peripheral" score={phase === "result" && avgTime > 0 ? avgTime : null} unit="ms" />
 
         <ReportUpsell source="peripheral-vision" />
       </div>

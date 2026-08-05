@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function RhythmTest() {
@@ -305,6 +306,8 @@ export default function RhythmTest() {
           Share Score
         </button>
       </div>
+
+      <LeaderboardPanel game="rhythm" score={phase === "result" ? level - 1 : null} unit="level" />
 
       <ReportUpsell source="rhythm" />
     </div>

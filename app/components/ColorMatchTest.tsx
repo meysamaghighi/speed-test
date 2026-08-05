@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "playing" | "result";
@@ -192,6 +193,8 @@ export default function ColorMatchTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="color-match" score={isFinished ? score : null} unit="pts" />
 
         <ReportUpsell source="color-match" />
       </div>
