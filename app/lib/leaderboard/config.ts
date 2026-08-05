@@ -14,6 +14,13 @@ export const BOUNDS_BY_UNIT: Record<string, { min: number; max: number }> = {
   WPM: { min: 5, max: 300 },
   "%": { min: 0, max: 100 },
   "acc%": { min: 0, max: 100 },
+  // Count-like units below all use min: 1, not 0, deliberately: in
+  // app/hooks/usePersonalBest.ts, a 0 score in higher-is-better mode is
+  // treated as "no achievement" and is never stored as a personal best
+  // (`mode === "higher" && score <= 0` short-circuits before the best is
+  // set). Rejecting a 0 from the world board mirrors that existing
+  // site-wide rule rather than conflicting with it — do not "fix" this to
+  // min: 0 for consistency with %/acc%, which are percentages, not counts.
   score: { min: 1, max: 100000 },
   pts: { min: 1, max: 100000 },
   digits: { min: 1, max: 30 },
@@ -32,10 +39,35 @@ export const BOUNDS_BY_UNIT: Record<string, { min: number; max: number }> = {
 const OVERRIDES: Record<string, GameCfg> = {
   // `reaction` has real player scores in Redis under this exact key with
   // these exact bounds (min: 80, max: 2000). The generic `ms` bounds above
-  // (80-5000) are wider and were chosen for other ms-unit tests (e.g.
-  // trail-making-adjacent ones) — do NOT let the derived `ms` bounds widen
-  // this live board, it would change validation behavior under existing data.
+  // (80-5000) are wider and were chosen for other ms-unit tests (e.g. aim,
+  // peripheral, go-no-go, number-comparison, visual-search) — do NOT let
+  // the derived `ms` bounds widen this live board, it would change
+  // validation behavior under existing data.
   reaction: { min: 80, max: 2000, lowerIsBetter: true },
+
+  // These three `level`-unit tests plateau: past some level, difficulty
+  // stops increasing and every further round is identical, so a
+  // sufficiently persistent player can rack up levels indefinitely as an
+  // endurance run rather than a skill ceiling. The generic `level` bounds
+  // (1-50) would silently reject those legitimate high scores. Ceilings
+  // below are generous on purpose — see BOUNDS_BY_UNIT's comment above the
+  // count-like rows for the same "generous over strict" philosophy.
+
+  // VisualMemory.tsx:18 — tilesForLevel = Math.min(3 + lvl, 25) plateaus at
+  // level 22 (3+22=25); every round after that is the same 25-tiles-in-a
+  // -36-cell (6x6) challenge, an endurance test from there on.
+  "visual-memory": { min: 1, max: 500, lowerIsBetter: false },
+
+  // ChangeDetectionTest.tsx:34 — grid size = Math.min(lvl + 1, 5) plateaus
+  // at level 4 (a 5x5 grid); every round after that is the same difficulty,
+  // an endurance test from there on.
+  "change-detection": { min: 1, max: 500, lowerIsBetter: false },
+
+  // FaceMemoryTest.tsx:51 — startLevel indexes LEVELS[Math.min(lvl,
+  // LEVELS.length - 1)], and LEVELS has only 6 entries (indices 0-5), so
+  // every round from level 6 onward reuses the hardest config forever, an
+  // endurance test from there on.
+  "face-memory": { min: 1, max: 500, lowerIsBetter: false },
 };
 
 function deriveGames(): Record<string, GameCfg> {

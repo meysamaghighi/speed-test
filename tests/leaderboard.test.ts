@@ -255,3 +255,19 @@ test("bounds are sane: min < max, non-negative", () => {
     assert.ok(b.min >= 0, `${unit}: min must be >= 0`);
   }
 });
+
+test("plateauing level tests get an endurance-appropriate override, not the unit default", () => {
+  // VisualMemory, ChangeDetectionTest, and FaceMemoryTest all cap their
+  // difficulty ramp and become endurance counters past some level, so they
+  // must not be silently rejected at the generic `level` ceiling of 50.
+  for (const slug of ["visual-memory", "change-detection", "face-memory"]) {
+    assert.ok(GAMES[slug], `missing config for ${slug}`);
+    assert.notEqual(
+      GAMES[slug].max,
+      BOUNDS_BY_UNIT.level.max,
+      `${slug} should use an OVERRIDES ceiling, not the generic level max`,
+    );
+    assert.equal(GAMES[slug].max, 500, `${slug} should have a generous endurance ceiling`);
+    assert.equal(GAMES[slug].lowerIsBetter, false);
+  }
+});
