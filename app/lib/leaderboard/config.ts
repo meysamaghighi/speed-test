@@ -95,8 +95,33 @@ function deriveGames(): Record<string, GameCfg> {
   return games;
 }
 
+// Board ids that don't map 1:1 to a single TESTS entry. DigitSpanTest.tsx
+// has two modes — forward and backward — sharing one TESTS entry (href
+// "/digit-span", key pb-digit-span-forward; backward's pb key isn't in
+// TESTS at all, a separate known gap). Backward is materially harder than
+// forward, so a single shared "digit-span" world board would just let
+// forward players dominate every ranking — the same problem the sister
+// site solved by giving each Sudoku difficulty its own board. Bounds and
+// direction below mirror what the "digits" unit gives via BOUNDS_BY_UNIT
+// (min: 1, max: 30, lowerIsBetter: false) — verified against that table,
+// not hand-picked.
+const EXTRA_BOARDS: Record<string, GameCfg> = {
+  "digit-span-forward": { min: 1, max: 30, lowerIsBetter: false },
+  "digit-span-backward": { min: 1, max: 30, lowerIsBetter: false },
+};
+
 // World board config, derived from TESTS and keyed by slug (test.href minus
-// the leading "/"). Covers all 40 brain tests. Do not hand-edit this list —
-// add a new TESTS entry (and a BOUNDS_BY_UNIT/OVERRIDES entry if needed) and
-// it derives automatically.
-export const GAMES: Record<string, GameCfg> = deriveGames();
+// the leading "/"), plus EXTRA_BOARDS for ids that need a finer split than
+// TESTS provides. Covers all 40 brain tests. Do not hand-edit the derived
+// part — add a new TESTS entry (and a BOUNDS_BY_UNIT/OVERRIDES entry if
+// needed) and it derives automatically.
+//
+// The single auto-derived "digit-span" id is deliberately dropped in favor
+// of the two EXTRA_BOARDS entries above. Safe to drop: this branch is
+// unreleased, so no scores were ever submitted to "digit-span" in Redis —
+// unlike e.g. "reaction", which has live production data and must keep its
+// exact key/bounds (see the OVERRIDES comment above).
+const derivedGames = deriveGames();
+delete derivedGames["digit-span"];
+
+export const GAMES: Record<string, GameCfg> = { ...derivedGames, ...EXTRA_BOARDS };

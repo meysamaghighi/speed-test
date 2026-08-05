@@ -169,7 +169,7 @@ export default function DigitSpanTest() {
           </button>
         </div>
 
-        <LeaderboardPanel game="digit-span" score={isFinished ? maxLevel : null} unit="digits" />
+        <LeaderboardPanel game={mode === "forward" ? "digit-span-forward" : "digit-span-backward"} score={isFinished ? maxLevel : null} unit="digits" />
 
         <ReportUpsell source="digit-span" />
       </div>

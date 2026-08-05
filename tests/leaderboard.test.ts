@@ -214,12 +214,39 @@ test("prototype property names are not valid games", async () => {
 import { GAMES, BOUNDS_BY_UNIT } from "../app/lib/leaderboard/config.ts";
 import { TESTS } from "../app/lib/brainTests.ts";
 
-test("every brain test has a world board config, keyed by slug", () => {
+// digit-span is the one TESTS slug that does NOT resolve to its own board:
+// it's retired in favor of two mode-specific EXTRA_BOARDS entries (see
+// config.ts) because forward/backward digit span have very different
+// difficulty and shouldn't rank together. Every other TESTS slug still
+// resolves 1:1.
+const RETIRED_TEST_SLUGS = new Set(["digit-span"]);
+const EXTRA_BOARD_IDS = ["digit-span-forward", "digit-span-backward"];
+
+test("every brain test has a world board config, keyed by slug (except retired ids folded into EXTRA_BOARDS)", () => {
   for (const t of TESTS) {
     const slug = t.href.replace(/^\//, "");
+    if (RETIRED_TEST_SLUGS.has(slug)) continue;
     assert.ok(GAMES[slug], `missing world board config for slug "${slug}" (${t.label})`);
   }
-  assert.equal(Object.keys(GAMES).length, TESTS.length);
+  // GAMES = every TESTS slug, minus the retired ones, plus the extra boards
+  // that replace them.
+  assert.equal(Object.keys(GAMES).length, TESTS.length - RETIRED_TEST_SLUGS.size + EXTRA_BOARD_IDS.length);
+});
+
+test("extra board ids (digit-span-forward/backward) are explicitly present", () => {
+  for (const id of EXTRA_BOARD_IDS) {
+    assert.ok(GAMES[id], `expected extra board "${id}" to exist`);
+  }
+  // And the retired shared id is gone, so nothing can submit to it.
+  assert.ok(!GAMES["digit-span"], `"digit-span" should have been replaced by mode-specific boards`);
+});
+
+test("digit-span-forward and digit-span-backward both exist with correct, matching bounds", () => {
+  const expected = { min: 1, max: 30, lowerIsBetter: false };
+  assert.deepEqual(GAMES["digit-span-forward"], expected);
+  assert.deepEqual(GAMES["digit-span-backward"], expected);
+  // Bounds must match what the "digits" unit gives everywhere else.
+  assert.deepEqual(BOUNDS_BY_UNIT.digits, { min: 1, max: 30 });
 });
 
 test("world board ids are slugs, never pb-* family keys", () => {
@@ -231,6 +258,7 @@ test("world board ids are slugs, never pb-* family keys", () => {
 test("direction comes from the test's own mode", () => {
   for (const t of TESTS) {
     const slug = t.href.replace(/^\//, "");
+    if (RETIRED_TEST_SLUGS.has(slug)) continue;
     assert.equal(
       GAMES[slug].lowerIsBetter,
       t.mode === "lower",
