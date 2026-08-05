@@ -73,6 +73,21 @@ export function setActive(state: FamilyState, id: string | null): FamilyState {
   return { ...state, activeId: id };
 }
 
+/**
+ * Record a score for whoever is currently active, using a BMB test's own
+ * `mode`. Returns the state unchanged when no one is active, so a device
+ * with no family profiles behaves exactly as it did before this existed.
+ */
+export function recordForActivePlayer(
+  state: FamilyState,
+  boardId: string,
+  score: number,
+  mode: "lower" | "higher",
+): FamilyState {
+  if (!state.activeId) return state;
+  return recordBest(state, boardId, state.activeId, score, mode === "lower");
+}
+
 export type Standing = { rank: number; profile: Profile; score: number };
 
 export function recordBest(

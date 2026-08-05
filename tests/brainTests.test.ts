@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { TESTS, clamp } from "../app/lib/brainTests.ts";
+import { TESTS, clamp, LOWER_BOARDS } from "../app/lib/brainTests.ts";
 
 test("clamp bounds to 0-100 and passes through in-range values", () => {
   assert.equal(clamp(-50), 0);
@@ -53,6 +53,20 @@ test("every toScore always returns a value clamped to [0, 100]", () => {
         `${t.key}.toScore(${raw}) = ${score}, expected a finite value in [0, 100]`
       );
     }
+  }
+});
+
+// Regression guard for the family scoreboard's `lowerBoards` set (used by
+// saveFamily/mergeFamilyState): it must be derived from TESTS's own `mode`,
+// never hand-maintained or built from app/lib/leaderboard/config.ts's GAMES
+// (an unrelated, single-entry config for the *world* leaderboard). Getting
+// this wrong silently ranks the slowest reaction time as the "best" score.
+test("LOWER_BOARDS contains exactly the pb-* keys whose TESTS mode is lower", () => {
+  const expected = new Set(TESTS.filter((t) => t.mode === "lower").map((t) => t.key));
+  assert.deepEqual([...LOWER_BOARDS].sort(), [...expected].sort());
+  assert.ok(LOWER_BOARDS.size > 0, "sanity: at least one lower-is-better test exists");
+  for (const key of LOWER_BOARDS) {
+    assert.ok(TESTS.some((t) => t.key === key && t.mode === "lower"), `${key} in LOWER_BOARDS must map to a mode:"lower" test`);
   }
 });
 

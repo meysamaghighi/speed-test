@@ -335,3 +335,16 @@ export const TESTS: TestDef[] = [
 export function clamp(v: number) {
   return Math.max(0, Math.min(100, v));
 }
+
+/**
+ * The family scoreboard's `lowerBoards` set (see app/lib/family/{profiles,storage}.ts):
+ * every `pb-*` board id whose test is lower-is-better. Derived from TESTS —
+ * never hand-maintained — so a mode change here can't silently desync from
+ * the scoreboard's ranking direction.
+ *
+ * NOT the same thing as app/lib/leaderboard/config.ts's `GAMES` — that's the
+ * unrelated *world* leaderboard config and only has one entry (`reaction`).
+ */
+export const LOWER_BOARDS: ReadonlySet<string> = new Set(
+  TESTS.filter((t) => t.mode === "lower").map((t) => t.key),
+);

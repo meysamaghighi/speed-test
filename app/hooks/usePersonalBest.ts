@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { loadFamily, saveFamily } from "../lib/family/storage";
+import { recordForActivePlayer } from "../lib/family/profiles";
+import { LOWER_BOARDS } from "../lib/brainTests";
 
 /**
  * Hook for localStorage personal bests.
@@ -44,6 +47,21 @@ export function usePersonalBest(key: string, mode: "lower" | "higher", score: nu
     } else {
       setIsNewBest(false);
     }
+
+    // Also record for the active family player, if this device has one. Not
+    // nested inside the `isBetter` branch above: a score that isn't a new
+    // device-wide best can still be a personal best for this particular
+    // player. On a device with no family profiles, loadFamily().activeId is
+    // null and this returns before ever calling saveFamily — no extra
+    // localStorage *write*, only the harmless read loadFamily always does.
+    // Wrapped so a family-storage failure can never break a test page. This
+    // effect's dependency array is `[score]` only, so — like PlayMini's
+    // `recorded` ref — a re-render alone can't rerun this and rewrite
+    // storage; it only runs again when `score` itself changes.
+    try {
+      const fam = loadFamily();
+      if (fam.activeId) saveFamily(recordForActivePlayer(fam, key, score, mode), LOWER_BOARDS);
+    } catch {}
   }, [score]); // intentionally only depend on score
 
   return { best, isNewBest };

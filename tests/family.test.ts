@@ -7,6 +7,7 @@ import {
   setActive,
   MAX_PROFILES,
   recordBest,
+  recordForActivePlayer,
   standings,
   houseChampions,
   topChampions,
@@ -101,6 +102,29 @@ test("recordBest ignores unknown players and non-finite scores", () => {
   assert.equal(recordBest(base, "snake", "ghost", 100, false).bests.snake, undefined);
   assert.equal(recordBest(base, "snake", "p1", NaN, false).bests.snake, undefined);
   assert.equal(recordBest(base, "snake", "p1", Infinity, false).bests.snake, undefined);
+});
+
+test("recordForActivePlayer records to the active profile using the test's mode", () => {
+  let s = addProfile(emptyState(), "Mira", "p1");
+  s = recordForActivePlayer(s, "pb-reaction", 240, "lower");
+  assert.equal(s.bests["pb-reaction"].p1, 240);
+  // lower-is-better: a slower time must not overwrite
+  s = recordForActivePlayer(s, "pb-reaction", 300, "lower");
+  assert.equal(s.bests["pb-reaction"].p1, 240);
+  // higher-is-better on a different board
+  s = recordForActivePlayer(s, "pb-typing", 60, "higher");
+  s = recordForActivePlayer(s, "pb-typing", 45, "higher");
+  assert.equal(s.bests["pb-typing"].p1, 60);
+});
+
+test("recordForActivePlayer is a no-op when nobody is active", () => {
+  const s = emptyState();
+  assert.deepEqual(recordForActivePlayer(s, "pb-reaction", 240, "lower"), s);
+});
+
+test("recordForActivePlayer ignores non-finite scores", () => {
+  const s = addProfile(emptyState(), "Mira", "p1");
+  assert.deepEqual(recordForActivePlayer(s, "pb-reaction", NaN, "lower"), s);
 });
 
 test("standings rank best-first and include every player who has played", () => {
