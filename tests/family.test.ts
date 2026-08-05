@@ -241,11 +241,17 @@ test("topChampions is empty when nobody has a first yet", () => {
 
 // Finding 1: switching the active player while a game-over score is still
 // showing must move that score to the new player and leave nothing behind on
-// the old one. FamilyBoard.tsx implements this by re-applying recordBest to
-// the state snapshot from BEFORE the score was first auto-recorded (not the
-// state after), for the newly selected player. This test verifies that
-// re-application is what actually avoids the phantom — recording against the
-// post-record state would instead leave the score on both players.
+// the old one. The PlayMini implementation this was ported from does this in
+// FamilyBoard.tsx by re-applying recordBest to the state snapshot from
+// BEFORE the score was first auto-recorded (not the state after), for the
+// newly selected player. On this site scores are recorded by
+// usePersonalBest.ts rather than by the board UI, so BenchMyBrain's
+// FamilyBoard.tsx has no `score` prop and no re-attribution to do — this
+// test exercises the underlying recordBest/restoreBest mechanics that make
+// that re-application correct, kept here for parity with PlayMini's copy of
+// this test suite. This test verifies that re-application is what actually
+// avoids the phantom — recording against the post-record state would
+// instead leave the score on both players.
 test("re-applying a recorded score to the pre-record snapshot moves it with no phantom on the previous player", () => {
   const base = twoPlayers(); // pre-record snapshot: neither player has a score yet
   const recordedToP1 = recordBest(base, "snake", "p1", 300, false); // simulated auto-record

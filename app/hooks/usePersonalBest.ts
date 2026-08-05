@@ -60,7 +60,8 @@ export function usePersonalBest(key: string, mode: "lower" | "higher", score: nu
     // storage; it only runs again when `score` itself changes.
     try {
       const fam = loadFamily();
-      if (fam.activeId) saveFamily(recordForActivePlayer(fam, key, score, mode), LOWER_BOARDS);
+      const next = recordForActivePlayer(fam, key, score, mode);
+      if (next !== fam) saveFamily(next, LOWER_BOARDS);
     } catch {}
   }, [score]); // intentionally only depend on score
 

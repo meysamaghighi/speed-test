@@ -117,10 +117,14 @@ export function recordBest(
  * only player) rather than stored as `undefined` — same convention
  * `removeProfile` uses for pruning empty boards.
  *
- * Used by FamilyBoard.tsx to undo an auto-recorded score when the active
- * player changes while that score is still showing: restore the outgoing
- * player's prior best with this, then recordBest the score onto the new
- * player against the current state.
+ * In the PlayMini implementation this was ported from, FamilyBoard.tsx uses
+ * this to undo an auto-recorded score when the active player changes while
+ * that score is still showing: restore the outgoing player's prior best with
+ * this, then recordBest the score onto the new player against the current
+ * state. On BenchMyBrain, scores are recorded by app/hooks/usePersonalBest.ts
+ * rather than by the board UI, so this site's FamilyBoard.tsx never receives
+ * a score to re-attribute and has no call site for this function — it's kept
+ * here (and in its tests) for parity with PlayMini's copy of this module.
  */
 export function restoreBest(
   state: FamilyState,
