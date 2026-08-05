@@ -208,3 +208,50 @@ test("prototype property names are not valid games", async () => {
   }
   assert.equal(validateScore("hasOwnProperty", 99999999).ok, false);
 });
+
+// --------- World leaderboard config: all 40 tests ---------
+
+import { GAMES, BOUNDS_BY_UNIT } from "../app/lib/leaderboard/config.ts";
+import { TESTS } from "../app/lib/brainTests.ts";
+
+test("every brain test has a world board config, keyed by slug", () => {
+  for (const t of TESTS) {
+    const slug = t.href.replace(/^\//, "");
+    assert.ok(GAMES[slug], `missing world board config for slug "${slug}" (${t.label})`);
+  }
+  assert.equal(Object.keys(GAMES).length, TESTS.length);
+});
+
+test("world board ids are slugs, never pb-* family keys", () => {
+  for (const id of Object.keys(GAMES)) {
+    assert.ok(!id.startsWith("pb-"), `world board id "${id}" looks like a family key`);
+  }
+});
+
+test("direction comes from the test's own mode", () => {
+  for (const t of TESTS) {
+    const slug = t.href.replace(/^\//, "");
+    assert.equal(
+      GAMES[slug].lowerIsBetter,
+      t.mode === "lower",
+      `direction mismatch for ${slug}`,
+    );
+  }
+});
+
+test("reaction keeps its live bounds — real scores exist in Redis under this key", () => {
+  assert.deepEqual(GAMES.reaction, { min: 80, max: 2000, lowerIsBetter: true });
+});
+
+test("every unit used by TESTS has a bounds entry", () => {
+  for (const t of TESTS) {
+    assert.ok(BOUNDS_BY_UNIT[t.unit], `no bounds defined for unit "${t.unit}" (${t.label})`);
+  }
+});
+
+test("bounds are sane: min < max, non-negative", () => {
+  for (const [unit, b] of Object.entries(BOUNDS_BY_UNIT)) {
+    assert.ok(b.min < b.max, `${unit}: min must be < max`);
+    assert.ok(b.min >= 0, `${unit}: min must be >= 0`);
+  }
+});
