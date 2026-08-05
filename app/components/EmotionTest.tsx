@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "playing" | "result";
@@ -220,6 +221,8 @@ export default function EmotionTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="emotion" score={isFinished ? score : null} unit="score" />
 
         <ReportUpsell source="emotion" />
       </div>

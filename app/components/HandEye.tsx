@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 interface Target {
@@ -241,6 +242,8 @@ export default function HandEye() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="hand-eye" score={phase === "done" ? score : null} unit="catches" />
 
         <ReportUpsell source="hand-eye" />
       </div>

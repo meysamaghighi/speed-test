@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "countdown" | "active" | "result";
@@ -285,6 +286,8 @@ export default function WordAssociationTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="word-association" score={isFinished ? score : null} unit="WPM" />
 
         <ReportUpsell source="word-association" />
       </div>

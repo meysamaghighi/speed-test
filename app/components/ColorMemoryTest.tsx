@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "showing" | "delay" | "recall" | "result";
@@ -176,6 +177,8 @@ export default function ColorMemoryTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="color-memory" score={isFinished ? score : null} unit="level" />
 
         <ReportUpsell source="color-memory" />
       </div>
