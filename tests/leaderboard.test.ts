@@ -208,3 +208,94 @@ test("prototype property names are not valid games", async () => {
   }
   assert.equal(validateScore("hasOwnProperty", 99999999).ok, false);
 });
+
+// --------- World leaderboard config: all 40 tests ---------
+
+import { GAMES, BOUNDS_BY_UNIT } from "../app/lib/leaderboard/config.ts";
+import { TESTS } from "../app/lib/brainTests.ts";
+
+// digit-span is the one TESTS slug that does NOT resolve to its own board:
+// it's retired in favor of two mode-specific EXTRA_BOARDS entries (see
+// config.ts) because forward/backward digit span have very different
+// difficulty and shouldn't rank together. Every other TESTS slug still
+// resolves 1:1.
+const RETIRED_TEST_SLUGS = new Set(["digit-span"]);
+const EXTRA_BOARD_IDS = ["digit-span-forward", "digit-span-backward"];
+
+test("every brain test has a world board config, keyed by slug (except retired ids folded into EXTRA_BOARDS)", () => {
+  for (const t of TESTS) {
+    const slug = t.href.replace(/^\//, "");
+    if (RETIRED_TEST_SLUGS.has(slug)) continue;
+    assert.ok(GAMES[slug], `missing world board config for slug "${slug}" (${t.label})`);
+  }
+  // GAMES = every TESTS slug, minus the retired ones, plus the extra boards
+  // that replace them.
+  assert.equal(Object.keys(GAMES).length, TESTS.length - RETIRED_TEST_SLUGS.size + EXTRA_BOARD_IDS.length);
+});
+
+test("extra board ids (digit-span-forward/backward) are explicitly present", () => {
+  for (const id of EXTRA_BOARD_IDS) {
+    assert.ok(GAMES[id], `expected extra board "${id}" to exist`);
+  }
+  // And the retired shared id is gone, so nothing can submit to it.
+  assert.ok(!GAMES["digit-span"], `"digit-span" should have been replaced by mode-specific boards`);
+});
+
+test("digit-span-forward and digit-span-backward both exist with correct, matching bounds", () => {
+  const expected = { min: 1, max: 30, lowerIsBetter: false };
+  assert.deepEqual(GAMES["digit-span-forward"], expected);
+  assert.deepEqual(GAMES["digit-span-backward"], expected);
+  // Bounds must match what the "digits" unit gives everywhere else.
+  assert.deepEqual(BOUNDS_BY_UNIT.digits, { min: 1, max: 30 });
+});
+
+test("world board ids are slugs, never pb-* family keys", () => {
+  for (const id of Object.keys(GAMES)) {
+    assert.ok(!id.startsWith("pb-"), `world board id "${id}" looks like a family key`);
+  }
+});
+
+test("direction comes from the test's own mode", () => {
+  for (const t of TESTS) {
+    const slug = t.href.replace(/^\//, "");
+    if (RETIRED_TEST_SLUGS.has(slug)) continue;
+    assert.equal(
+      GAMES[slug].lowerIsBetter,
+      t.mode === "lower",
+      `direction mismatch for ${slug}`,
+    );
+  }
+});
+
+test("reaction keeps its live bounds — real scores exist in Redis under this key", () => {
+  assert.deepEqual(GAMES.reaction, { min: 80, max: 2000, lowerIsBetter: true });
+});
+
+test("every unit used by TESTS has a bounds entry", () => {
+  for (const t of TESTS) {
+    assert.ok(BOUNDS_BY_UNIT[t.unit], `no bounds defined for unit "${t.unit}" (${t.label})`);
+  }
+});
+
+test("bounds are sane: min < max, non-negative", () => {
+  for (const [unit, b] of Object.entries(BOUNDS_BY_UNIT)) {
+    assert.ok(b.min < b.max, `${unit}: min must be < max`);
+    assert.ok(b.min >= 0, `${unit}: min must be >= 0`);
+  }
+});
+
+test("plateauing level tests get an endurance-appropriate override, not the unit default", () => {
+  // VisualMemory, ChangeDetectionTest, and FaceMemoryTest all cap their
+  // difficulty ramp and become endurance counters past some level, so they
+  // must not be silently rejected at the generic `level` ceiling of 50.
+  for (const slug of ["visual-memory", "change-detection", "face-memory"]) {
+    assert.ok(GAMES[slug], `missing config for ${slug}`);
+    assert.notEqual(
+      GAMES[slug].max,
+      BOUNDS_BY_UNIT.level.max,
+      `${slug} should use an OVERRIDES ceiling, not the generic level max`,
+    );
+    assert.equal(GAMES[slug].max, 500, `${slug} should have a generous endurance ceiling`);
+    assert.equal(GAMES[slug].lowerIsBetter, false);
+  }
+});

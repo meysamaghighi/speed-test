@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "mode-select" | "memorize" | "recall" | "result";
@@ -167,6 +168,8 @@ export default function DigitSpanTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game={mode === "forward" ? "digit-span-forward" : "digit-span-backward"} score={isFinished ? maxLevel : null} unit="digits" />
 
         <ReportUpsell source="digit-span" />
       </div>

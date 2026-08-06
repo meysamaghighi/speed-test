@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "instructions" | "countdown" | "timing" | "result";
@@ -230,6 +231,8 @@ export default function AnticipationTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="anticipation" score={isFinished ? avgScore : null} unit="score" />
 
         {isFinished && <ReportUpsell source="anticipation" />}
       </div>

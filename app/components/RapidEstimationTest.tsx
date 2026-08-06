@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type RoundType = "dots" | "multiplication" | "comparison";
@@ -154,6 +155,8 @@ export default function RapidEstimationTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="pattern-speed" score={isFinished ? score : null} unit="score" />
 
         <ReportUpsell source="pattern-speed" />
       </div>

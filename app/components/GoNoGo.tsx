@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Trial = "go" | "nogo";
@@ -176,6 +177,8 @@ export default function GoNoGo() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="go-no-go" score={phase === "done" && isValidRun ? averageRT : null} unit="ms" />
 
         <ReportUpsell source="go-no-go" />
       </div>

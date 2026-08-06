@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 const wordList = [
@@ -176,6 +177,8 @@ export default function VerbalMemory() {
             className="px-6 py-3 bg-indigo-600 text-ink font-bold rounded-xl hover:bg-indigo-700 transition-colors"
           >Share Score</button>
         </div>
+
+        <LeaderboardPanel game="verbal" score={phase === "done" ? score : null} unit="words" />
 
         <ReportUpsell source="verbal-memory" />
       </div>

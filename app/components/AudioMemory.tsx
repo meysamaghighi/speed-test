@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function AudioMemory() {
@@ -183,6 +184,8 @@ export default function AudioMemory() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="audio-memory" score={phase === "done" ? level - 1 : null} unit="level" />
 
         <ReportUpsell source="audio-memory" />
       </div>

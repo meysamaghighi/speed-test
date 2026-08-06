@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function ReverseMemory() {
@@ -236,6 +237,8 @@ export default function ReverseMemory() {
           Share Score
         </button>
       </div>
+
+      <LeaderboardPanel game="reverse-memory" score={phase === "wrong" ? level - 1 : null} unit="level" />
 
       <ReportUpsell source="reverse-memory" />
     </div>

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function NBack() {
@@ -182,6 +183,8 @@ export default function NBack() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="n-back" score={phase === "done" ? completedLevel : null} unit="level" />
 
         <ReportUpsell source="n-back" />
       </div>

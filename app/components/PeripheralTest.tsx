@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "instructions" | "stimulus" | "center-question" | "location-question" | "result";
@@ -240,6 +241,8 @@ export default function PeripheralTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="peripheral-test" score={isFinished ? combinedScore : null} unit="%" />
 
         <ReportUpsell source="peripheral-test" />
       </div>

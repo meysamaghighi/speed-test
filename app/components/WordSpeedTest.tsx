@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "playing" | "result";
@@ -144,6 +145,8 @@ export default function WordSpeedTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="word-speed" score={isFinished && isPlausible ? wpm : null} unit="WPM" />
 
         <ReportUpsell source="word-speed" />
       </div>

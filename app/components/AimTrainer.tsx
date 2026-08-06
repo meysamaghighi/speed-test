@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 interface Target {
@@ -129,6 +130,8 @@ export default function AimTrainer() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="aim" score={phase === "done" ? average : null} unit="ms" />
 
         <ReportUpsell source="aim-trainer" />
       </div>

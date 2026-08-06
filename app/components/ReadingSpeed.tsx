@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 const passages = [
@@ -257,6 +258,8 @@ export default function ReadingSpeed() {
           Share
         </button>
       </div>
+
+      <LeaderboardPanel game="reading" score={phase === "result" ? adjustedWpm : null} unit="WPM" />
 
       <ReportUpsell source="reading-speed" />
     </div>

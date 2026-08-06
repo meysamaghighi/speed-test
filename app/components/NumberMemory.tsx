@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 export default function NumberMemory() {
@@ -226,6 +227,8 @@ export default function NumberMemory() {
           Share Score
         </button>
       </div>
+
+      <LeaderboardPanel game="memory" score={phase === "wrong" ? level - 1 : null} unit="level" />
 
       <ReportUpsell source="memory" />
     </div>

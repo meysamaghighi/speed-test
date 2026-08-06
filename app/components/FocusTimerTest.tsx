@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 type Phase = "waiting" | "instructions" | "timing" | "result";
@@ -171,6 +172,8 @@ export default function FocusTimerTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="focus-timer" score={isFinished ? score : null} unit="acc%" />
 
         <ReportUpsell source="focus-timer" />
       </div>

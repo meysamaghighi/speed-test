@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 interface Circle {
@@ -137,6 +138,8 @@ export default function TrailMaking() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="trail-making" score={phase === "done" ? elapsedTime / 1000 : null} unit="s" />
 
         <ReportUpsell source="trail-making" />
       </div>

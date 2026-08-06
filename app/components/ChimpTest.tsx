@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 interface Cell {
@@ -243,6 +244,8 @@ export default function ChimpTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="chimp" score={phase === "wrong" ? level - 1 : null} unit="level" />
 
         <ReportUpsell source="chimp" />
       </div>

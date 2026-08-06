@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import ReportUpsell from "./ReportUpsell";
 
 const paragraphs = [
@@ -159,6 +160,8 @@ export default function TypingTest() {
             Share Score
           </button>
         </div>
+
+        <LeaderboardPanel game="typing" score={phase === "done" && isPlausible ? wpm : null} unit="WPM" />
 
         <ReportUpsell source="typing" />
       </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePersonalBest } from "../hooks/usePersonalBest";
+import LeaderboardPanel from "./LeaderboardPanel";
 import { encodeChallenge, decodeChallenge, type ChallengeData } from "../lib/challenge";
 import { track } from "../lib/report";
 import ReportUpsell from "./ReportUpsell";
@@ -385,6 +386,8 @@ export default function SpatialRotation() {
           <p className="text-emerald-500 text-xs font-bold mt-2">Link copied!</p>
         )}
       </div>
+
+      <LeaderboardPanel game="rotation" score={phase === "result" ? correctCount : null} unit="/15" />
 
       <ReportUpsell source="rotation" />
     </div>
