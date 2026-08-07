@@ -27,13 +27,16 @@ export default function ChimpTest() {
   const [nextExpected, setNextExpected] = useState(1);
   const [highScore, setHighScore] = useState(0);
   const gridSize = 8;
+  const gridRows = 5;
+  const maxLevel = gridRows * gridSize; // grid can't hold more unique cells than this
 
   const generateCells = useCallback((count: number) => {
     const positions = new Set<string>();
     const result: Cell[] = [];
+    const target = Math.min(count, gridRows * gridSize);
 
-    while (result.length < count) {
-      const row = Math.floor(Math.random() * 5);
+    while (result.length < target) {
+      const row = Math.floor(Math.random() * gridRows);
       const col = Math.floor(Math.random() * gridSize);
       const key = `${row}-${col}`;
       if (!positions.has(key)) {
@@ -103,7 +106,7 @@ export default function ChimpTest() {
   };
 
   const nextLevel = () => {
-    const next = level + 1;
+    const next = Math.min(level + 1, maxLevel);
     setLevel(next);
     startLevel(next);
   };
@@ -176,7 +179,7 @@ export default function ChimpTest() {
           onClick={nextLevel}
           className="px-8 py-3 bg-orange-600 text-ink font-bold rounded-xl hover:bg-orange-700 transition-colors"
         >
-          Next Level ({level + 1} numbers)
+          Next Level ({Math.min(level + 1, maxLevel)} numbers)
         </button>
       </div>
     );
