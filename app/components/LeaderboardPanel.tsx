@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import FamilyBoard from "./FamilyBoard";
 import { loadFamily } from "../lib/family/storage";
+import { FAMILY_BOARDS } from "../lib/leaderboard/config";
 
 declare global {
   interface Window {
@@ -128,6 +129,12 @@ export default function LeaderboardPanel({
     activateTab(resolved);
   }, [tab, activateTab]);
 
+  // The `game` slug (e.g. "rotation") isn't always the family board's `pb-*`
+  // key (e.g. "pb-spatial") — see FAMILY_BOARDS. Defensive fallback to the
+  // old hardcoded Reaction board only covers a `game` value that somehow
+  // isn't in TESTS at all; it should never actually trigger.
+  const familyBoard = FAMILY_BOARDS[game] ?? { key: "pb-reaction", lowerIsBetter: true };
+
   const rows = useMemo(() => board?.top ?? [], [board]);
 
   // Country scope needs the viewer's cc; derive it from their own row if present.
@@ -200,7 +207,7 @@ export default function LeaderboardPanel({
           rendering) so switching to World and back never remounts it — a
           remount would reset FamilyBoard's own hydration state. */}
       <div className={tab === "family" ? "" : "hidden"}>
-        <FamilyBoard boardId="pb-reaction" lowerIsBetter={true} unit={unit} />
+        <FamilyBoard boardId={familyBoard.key} lowerIsBetter={familyBoard.lowerIsBetter} unit={unit} />
       </div>
 
       {tab === "world" && (
