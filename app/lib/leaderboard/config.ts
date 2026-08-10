@@ -125,3 +125,45 @@ const derivedGames = deriveGames();
 delete derivedGames["digit-span"];
 
 export const GAMES: Record<string, GameCfg> = { ...derivedGames, ...EXTRA_BOARDS };
+
+// --- Family scoreboard board-id lookup ---------------------------------
+//
+// LeaderboardPanel's Family tab needs the *family* `pb-*` storage key (e.g.
+// "pb-spatial") for whichever test's `game` slug it was mounted with (e.g.
+// "rotation") — NOT the same thing as the World-board slug above. The two
+// are usually equal but not always: TESTS' own `key` is the source of
+// truth (it's what usePersonalBest actually writes to), and a couple of
+// slugs diverge from the naive `pb-${slug}` guess (e.g. rotation → pb-spatial).
+export type FamilyBoardCfg = { key: string; lowerIsBetter: boolean };
+
+function deriveFamilyBoards(): Record<string, FamilyBoardCfg> {
+  const boards: Record<string, FamilyBoardCfg> = {};
+  for (const t of TESTS) {
+    const slug = t.href.replace(/^\//, "");
+    boards[slug] = { key: t.key, lowerIsBetter: t.mode === "lower" };
+  }
+  return boards;
+}
+
+// Extra family-board slugs that don't map 1:1 from a single TESTS entry —
+// mirrors EXTRA_BOARDS above. DigitSpanTest.tsx passes game=
+// "digit-span-forward"/"digit-span-backward" to LeaderboardPanel (not the
+// single shared TESTS href "/digit-span"), and both follow the plain
+// `pb-${game}` key pattern — confirmed against DigitSpanTest.tsx's own
+// usePersonalBest calls, which use "pb-digit-span-forward"/
+// "pb-digit-span-backward" directly.
+const EXTRA_FAMILY_BOARDS: Record<string, FamilyBoardCfg> = {
+  "digit-span-forward": { key: "pb-digit-span-forward", lowerIsBetter: false },
+  "digit-span-backward": { key: "pb-digit-span-backward", lowerIsBetter: false },
+};
+
+// Same "drop the ambiguous auto-derived entry, union in the explicit split"
+// pattern as GAMES above: the lone "digit-span" slug (from the one shared
+// TESTS href) can't tell forward from backward, so it's replaced entirely.
+const derivedFamilyBoards = deriveFamilyBoards();
+delete derivedFamilyBoards["digit-span"];
+
+export const FAMILY_BOARDS: Record<string, FamilyBoardCfg> = {
+  ...derivedFamilyBoards,
+  ...EXTRA_FAMILY_BOARDS,
+};
