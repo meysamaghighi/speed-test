@@ -163,6 +163,7 @@ test("redis path: checkRateLimit issues INCR/EXPIRE and blocks over the cap", as
 
 import { GET as boardGET } from "../app/api/leaderboard/route.ts";
 import { POST as submitPOST } from "../app/api/leaderboard/submit/route.ts";
+import { GET as meGET } from "../app/api/leaderboard/me/route.ts";
 
 function postReq(body: unknown, headers: Record<string, string> = {}) {
   return new Request("http://x/api/leaderboard/submit", {
@@ -182,9 +183,48 @@ test("submit route: happy path stores country from vercel header", async () => {
   const j = await res.json();
   assert.equal(j.accepted, true);
   assert.equal(j.worldRank, 1);
-  const b = await (await boardGET(new Request("http://x/api/leaderboard?game=reaction&playerId=pz"))).json();
+  const withPlayerRes = await boardGET(new Request("http://x/api/leaderboard?game=reaction&playerId=pz"));
+  assert.equal(withPlayerRes.headers.get("Cache-Control"), "private, no-store");
+  const b = await withPlayerRes.json();
   assert.equal(b.top[0].cc, "SE");
   assert.equal(b.you.rank, 1);
+});
+
+test("board route: Cache-Control is shared/cacheable without playerId, private with it", async () => {
+  __resetMemoryStore();
+  const anon = await boardGET(new Request("http://x/api/leaderboard?game=reaction"));
+  assert.equal(anon.headers.get("Cache-Control"), "s-maxage=30, stale-while-revalidate=60");
+  const personal = await boardGET(new Request("http://x/api/leaderboard?game=reaction&playerId=pz"));
+  assert.equal(personal.headers.get("Cache-Control"), "private, no-store");
+});
+
+test("me route: 400 on unknown game", async () => {
+  assert.equal((await meGET(new Request("http://x/api/leaderboard/me?game=nope&playerId=p1"))).status, 400);
+});
+
+test("me route: 400 when playerId missing", async () => {
+  assert.equal((await meGET(new Request("http://x/api/leaderboard/me?game=reaction"))).status, 400);
+});
+
+test("me route: {you: null} for an unknown player", async () => {
+  __resetMemoryStore();
+  const res = await meGET(new Request("http://x/api/leaderboard/me?game=reaction&playerId=ghost"));
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get("Cache-Control"), "private, no-store");
+  const j = await res.json();
+  assert.equal(j.you, null);
+});
+
+test("me route: {you: {rank, score}} for a known player", async () => {
+  __resetMemoryStore();
+  // lower-is-better: 180 beats 250, so u1 (180) ranks #1 and s1 (250) ranks #2.
+  await submitScore({ game: "reaction", score: 250, nickname: "Swede", playerId: "s1", cc: "SE" });
+  await submitScore({ game: "reaction", score: 180, nickname: "Yank", playerId: "u1", cc: "US" });
+  const res = await meGET(new Request("http://x/api/leaderboard/me?game=reaction&playerId=u1"));
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get("Cache-Control"), "private, no-store");
+  const j = await res.json();
+  assert.deepEqual(j.you, { rank: 1, score: 180 });
 });
 
 test("submit route: rejects garbage", async () => {

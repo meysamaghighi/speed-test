@@ -146,6 +146,17 @@ async function computeRanks(game: string, playerId: string, cc: string) {
   return { worldRank, countryRank, totalPlayers: all.length };
 }
 
+// Personal-only lookup (no board slice, no meta reads for the top-100 rows) —
+// leaner than getBoard for a personal-rank-only request, but still O(n) over
+// the full board like fullBoard() itself, since this storage layer has no
+// Redis ZREVRANK/ZSCORE per-player lookup to lean on.
+export async function getPlayerRank(game: string, playerId: string): Promise<{ rank: number; score: number } | null> {
+  const all = await fullBoard(game);
+  const idx = all.findIndex((e) => e.playerId === playerId);
+  if (idx < 0) return null;
+  return { rank: idx + 1, score: fromStored(game, all[idx].stored) };
+}
+
 export async function getBoard(game: string, playerId?: string) {
   const all = await fullBoard(game);
   const meta = await readMeta(game, all.map((e) => e.playerId));
