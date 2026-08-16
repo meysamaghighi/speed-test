@@ -61,6 +61,7 @@ export default function LeaderboardPanel({
 }) {
   const [nick, setNick] = useState("");
   const [board, setBoard] = useState<Board | null>(null);
+  const [boardStatus, setBoardStatus] = useState<"loading" | "ready" | "error">("loading");
   const [you, setYou] = useState<{ rank: number; score: number } | null>(null);
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [busy, setBusy] = useState(false);
@@ -71,6 +72,10 @@ export default function LeaderboardPanel({
   const worldViewed = useRef(false);
   const familyViewed = useRef(false);
   const tabDefaulted = useRef(false);
+  // Tracks "has any board fetch ever succeeded" so a failed background
+  // refetch (see the `fresh` comment below) never downgrades an
+  // already-successfully-loaded board back to an error state.
+  const hasLoadedRef = useRef(false);
 
   const load = useCallback(async (fresh = false) => {
     try {
@@ -87,9 +92,16 @@ export default function LeaderboardPanel({
       const res = await fetch(
         fresh ? `/api/leaderboard?game=${game}&t=${Date.now()}` : `/api/leaderboard?game=${game}`,
       );
-      if (res.ok) setBoard((await res.json()) as Board);
+      if (res.ok) {
+        setBoard((await res.json()) as Board);
+        hasLoadedRef.current = true;
+        setBoardStatus("ready");
+      } else if (!hasLoadedRef.current) {
+        setBoardStatus("error");
+      }
     } catch {
       /* board is optional — never break the game */
+      if (!hasLoadedRef.current) setBoardStatus("error");
     }
   }, [game]);
 
@@ -310,7 +322,11 @@ export default function LeaderboardPanel({
             ))}
           </div>
 
-          {visible.length === 0 ? (
+          {boardStatus === "loading" ? (
+            <p className="text-sm text-ink-3">Loading leaderboard…</p>
+          ) : boardStatus === "error" ? (
+            <p className="text-sm text-ink-3">Couldn&apos;t load the leaderboard — try again later.</p>
+          ) : visible.length === 0 ? (
             <p className="text-sm text-ink-3">No scores yet — be the first!</p>
           ) : (
             <ol className="max-h-64 overflow-y-auto text-sm">
