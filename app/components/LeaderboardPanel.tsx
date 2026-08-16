@@ -12,8 +12,9 @@ declare global {
 }
 
 type Row = { rank: number; name: string; cc: string; score: number };
-type Board = { top: Row[]; you: { rank: number; score: number } | null; totalPlayers: number };
-type SubmitResult = { accepted: boolean; best: number; worldRank: number; countryRank: number; totalPlayers: number };
+type You = { rank: number; score: number; cc: string };
+type Board = { top: Row[]; you: You | null; totalPlayers: number };
+type SubmitResult = { accepted: boolean; best: number; cc: string; worldRank: number; countryRank: number; totalPlayers: number };
 
 function pid(): string {
   try {
@@ -62,7 +63,7 @@ export default function LeaderboardPanel({
   const [nick, setNick] = useState("");
   const [board, setBoard] = useState<Board | null>(null);
   const [boardStatus, setBoardStatus] = useState<"loading" | "ready" | "error">("loading");
-  const [you, setYou] = useState<{ rank: number; score: number } | null>(null);
+  const [you, setYou] = useState<You | null>(null);
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -107,9 +108,13 @@ export default function LeaderboardPanel({
 
   const loadYou = useCallback(async () => {
     try {
-      const res = await fetch(`/api/leaderboard/me?game=${game}&playerId=${encodeURIComponent(pid())}`);
+      // Uses the main board endpoint (with playerId) rather than /me: getBoard
+      // already loads meta for every player to build `top`, so `you.cc` comes
+      // along for free. /me's getPlayerRank deliberately skips meta reads
+      // (leaner personal-rank-only lookup) and so cannot carry country.
+      const res = await fetch(`/api/leaderboard?game=${game}&playerId=${encodeURIComponent(pid())}`);
       if (res.ok) {
-        const j = (await res.json()) as { you: { rank: number; score: number } | null };
+        const j = (await res.json()) as Board;
         setYou(j.you);
       }
     } catch {
@@ -176,18 +181,26 @@ export default function LeaderboardPanel({
   const rows = useMemo(() => board?.top ?? [], [board]);
 
   // Match the player's own row on rank AND score. Rank alone is not enough:
-  // the shared board is CDN-cached while /me is not, so the two can disagree
-  // for up to ~90s after a submit — and matching on rank alone then highlights
-  // whichever stranger currently occupies that position as "you".
+  // the shared board is CDN-cached while the personal `you` lookup is not, so
+  // the two can disagree for up to ~90s after a submit — and matching on rank
+  // alone then highlights whichever stranger currently occupies that
+  // position as "you".
   const myRow = useMemo(() => {
     if (!you) return null;
     return rows.find((r) => r.rank === you.rank && r.score === you.score) ?? null;
   }, [rows, you]);
 
-  // Country scope needs the viewer's cc; derive it from their own row if present.
-  const myCc = myRow?.cc ?? "";
+  // Country scope needs the viewer's cc. Source it from the server, not by
+  // searching `rows` — `rows` is only the top-100 slice, so a player ranked
+  // beyond that would never be found there even though the server knows
+  // their country. Prefer the freshest source: a just-submitted result, then
+  // the personal lookup (also outside-top-100-safe), else genuinely unknown.
+  const myCc = result?.cc || you?.cc || "";
 
-  const visible = scope === "world" ? rows : rows.filter((r) => r.cc === myCc);
+  // Never fall back to matching cc === "" — that would silently sweep in
+  // every row whose country is unknown as "my country" instead of showing a
+  // real empty state for a viewer we don't know the country of yet.
+  const visible = scope === "world" ? rows : myCc ? rows.filter((r) => r.cc === myCc) : [];
 
   async function submit() {
     if (busy || score === null) return;

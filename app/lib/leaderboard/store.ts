@@ -75,7 +75,7 @@ export async function checkRateLimit(keys: string[]): Promise<boolean> {
 // ---------- Submit ----------
 export async function submitScore(args: {
   game: string; score: number; nickname: string; playerId: string; cc: string;
-}): Promise<{ accepted: boolean; best: number; worldRank: number; countryRank: number; totalPlayers: number }> {
+}): Promise<{ accepted: boolean; best: number; cc: string; worldRank: number; countryRank: number; totalPlayers: number }> {
   const { game, score, nickname, playerId, cc } = args;
   const stored = toStored(game, score);
   const key = boardKey(game);
@@ -118,7 +118,7 @@ export async function submitScore(args: {
   }
 
   const ranks = await computeRanks(game, playerId, cc);
-  return { accepted, best, ...ranks };
+  return { accepted, best, cc, ...ranks };
 }
 
 // ---------- Ranks & board reads ----------
@@ -180,10 +180,16 @@ export async function getBoard(game: string, playerId?: string) {
     cc: meta.get(e.playerId)?.cc ?? "",
     score: fromStored(game, e.stored),
   }));
-  let you: { rank: number; score: number } | null = null;
+  let you: { rank: number; score: number; cc: string } | null = null;
   if (playerId) {
     const idx = all.findIndex((e) => e.playerId === playerId);
-    if (idx >= 0) you = { rank: idx + 1, score: fromStored(game, all[idx].stored) };
+    if (idx >= 0) {
+      you = {
+        rank: idx + 1,
+        score: fromStored(game, all[idx].stored),
+        cc: meta.get(all[idx].playerId)?.cc ?? "",
+      };
+    }
   }
   return { top, you, totalPlayers: all.length };
 }

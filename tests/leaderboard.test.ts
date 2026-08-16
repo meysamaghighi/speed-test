@@ -512,3 +512,47 @@ test("plateauing level tests get an endurance-appropriate override, not the unit
     assert.equal(GAMES[slug].lowerIsBetter, false);
   }
 });
+
+// --------- Regression: viewer's own country beyond the top-100 slice ---------
+
+test("viewer ranked outside the top 100 still gets a correct country back from the server", async () => {
+  __resetMemoryStore();
+  // 104 filler players (all US) fill up ranks 1-104 — already past the
+  // top-100 slice `getBoard` returns, so anything seeded after this is
+  // guaranteed to land outside `top` regardless of exact scores below.
+  for (let i = 0; i < 104; i++) {
+    await submitScore({
+      game: "reaction", score: 100 + i, nickname: `Filler${i}`, playerId: `filler${i}`, cc: "US",
+    });
+  }
+  // Two same-country peers, ranked worse than all fillers, so the viewer's
+  // countryRank reflects a real position among multiple SE players rather
+  // than trivially being "1 of 1".
+  await submitScore({ game: "reaction", score: 210, nickname: "SwedeA", playerId: "swedeA", cc: "SE" });
+  await submitScore({ game: "reaction", score: 220, nickname: "SwedeB", playerId: "swedeB", cc: "SE" });
+
+  // The viewer: worst score of everyone, so lands dead last — well outside
+  // the top-100 slice.
+  const result = await submitScore({
+    game: "reaction", score: 2000, nickname: "Outsider", playerId: "outsider", cc: "SE",
+  });
+  assert.equal(result.worldRank, 107, "107 total players, viewer is worst");
+  assert.equal(result.cc, "SE", "submitScore must echo the viewer's own country back");
+  assert.equal(result.countryRank, 3, "countryRank must be computed over the FULL board, not just top-100");
+
+  const board = await getBoard("reaction", "outsider");
+  assert.equal(board.totalPlayers, 107);
+  assert.ok(board.top.length <= 100, "top must stay capped at 100");
+  assert.equal(
+    board.top.find((r) => r.name === "Outsider"),
+    undefined,
+    "viewer must be absent from top — that's the whole premise of this regression",
+  );
+  assert.ok(board.you, "getBoard must still report `you` for a player outside the top 100");
+  assert.equal(board.you?.rank, 107);
+  assert.equal(
+    board.you?.cc,
+    "SE",
+    "viewer's country must be recoverable via meta even though they're absent from `top`",
+  );
+});
