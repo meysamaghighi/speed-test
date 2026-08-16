@@ -123,8 +123,8 @@ function withFakeRedis(
 test("redis path: submitScore happy path issues correctly-shaped commands", async () => {
   await withFakeRedis(
     [
-      null, // ZSCORE lb:bmb:reaction p1 -> no prior score
-      1, // ZADD
+      1, // ZADD GT CH lb:bmb:reaction -300 p1 -> absent member inserted, changed=1
+      "-300", // ZSCORE lb:bmb:reaction p1 -> read back authoritative current score
       1, // HSET
       ["p1", "-300"], // ZRANGE (fullBoard, for computeRanks)
       [JSON.stringify({ name: "A", cc: "SE", ts: 1 })], // HMGET (readMeta)
@@ -136,14 +136,187 @@ test("redis path: submitScore happy path issues correctly-shaped commands", asyn
       assert.equal(r.worldRank, 1);
       assert.equal(r.countryRank, 1);
 
-      assert.deepEqual(calls[0].cmd, ["ZSCORE", "lb:bmb:reaction", "p1"]);
-      assert.deepEqual(calls[1].cmd, ["ZADD", "lb:bmb:reaction", -300, "p1"]);
+      assert.deepEqual(calls[0].cmd, ["ZADD", "lb:bmb:reaction", "GT", "CH", -300, "p1"]);
+      assert.deepEqual(calls[1].cmd, ["ZSCORE", "lb:bmb:reaction", "p1"]);
       assert.equal(calls[2].cmd[0], "HSET");
       assert.equal(calls[2].cmd[1], "lb:bmb:reaction:meta");
       assert.deepEqual(calls[3].cmd, ["ZRANGE", "lb:bmb:reaction", 0, -1, "REV", "WITHSCORES"]);
       assert.equal(calls[4].cmd[0], "HMGET");
     }
   );
+});
+
+test("redis path: worse score rejected via GT — accepted false, best keeps the prior (better) score", async () => {
+  await withFakeRedis(
+    [
+      0, // ZADD GT CH lb:bmb:reaction -220 p1 -> -220 is not > existing -180, not changed
+      "-180", // ZSCORE readback -> current best is still -180 (score 180)
+      1, // HSET
+      ["p1", "-180"], // ZRANGE
+      [JSON.stringify({ name: "A", cc: "SE", ts: 1 })], // HMGET
+    ],
+    async (calls) => {
+      // reaction is lower-is-better, so a *higher* ms value (220) is WORSE
+      // than an existing best of 180ms (stored -180 > stored -220 fails GT).
+      const r = await submitScore({ game: "reaction", score: 220, nickname: "A", playerId: "p1", cc: "SE" });
+      assert.equal(r.accepted, false);
+      assert.equal(r.best, 180);
+      assert.deepEqual(calls[0].cmd, ["ZADD", "lb:bmb:reaction", "GT", "CH", -220, "p1"]);
+      assert.deepEqual(calls[1].cmd, ["ZSCORE", "lb:bmb:reaction", "p1"]);
+    }
+  );
+});
+
+// ---------------------------------------------------------------------
+// Race test: two near-simultaneous submitScore() calls for the same
+// playerId, with the worse score's write landing after the better one's.
+// This is the scenario a plain read-then-write (ZSCORE then ZADD) gets
+// wrong: both calls can read "no prior score" before either writes, so
+// both decide to accept, and whichever ZADD lands last wins — a worse
+// score can silently overwrite a better one. ZADD GT CH fixes this by
+// making the compare-and-set atomic. The fake backend below implements
+// real ZSET semantics (including GT/CH) so this test exercises actual
+// state, not just a scripted response queue.
+// ---------------------------------------------------------------------
+
+type Cmd = (string | number)[];
+
+function makeFakeRedisBackend() {
+  const zsets = new Map<string, Map<string, number>>();
+  const hashes = new Map<string, Map<string, string>>();
+
+  function handle(cmd: Cmd): unknown {
+    const [op, ...rest] = cmd;
+    if (op === "ZSCORE") {
+      const [key, member] = rest as [string, string];
+      const v = zsets.get(key)?.get(member);
+      return v === undefined ? null : String(v);
+    }
+    if (op === "ZADD") {
+      let i = 0;
+      const key = rest[i++] as string;
+      let gt = false;
+      let ch = false;
+      while (rest[i] === "GT" || rest[i] === "CH" || rest[i] === "NX" || rest[i] === "XX") {
+        if (rest[i] === "GT") gt = true;
+        if (rest[i] === "CH") ch = true;
+        i++;
+      }
+      const score = Number(rest[i++]);
+      const member = rest[i++] as string;
+      let z = zsets.get(key);
+      if (!z) { z = new Map(); zsets.set(key, z); }
+      const prev = z.get(member);
+      let added = 0;
+      let changed = 0;
+      if (prev === undefined) {
+        z.set(member, score);
+        added = 1;
+        changed = 1;
+      } else if (!gt || score > prev) {
+        if (score !== prev) changed = 1;
+        z.set(member, score);
+      }
+      return ch ? changed : added;
+    }
+    if (op === "HSET") {
+      const [key, field, value] = rest as [string, string, string];
+      let h = hashes.get(key);
+      if (!h) { h = new Map(); hashes.set(key, h); }
+      const isNew = !h.has(field);
+      h.set(field, value);
+      return isNew ? 1 : 0;
+    }
+    if (op === "ZRANGE") {
+      const [key] = rest as [string];
+      const z = zsets.get(key) ?? new Map();
+      const entries = [...z.entries()].sort((a, b) => b[1] - a[1]);
+      const flat: string[] = [];
+      entries.forEach(([m, s]) => flat.push(m, String(s)));
+      return flat;
+    }
+    if (op === "HMGET") {
+      const [key, ...fields] = rest as string[];
+      const h = hashes.get(key) ?? new Map();
+      return fields.map((f) => h.get(f) ?? null);
+    }
+    throw new Error(`fake redis backend: unhandled cmd ${String(op)}`);
+  }
+
+  return { handle, zsets };
+}
+
+const flush = () => new Promise<void>((r) => setTimeout(r, 0));
+
+test("redis path: concurrent submits — a worse score landing last must not overwrite a better one", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalUrl = process.env.UPSTASH_REDIS_REST_URL;
+  const originalToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+  process.env.UPSTASH_REDIS_REST_URL = "https://fake-redis.example/";
+  process.env.UPSTASH_REDIS_REST_TOKEN = "fake-token";
+
+  const backend = makeFakeRedisBackend();
+  type Pending = { cmd: Cmd; respond: () => void };
+  const pending: Pending[] = [];
+
+  globalThis.fetch = ((_url: string | URL, init?: RequestInit) => {
+    const cmd = JSON.parse(String(init?.body)) as Cmd;
+    return new Promise<Response>((resolve) => {
+      pending.push({
+        cmd,
+        // Compute against the backend lazily, at release time — not at
+        // push time — so the order we choose to release calls in is the
+        // order state mutations actually happen in, letting us script the
+        // exact interleaving under test.
+        respond: () => {
+          const result = backend.handle(cmd);
+          resolve({ ok: true, json: async () => ({ result }) } as Response);
+        },
+      });
+    });
+  }) as typeof fetch;
+
+  try {
+    // reaction is lower-is-better: 200ms is BETTER than 400ms.
+    const better = submitScore({ game: "reaction", score: 200, nickname: "A", playerId: "p1", cc: "SE" });
+    const worse = submitScore({ game: "reaction", score: 400, nickname: "A", playerId: "p1", cc: "SE" });
+
+    // Let both calls reach their first redis round trip.
+    await flush();
+    assert.equal(pending.length, 2, "both calls should be blocked on their first redis round trip");
+
+    // Drain strictly in FIFO arrival order, one call at a time, flushing
+    // between each release so each call's continuation runs (and queues its
+    // next command) before we decide what to release next. This is what
+    // produces the race window without hardcoding which command comes
+    // first: on the OLD code, both calls' first command is a ZSCORE read,
+    // so releasing them FIFO makes BOTH read "no prior score" before either
+    // has issued its ZADD write — exactly the interleaving that lets the
+    // second (worse) write clobber the first (better) one. On the FIXED
+    // code, each call's first command is already the atomic `ZADD GT CH`
+    // write, so by the time the second call's write is released, the first
+    // call's write has already been applied to the backend (respond()
+    // applies it synchronously) and GT correctly rejects it — no race is
+    // even possible to construct.
+    while (pending.length > 0) {
+      const p = pending.shift()!;
+      p.respond();
+      await flush();
+    }
+
+    await Promise.all([better, worse]);
+
+    // The real assertion: the persisted board state must still show the
+    // BETTER score (200), not the worse one (400) that wrote last.
+    const persisted = backend.zsets.get("lb:bmb:reaction")?.get("p1");
+    assert.equal(persisted, -200, "a worse score must not overwrite a better one on a losing race");
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalUrl === undefined) delete process.env.UPSTASH_REDIS_REST_URL;
+    else process.env.UPSTASH_REDIS_REST_URL = originalUrl;
+    if (originalToken === undefined) delete process.env.UPSTASH_REDIS_REST_TOKEN;
+    else process.env.UPSTASH_REDIS_REST_TOKEN = originalToken;
+  }
 });
 
 test("redis path: checkRateLimit issues INCR/EXPIRE and blocks over the cap", async () => {

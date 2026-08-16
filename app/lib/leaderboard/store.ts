@@ -93,12 +93,26 @@ export async function submitScore(args: {
     // submit (standard leaderboard behavior); only the score needs to improve.
     b.meta.set(playerId, { name: nickname, cc, ts: Date.now() });
   } else {
-    const prevRaw = (await redisCmd(["ZSCORE", key, playerId])) as string | null;
-    const prev = prevRaw === null ? undefined : Number(prevRaw);
-    if (prev === undefined || stored > prev) {
-      await redisCmd(["ZADD", key, stored, playerId]);
-      accepted = true;
-    } else best = fromStored(game, prev);
+    // Atomic compare-and-set: ZADD's GT flag only updates the member's score
+    // when the new score is strictly greater than the stored one (and always
+    // inserts if the member is absent) — exactly the `stored > prev` check
+    // above, but performed server-side in one round trip instead of a
+    // separate read-then-write. That avoids a race where two near-
+    // simultaneous submits (double-tap, two tabs sharing a playerId, a
+    // client retry) both read "no prior score", both decide to accept, and
+    // whichever ZADD lands last wins — silently letting a worse score
+    // overwrite a better one. CH makes ZADD report how many elements it
+    // actually changed (0 or 1), so `accepted` comes straight from the
+    // atomic op instead of from the pre-write read that caused the race.
+    const changed = (await redisCmd(["ZADD", key, "GT", "CH", stored, playerId])) as number;
+    accepted = changed === 1;
+    // Read the authoritative score back after the write. This is a second
+    // round trip, but it reads committed state (unlike the old pre-write
+    // read, which was the bug) so it can't be stale in a way that matters:
+    // worst case another submit improves it again right after we read, and
+    // that submit's own response will correctly reflect its own accept/best.
+    const currentRaw = (await redisCmd(["ZSCORE", key, playerId])) as string | null;
+    if (currentRaw !== null) best = fromStored(game, Number(currentRaw));
     // Display identity follows the player (see memory-path comment).
     await redisCmd(["HSET", `${key}:meta`, playerId, JSON.stringify({ name: nickname, cc, ts: Date.now() } satisfies Meta)]);
   }
