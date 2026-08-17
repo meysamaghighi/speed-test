@@ -16,6 +16,16 @@ type You = { rank: number; score: number; cc: string };
 type Board = { top: Row[]; you: You | null; totalPlayers: number };
 type SubmitResult = { accepted: boolean; best: number; cc: string; worldRank: number; countryRank: number; totalPlayers: number };
 
+// In-memory fallback used only when localStorage throws (blocked storage —
+// private browsing, storage-disabled settings, some in-app browsers). Cached
+// at module scope so every pid() call within the same page session agrees on
+// one id even though localStorage can't persist it — without this, visitors
+// with blocked storage would all collapse onto the literal string "anon" and
+// their scores/lookups would be indistinguishable from each other. It won't
+// survive a reload, which is expected: the whole problem is localStorage
+// isn't available, so there's nowhere further to persist it.
+let fallbackPid: string | null = null;
+
 function pid(): string {
   try {
     let id = localStorage.getItem("lb.pid");
@@ -25,7 +35,8 @@ function pid(): string {
     }
     return id;
   } catch {
-    return "anon";
+    if (!fallbackPid) fallbackPid = crypto.randomUUID();
+    return fallbackPid;
   }
 }
 
