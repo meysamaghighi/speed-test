@@ -413,6 +413,23 @@ test("board route: 400 on unknown game", async () => {
   assert.equal((await boardGET(new Request("http://x/api/leaderboard?game=nope"))).status, 400);
 });
 
+test("board route: personalized requests are rate limited per IP, anonymous ones are not", async () => {
+  __resetMemoryStore();
+  const withIp = (playerId: string) =>
+    new Request(`http://x/api/leaderboard?game=reaction&playerId=${playerId}`, {
+      headers: { "x-forwarded-for": "203.0.113.9" },
+    });
+  for (let i = 0; i < 10; i++) {
+    assert.equal((await boardGET(withIp(`p${i}`))).status, 200);
+  }
+  assert.equal((await boardGET(withIp("p10"))).status, 429);
+  // The shared, cacheable board (no playerId) is unaffected by the same IP's cap.
+  const anon = await boardGET(
+    new Request("http://x/api/leaderboard?game=reaction", { headers: { "x-forwarded-for": "203.0.113.9" } }),
+  );
+  assert.equal(anon.status, 200);
+});
+
 test("prototype property names are not valid games", async () => {
   __resetMemoryStore();
   for (const g of ["hasOwnProperty", "constructor", "toString", "__proto__"]) {
