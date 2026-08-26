@@ -26,6 +26,28 @@ export function buildLabel(path: string, message: string): string {
   return `${shortPath}|${normalizeMessage(message)}`.slice(0, MAX_LABEL_LENGTH);
 }
 
+/**
+ * Build the message for a failed resource load (img/script/link).
+ *
+ * Resource `error` events only carry a URL, not a message, so the message is
+ * synthesized here: the tag plus the URL's pathname (falling back to the raw
+ * URL when it can't be parsed as an absolute URL, e.g. a relative path).
+ */
+export function buildResourceMessage(tag: string, url: string): string {
+  let resourcePath = url;
+  try {
+    resourcePath = new URL(url).pathname;
+  } catch {
+    // relative or empty URL — use it as-is
+  }
+  return `resource-failed ${tag} ${resourcePath}`;
+}
+
+/** Build the message for an unhandled promise rejection from its (untyped) reason. */
+export function buildRejectionMessage(reason: unknown): string {
+  return reason instanceof Error ? reason.message : String(reason);
+}
+
 /** Per-session send budget: dedupes identical labels and caps total volume. */
 export function createErrorBudget(max: number = MAX_EVENTS_PER_SESSION) {
   const seen = new Set<string>();

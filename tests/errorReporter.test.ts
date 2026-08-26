@@ -4,6 +4,8 @@ import {
   normalizeMessage,
   buildLabel,
   createErrorBudget,
+  buildResourceMessage,
+  buildRejectionMessage,
   MAX_LABEL_LENGTH,
 } from "../app/lib/errorReporter.ts";
 
@@ -48,4 +50,35 @@ test("budget allows exactly five distinct labels then stops", () => {
     assert.equal(b.shouldSend(`/a|boom${i}`), true, `label ${i} should send`);
   }
   assert.equal(b.shouldSend("/a|boom5"), false);
+});
+
+test("buildResourceMessage reduces an absolute URL to its pathname", () => {
+  const message = buildResourceMessage(
+    "img",
+    "https://benchmybrain.com/definitely-missing-asset-xyz.png",
+  );
+  assert.equal(message, "resource-failed img /definitely-missing-asset-xyz.png");
+  assert.equal(
+    buildLabel("/", message),
+    "/|resource-failed img /definitely-missing-asset-xyz.png",
+  );
+});
+
+test("buildResourceMessage falls back to the raw string when the URL can't be parsed", () => {
+  const message = buildResourceMessage("script", "not-a-valid-url");
+  assert.equal(message, "resource-failed script not-a-valid-url");
+});
+
+test("buildRejectionMessage uses the message when reason is an Error", () => {
+  const message = buildRejectionMessage(new Error("deliberate rejection gamma"));
+  assert.equal(message, "deliberate rejection gamma");
+  assert.equal(buildLabel("/", message), "/|deliberate rejection gamma");
+});
+
+test("buildRejectionMessage stringifies a non-Error reason (string)", () => {
+  assert.equal(buildRejectionMessage("deliberate rejection gamma"), "deliberate rejection gamma");
+});
+
+test("buildRejectionMessage stringifies a non-Error reason (object)", () => {
+  assert.equal(buildRejectionMessage({ code: 42 }), "[object Object]");
 });

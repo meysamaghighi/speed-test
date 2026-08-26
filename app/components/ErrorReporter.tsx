@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import { buildLabel, createErrorBudget } from "../lib/errorReporter";
+import {
+  buildLabel,
+  buildRejectionMessage,
+  buildResourceMessage,
+  createErrorBudget,
+} from "../lib/errorReporter";
 
 declare global {
   interface Window {
@@ -28,27 +33,21 @@ export default function ErrorReporter() {
     };
 
     const onRejection = (event: PromiseRejectionEvent) => {
-      const reason = event.reason;
-      send(reason instanceof Error ? reason.message : String(reason), false);
+      send(buildRejectionMessage(event.reason), false);
     };
 
     // Resource load failures (img/script/link) do not bubble, so they are only
     // observable in the capture phase. This same listener also sees script
     // errors, which `onError` already handles — hence the tagName guard.
     const onResourceError = (event: Event) => {
+      if (event.target === window) return;
       const target = event.target as HTMLElement | null;
-      if (!target || target === (window as unknown as HTMLElement)) return;
-      const tag = target.tagName?.toLowerCase();
+      if (!target) return;
+      const tag = target.tagName.toLowerCase();
       if (tag !== "img" && tag !== "script" && tag !== "link") return;
       const url =
         (target as HTMLImageElement).src || (target as HTMLLinkElement).href || "";
-      let resourcePath = url;
-      try {
-        resourcePath = new URL(url).pathname;
-      } catch {
-        // relative or empty URL — use it as-is
-      }
-      send(`resource-failed ${tag} ${resourcePath}`, false);
+      send(buildResourceMessage(tag, url), false);
     };
 
     window.addEventListener("error", onError);
