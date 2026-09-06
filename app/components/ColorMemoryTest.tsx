@@ -82,7 +82,7 @@ export default function ColorMemoryTest() {
     const expectedIndex = sequence[newUserSequence.length - 1];
     if (colorIndex !== expectedIndex) {
       // Wrong color
-      const newLives = lives - 1;
+      const newLives = Math.max(0, lives - 1);
       setLives(newLives);
       if (newLives === 0) {
         setPhase("result");
@@ -192,7 +192,7 @@ export default function ColorMemoryTest() {
     <div className="space-y-6">
       <div className="flex justify-between text-sm text-ink-3 px-1">
         <span>Level {level}</span>
-        <span>Lives: {"❤️".repeat(lives)}</span>
+        <span>Lives: {"❤️".repeat(Math.max(0, lives))}</span>
       </div>
 
       {phase === "showing" && (

@@ -102,7 +102,7 @@ export default function AudioMemory() {
     // Check if wrong
     const expectedIndex = newUserSeq.length - 1;
     if (expectedIndex >= sequence.length || sequence[expectedIndex] !== index) {
-      const newLives = lives - 1;
+      const newLives = Math.max(0, lives - 1);
       setLives(newLives);
       if (newLives === 0) {
         setPhase("done");
@@ -248,7 +248,7 @@ export default function AudioMemory() {
     <div className="space-y-4">
       <div className="flex justify-between text-sm text-ink-2">
         <span>Level {level} • {sequence.length} tones</span>
-        <span>Lives: {"❤️".repeat(lives)}</span>
+        <span>Lives: {"❤️".repeat(Math.max(0, lives))}</span>
       </div>
 
       <div className="relative w-full h-80 md:h-96 bg-paper-2 rounded-2xl border border-line flex items-center justify-center">
